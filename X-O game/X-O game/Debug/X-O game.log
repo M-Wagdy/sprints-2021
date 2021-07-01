@@ -1,0 +1,4 @@
+﻿  main.c
+d:\courses\sprints-2021\x-o game\x-o game\main.c(23): warning C4477: 'scanf_s' : format string '%d' requires an argument of type 'int *', but variadic argument 1 has type 'uint8_t *'
+  d:\courses\sprints-2021\x-o game\x-o game\main.c(23): note: consider using '%hhd' in the format string
+  X-O game.vcxproj -> D:\Courses\sprints-2021\X-O game\Debug\X-O game.exe
