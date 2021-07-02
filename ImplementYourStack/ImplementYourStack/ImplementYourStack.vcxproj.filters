@@ -24,9 +24,6 @@
     <ClCompile Include="balanced_parentheses.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="balanced_parentheses_TestCases.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stack.h">

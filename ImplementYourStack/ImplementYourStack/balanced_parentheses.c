@@ -8,7 +8,7 @@
 
 #include "balanced_parentheses.h"
 
-static uint8_t checkBalance(node * head)
+static uint8_t checkBalance(node * stack_pointer)
 {
 	while (head != 0)
 	{
@@ -22,17 +22,16 @@ static uint8_t checkBalance(node * head)
 		for (int i = 0; i < current_stack_size - 1; i++)
 		{
 			if (
-				( temp_array[i] == ')' && temp_array[i+1] == '(') ||
-				(temp_array[i] == '{' && temp_array[i + 1] == '}')
+				(temp_array[i] == (uint8_t)')' && temp_array[i + 1] == (uint8_t)'(') ||
+				(temp_array[i] == (uint8_t)'}' && temp_array[i + 1] == (uint8_t)'{')
 				)
 			{
-				printf("hnaaa");
 				par_1 = i; 
 				par_2 = i + 1;
 				break;
 			}
 		}
-		if (par_2 - par_1 != 1)
+		if ((par_2 - par_1) != 1)
 		{
 			return NOT_BALANCED_MESSAGE;
 		}
@@ -46,6 +45,7 @@ static uint8_t checkBalance(node * head)
 				}
 			}
 		}
+		free(temp_array);
 	}
 	return BALANCED_STATE;
 }

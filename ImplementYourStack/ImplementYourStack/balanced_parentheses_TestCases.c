@@ -17,7 +17,22 @@
 ************************************************************************************/
 void TestCase1(void)
 {
-	printf("%s \n", balancedParentheses("{a}"));
+	/* Balanced Cases */
+	assert(strcmp(balancedParentheses("(2*3+(5/2+(4*3)))"), BALANCED_MESSAGE) == 0);
+	assert(strcmp(balancedParentheses("3"), BALANCED_MESSAGE) == 0);
+	assert(strcmp(balancedParentheses("({2+3}*(4+5))"), BALANCED_MESSAGE) == 0);
+	assert(strcmp(balancedParentheses("{}"), BALANCED_MESSAGE) == 0);
+	assert(strcmp(balancedParentheses("()"), BALANCED_MESSAGE) == 0);
+	assert(strcmp(balancedParentheses("({})"), BALANCED_MESSAGE) == 0);
+	assert(strcmp(balancedParentheses("((){})"), BALANCED_MESSAGE) == 0);
+
+	/* Not Balanced Cases */
+	assert(strcmp(balancedParentheses("{({2+10}}*11}"), NOT_BALANCED_MESSAGE) == 0);
+	assert(strcmp(balancedParentheses("({3)}"), NOT_BALANCED_MESSAGE) == 0);
+	assert(strcmp(balancedParentheses("(}"), NOT_BALANCED_MESSAGE) == 0);
+	assert(strcmp(balancedParentheses("({}"), NOT_BALANCED_MESSAGE) == 0);
+	assert(strcmp(balancedParentheses("}{)("), NOT_BALANCED_MESSAGE) == 0);
+
 }
 
 
