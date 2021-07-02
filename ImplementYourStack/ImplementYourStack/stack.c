@@ -25,6 +25,7 @@ node * head = 0;
 ************************************************************************************/
 void push(uint8_t u8_data)
 {
+	/* check if stack if full */
 	if (stack_size >= MAX_STACK_SIZE)
 	{
 		console_output = (char *)realloc(console_output, strlen("Stack Overflow will occur, reverting push!") + 1);
@@ -33,12 +34,14 @@ void push(uint8_t u8_data)
 		return;
 	}
 
+	/* append new node on the top of stack */
 	node * new_node = (node *)malloc(sizeof(node));
 	new_node->next = head;
 	new_node->data = u8_data;
 	
+	/* make stack point points to the new nodew */
 	head = new_node;
-	
+	/* increment stack size*/
 	stack_size++;
 }
 
@@ -50,6 +53,7 @@ void push(uint8_t u8_data)
 ************************************************************************************/
 uint8_t pull()
 {
+	/* check if stack if empty */
 	if (stack_size == EMPTY_STACK)
 	{
 		console_output = (char *)realloc(console_output, strlen("Stack is empty, nothing to pop!") + 1);
@@ -58,11 +62,17 @@ uint8_t pull()
 		return EMPTY_STACK;
 	}
 
+	/* copy top node on stack to local variable */
 	node * temp_node = head;
+	/* get data in the top node */
 	uint8_t value = temp_node->data;
+	/* point stack pointer to the next node */
 	head = temp_node->next;
+	/* free the allocated memory for the top node */
 	free(temp_node);
+	/* decrement stack size */
 	stack_size--;
+	/* return value that was on the top node. */
 	return value;
 }
 
@@ -76,6 +86,7 @@ void printStack()
 {
 	node * temp_node = head;
 
+	/* check if stack is empty */
 	if (head == 0)
 	{
 		console_output = (char *)realloc(console_output, strlen("Stack is empty, nothing to print!") + 1);
@@ -83,6 +94,7 @@ void printStack()
 		printf("%s \n", console_output);
 	}
 
+	/* print all stack content */
 	while (temp_node != 0)
 	{
 		printf("%d\n", temp_node->data);

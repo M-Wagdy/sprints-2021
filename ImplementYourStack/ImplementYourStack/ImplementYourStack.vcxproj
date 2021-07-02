@@ -124,8 +124,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="balanced_parentheses.c" />
+    <ClCompile Include="balanced_parentheses_TestCases.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="stack.c" />
+    <ClCompile Include="stack_TestCases.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="balanced_parentheses.h" />

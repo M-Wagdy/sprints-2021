@@ -118,6 +118,7 @@ void main(void)
 	/* malloc console output to be able to realloc in stack APIs */
 	console_output = (char*)malloc(sizeof(char));
 
+	/* test cases should be run in the excat order as they depend on each other. */
 	PullEmptyStack();
 	PrintEmptyStack();
 	PushToStack();

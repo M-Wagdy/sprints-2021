@@ -12,8 +12,7 @@
 * Parameters (in): None
 * Parameters (out): None
 * Return value: None
-* Description: check the pull API prints the correct message on empty stack and the
-*			   stack size is still 0.
+* Description: checks multiple expressions if they are balanced or not.
 ************************************************************************************/
 void TestCase1(void)
 {
