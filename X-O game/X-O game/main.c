@@ -12,15 +12,21 @@ void main(void)
 {
 	/* variable to store the player choice. */
 	static uint8_t choice;
-	
+
 	/* keep running for 9 valid turns. */
 	while (1)
 	{
 		/* draw the board. */
 		drawGame();
 
-		/* get the player choice. */
-		scanf_s("%d", &choice);
+		/* get the player choice if valid. */
+		if (scanf_s("%d", &choice) == 0)
+		{
+			/* clear the input buffer */
+			fseek(stdin, 0, SEEK_END);
+			/* put invalid integer in choice variable */
+			choice = 9;
+		}
 		
 		/* clear the previous screen. */
 		system("cls");
