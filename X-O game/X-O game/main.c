@@ -23,7 +23,7 @@ void main(void)
 		if (scanf_s("%d", &choice) == 0)
 		{
 			/* clear the input buffer */
-			fseek(stdin, 0, SEEK_END);
+			scanf_s("%*[^\n]");
 			/* put invalid integer in choice variable */
 			choice = 9;
 		}

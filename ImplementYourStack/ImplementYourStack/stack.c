@@ -18,7 +18,7 @@ uint8_t stack_size = 0;
 node * head = 0;
 
 /************************************************************************************
-* Parameters (in): u8_data - dat to push to stack.
+* Parameters (in): u8_data - data to be pushed to stack.
 * Parameters (out): None
 * Return value: None
 * Description: saves data to stack and increment stack size by 1.
