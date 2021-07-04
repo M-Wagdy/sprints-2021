@@ -1,0 +1,3 @@
+﻿  terminal_TestCases.c
+d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\terminal_testcases.c(66): warning C4305: 'initializing': truncation from 'double' to 'float'
+  PaymentSystemApplication.vcxproj -> D:\Courses\sprints-2021\PaymentSystemApplication\Debug\PaymentSystemApplication.exe
