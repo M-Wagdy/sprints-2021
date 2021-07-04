@@ -28,7 +28,7 @@ typedef struct {
  *                                 Stack Macros                               *
  ******************************************************************************/
 
-#define MAX_STACK_SIZE (uint8_t)10
+#define MAX_STACK_SIZE (uint8_t)100
 #define EMPTY_STACK (uint8_t)0
 
 /******************************************************************************

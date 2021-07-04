@@ -92,7 +92,7 @@ void FillStack(void)
 void TestPrintStack(void)
 {
 	printStack();
-	assert(stack_size == 10);
+	assert(stack_size == MAX_STACK_SIZE);
 }
 
 /************************************************************************************
