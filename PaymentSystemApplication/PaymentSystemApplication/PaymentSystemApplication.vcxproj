@@ -128,11 +128,9 @@
     <ClInclude Include="terminal.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c" />
     <ClCompile Include="server.c" />
     <ClCompile Include="server_TestCases.c" />
     <ClCompile Include="terminal.c" />
-    <ClCompile Include="terminal_TestCases.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
