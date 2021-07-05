@@ -47,19 +47,25 @@ void TransactionTestCases(void)
 	pan_index = get_balance("456789123");
 
 	/* test case 1 */
-	transaction_status = transaction("456789123", 20.50);
+	ST_cardData_t test_case_1_card_data = { "Yehia Mohammed", "456789123","12/19" };
+	ST_terminalData_t test_case_1_terminal_data = { 20.50, 5000, "27/11/2019" };
+	transaction_status = transaction(test_case_1_card_data, test_case_1_terminal_data);
 	/* check that the balance is updated after an accepted transaction */
 	assert(abs(database[pan_index].balance- 1479.62) < 0.1);
 	assert(transaction_status == ACCEPTED_TRANSACTION);
 
 	/* test case 3 */
-	transaction_status = transaction("456789123", 2000.00);
+	ST_cardData_t test_case_3_card_data = { "Yehia Mohammed", "456789123","12/19" };
+	ST_terminalData_t test_case_3_terminal_data = { 2000.00, 5000, "27/11/2019" };
+	transaction_status = transaction(test_case_3_card_data, test_case_3_terminal_data);
 	/* check that the balance didn't change after a declined transaction */
 	assert(abs(database[pan_index].balance - 1479.62) < 0.1);
 	assert(transaction_status == DECLINED_TRANSACTION);
 
 	/* test case 4 */
-	transaction_status = transaction("456789124", 20.50);
+	ST_cardData_t test_case_4_card_data = { "Yehia Mohammed", "456789124","12/19" };
+	ST_terminalData_t test_case_4_terminal_data = { 20.50, 5000, "27/11/2019" };
+	transaction_status = transaction(test_case_4_card_data, test_case_4_terminal_data);
 	assert(transaction_status == DECLINED_TRANSACTION);
 }
 

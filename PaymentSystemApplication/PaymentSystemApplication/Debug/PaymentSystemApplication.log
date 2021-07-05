@@ -1,3 +1,16 @@
-﻿  terminal_TestCases.c
-d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\terminal_testcases.c(66): warning C4305: 'initializing': truncation from 'double' to 'float'
+﻿  main.c
+d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\main.c(166): warning C4133: '=': incompatible types - from 'node *' to 'node *'
+  server.c
+d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\server.c(15): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\server.c(20): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\server.c(21): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\server.c(40): warning C4013: 'strcmp' undefined; assuming extern returning int
+d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\server.c(124): warning C4133: '=': incompatible types - from 'node *' to 'node *'
+d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\server.c(144): warning C4133: '=': incompatible types - from 'node *' to 'node *'
+d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\server.c(150): warning C4133: '=': incompatible types - from 'node *' to 'node *'
+d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\server.c(151): warning C4133: '=': incompatible types - from 'node *' to 'node *'
+d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\server.c(161): warning C4133: '=': incompatible types - from 'node *' to 'node *'
+d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\server.c(172): warning C4133: '=': incompatible types - from 'node *' to 'node *'
+d:\courses\sprints-2021\paymentsystemapplication\paymentsystemapplication\server.c(178): warning C4133: '=': incompatible types - from 'node *' to 'node *'
+  Generating Code...
   PaymentSystemApplication.vcxproj -> D:\Courses\sprints-2021\PaymentSystemApplication\Debug\PaymentSystemApplication.exe

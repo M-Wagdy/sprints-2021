@@ -7,6 +7,8 @@
 ******************************************************************************/
 #include "terminal.h"
 
+extern node * head;
+
 void main()
 {
 	while (1)
@@ -134,5 +136,39 @@ void main()
 		{
 			break;
 		}
+	}
+
+	/* print transaction history on when the user finishes his program. */
+	printf("Transaction history: \n \n");
+	node * temp_node = head;
+	uint8_t history_counter = 1;
+	
+	/* loops on transaction history nodes */
+	while (temp_node != 0)
+	{
+		printf("%d  \n", history_counter);
+		printf("card data:\n  Card Holder Name: %s \n  PAN: %s \n  Expiration Date:%s \n",
+				temp_node->data.cardHolderData.cardHolderName, 
+				temp_node->data.cardHolderData.primaryAccountNumber, 
+				temp_node->data.cardHolderData.cardExpirationDate 
+		);
+		printf("terminal data:\n  Transaction Amount: %f \n  Max Allowed From Terminal: %f \n  Transaction Date: %s \n",
+			temp_node->data.transData.transAmount,
+			temp_node->data.transData.maxTransAmount,
+			temp_node->data.transData.transactionDate
+		);
+		printf("status: %s \n",
+			temp_node->data.transStat == APPROVED? "Approved": "Declined"
+		);
+		printf("------------------------------------------\n\n");
+		history_counter++;
+
+		temp_node = temp_node->next;
+	}
+
+	/* open loop so in the application you can the see the output */
+	while (1)
+	{
+
 	}
 }

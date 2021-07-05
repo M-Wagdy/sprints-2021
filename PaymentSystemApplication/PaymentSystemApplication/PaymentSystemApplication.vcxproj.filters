@@ -32,13 +32,13 @@
     <ClCompile Include="server.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="terminal_TestCases.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="server_TestCases.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="terminal_TestCases.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

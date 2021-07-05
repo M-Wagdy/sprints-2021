@@ -103,8 +103,8 @@ uint8_t send(ST_cardData_t card_data, ST_terminalData_t terminal_data)
 	uint8_t transaction_status;
 	
 	/* sends the transaction to the server */
-	transaction_status = transaction(card_data.primaryAccountNumber, terminal_data.transAmount);
+	transaction_status = transaction(card_data, terminal_data);
 	
-	/* return the transaction status */
+	/* return the transaction status o*/
 	return transaction_status;
 }

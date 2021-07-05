@@ -44,13 +44,19 @@ typedef struct ST_transaction_t {
 	ST_cardData_t cardHolderData; 
 	ST_terminalData_t transData; 
 	EN_transStat_t transStat; 
-} ST_transaction;
+} ST_transaction_t;
 
 /* account balance struct */
 typedef struct ST_accountBalance_t { 
 	float balance; 
 	uint8_t primaryAccountNumber[20]; 
 } ST_accountBalance_t;
+
+/* stack node struct */
+typedef struct {
+	struct node * next;
+	struct ST_transaction_t data;
+} node;
 
 /******************************************************************************
  *                                 Terminal Macros                               *
@@ -74,6 +80,9 @@ uint8_t get_balance(uint8_t * pan);
 void update_balance(uint8_t pan_index, float amount);
 
 /* Function to recieve transaction from terminal. */
-uint8_t transaction(uint8_t * pan, float amount);
+uint8_t transaction(ST_cardData_t card_data, ST_terminalData_t terminal_data);
+
+/* save transaction history */
+void save_history(ST_transaction_t transaction_data);
 
 #endif /* SERVER_H_ */
