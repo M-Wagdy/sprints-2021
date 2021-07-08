@@ -41,5 +41,10 @@ typedef uint8_t TIMER_ERROR_state_t;
 */
 #define           E_TIMER_NULL_PTR              (TIMER_ERROR_state_t)( 3 )
 
+/**
+* @brief: This return value indicate that a Timer function
+* got an invalid timer number.
+*/
+#define           E_INVALID_TIMER_NUMBER        (TIMER_ERROR_state_t)( 4 )
 
 #endif /* __TIMER_RETVAL_H__ */

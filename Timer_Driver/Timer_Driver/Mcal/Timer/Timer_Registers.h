@@ -10,14 +10,14 @@
 #define __TIMER_REGISTERS_H__
 
 /*- TIMER0 REGISTERS-----------------------------------------*/
-#define  TIMER0_CONTROL       (*((volatile uint8_t *) (0x53)))
-#define  TIMER0_TCNT          (*((volatile uint8_t *) (0x52)))
-#define  TIMER0_OCR0          (*((volatile uint8_t *) (0x5C)))
+#define  TIMER_0_CONTROL      (*((volatile uint8_t *) (0x53)))
+#define  TIMER_0_DATA         (*((volatile uint8_t *) (0x52)))
+#define  TIMER_0_COMPARE      (*((volatile uint8_t *) (0x5C)))
 
 /*- TIMER2 REGISTERS-----------------------------------------*/
-#define  TIMER2_CONTROL       (*((volatile uint8_t *) (0x45)))
-#define  TIMER2_TCNT          (*((volatile uint8_t *) (0x44)))
-#define  TIMER2_OCR0          (*((volatile uint8_t *) (0x43)))
+#define  TIMER_2_CONTROL      (*((volatile uint8_t *) (0x45)))
+#define  TIMER_2_DATA         (*((volatile uint8_t *) (0x44)))
+#define  TIMER_2_COMPARE      (*((volatile uint8_t *) (0x43)))
 
 /*- TIMER INTERRUPTS REGISTERS-------------------------------*/
 #define  TIMER_INT_MASK       (*((volatile uint8_t *) (0x59)))

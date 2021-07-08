@@ -14,7 +14,6 @@
 /*- STRUCTS AND UNIONS -------------------------------------*/
 typedef struct STR_TIMER_config_t{
    uint8_t timer_no;
-   uint8_t clock_source;
    uint8_t mode;
    uint8_t interrupt_mode;
 } STR_TIMER_config_t;
@@ -23,7 +22,7 @@ typedef struct STR_TIMER_config_t{
 #define  TIMERS_NUMBER       (uint8_t)( 2 )
 
 #define  TIMER_0              (uint8_t)( 0 )
-#define  TIMER_2              (uint8_t)( 2 )
+#define  TIMER_2              (uint8_t)( 1 )
 
 #define  CLK_NO_SRC           (uint8_t)( 0x00 )
 #define  CLK_1_MHZ            (uint8_t)( 0x01 )
@@ -36,14 +35,14 @@ typedef struct STR_TIMER_config_t{
 #define  CLK_DEFAULT          (uint8_t)( 0x07 )
 
 #define  NORMAL_MODE          (uint8_t)( 0x00 )
-#define  PHASE_PWM_MODE       (uint8_t)( 0x01 )
-#define  COMPARE_MATCH_MODE   (uint8_t)( 0x02 )
-#define  FAST_PWM_MODE        (uint8_t)( 0x03 )
+#define  PHASE_PWM_MODE       (uint8_t)( 0x40 )
+#define  COMPARE_MATCH_MODE   (uint8_t)( 0x08 )
+#define  FAST_PWM_MODE        (uint8_t)( 0x48 )
 #define  DEFAULT_MODE         (uint8_t)( 0x00 )
 
-#define  NO_INTERRUPT         (uint8_t)( 0 )
-#define  OVERFLOW_INTERRUPT   (uint8_t)( 1 )
-#define  COMPARE_INTERRUPT    (uint8_t)( 2 )
+#define  NO_INTERRUPT         (uint8_t)( 0x00 )
+#define  OVERFLOW_INTERRUPT   (uint8_t)( 0x01 )
+#define  COMPARE_INTERRUPT    (uint8_t)( 0x02 )
 #define  DEFAULT_INTERRUPT    (uint8_t)( 0 )
 
 #endif /* __TIMER_PBCFG_H__ */

@@ -14,6 +14,11 @@
 #include "Timer_retval.h"
 #include "Timer_Pbcfg.h"
 
+/*- MACROS -------------------------------------------------*/
+#define TIMER_NOT_FINISHED       (uint8_t)(0x00)
+#define TIMER_OVERFLOW_FLAG      (uint8_t)(0x01)
+#define TIMER_COMPARE_FLAG       (uint8_t)(0x02)
+
 /*- FUNCTION DECLARATIONS ----------------------------------*/
 
 /* Function that initializes the timers */

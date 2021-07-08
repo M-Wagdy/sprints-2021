@@ -11,6 +11,6 @@
 
 /* struct containing all DIO pins configurations. */
 const STR_TIMER_config_t gastr_TIMER_configurations[TIMERS_NUMBER] = {
-   {TIMER_0, CLK_125_KHZ, NORMAL_MODE, NO_INTERRUPT},
-   {TIMER_2, CLK_DEFAULT, DEFAULT_MODE, DEFAULT_INTERRUPT}
+   {TIMER_0, NORMAL_MODE, NO_INTERRUPT},
+   {TIMER_2, NORMAL_MODE, NO_INTERRUPT}
 };
