@@ -11,10 +11,10 @@
 
 /*- LOCAL MACROS
 ------------------------------------------*/
-#define HIGH      (uint8_t)1
-#define LOW       (uint8_t)0
-#define NOT_INIT  (uint8_t)0
-#define INIT      (uint8_t)1
+#define HIGH      (uint8_t)(1)
+#define LOW       (uint8_t)(0)
+#define NOT_INIT  (uint8_t)(0)
+#define INIT      (uint8_t)(1)
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
@@ -32,26 +32,29 @@ static uint8_t gu8_is_DIO_init = NOT_INIT;
 */
 DIO_ERROR_state_t DIO_init(const STR_DIO_config_t * configurations)
 {
+   /* pointers to carry the required port registers address. */
    volatile uint8_t * prt_port_data = NULL_PTR;
    volatile uint8_t * prt_port_dir = NULL_PTR;
    
+   /* check if DIO pins are initialized before. */
    if(INIT == gu8_is_DIO_init)
    {
       return E_DIO_INIT_BEFORE;
    }
+   /* check if configurations is a null pointer. */
    else if(NULL_PTR == configurations)
    {
       return E_DIO_NULL_PTR;
    }
    else
    {
-      //PORTA_DIR |= 0x01;
-      //PORTA_DATA |= 0x01;
       /* do nothing */
    }
    
+   /* loops through the configuration array to initialize all pins. */
    for(uint8_t i = 0; i<PINS_NUMBERS; i++)
    {
+      /* sets the data and direction pointers according to the required port. */
       switch(configurations[i].port_no)
       {
          case PORTA:
@@ -73,9 +76,12 @@ DIO_ERROR_state_t DIO_init(const STR_DIO_config_t * configurations)
          default:
             return E_DIO_INVALID_PORT;
       }
+      /* initialize output pin. */
       if(OUTPUT == configurations[i].direction)
       {
+         /* set pin direction */
          SET_BIT(*prt_port_dir,configurations[i].pin_no);
+         /* set initial value */
          if(INITIAL_HIGH == configurations[i].initial_value)
          {
             SET_BIT(*prt_port_data,configurations[i].pin_no);
@@ -89,9 +95,12 @@ DIO_ERROR_state_t DIO_init(const STR_DIO_config_t * configurations)
             /* do nothing */
          }
       }
+      /* initialize input pin. */
       else if(INPUT == configurations[i].direction)
       {
+         /* set pin direction */
          CLEAR_BIT(*prt_port_dir,configurations[i].pin_no);
+         /* set pin resistor type. */
          if(PULL_UP == configurations[i].resistor)
          {
             SET_BIT(*prt_port_data,configurations[i].pin_no);
@@ -110,8 +119,9 @@ DIO_ERROR_state_t DIO_init(const STR_DIO_config_t * configurations)
          /* do nothing */
       }
    }
-         
+   /* set global variable to INIT. */
    gu8_is_DIO_init = INIT;
+   /* return success message. */
    return E_DIO_SUCCESS;
 }
 
@@ -126,13 +136,16 @@ DIO_ERROR_state_t DIO_init(const STR_DIO_config_t * configurations)
 */
 DIO_ERROR_state_t DIO_write(uint8_t port, ENU_pins pin, uint8_t data)
 {
+   /* pointers to carry the required port registers address. */
    volatile uint8_t * prt_port_data = NULL_PTR;
    
+   /* check if DIO pins are not initialized. */
    if(NOT_INIT == gu8_is_DIO_init)
    {
       return E_DIO_NOT_INIT;
    }
    
+   /* sets the data pointer according to the required port. */
    switch(port)
    {
       case PORTA:
@@ -150,6 +163,7 @@ DIO_ERROR_state_t DIO_write(uint8_t port, ENU_pins pin, uint8_t data)
       default:
          return E_DIO_INVALID_PORT;
    }
+   /* set or clear value in the pin. */
    if(HIGH == data)
    {
       SET_BIT(*prt_port_data,pin);
@@ -158,11 +172,13 @@ DIO_ERROR_state_t DIO_write(uint8_t port, ENU_pins pin, uint8_t data)
    {
       CLEAR_BIT(*prt_port_data,pin);
    }
+   /* if data is invalid. */
    else
    {
       return E_DIO_INVALID_WRITE_DATA;
    }
    
+   /* return success message. */
    return E_DIO_SUCCESS;
 }
 
@@ -177,12 +193,15 @@ DIO_ERROR_state_t DIO_write(uint8_t port, ENU_pins pin, uint8_t data)
 */
 DIO_ERROR_state_t DIO_read(uint8_t port, ENU_pins pin, uint8_t * data)
 {
+   /* pointers to carry the required port registers address. */
    volatile uint8_t * prt_port_stat = NULL_PTR;
    
+   /* check if DIO pins are not initialized. */
    if(NOT_INIT == gu8_is_DIO_init)
    {
       return E_DIO_NOT_INIT;
    }
+   /* check if address of data to put the read value in is not null pointer. */
    else if(NULL_PTR == data)
    {
       return E_DIO_NULL_PTR;
@@ -192,6 +211,7 @@ DIO_ERROR_state_t DIO_read(uint8_t port, ENU_pins pin, uint8_t * data)
       /* do nothing */
    }
    
+   /* sets the stat pointer according to the required port. */
    switch(port)
    {
       case PORTA:
@@ -210,6 +230,7 @@ DIO_ERROR_state_t DIO_read(uint8_t port, ENU_pins pin, uint8_t * data)
          return E_DIO_INVALID_PORT;
    }
    
+   /* read the pin value and put it in the data. */
    if(BIT_IS_SET(*prt_port_stat,pin))
    {
       *data = HIGH;
@@ -218,6 +239,8 @@ DIO_ERROR_state_t DIO_read(uint8_t port, ENU_pins pin, uint8_t * data)
    {
       *data = LOW;
    }
+   
+   /* return success message. */
    return E_DIO_SUCCESS;
 }
 
@@ -231,8 +254,10 @@ DIO_ERROR_state_t DIO_read(uint8_t port, ENU_pins pin, uint8_t * data)
 */
 DIO_ERROR_state_t DIO_toggle(uint8_t port, ENU_pins pin)
 {
+   /* pointers to carry the required port registers address. */
    volatile uint8_t * prt_port_data = NULL_PTR;
    
+   /* check if DIO pins are not initialized. */
    if(NOT_INIT == gu8_is_DIO_init)
    {
       return E_DIO_NOT_INIT;
@@ -242,6 +267,7 @@ DIO_ERROR_state_t DIO_toggle(uint8_t port, ENU_pins pin)
       /* do nothing */
    }
    
+   /* sets the stat pointer according to the required port. */
    switch(port)
    {
       case PORTA:
@@ -260,7 +286,9 @@ DIO_ERROR_state_t DIO_toggle(uint8_t port, ENU_pins pin)
          return E_DIO_INVALID_PORT;
    }
    
+   /* toggles the pin value. */
    TOGGLE_BIT(*prt_port_data, pin);
    
+   /* return success message. */
    return E_DIO_SUCCESS;
 }
