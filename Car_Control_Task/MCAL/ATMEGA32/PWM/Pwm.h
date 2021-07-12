@@ -20,8 +20,8 @@
 uint8_t PwmInit(void);
 uint8_t PwmStart(uint8_t PwmChannelNumber);
 uint8_t PwmStop(uint8_t PwmChannelNumber);
-uint8_t PwmConnect(uint8_t PwmChannelNumber,uint8_t ConnectedPin);
-uint8_t PwmDisconnect(uint8_t PwmChannelNumber,uint8_t ConnectedPin);
+uint8_t PwmConnect(uint8_t PwmChannelNumber);
+uint8_t PwmDisconnect(uint8_t PwmChannelNumber);
 uint8_t PwmSetDuty(uint8_t PwmChannelNumber,uint8_t PwmDuty);
 
 #endif

@@ -10,8 +10,8 @@
 #define __CARCONTROL_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "../../Motor.h"
-#include "../../PushButton.h"
+#include "Motor.h"
+#include "PushButton.h"
 #include "CarControl_retval.h"
 
 /*- FUNCTION DECLARATIONS ----------------------------------*/

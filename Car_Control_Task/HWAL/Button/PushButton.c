@@ -15,8 +15,7 @@ PSHBTTN_ERROR_RETVAL_t PSHBTTN_Init(DIO_PORT_ID_t port, DIO_PIN_ID_t pin,
 		GpioEnablePinPullup(port, pin);
 	return retVal;
 }
-PSHBTTN_ERROR_RETVAL_t PSHBTTN_EnablePullUp(DIO_PORT_ID_t port,
-		DIO_PIN_ID_t pin){
+PSHBTTN_ERROR_RETVAL_t PSHBTTN_EnablePullUp(DIO_PORT_ID_t port,DIO_PIN_ID_t pin){
 	PSHBTTN_ERROR_RETVAL_t retVal = EXIT_SUCCESFUL;
 	retVal = GpioEnablePinPullup(port,pin);
 	return retVal;

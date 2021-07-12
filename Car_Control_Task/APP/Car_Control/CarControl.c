@@ -30,8 +30,8 @@
 #define PIN_6                 (uint8_t)(6)
 #define PIN_7                 (uint8_t)(7)
 
-#define PRESSED               (uint8_t)(1)
-#define NOT_PRESSED           (uint8_t)(0)
+#define PRESSED               (uint8_t)(0)
+#define NOT_PRESSED           (uint8_t)(1)
 
 #define BUTTON_FORWARD_PORT   (uint8_t)(1)
 #define BUTTON_FORWARD_PIN    (uint8_t)(2)
@@ -114,12 +114,12 @@ static void CAR_SetMotorState(uint8_t state)
          }
          break;
       case R_STATE:
-         MOTOR_start(MOTOR_1, MOTOR_SPEED_1, MOTOR_FORWARD);
-         MOTOR_start(MOTOR_2, MOTOR_SPEED_1, MOTOR_BACKWARD);
+         MOTOR_start(MOTOR_1, MOTOR_SPEED_1,MOTOR_FORWARD);
+         MOTOR_start(MOTOR_2, MOTOR_SPEED_1,MOTOR_BACKWARD);
          break;
       case L_STATE:
-         MOTOR_start(MOTOR_1, MOTOR_SPEED_1, MOTOR_BACKWARD);
-         MOTOR_start(MOTOR_2, MOTOR_SPEED_1, MOTOR_FORWARD);
+         MOTOR_start(MOTOR_1, MOTOR_SPEED_1,MOTOR_BACKWARD);
+         MOTOR_start(MOTOR_2, MOTOR_SPEED_1,MOTOR_FORWARD);
          break;
       case G_STATE:
          if(MOTOR_SPEED_1 == gu8_dutyCycle && gu8_direction == MOTOR_FORWARD)
@@ -143,6 +143,7 @@ static void CAR_SetMotorState(uint8_t state)
          {
             gu8_state = S_STATE;
          }
+
          break;
       case S_STATE:
          MOTOR_stop(MOTOR_1);
@@ -165,7 +166,6 @@ CAR_ERROR_state_t CAR_Init(void)
 {
    /* initialize motors */
    MOTOR_init();
-   
    /* set row in the matrix output */
    GpioSetPinDirection(ROW_MATRIX_PORT, ROW_MATRIX_PIN, PIN_OUTPUT);
    
