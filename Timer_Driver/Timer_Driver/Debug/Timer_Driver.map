@@ -459,15 +459,15 @@ END GROUP
  .debug_frame   0x00000000       0x34 main.o
  .debug_frame   0x00000034       0x94 Mcal/Timer/Timer.o
 
-.debug_str      0x00000000      0x451
+.debug_str      0x00000000      0x459
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_str     0x00000196      0x1ee main.o
-                                0x215 (size before relaxing)
- .debug_str     0x00000384       0xb1 Mcal/Timer/Timer.o
-                                0x288 (size before relaxing)
- .debug_str     0x00000435       0x1c Mcal/Timer/Timer_PbCfg.o
-                                0x1c4 (size before relaxing)
+ .debug_str     0x00000196      0x1f6 main.o
+                                0x21d (size before relaxing)
+ .debug_str     0x0000038c       0xb1 Mcal/Timer/Timer.o
+                                0x290 (size before relaxing)
+ .debug_str     0x0000043d       0x1c Mcal/Timer/Timer_PbCfg.o
+                                0x1cc (size before relaxing)
 
 .debug_loc      0x00000000      0x4d9
  *(.debug_loc)

@@ -32,7 +32,7 @@ typedef struct STR_TIMER_config_t{
 #define  CLK_1_KHZ            (uint8_t)( 0x05 )
 #define  CLK_EXT_FALLING_EDGE (uint8_t)( 0x06 )
 #define  CLK_EXT_RISING_EDGE  (uint8_t)( 0x07 )
-#define  CLK_DEFAULT          (uint8_t)( 0x07 )
+#define  CLK_DEFAULT          (uint8_t)( 0x00 )
 
 #define  NORMAL_MODE          (uint8_t)( 0x00 )
 #define  PHASE_PWM_MODE       (uint8_t)( 0x40 )
