@@ -5,8 +5,12 @@
  * Author : Mohamed Wagdy
  */ 
 
+/*- INCLUDES
+----------------------------------------------*/
 #include "Mcal/UART/UART.h"
 
+/*- LOCAL MACROS
+------------------------------------------*/
 #define CLK_8_MHZ_9600_BAUD   (uint16_t)(51)
 #define MAX_STRING_SIZE       (uint16_t)(200)
 

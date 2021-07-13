@@ -6,6 +6,7 @@
  */ 
 #include "../../Infrastructure/STD_types.h"
 
+/* initialize registers valaues */
 uint8_t UART_DATA_R = 0x00;
 uint8_t UART_STATUS_R = 0x40;
 uint8_t UART_CONTROL_R = 0x00;

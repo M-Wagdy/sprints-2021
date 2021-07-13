@@ -48,14 +48,15 @@ static uint8_t gu8_is_UART_init = NOT_INIT;
 -----------------------------------*/
 
 /**
-* @brief: This function configures all DIO pins.
+* @brief: This function initialize the UART pin.
 *
-* @param [in]  configurations -  array containing the configurations for all the pins.
+* @param [in]  baudRate  -  baud rate of the UART.
 *
 * @return function error state.
 */
 UART_ERROR_state_t UART_init(uint16_t baudRate)
 {
+   /* making sure the driver wasn't initialized before or invalid baud rate was given */
    if(INIT == gu8_is_UART_init)
    {
       return E_UART_INIT_BEFORE;
@@ -74,20 +75,24 @@ UART_ERROR_state_t UART_init(uint16_t baudRate)
    /* Set Odd parity, 2 stop bits and 8 bits data size */
    UART_CONTROL_2_R = (SET_PARITY_STOP_AND_DATA_SIZE | NO_PARITY | STOP_1_BIT | DATA_8_BITS);
        
-   /* Set Baud Rate */
+   /* Set Baud Rate low bits */
    UART_BAUDRATE_LOW_R = (uint8_t)baudRate;
+   /* Set Baud Rate high bits if needed */
    if(BAUD_MAX_LOW_BITS < baudRate)
    {
       UART_BAUDRATE_HIGH_R = (uint8_t)( baudRate >> BAUD_HIGH_BITS_SHIFT );
    }
    
+   /* sets global variable to initialized */
    gu8_is_UART_init = INIT;
    
+   /* return success status */
    return E_UART_SUCCESS;
 }
 
 UART_ERROR_state_t UART_sendChar(uint8_t character)
 {
+   /* making sure the driver was initialized before calling this function */
    if( NOT_INIT == gu8_is_UART_init)
    {
       return E_UART_NOT_INIT;
@@ -103,11 +108,14 @@ UART_ERROR_state_t UART_sendChar(uint8_t character)
    /* Put data into buffer, sends the data */
    UART_DATA_R = character;
    
+   /* return success status */
    return E_UART_SUCCESS;
 }
 
 UART_ERROR_state_t UART_readChar(uint8_t * character)
 {
+   /* making sure the driver was initialized before calling this function, 
+      and an initialized pointer is sent to the function */
    if( NOT_INIT == gu8_is_UART_init)
    {
       return E_UART_NOT_INIT;
@@ -126,6 +134,7 @@ UART_ERROR_state_t UART_readChar(uint8_t * character)
    /* Get and return received data from buffer */
    *character = UART_DATA_R;
    
+   /* return success status */
    return E_UART_SUCCESS;
 }
 
@@ -133,6 +142,8 @@ UART_ERROR_state_t UART_sendString(uint8_t * string)
 {
    uint8_t counter = STRING_COUNTER_START;
    
+   /* making sure the driver was initialized before calling this function, 
+      and an initialized pointer is sent to the function */
    if( NOT_INIT == gu8_is_UART_init)
    {
       return E_UART_NOT_INIT;
@@ -146,6 +157,7 @@ UART_ERROR_state_t UART_sendString(uint8_t * string)
       /* do nothing */
    }
    
+   /* keeps sending data until it finds an end of string character in the string */
    while(string[counter] != END_OF_STRING)
    {
       /* Wait for empty transmit buffer */
@@ -156,6 +168,7 @@ UART_ERROR_state_t UART_sendString(uint8_t * string)
       counter++;
    }
    
+   /* return success status */
    return E_UART_SUCCESS;
 }
 
@@ -163,6 +176,8 @@ UART_ERROR_state_t UART_readString(uint8_t * string)
 {
    uint8_t counter = STRING_COUNTER_START;
    
+   /* making sure the driver was initialized before calling this function, 
+      and an initialized pointer is sent to the function */
    if( NOT_INIT == gu8_is_UART_init)
    {
       return E_UART_NOT_INIT;
@@ -183,6 +198,8 @@ UART_ERROR_state_t UART_readString(uint8_t * string)
       /* Get and return received data from buffer */
       string[counter] = UART_DATA_R;
       
+      /* enters an end of string character and breaks from the loop on receiving
+         a new line character */
       if(string[counter] == NEW_LINE)
       {
          string[counter + 1] = END_OF_STRING;
@@ -191,5 +208,6 @@ UART_ERROR_state_t UART_readString(uint8_t * string)
       counter++;
    }
    
+   /* return success status */
    return E_UART_SUCCESS;
 }

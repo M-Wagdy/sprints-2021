@@ -83,7 +83,7 @@ Disassembly of section .text:
   78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 0000007c <main>:
-
+------------------------------------------*/
 #define CLK_8_MHZ_9600_BAUD   (uint16_t)(51)
 #define MAX_STRING_SIZE       (uint16_t)(200)
 
@@ -105,6 +105,7 @@ int main(void)
   92:	83 e3       	ldi	r24, 0x33	; 51
   94:	90 e0       	ldi	r25, 0x00	; 0
   96:	0e 94 56 00 	call	0xac	; 0xac <UART_init>
+   
    while(1)
    {
       UART_readString(string);
@@ -118,10 +119,10 @@ int main(void)
   aa:	f7 cf       	rjmp	.-18     	; 0x9a <main+0x1e>
 
 000000ac <UART_init>:
-   while ( !(UART_STATUS_R & RECEIVE_COMPLETE_BIT) );
    /* Get and return received data from buffer */
    *character = UART_DATA_R;
    
+   /* return success status */
    return E_UART_SUCCESS;
 }
   ac:	20 91 60 00 	lds	r18, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
@@ -157,6 +158,8 @@ UART_ERROR_state_t UART_sendString(uint8_t * string)
   e2:	9c 01       	movw	r18, r24
    uint8_t counter = STRING_COUNTER_START;
    
+   /* making sure the driver was initialized before calling this function, 
+      and an initialized pointer is sent to the function */
    if( NOT_INIT == gu8_is_UART_init)
   e4:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
   e8:	88 23       	and	r24, r24
@@ -170,8 +173,8 @@ UART_ERROR_state_t UART_sendString(uint8_t * string)
   f0:	79 f0       	breq	.+30     	; 0x110 <UART_sendString+0x2e>
   f2:	90 e0       	ldi	r25, 0x00	; 0
   f4:	04 c0       	rjmp	.+8      	; 0xfe <UART_sendString+0x1c>
-   }
    
+   /* keeps sending data until it finds an end of string character in the string */
    while(string[counter] != END_OF_STRING)
    {
       /* Wait for empty transmit buffer */
@@ -184,11 +187,11 @@ UART_ERROR_state_t UART_sendString(uint8_t * string)
   fa:	8c b9       	out	0x0c, r24	; 12
       counter++;
   fc:	9f 5f       	subi	r25, 0xFF	; 255
-   else
    {
       /* do nothing */
    }
    
+   /* keeps sending data until it finds an end of string character in the string */
    while(string[counter] != END_OF_STRING)
   fe:	f9 01       	movw	r30, r18
  100:	e9 0f       	add	r30, r25
@@ -197,9 +200,9 @@ UART_ERROR_state_t UART_sendString(uint8_t * string)
  106:	81 11       	cpse	r24, r1
  108:	f6 cf       	rjmp	.-20     	; 0xf6 <UART_sendString+0x14>
  10a:	08 95       	ret
-{
-   uint8_t counter = STRING_COUNTER_START;
    
+   /* making sure the driver was initialized before calling this function, 
+      and an initialized pointer is sent to the function */
    if( NOT_INIT == gu8_is_UART_init)
    {
       return E_UART_NOT_INIT;
@@ -210,10 +213,10 @@ UART_ERROR_state_t UART_sendString(uint8_t * string)
    {
       return E_UART_NULL_PTR;
  110:	84 e0       	ldi	r24, 0x04	; 4
-      UART_DATA_R = string[counter];
       counter++;
    }
    
+   /* return success status */
    return E_UART_SUCCESS;
 }
  112:	08 95       	ret
@@ -225,6 +228,8 @@ UART_ERROR_state_t UART_readString(uint8_t * string)
  114:	fc 01       	movw	r30, r24
    uint8_t counter = STRING_COUNTER_START;
    
+   /* making sure the driver was initialized before calling this function, 
+      and an initialized pointer is sent to the function */
    if( NOT_INIT == gu8_is_UART_init)
  116:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
  11a:	88 23       	and	r24, r24
@@ -254,6 +259,8 @@ UART_ERROR_state_t UART_readString(uint8_t * string)
  132:	9c b1       	in	r25, 0x0c	; 12
  134:	9c 93       	st	X, r25
       
+      /* enters an end of string character and breaks from the loop on receiving
+         a new line character */
       if(string[counter] == NEW_LINE)
  136:	9d 30       	cpi	r25, 0x0D	; 13
  138:	39 f4       	brne	.+14     	; 0x148 <UART_readString+0x34>
@@ -264,11 +271,11 @@ UART_ERROR_state_t UART_readString(uint8_t * string)
  13e:	e4 0f       	add	r30, r20
  140:	f5 1f       	adc	r31, r21
  142:	10 82       	st	Z, r1
-         break;
       }
       counter++;
    }
    
+   /* return success status */
    return E_UART_SUCCESS;
  144:	80 e0       	ldi	r24, 0x00	; 0
  146:	08 95       	ret
@@ -281,9 +288,9 @@ UART_ERROR_state_t UART_readString(uint8_t * string)
  148:	2f 5f       	subi	r18, 0xFF	; 255
    }
  14a:	ec cf       	rjmp	.-40     	; 0x124 <UART_readString+0x10>
-{
-   uint8_t counter = STRING_COUNTER_START;
    
+   /* making sure the driver was initialized before calling this function, 
+      and an initialized pointer is sent to the function */
    if( NOT_INIT == gu8_is_UART_init)
    {
       return E_UART_NOT_INIT;
@@ -294,10 +301,10 @@ UART_ERROR_state_t UART_readString(uint8_t * string)
    {
       return E_UART_NULL_PTR;
  150:	84 e0       	ldi	r24, 0x04	; 4
-      }
       counter++;
    }
    
+   /* return success status */
    return E_UART_SUCCESS;
  152:	08 95       	ret
 
