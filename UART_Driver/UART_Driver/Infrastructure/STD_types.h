@@ -25,5 +25,6 @@ typedef signed long long sint64_t;           /*-9,223,372,036,854,775,808 .. 9,2
 
 #define END_OF_STRING   (uint8_t)('\0')
 #define NEW_LINE        (uint8_t)('\r')
+#define BACKSPACE       (uint8_t)('\b')
 
 #endif /* __STD_TYPES_H__ */
