@@ -93,6 +93,13 @@ UART_ERROR_state_t UART_init(uint16_t baudRate)
    return E_UART_SUCCESS;
 }
 
+/**
+* @brief: This function puts a character in the UART buffer.
+*
+* @param [in]  character  -  character to be send through UART.
+*
+* @return function error state.
+*/
 UART_ERROR_state_t UART_sendChar(uint8_t character)
 {
    /* making sure the driver was initialized before calling this function */
@@ -115,6 +122,14 @@ UART_ERROR_state_t UART_sendChar(uint8_t character)
    return E_UART_SUCCESS;
 }
 
+/**
+* @brief: This function gets a character from the UART buffer.
+*
+* @param [out]  character  -  address to store the character received 
+*                             from UART in.
+*
+* @return function error state.
+*/
 UART_ERROR_state_t UART_readChar(uint8_t * character)
 {
    /* making sure the driver was initialized before calling this function, 
@@ -141,6 +156,13 @@ UART_ERROR_state_t UART_readChar(uint8_t * character)
    return E_UART_SUCCESS;
 }
 
+/**
+* @brief: This function sends a string through UART.
+*
+* @param [in]  string  -  pointer to string to send through UART.
+*
+* @return function error state.
+*/
 UART_ERROR_state_t UART_sendString(uint8_t * string)
 {
    uint8_t counter = STRING_COUNTER_START;
@@ -175,6 +197,13 @@ UART_ERROR_state_t UART_sendString(uint8_t * string)
    return E_UART_SUCCESS;
 }
 
+/**
+* @brief: This function sends a string through UART.
+*
+* @param [out]  string  -  pointer to string to save the string through UART.
+*
+* @return function error state.
+*/
 UART_ERROR_state_t UART_readString(uint8_t * string)
 {
    uint8_t counter = STRING_COUNTER_START;
@@ -205,7 +234,7 @@ UART_ERROR_state_t UART_readString(uint8_t * string)
          a new line character */
       if(string[counter] == NEW_LINE)
       {
-         string[counter + STRING_NEXT_CHAR] = END_OF_STRING;
+         string[counter + 1] = END_OF_STRING;
          break;
       }
       counter++;

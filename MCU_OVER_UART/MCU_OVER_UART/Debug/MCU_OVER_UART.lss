@@ -939,7 +939,10 @@ DIO_ERROR_state_t DIO_init(const STR_DIO_config_t * configurations)
  3fe:	08 95       	ret
 
 00000400 <UART_sendString>:
-
+* @param [in]  string  -  pointer to string to send through UART.
+*
+* @return function error state.
+*/
 UART_ERROR_state_t UART_sendString(uint8_t * string)
 {
  400:	9c 01       	movw	r18, r24
@@ -1009,7 +1012,10 @@ UART_ERROR_state_t UART_sendString(uint8_t * string)
  430:	08 95       	ret
 
 00000432 <UART_readString>:
-
+* @param [out]  string  -  pointer to string to save the string through UART.
+*
+* @return function error state.
+*/
 UART_ERROR_state_t UART_readString(uint8_t * string)
 {
  432:	ac 01       	movw	r20, r24
@@ -1030,12 +1036,12 @@ UART_ERROR_state_t UART_readString(uint8_t * string)
  440:	39 f1       	breq	.+78     	; 0x490 <UART_readString+0x5e>
  442:	20 e0       	ldi	r18, 0x00	; 0
  444:	02 c0       	rjmp	.+4      	; 0x44a <UART_readString+0x18>
-         {
-            counter-=2;
+            counter -= STRING_RETURN_TO_PREV_CHAR;
          }
+         /* return to the string start if the counter is still at first character */
          else
          {
-            counter = 0;
+            counter = STRING_COUNTER_START;
  446:	90 e0       	ldi	r25, 0x00	; 0
  448:	29 2f       	mov	r18, r25
    }
@@ -1086,7 +1092,9 @@ UART_ERROR_state_t UART_readString(uint8_t * string)
  470:	91 e0       	ldi	r25, 0x01	; 1
  472:	92 0f       	add	r25, r18
       
-      if(string[counter - 1] == BACKSPACE)
+      /* return to the previous character to overwrite if the entered character 
+         is backspace */
+      if(string[counter - STRING_PREV_CHAR] == BACKSPACE)
  474:	fa 01       	movw	r30, r20
  476:	e9 0f       	add	r30, r25
  478:	f1 1d       	adc	r31, r1
@@ -1095,11 +1103,11 @@ UART_ERROR_state_t UART_readString(uint8_t * string)
  47e:	88 30       	cpi	r24, 0x08	; 8
  480:	19 f7       	brne	.-58     	; 0x448 <UART_readString+0x16>
       {
-         if (counter - 1 != STRING_COUNTER_START)
+         if (counter - STRING_PREV_CHAR != STRING_COUNTER_START)
  482:	91 30       	cpi	r25, 0x01	; 1
  484:	01 f3       	breq	.-64     	; 0x446 <UART_readString+0x14>
          {
-            counter-=2;
+            counter -= STRING_RETURN_TO_PREV_CHAR;
  486:	9f ef       	ldi	r25, 0xFF	; 255
  488:	92 0f       	add	r25, r18
  48a:	de cf       	rjmp	.-68     	; 0x448 <UART_readString+0x16>
