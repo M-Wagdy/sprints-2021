@@ -38,6 +38,9 @@
 #define RECEIVE_COMPLETE_BIT              (uint8_t)(0x80)
 
 #define STRING_COUNTER_START              (uint8_t)(0)
+#define STRING_NEXT_CHAR                  (uint8_t)(1)
+#define STRING_PREV_CHAR                  (uint8_t)(1)
+#define STRING_RETURN_TO_PREV_CHAR        (uint8_t)(2)
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
@@ -202,10 +205,25 @@ UART_ERROR_state_t UART_readString(uint8_t * string)
          a new line character */
       if(string[counter] == NEW_LINE)
       {
-         string[counter + 1] = END_OF_STRING;
+         string[counter + STRING_NEXT_CHAR] = END_OF_STRING;
          break;
       }
       counter++;
+      
+      /* return to the previous character to overwrite if the entered character 
+         is backspace */
+      if(string[counter - STRING_PREV_CHAR] == BACKSPACE)
+      {
+         if (counter - STRING_PREV_CHAR != STRING_COUNTER_START)
+         {
+            counter -= STRING_RETURN_TO_PREV_CHAR;
+         }
+         /* return to the string start if the counter is still at first character */
+         else
+         {
+            counter = STRING_COUNTER_START;
+         }
+      }
    }
    
    /* return success status */

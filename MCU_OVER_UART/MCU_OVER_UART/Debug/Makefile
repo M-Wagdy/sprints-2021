@@ -33,16 +33,19 @@ LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
+../App/TrafficSign \
 ../Firmware/LED \
 ../Infrastructure \
 ../Mcal \
 ../Mcal/DIO \
 ../Mcal/UART \
-../Firmware
+../Firmware \
+../App
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../App/TrafficSign/TrafficSign.c \
 ../Firmware/LED/LED.c \
 ../main.c \
 ../Mcal/DIO/DIO.c \
@@ -57,6 +60,7 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+App/TrafficSign/TrafficSign.o \
 Firmware/LED/LED.o \
 main.o \
 Mcal/DIO/DIO.o \
@@ -64,6 +68,7 @@ Mcal/DIO/DIO_PbCfg.o \
 Mcal/UART/UART.o
 
 OBJS_AS_ARGS +=  \
+App/TrafficSign/TrafficSign.o \
 Firmware/LED/LED.o \
 main.o \
 Mcal/DIO/DIO.o \
@@ -71,6 +76,7 @@ Mcal/DIO/DIO_PbCfg.o \
 Mcal/UART/UART.o
 
 C_DEPS +=  \
+App/TrafficSign/TrafficSign.d \
 Firmware/LED/LED.d \
 main.d \
 Mcal/DIO/DIO.d \
@@ -78,6 +84,7 @@ Mcal/DIO/DIO_PbCfg.d \
 Mcal/UART/UART.d
 
 C_DEPS_AS_ARGS +=  \
+App/TrafficSign/TrafficSign.d \
 Firmware/LED/LED.d \
 main.d \
 Mcal/DIO/DIO.d \
@@ -98,6 +105,13 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+App/TrafficSign/TrafficSign.o: ../App/TrafficSign/TrafficSign.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 Firmware/LED/LED.o: ../Firmware/LED/LED.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
