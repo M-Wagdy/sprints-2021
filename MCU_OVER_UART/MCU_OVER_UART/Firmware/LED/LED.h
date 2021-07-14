@@ -15,6 +15,7 @@
 #include "LED_Config.h"
 
 /*- FUNCTION DECLARATIONS ----------------------------------*/
+LED_ERROR_state_t LED_Init(uint8_t LED_ch);
 LED_ERROR_state_t LED_Off(uint8_t LED_ch);
 LED_ERROR_state_t LED_On(uint8_t LED_ch);
 LED_ERROR_state_t LED_toggle(uint8_t LED_ch);

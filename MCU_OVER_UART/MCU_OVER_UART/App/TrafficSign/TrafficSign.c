@@ -34,10 +34,6 @@ const static uint8_t * gu8_ATMessageReply = "OK \r";
 
 const static uint8_t * gu8_InvalidMessageReply = "Invalid Command \r";
 
-/*- GLOBAL EXTERN VARIABLES
--------------------------------*/
-extern STR_DIO_config_t gastr_DIO_configurations;
-
 /*- LOCAL FUNCTIONS IMPLEMENTATION
 ------------------------*/
 static uint8_t StringCompare(uint8_t * str1, uint8_t * str2)
@@ -66,7 +62,9 @@ static uint8_t StringCompare(uint8_t * str1, uint8_t * str2)
 -----------------------------------*/
 void Traffic_init(void)
 {
-   DIO_init(&gastr_DIO_configurations);
+   LED_Init(LED_CH_1);
+   LED_Init(LED_CH_2);
+   LED_Init(LED_CH_3);
    UART_init(CLK_8_MHZ_9600_BAUD);
 }
 

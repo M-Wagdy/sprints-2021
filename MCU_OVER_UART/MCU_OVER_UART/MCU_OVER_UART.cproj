@@ -30,15 +30,15 @@
     <EraseKey />
     <AsfFrameworkConfig>
       <framework-data xmlns="">
-  <options />
-  <configurations />
-  <files />
-  <documentation help="" />
-  <offline-documentation help="" />
-  <dependencies>
-    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.49.1" />
-  </dependencies>
-</framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.49.1" />
+        </dependencies>
+      </framework-data>
     </AsfFrameworkConfig>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -150,10 +150,7 @@
     <Compile Include="Mcal\DIO\DIO.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Mcal\DIO\DIO_PbCfg.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Mcal\DIO\DIO_PbCfg.h">
+    <Compile Include="Mcal\DIO\DIO_Config.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Mcal\DIO\DIO_Registers.h">

@@ -9,7 +9,7 @@ App/TrafficSign/TrafficSign.d App/TrafficSign/TrafficSign.o: \
  ../App/TrafficSign/../../Firmware/LED/../../Mcal/DIO/../../Infrastructure/STD_types.h \
  ../App/TrafficSign/../../Firmware/LED/../../Mcal/DIO/DIO_Registers.h \
  ../App/TrafficSign/../../Firmware/LED/../../Mcal/DIO/DIO_retval.h \
- ../App/TrafficSign/../../Firmware/LED/../../Mcal/DIO/DIO_PbCfg.h \
+ ../App/TrafficSign/../../Firmware/LED/../../Mcal/DIO/DIO_Config.h \
  ../App/TrafficSign/../../Firmware/LED/LED_retval.h \
  ../App/TrafficSign/../../Firmware/LED/../../Infrastructure/STD_types.h \
  ../App/TrafficSign/../../Firmware/LED/LED_Config.h
@@ -34,7 +34,7 @@ App/TrafficSign/TrafficSign.d App/TrafficSign/TrafficSign.o: \
 
 ../App/TrafficSign/../../Firmware/LED/../../Mcal/DIO/DIO_retval.h:
 
-../App/TrafficSign/../../Firmware/LED/../../Mcal/DIO/DIO_PbCfg.h:
+../App/TrafficSign/../../Firmware/LED/../../Mcal/DIO/DIO_Config.h:
 
 ../App/TrafficSign/../../Firmware/LED/LED_retval.h:
 
