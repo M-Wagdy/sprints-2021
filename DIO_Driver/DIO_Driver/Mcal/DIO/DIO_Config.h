@@ -12,20 +12,6 @@
 /*- INCLUDES -----------------------------------------------*/
 #include "../../Infrastructure/STD_types.h"
 
-/*- ENUMS --------------------------------------------------*/
-typedef enum  {
-   PIN_0, PIN_1, PIN_2, PIN_3, PIN_4, PIN_5, PIN_6, PIN_7
-}ENU_pins;
-
-/*- STRUCTS AND UNIONS -------------------------------------*/
-typedef struct STR_DIO_config_t{
-   ENU_pins pin_no;
-   uint8_t port_no;
-   uint8_t direction;
-   uint8_t resistor;
-   uint8_t initial_value;
-}STR_DIO_config_t;
-
 /*- MACROS -------------------------------------------------*/
 #define  PINS_NUMBERS      (uint8_t)( 32 )
 
@@ -45,5 +31,14 @@ typedef struct STR_DIO_config_t{
 #define  PORTB             (uint8_t)( 1 )
 #define  PORTC             (uint8_t)( 2 )
 #define  PORTD             (uint8_t)( 3 )
+
+#define  PIN_0             (uint8_t)( 0 )
+#define  PIN_1             (uint8_t)( 1 )
+#define  PIN_2             (uint8_t)( 2 )
+#define  PIN_3             (uint8_t)( 3 )
+#define  PIN_4             (uint8_t)( 4 )
+#define  PIN_5             (uint8_t)( 5 )
+#define  PIN_6             (uint8_t)( 6 )
+#define  PIN_7             (uint8_t)( 7 )
 
 #endif /* __DIO_PBCFG_H__ */

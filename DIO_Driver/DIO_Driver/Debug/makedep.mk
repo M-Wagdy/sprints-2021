@@ -10,5 +10,3 @@ main.c
 
 Mcal\DIO\DIO.c
 
-Mcal\DIO\DIO_PbCfg.c
-

@@ -22,4 +22,5 @@ typedef signed long long sint64_t;           /*-9,223,372,036,854,775,808 .. 9,2
 
 /*- MACROS -------------------------------------------------*/
 #define NULL_PTR ((void*)(0))
+
 #endif /* __STD_TYPES_H__ */

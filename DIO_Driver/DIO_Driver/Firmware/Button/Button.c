@@ -31,7 +31,7 @@ uint8_t BUTTON_get_state(void)
    DIO_ERROR_state_t e_status;
    
    /* read DIO pin. */
-   e_status = DIO_read(BTN_PORT, BTN_PIN, &data);
+   e_status = DIO_ReadPin(BTN_PORT, BTN_PIN, &data);
    
    /* return data if DIO API returns success. */
    if(E_DIO_SUCCESS == e_status)
@@ -43,7 +43,7 @@ uint8_t BUTTON_get_state(void)
    {
       while(1)
       {
-         /* stuck in case of error */
+         /* do nothing */
       }
    }
 }

@@ -13,7 +13,7 @@
 #include "../../Infrastructure/STD_types.h"
 #include "DIO_Registers.h"
 #include "DIO_retval.h"
-#include "DIO_PbCfg.h"
+#include "DIO_Config.h"
 
 /*- FUNCTION-LIKE MACROS -----------------------------------*/
 
@@ -46,15 +46,18 @@
 /*- FUNCTION DECLARATIONS ----------------------------------*/
 
 /* Function that initialize all DIO pins. */
-DIO_ERROR_state_t DIO_init(const STR_DIO_config_t * configurations); 
+DIO_ERROR_state_t DIO_SetPinDirection(uint8_t port , uint8_t pin ,uint8_t direction);
+DIO_ERROR_state_t DIO_EnablePinPullup(uint8_t port,uint8_t pin);
 
 /* Function that writes value to a pin. */
-DIO_ERROR_state_t DIO_write(uint8_t port, ENU_pins pin, uint8_t data); 
+DIO_ERROR_state_t DIO_WritePin(uint8_t port , uint8_t pin ,uint8_t data);
 
 /* Function that reads a pin. */
-DIO_ERROR_state_t DIO_read(uint8_t port, ENU_pins pin, uint8_t * data);
+DIO_ERROR_state_t DIO_ReadPin(uint8_t port,uint8_t pin,uint8_t * data);
 
 /* Function that toggles a pin. */
-DIO_ERROR_state_t DIO_toggle(uint8_t port, ENU_pins pin);
+DIO_ERROR_state_t DIO_TogglePin(uint8_t port,uint8_t pin);
+
+
 
 #endif /* __DIO_H__ */

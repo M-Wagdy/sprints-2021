@@ -26,14 +26,14 @@ void LED_toggle(void)
    DIO_ERROR_state_t e_status;
    
    /* toggle DIO pin. */
-   e_status = DIO_toggle(LED_PORT,LED_PIN);
+   e_status = DIO_TogglePin(LED_PORT,LED_PIN);
    
    /* if DIO returned error make the program stuck in super loop for debugging. */
    if(E_DIO_SUCCESS != e_status)
    {
       while(1)
       {
-         /* stuck in case of error */
+         /* do nothing */
       }
    }
 }

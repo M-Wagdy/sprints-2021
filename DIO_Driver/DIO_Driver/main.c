@@ -15,11 +15,6 @@
 #define PRESSED (uint8_t)(1)
 #define NOT_PRESSED (uint8_t)(0)
 
-/*- GLOBAL EXTERN VARIABLES
--------------------------------*/
-/* variable containing all DIO pins configurations */
-extern const STR_DIO_config_t gastr_DIO_configurations;
-
 int main(void)
 {
    /* Initialization */
@@ -27,7 +22,9 @@ int main(void)
    /* variable to get error status of the DIO API. */
    DIO_ERROR_state_t DIO_init_state;
    /* initialize DIO pin. */
-   DIO_init_state = DIO_init(&gastr_DIO_configurations);
+   DIO_init_state = DIO_SetPinDirection(PORTA, PIN_0, OUTPUT);
+   DIO_init_state |= DIO_SetPinDirection(PORTC, PIN_0, INPUT);
+   
    /* if DIO init returned error make the program stuck in super loop for debugging. */
    if(E_DIO_SUCCESS != DIO_init_state)
    {
