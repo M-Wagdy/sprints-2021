@@ -11,18 +11,17 @@
 
 /*- LOCAL MACROS
 ------------------------------------------*/
-#define CLK_8_MHZ_9600_BAUD   (uint16_t)(51)
 #define MAX_STRING_SIZE       (uint16_t)(200)
 
 int main(void)
 {
    uint8_t string[MAX_STRING_SIZE];
-   UART_init(CLK_8_MHZ_9600_BAUD);
+   UART_Init();
    
    while(1)
    {
-      UART_readString(string);
-      UART_sendString(string);
+      UART_ReceiveString(UART_CH_0, string);
+      UART_TransmitString(UART_CH_0, string);
    }
 }
 
