@@ -33,7 +33,6 @@ static void ECU_1_MasterMain(void)
    while (1)
    {
       UART_ReceiveString(UART_CH_0, string);
-      UART_TransmitString(UART_CH_0, string);
       SPI_TransmitString(SPI_CH_0, string, SPI_CH_0_SS_CH_0);
    }
 }
@@ -50,7 +49,7 @@ static void ECU_2_SlaveMain(void)
    
    while (1)
    {
-      SPI_ReceiveChar(SPI_CH_0, string, SLAVE_SS_CH);
+      SPI_ReceiveString(SPI_CH_0, string, SLAVE_SS_CH);
       UART_TransmitString(UART_CH_0, string);
    }
 }
