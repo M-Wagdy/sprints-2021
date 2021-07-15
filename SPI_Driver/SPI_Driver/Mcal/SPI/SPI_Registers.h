@@ -9,7 +9,7 @@
 #ifndef __SPI_REGISTERS_H__
 #define __SPI_REGISTERS_H__
 
-#define TEST 1
+#define TEST 0
 
 #if !TEST
 /*- SPI REGISTERS-----------------------------------------*/
