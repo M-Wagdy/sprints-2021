@@ -47,32 +47,21 @@ typedef uint8_t UART_ERROR_state_t;
 #define           E_UART_NULL_PTR            (UART_ERROR_state_t)( 4 )
 
 /**
-* @brief: This return value indicate that the init function was called before
-*/
-#define           E_UART_INIT_BEFORE         (UART_ERROR_state_t)( 5 )
-
-/**
-* @brief: This return value indicate that a function
-* was called before initialization.
-*/
-#define           E_UART_NOT_INIT            (UART_ERROR_state_t)( 6 )
-
-/**
 * @brief: This return value indicate that the init function
 * got invalid baud rate value.
 */
-#define           E_UART_INVALID_BAUD_RATE   (UART_ERROR_state_t)( 7 )
+#define           E_UART_INVALID_BAUD_RATE   (UART_ERROR_state_t)( 5 )
 
 /**
 * @brief: This return value indicate that a function
 * got invalid channel number.
 */
-#define           E_UART_INVALID_CH          (UART_ERROR_state_t)( 8 )
+#define           E_UART_INVALID_CH          (UART_ERROR_state_t)( 6 )
 
 /**
 * @brief: This return value indicate that a function
 * got invalid interrupt type.
 */
-#define           E_UART_INVALID_INT_TYPE    (UART_ERROR_state_t)( 9 )
+#define           E_UART_INVALID_INT_TYPE    (UART_ERROR_state_t)( 7 )
 
 #endif /* __UART_RETVAL_H__ */

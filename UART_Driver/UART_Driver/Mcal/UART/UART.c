@@ -23,7 +23,6 @@
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
-static uint8_t gu8_is_UART_init = NOT_INIT;
 static Ptr_VoidFuncVoid_t g_TxCallback[UART_CH_NUMBER];
 static Ptr_VoidFuncVoid_t g_RxCallback[UART_CH_NUMBER];
 
@@ -35,41 +34,37 @@ static Ptr_VoidFuncVoid_t g_RxCallback[UART_CH_NUMBER];
 *
 * @return function error state.
 */
-UART_ERROR_state_t UART_Init(void)
+UART_ERROR_state_t UART_Init(uint8_t UartNumber)
 {
-   #ifdef UART_CH_0
-      /* making sure the driver wasn't initialized before or invalid baud rate was given */
-      if(INIT == gu8_is_UART_init)
-      {
-         return E_UART_INIT_BEFORE;
-      }
-      /* make sure valid baud rate is given */
-      else if(MAX_BAUD_VALUE < UART_CH_0_BaudRate)
-      {
-         return E_UART_INVALID_BAUD_RATE;
-      }
-      else
-      {
-         /* do nothing */
-      }
-   
-      /* Enable Receiver and Transmitter */
-      UART_CONTROL_R = UART_CH_0_CONTROL;
-      /* Set Odd parity, 2 stop bits and 8 bits data size */
-      UART_CONTROL_2_R = UART_CH_0_CONTROL_2;
-   
-      /* Set Baud Rate low bits */
-      UART_BAUDRATE_LOW_R = (uint8_t)UART_CH_0_BaudRate;
-      /* Set Baud Rate high bits if needed */
-      if(BAUD_MAX_LOW_BITS < UART_CH_0_BaudRate)
-      {
-         UART_BAUDRATE_HIGH_R = (uint8_t)( UART_CH_0_BaudRate >> BAUD_HIGH_BITS_SHIFT );
-      }
-   #endif
+   switch(UartNumber)
+   {
+      #ifdef UART_CH_0
+      case UART_CH_0:
+         /* make sure valid baud rate is given */
+         if(MAX_BAUD_VALUE < UART_CH_0_BaudRate)
+         {
+            return E_UART_INVALID_BAUD_RATE;
+         }
+      
+         /* Enable Receiver and Transmitter */
+         UART_CONTROL_R = UART_CH_0_CONTROL;
+         /* Set Odd parity, 2 stop bits and 8 bits data size */
+         UART_CONTROL_2_R = UART_CH_0_CONTROL_2;
+      
+         /* Set Baud Rate low bits */
+         UART_BAUDRATE_LOW_R = (uint8_t)UART_CH_0_BaudRate;
+         /* Set Baud Rate high bits if needed */
+         if(BAUD_MAX_LOW_BITS < UART_CH_0_BaudRate)
+         {
+            UART_BAUDRATE_HIGH_R = (uint8_t)( UART_CH_0_BaudRate >> BAUD_HIGH_BITS_SHIFT );
+         }
+         
+         break;
+      #endif
+      default:
+         return E_UART_INVALID_CH;
+   }
 
-   /* sets global variable to initialized */
-   gu8_is_UART_init = INIT;
-   
    /* return success status */
    return E_UART_SUCCESS;
 }
@@ -83,16 +78,6 @@ UART_ERROR_state_t UART_Init(void)
 */
 UART_ERROR_state_t UART_TransmitChar(uint8_t UartNumber, uint8_t TxChar)
 {
-   /* making sure the driver was initialized before calling this function */
-   if( NOT_INIT == gu8_is_UART_init)
-   {
-      return E_UART_NOT_INIT;
-   }
-   else
-   {
-      /* do nothing */
-   }
-   
    volatile uint8_t * ptru8_UARTStatusR;
    volatile uint8_t * ptru8_UARTDataR;
    
@@ -127,13 +112,8 @@ UART_ERROR_state_t UART_TransmitChar(uint8_t UartNumber, uint8_t TxChar)
 */
 UART_ERROR_state_t UART_ReceiveChar(uint8_t UartNumber,uint8_t * RxChar)
 {
-   /* making sure the driver was initialized before calling this function */ 
-   if( NOT_INIT == gu8_is_UART_init)
-   {
-      return E_UART_NOT_INIT;
-   }
    /* making sure an initialized pointer is sent to the function */
-   else if(NULL_PTR == RxChar)
+   if(NULL_PTR == RxChar)
    {
       return E_UART_NULL_PTR;
    }
@@ -175,14 +155,9 @@ UART_ERROR_state_t UART_ReceiveChar(uint8_t UartNumber,uint8_t * RxChar)
 UART_ERROR_state_t UART_TransmitString(uint8_t UartNumber,uint8_t * TxString)
 {
    uint8_t counter = STRING_COUNTER_START;
-   
-   /* making sure the driver was initialized before calling this function */
-   if( NOT_INIT == gu8_is_UART_init)
-   {
-      return E_UART_NOT_INIT;
-   }
+
    /* making sure an initialized pointer is sent to the function */
-   else if(NULL_PTR == TxString)
+   if(NULL_PTR == TxString)
    {
       return E_UART_NULL_PTR;
    }
@@ -231,13 +206,8 @@ UART_ERROR_state_t UART_ReceiveString(uint8_t UartNumber, uint8_t * RxString)
 {
    uint8_t counter = STRING_COUNTER_START;
    
-   /* making sure the driver was initialized before calling this function */ 
-   if( NOT_INIT == gu8_is_UART_init)
-   {
-      return E_UART_NOT_INIT;
-   }
    /* making sure an initialized pointer is sent to the function */
-   else if(NULL_PTR == RxString)
+   if(NULL_PTR == RxString)
    {
       return E_UART_NULL_PTR;
    }
@@ -305,13 +275,8 @@ UART_ERROR_state_t UART_ReceiveString(uint8_t UartNumber, uint8_t * RxString)
 */
 UART_ERROR_state_t UART_EnableInterrupt(uint8_t UartNumber,uint8_t UartInterruptType)
 {
-   /* making sure the driver was initialized before calling this function */ 
-   if( NOT_INIT == gu8_is_UART_init)
-   {
-      return E_UART_NOT_INIT;
-   }
    /* making sure a valid interrupt type was sent to the function */
-   else if (RX_INT != UartInterruptType || TX_INT != UartInterruptType)
+   if (RX_INT != UartInterruptType || TX_INT != UartInterruptType)
    {
       return E_UART_INVALID_INT_TYPE;
    }
@@ -348,13 +313,8 @@ UART_ERROR_state_t UART_EnableInterrupt(uint8_t UartNumber,uint8_t UartInterrupt
 */
 UART_ERROR_state_t UART_DisableInterrupt(uint8_t UartNumber,uint8_t UartInterruptType)
 {
-   /* making sure the driver was initialized before calling this function */ 
-   if( NOT_INIT == gu8_is_UART_init)
-   {
-      return E_UART_NOT_INIT;
-   }
    /* making sure a valid interrupt type was sent to the function */
-   else if (RX_INT != UartInterruptType || TX_INT != UartInterruptType)
+   if (RX_INT != UartInterruptType || TX_INT != UartInterruptType)
    {
       return E_UART_INVALID_INT_TYPE;
    }
@@ -393,13 +353,8 @@ UART_ERROR_state_t UART_DisableInterrupt(uint8_t UartNumber,uint8_t UartInterrup
 */
 UART_ERROR_state_t UART_SetCallback(uint8_t UartNumber, uint8_t UartInterruptType, Ptr_VoidFuncVoid_t Callback)
 {
-   /* making sure the driver was initialized before calling this function */ 
-   if( NOT_INIT == gu8_is_UART_init)
-   {
-      return E_UART_NOT_INIT;
-   }
    /* making sure an initialized pointer is sent to the function */
-   else if(NULL_PTR == Callback)
+   if(NULL_PTR == Callback)
    {
       return E_UART_NULL_PTR;
    }
@@ -451,16 +406,6 @@ UART_ERROR_state_t UART_SetCallback(uint8_t UartNumber, uint8_t UartInterruptTyp
 */
 UART_ERROR_state_t UART_FlushReceiveBuffer(uint8_t UartNumber)
 {
-   /* making sure the driver was initialized before calling this function */
-   if( NOT_INIT == gu8_is_UART_init)
-   {
-      return E_UART_NOT_INIT;
-   }
-   else
-   {
-      /* do nothing */
-   }
-   
    volatile uint8_t * ptru8_UARTStatusR;
    volatile uint8_t * ptru8_UARTDataR;
    
@@ -497,16 +442,6 @@ UART_ERROR_state_t UART_FlushReceiveBuffer(uint8_t UartNumber)
 */
 UART_ERROR_state_t UART_SetData(uint8_t UartNumber,uint8_t TxChar)
 {
-   /* making sure the driver was initialized before calling this function */
-   if( NOT_INIT == gu8_is_UART_init)
-   {
-      return E_UART_NOT_INIT;
-   }
-   else
-   {
-      /* do nothing */
-   }
-   
    volatile uint8_t * ptru8_UARTDataR;
    
    switch(UartNumber)
@@ -536,13 +471,8 @@ UART_ERROR_state_t UART_SetData(uint8_t UartNumber,uint8_t TxChar)
 */
 UART_ERROR_state_t UART_GetData(uint8_t UartNumber,uint8_t * RxChar)
 {
-   /* making sure the driver was initialized before calling this function */ 
-   if( NOT_INIT == gu8_is_UART_init)
-   {
-      return E_UART_NOT_INIT;
-   }
    /* making sure an initialized pointer is sent to the function */
-   else if(NULL_PTR == RxChar)
+   if(NULL_PTR == RxChar)
    {
       return E_UART_NULL_PTR;
    }

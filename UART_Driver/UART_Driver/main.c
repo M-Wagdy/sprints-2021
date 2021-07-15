@@ -16,7 +16,7 @@
 int main(void)
 {
    uint8_t string[MAX_STRING_SIZE];
-   UART_Init();
+   UART_Init(UART_CH_0);
    
    while(1)
    {
