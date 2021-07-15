@@ -9,6 +9,10 @@
 #ifndef __DIO_REGISTERS_H__
 #define __DIO_REGISTERS_H__
 
+#define TEST 0
+
+#if !TEST
+
 /*- PORTA REGISTERS-----------------------------------------*/
 #define  PORTA_DATA      (*((volatile uint8_t *) (0x3B)))
 #define  PORTA_DIR       (*((volatile uint8_t *) (0x3A)))
@@ -31,5 +35,30 @@
 
 /*- PINS PULL UP REGISTER-----------------------------------*/
 #define PORTS_PULL_UP    (*((volatile uint8_t *) (0x50)))
+
+#else
+/*- PORTA REGISTERS-----------------------------------------*/
+extern volatile uint8_t  PORTA_DATA;
+extern volatile uint8_t  PORTA_DIR;
+extern volatile uint8_t  PORTA_STAT;
+
+/*- PORTB REGISTERS-----------------------------------------*/
+extern volatile uint8_t  PORTB_DATA;
+extern volatile uint8_t  PORTB_DIR;
+extern volatile uint8_t  PORTB_STAT;
+
+/*- PORTC REGISTERS-----------------------------------------*/
+extern volatile uint8_t  PORTC_DATA;
+extern volatile uint8_t  PORTC_DIR;
+extern volatile uint8_t  PORTC_STAT;
+
+/*- PORTD REGISTERS-----------------------------------------*/
+extern volatile uint8_t  PORTD_DATA;
+extern volatile uint8_t  PORTD_DIR;
+extern volatile uint8_t  PORTD_STAT;
+
+/*- PINS PULL UP REGISTER-----------------------------------*/
+extern volatile uint8_t PORTS_PULL_UP;
+#endif
 
 #endif /* __DIO_REGISTERS_H__ */

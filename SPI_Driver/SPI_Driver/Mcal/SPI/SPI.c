@@ -297,7 +297,7 @@ SPI_ERROR_state_t SPI_UnselectSlave(uint8_t slave_CH)
    {
       #ifdef SS_CH_0
       case SS_CH_0:
-         DIO_WritePin(SS_CH_0_PORT, SS_CH_0_PIN, LOW);
+         DIO_WritePin(SS_CH_0_PORT, SS_CH_0_PIN, HIGH);
          break;
       #endif
       default:
