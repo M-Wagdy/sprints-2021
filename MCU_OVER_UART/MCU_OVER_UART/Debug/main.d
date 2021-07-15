@@ -2,6 +2,7 @@ main.d main.o: .././main.c .././App/TrafficSign/TrafficSign.h \
  .././App/TrafficSign/../../Mcal/UART/UART.h \
  .././App/TrafficSign/../../Mcal/UART/../../Infrastructure/STD_types.h \
  .././App/TrafficSign/../../Mcal/UART/UART_Registers.h \
+ .././App/TrafficSign/../../Mcal/UART/UART_Config.h \
  .././App/TrafficSign/../../Mcal/UART/UART_retval.h \
  .././App/TrafficSign/../../Firmware/LED/LED.h \
  .././App/TrafficSign/../../Firmware/LED/../../Mcal/DIO/DIO.h \
@@ -20,6 +21,8 @@ main.d main.o: .././main.c .././App/TrafficSign/TrafficSign.h \
 .././App/TrafficSign/../../Mcal/UART/../../Infrastructure/STD_types.h:
 
 .././App/TrafficSign/../../Mcal/UART/UART_Registers.h:
+
+.././App/TrafficSign/../../Mcal/UART/UART_Config.h:
 
 .././App/TrafficSign/../../Mcal/UART/UART_retval.h:
 

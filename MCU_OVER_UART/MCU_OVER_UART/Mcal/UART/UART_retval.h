@@ -63,4 +63,16 @@ typedef uint8_t UART_ERROR_state_t;
 */
 #define           E_UART_INVALID_BAUD_RATE   (UART_ERROR_state_t)( 7 )
 
+/**
+* @brief: This return value indicate that a function
+* got invalid channel number.
+*/
+#define           E_UART_INVALID_CH          (UART_ERROR_state_t)( 8 )
+
+/**
+* @brief: This return value indicate that a function
+* got invalid interrupt type.
+*/
+#define           E_UART_INVALID_INT_TYPE    (UART_ERROR_state_t)( 9 )
+
 #endif /* __UART_RETVAL_H__ */

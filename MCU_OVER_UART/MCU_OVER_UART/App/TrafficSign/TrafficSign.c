@@ -20,19 +20,19 @@ static uint8_t StringCompare(uint8_t * str1, uint8_t * str2);
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
-const static uint8_t * gu8_StartMessage = "START";
-const static uint8_t * gu8_StartMessageReply = "Green LED is on \r";
+static uint8_t * gu8_StartMessage = "START";
+static uint8_t * gu8_StartMessageReply = "Green LED is on \r";
 
-const static uint8_t * gu8_WaitMessage = "WAIT";
-const static uint8_t * gu8_WaitMessageReply = "Yellow LED is on \r";
+static uint8_t * gu8_WaitMessage = "WAIT";
+static uint8_t * gu8_WaitMessageReply = "Yellow LED is on \r";
 
-const static uint8_t * gu8_StopMessage = "STOP";
-const static uint8_t * gu8_StopMessageReply = "Red LED is on \r";
+static uint8_t * gu8_StopMessage = "STOP";
+static uint8_t * gu8_StopMessageReply = "Red LED is on \r";
 
-const static uint8_t * gu8_ATMessage = "AT";
-const static uint8_t * gu8_ATMessageReply = "OK \r";
+static uint8_t * gu8_ATMessage = "AT";
+static uint8_t * gu8_ATMessageReply = "OK \r";
 
-const static uint8_t * gu8_InvalidMessageReply = "Invalid Command \r";
+static uint8_t * gu8_InvalidMessageReply = "Invalid Command \r";
 
 /*- LOCAL FUNCTIONS IMPLEMENTATION
 ------------------------*/
@@ -62,44 +62,42 @@ static uint8_t StringCompare(uint8_t * str1, uint8_t * str2)
 -----------------------------------*/
 void Traffic_init(void)
 {
-   LED_Init(LED_CH_1);
-   LED_Init(LED_CH_2);
-   LED_Init(LED_CH_3);
-   UART_init(CLK_8_MHZ_9600_BAUD);
+   LED_Init();
+   UART_Init();
 }
 
 void Traffic_update(void)
 {
    uint8_t string[MAX_STRING_SIZE];
-   UART_readString(string);
+   UART_ReceiveString(UART_CH_0, string);
    
    if(StringCompare(string,gu8_StartMessage) == TRUE)
    {
       LED_Off(LED_CH_2);
       LED_Off(LED_CH_3);
       LED_On(LED_CH_1);
-      UART_sendString(gu8_StartMessageReply);
+      UART_TransmitString(UART_CH_0, gu8_StartMessageReply);
    }
    else if(StringCompare(string, gu8_WaitMessage) == TRUE)
    {
       LED_Off(LED_CH_1);
       LED_Off(LED_CH_3);
       LED_On(LED_CH_2);
-      UART_sendString(gu8_WaitMessageReply);
+      UART_TransmitString(UART_CH_0, gu8_WaitMessageReply);
    }
    else if(StringCompare(string, gu8_StopMessage) == TRUE)
    {
       LED_Off(LED_CH_1);
       LED_Off(LED_CH_2);
       LED_On(LED_CH_3);
-      UART_sendString(gu8_StopMessageReply);
+      UART_TransmitString(UART_CH_0, gu8_StopMessageReply);
    }
    else if(StringCompare(string, gu8_ATMessage) == TRUE)
    {
-      UART_sendString(gu8_ATMessageReply);
+      UART_TransmitString(UART_CH_0, gu8_ATMessageReply);
    }
    else
    {
-      UART_sendString(gu8_InvalidMessageReply);
+      UART_TransmitString(UART_CH_0, gu8_InvalidMessageReply);
    }
 }

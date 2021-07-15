@@ -8,6 +8,10 @@
 #ifndef __LED_CONFIG_H__
 #define __LED_CONFIG_H__
 
+/*- INCLUDES -----------------------------------------------*/
+#include "../../Infrastructure/STD_types.h"
+
+/*- MACROS -------------------------------------------------*/
 #define LED_CH_1              (uint8_t)(1)
 #define LED_CH_1_PORT         PORTA
 #define LED_CH_1_PIN          PIN_0

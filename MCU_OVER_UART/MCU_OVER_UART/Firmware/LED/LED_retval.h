@@ -35,4 +35,16 @@ typedef uint8_t LED_ERROR_state_t;
 */
 #define           E_LED_DIO_ERROR         (LED_ERROR_state_t)( 2 )
 
+/**
+* @brief: This return value indicate that the init function
+* was called before.
+*/
+#define           E_LED_INIT_BEFORE       (LED_ERROR_state_t)( 3 )
+
+/**
+* @brief: This return value indicate that a function
+* was called before initialization.
+*/
+#define           E_LED_NOT_INIT          (LED_ERROR_state_t)( 4 )
+
 #endif /* __LED_RETVAL_H__ */

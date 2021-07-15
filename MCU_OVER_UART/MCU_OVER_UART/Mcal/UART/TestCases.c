@@ -13,7 +13,6 @@
 
 /*- LOCAL MACROS
 ------------------------------------------*/
-#define CLK_8_MHZ_9600_BAUD   (uint16_t)(51)
 #define MAX_STRING_SIZE       (uint16_t)(200)
 #define INVALID_BAUD_RATE     (uint16_t)(4096)
 #define EMPTY_BUFFER_BIT	  (uint8_t)(0x20)
@@ -44,23 +43,23 @@ void TestNotInit(void)
    UART_ERROR_state_t error_state;
    
    /* call UART_sendChar before initialization */
-   error_state = UART_sendChar('a');
+   error_state = UART_TransmitChar(UART_CH_0, 'a');
    assert(error_state == E_UART_NOT_INIT);
    error_state = E_UART_SUCCESS;
    
    uint8_t data[10];
    /* call UART_readChar before initialization */
-   error_state = UART_readChar(&data);
+   error_state = UART_ReceiveChar(UART_CH_0, &data);
    assert(error_state == E_UART_NOT_INIT);
    error_state = E_UART_SUCCESS;
 
    /* call UART_sendString before initialization */
-   error_state = UART_sendString('a');
+   error_state = UART_TransmitString(UART_CH_0, 'a');
    assert(error_state == E_UART_NOT_INIT);
    error_state = E_UART_SUCCESS;
 
    /* call UART_readString before initialization */
-   error_state = UART_readString(&data);
+   error_state = UART_ReceiveString(UART_CH_0, &data);
    assert(error_state == E_UART_NOT_INIT);
 }
 
@@ -72,11 +71,7 @@ void TestInit(void)
    UART_ERROR_state_t error_state;
    
    /* initialize with invalid baud rate */
-   error_state = UART_init(INVALID_BAUD_RATE);
-   assert(error_state == E_UART_INVALID_BAUD_RATE);
-   
-   /* initialize with invalid baud rate */
-   error_state = UART_init(CLK_8_MHZ_9600_BAUD);
+   error_state = UART_Init();
    assert(error_state == E_UART_SUCCESS);
    /* make sure data is written correctly in registers */
    assert(UART_CONTROL_R == 0x18);
@@ -85,7 +80,7 @@ void TestInit(void)
    assert(UART_BAUDRATE_HIGH_R == 0x00);
    
    /* call init function agan after initialization */
-   error_state = UART_init(CLK_8_MHZ_9600_BAUD);
+   error_state = UART_Init();
    assert(error_state == E_UART_INIT_BEFORE);
 }
 
@@ -98,7 +93,7 @@ void TestSendChar(void)
    UART_STATUS_R |= EMPTY_BUFFER_BIT;
 	
    UART_ERROR_state_t error_state;
-   error_state = UART_sendChar('a');
+   error_state = UART_TransmitChar(UART_CH_0, 'a');
    assert(error_state == E_UART_SUCCESS);
    /* make sure write data is written in the register */
    assert(UART_DATA_R== 'a');
@@ -116,11 +111,11 @@ void TestReceiveChar(void)
 
    UART_ERROR_state_t error_state;
    /* test sending null pointer to the read character function */
-   error_state =UART_readChar(ptr_null);
+   error_state = UART_ReceiveChar(UART_CH_0, ptr_null);
    assert(error_state == E_UART_NULL_PTR);
 
    uint8_t data;
-   error_state = UART_readChar(&data);
+   error_state = UART_ReceiveChar(UART_CH_0, &data);
    assert(error_state == E_UART_SUCCESS);
    assert(data == 'b');
 }
@@ -135,10 +130,10 @@ void TestSendString(void)
 
    UART_ERROR_state_t error_state;
    /* test sending null pointer to the function */
-   error_state = UART_sendString(ptr_null);
+   error_state = UART_TransmitString(UART_CH_0, ptr_null);
    assert(error_state == E_UART_NULL_PTR);
 
-   error_state = UART_sendString("dawdwwaz");
+   error_state = UART_TransmitString(UART_CH_0, "dawdwwaz");
    assert(error_state == E_UART_SUCCESS);
    assert(UART_DATA_R == 'z');
 }
@@ -155,11 +150,11 @@ void TestReceiveString(void)
 
    UART_ERROR_state_t error_state;
    /* test sending null pointer to the function */
-   error_state = UART_readString(ptr_null);
+   error_state = UART_ReceiveString(UART_CH_0, ptr_null);
    assert(error_state == E_UART_NULL_PTR);
 
    uint8_t data[10];
-   error_state = UART_readString(&data);
+   error_state = UART_ReceiveString(UART_CH_0, &data);
    assert(error_state == E_UART_SUCCESS);
    assert(data[0] == NEW_LINE);
    /* make sure end of string character is inserted at the end of the string */

@@ -1,0 +1,50 @@
+/*
+ * UART_Config.h
+ *
+ * Created: 7/15/2021 12:40:45 PM
+ *  Author: Mohamed Wagdy
+ */ 
+
+
+#ifndef __UART_CONFIG_H__
+#define __UART_CONFIG_H__
+
+/*- INCLUDES -----------------------------------------------*/
+#include "../../Infrastructure/STD_types.h"
+
+/*--Configuration Macros------------------------------*/
+#define ENABLE_RX                         (uint8_t)(0x10)
+#define ENABLE_TX                         (uint8_t)(0x08)
+
+#define RX_INT                            (uint8_t)(0x80)
+#define TX_INT                            (uint8_t)(0x40)
+
+#define SET_PARITY_STOP_AND_DATA_SIZE     (uint8_t)(0x80)
+
+#define EVEN_PARITY                       (uint8_t)(0x20)
+#define ODD_PARITY                        (uint8_t)(0x30)
+#define NO_PARITY                         (uint8_t)(0x00)
+
+#define STOP_1_BIT                        (uint8_t)(0x00)
+#define STOP_2_BIT                        (uint8_t)(0x08)
+
+#define DATA_5_BITS                       (uint8_t)(0x00)
+#define DATA_6_BITS                       (uint8_t)(0x02)
+#define DATA_7_BITS                       (uint8_t)(0x04)
+#define DATA_8_BITS                       (uint8_t)(0x06)
+
+#define MAX_BAUD_VALUE                    (uint8_t)(4095)
+#define BAUD_MAX_LOW_BITS                 (uint8_t)(255)
+#define BAUD_HIGH_BITS_SHIFT              (uint8_t)(8)
+
+#define CLK_8_MHZ_9600_BAUD               (uint16_t)(51)
+
+#define UART_CH_NUMBER                    (uint8_t)(1)
+
+/* UART_CH_0 */
+#define UART_CH_0                         (uint8_t)(0)
+#define UART_CH_0_CONTROL                 (ENABLE_RX | ENABLE_TX)
+#define UART_CH_0_CONTROL_2               (SET_PARITY_STOP_AND_DATA_SIZE | NO_PARITY | STOP_1_BIT | DATA_8_BITS)
+#define UART_CH_0_BaudRate                CLK_8_MHZ_9600_BAUD
+
+#endif /* __UART_CONFIG_H__ */
