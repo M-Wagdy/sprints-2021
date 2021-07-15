@@ -46,4 +46,9 @@ typedef uint8_t SPI_ERROR_state_t;
 */
 #define           E_SPI_NULL_PTR             (SPI_ERROR_state_t)( 4 )
 
+/**
+* @brief: This return value indicate that a function got an invalid slave channel.
+*/
+#define           E_SPI_INVALID_SS_CH        (SPI_ERROR_state_t)( 5 )
+
 #endif /* __SPI_RETVAL_H__ */

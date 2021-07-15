@@ -16,15 +16,6 @@
 #define HIGH                        (uint8_t)(1)
 #define LOW                         (uint8_t)(0)
 
-#define SS_PORT   PORTB
-#define SS_PIN    PIN_4
-#define MOSI_PORT PORTB
-#define MOSI_PIN  PIN_5
-#define MISO_PORT PORTB
-#define MISO_PIN  PIN_6
-#define SCK_PORT  PORTB
-#define SCK_PIN   PIN_7
-
 #define SPI_TRANSMIT_COMPLETE_BIT   (uint8_t)(0X80)
 #define SPI_WRITE_COLLISION_BIT     (uint8_t)(0X40)
 
@@ -64,8 +55,10 @@ SPI_ERROR_state_t SPI_Init(void)
    
    if( (SPI_CONTROL_MASK & MASTER_SELECT) )
    {
-      DIO_SetPinDirection(SS_PORT, SS_PIN, OUTPUT);
-      DIO_WritePin(SS_PORT, SS_PIN, HIGH);
+      #ifdef SS_CH_0
+         DIO_SetPinDirection(SS_CH_0_PORT, SS_CH_0_PIN, OUTPUT);
+         DIO_WritePin(SS_CH_0_PORT, SS_CH_0_PIN, HIGH);
+      #endif
       DIO_SetPinDirection(MOSI_PORT, MOSI_PIN, OUTPUT);
       DIO_SetPinDirection(SCK_PORT, SCK_PIN, OUTPUT);
       SPI_CONTROL_R = SPI_CONTROL_MASK;   
@@ -83,8 +76,6 @@ SPI_ERROR_state_t SPI_Init(void)
 
 SPI_ERROR_state_t SPI_SendChar(uint8_t character)
 {
-   DIO_WritePin(SS_PORT, SS_PIN, LOW);
-   
    if(NOT_INIT == gu8_IsDriverInit)
    {
       return E_SPI_NOT_INIT;
@@ -101,8 +92,6 @@ SPI_ERROR_state_t SPI_SendChar(uint8_t character)
       return E_SPI_WRITE_COLLISION;
    }
 
-   DIO_WritePin(SS_PORT, SS_PIN, HIGH);
-   
    return E_SPI_SUCCESS;
 }
 
@@ -132,8 +121,6 @@ SPI_ERROR_state_t SPI_ReadChar(uint8_t * character)
 
 SPI_ERROR_state_t SPI_Send(uint8_t * data)
 {
-   DIO_WritePin(SS_PORT, SS_PIN, LOW);
-   
    uint8_t counter = DATA_COUNTER_START;
    
    if(NOT_INIT == gu8_IsDriverInit)
@@ -158,8 +145,6 @@ SPI_ERROR_state_t SPI_Send(uint8_t * data)
       }
       counter++;
    }      
-   
-   DIO_WritePin(SS_PORT, SS_PIN, HIGH);
    
    return E_SPI_SUCCESS;
 }
@@ -206,6 +191,51 @@ SPI_ERROR_state_t SPI_Read(uint8_t * data)
             counter = DATA_COUNTER_START;
          }
       }
+   }
+   
+   return E_SPI_SUCCESS;
+}
+
+SPI_ERROR_state_t SPI_SelectSlave(uint8_t slave_CH)
+{
+   if(NOT_INIT == gu8_IsDriverInit)
+   {
+      return E_SPI_NOT_INIT;
+   }
+   
+   switch(slave_CH)
+   {
+      #ifdef SS_CH_0
+      case SS_CH_0:
+         DIO_WritePin(SS_CH_0_PORT, SS_CH_0_PIN, LOW);
+         break;
+      #endif
+      default:
+         return E_SPI_INVALID_SS_CH;
+   
+   }
+   
+   return E_SPI_SUCCESS;
+   
+}
+
+SPI_ERROR_state_t SPI_UnselectSlave(uint8_t slave_CH)
+{
+   if(NOT_INIT == gu8_IsDriverInit)
+   {
+      return E_SPI_NOT_INIT;
+   }
+   
+   switch(slave_CH)
+   {
+      #ifdef SS_CH_0
+      case SS_CH_0:
+         DIO_WritePin(SS_CH_0_PORT, SS_CH_0_PIN, LOW);
+         break;
+      #endif
+      default:
+      return E_SPI_INVALID_SS_CH;
+      
    }
    
    return E_SPI_SUCCESS;

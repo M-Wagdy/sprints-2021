@@ -21,7 +21,7 @@ SPI_ERROR_state_t SPI_SendChar(uint8_t character);
 SPI_ERROR_state_t SPI_ReadChar(uint8_t * character);
 SPI_ERROR_state_t SPI_Send(uint8_t * data);
 SPI_ERROR_state_t SPI_Read(uint8_t * data);
-SPI_ERROR_state_t SPI_SelectSlave(uint8_t slave_ch);
+SPI_ERROR_state_t SPI_SelectSlave(uint8_t slave_CH);
 SPI_ERROR_state_t SPI_UnselectSlave(uint8_t slave_CH);
 
 #endif /* __SPI_H__ */

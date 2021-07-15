@@ -24,7 +24,9 @@ static void ECU_1_Function(void)
 {
    SPI_Init();
    
+   SPI_SelectSlave(SS_CH_0);
    SPI_SendChar(0x1F);
+   SPI_UnselectSlave(SS_CH_0);
 }
 
 static void ECU_2_Function(void)

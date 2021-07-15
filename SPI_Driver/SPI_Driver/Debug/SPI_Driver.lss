@@ -3,31 +3,31 @@ SPI_Driver.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000001f6  00000000  00000000  00000074  2**1
+  0 .text         00000228  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  00800060  0000026a  2**0
+  1 .data         00000000  00800060  00800060  0000029c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000001  00800060  00800060  0000026a  2**0
+  2 .bss          00000001  00800060  00800060  0000029c  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  0000026a  2**0
+  3 .comment      00000030  00000000  00000000  0000029c  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000029c  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000002cc  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000a8  00000000  00000000  000002d8  2**0
+  5 .debug_aranges 000000b8  00000000  00000000  00000308  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000a5a  00000000  00000000  00000380  2**0
+  6 .debug_info   00000ac7  00000000  00000000  000003c0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000006de  00000000  00000000  00000dda  2**0
+  7 .debug_abbrev 000006dc  00000000  00000000  00000e87  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000694  00000000  00000000  000014b8  2**0
+  8 .debug_line   00000724  00000000  00000000  00001563  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000114  00000000  00000000  00001b4c  2**2
+  9 .debug_frame  0000011c  00000000  00000000  00001c88  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000041c  00000000  00000000  00001c60  2**0
+ 10 .debug_str    00000447  00000000  00000000  00001da4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000659  00000000  00000000  0000207c  2**0
+ 11 .debug_loc    00000660  00000000  00000000  000021eb  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000078  00000000  00000000  000026d5  2**0
+ 12 .debug_ranges 00000088  00000000  00000000  0000284b  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -76,8 +76,8 @@ Disassembly of section .text:
   6a:	a1 36       	cpi	r26, 0x61	; 97
   6c:	b2 07       	cpc	r27, r18
   6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
-  70:	0e 94 44 00 	call	0x88	; 0x88 <main>
-  74:	0c 94 f9 00 	jmp	0x1f2	; 0x1f2 <_exit>
+  70:	0e 94 4a 00 	call	0x94	; 0x94 <main>
+  74:	0c 94 12 01 	jmp	0x224	; 0x224 <_exit>
 
 00000078 <__bad_interrupt>:
   78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -89,370 +89,397 @@ Disassembly of section .text:
 static void ECU_1_Function(void)
 {
    SPI_Init();
-  7c:	0e 94 b9 00 	call	0x172	; 0x172 <SPI_Init>
+  7c:	0e 94 bf 00 	call	0x17e	; 0x17e <SPI_Init>
    
+   SPI_SelectSlave(SS_CH_0);
+  80:	80 e0       	ldi	r24, 0x00	; 0
+  82:	0e 94 f0 00 	call	0x1e0	; 0x1e0 <SPI_SelectSlave>
    SPI_SendChar(0x1F);
-  80:	8f e1       	ldi	r24, 0x1F	; 31
-  82:	0e 94 da 00 	call	0x1b4	; 0x1b4 <SPI_SendChar>
-  86:	08 95       	ret
+  86:	8f e1       	ldi	r24, 0x1F	; 31
+  88:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <SPI_SendChar>
+   SPI_UnselectSlave(SS_CH_0);
+  8c:	80 e0       	ldi	r24, 0x00	; 0
+  8e:	0e 94 01 01 	call	0x202	; 0x202 <SPI_UnselectSlave>
+  92:	08 95       	ret
 
-00000088 <main>:
+00000094 <main>:
 -----------------------------------*/
 
 
 int main(void)
 {
    ECU_1_Function();
-  88:	0e 94 3e 00 	call	0x7c	; 0x7c <ECU_1_Function>
+  94:	0e 94 3e 00 	call	0x7c	; 0x7c <ECU_1_Function>
    //ECU_2_Function();
 }
-  8c:	80 e0       	ldi	r24, 0x00	; 0
-  8e:	90 e0       	ldi	r25, 0x00	; 0
-  90:	08 95       	ret
+  98:	80 e0       	ldi	r24, 0x00	; 0
+  9a:	90 e0       	ldi	r25, 0x00	; 0
+  9c:	08 95       	ret
 
-00000092 <DIO_SetPinDirection>:
+0000009e <DIO_SetPinDirection>:
    
    /* set pin resistor to pull up. */
    SET_BIT(*prt_port_data, pin);
    
    return E_DIO_SUCCESS;
 }
-  92:	68 30       	cpi	r22, 0x08	; 8
-  94:	80 f5       	brcc	.+96     	; 0xf6 <DIO_SetPinDirection+0x64>
-  96:	81 30       	cpi	r24, 0x01	; 1
-  98:	79 f0       	breq	.+30     	; 0xb8 <DIO_SetPinDirection+0x26>
-  9a:	28 f0       	brcs	.+10     	; 0xa6 <DIO_SetPinDirection+0x14>
-  9c:	82 30       	cpi	r24, 0x02	; 2
-  9e:	31 f0       	breq	.+12     	; 0xac <DIO_SetPinDirection+0x1a>
-  a0:	83 30       	cpi	r24, 0x03	; 3
-  a2:	39 f0       	breq	.+14     	; 0xb2 <DIO_SetPinDirection+0x20>
-  a4:	2a c0       	rjmp	.+84     	; 0xfa <DIO_SetPinDirection+0x68>
-  a6:	ea e3       	ldi	r30, 0x3A	; 58
-  a8:	f0 e0       	ldi	r31, 0x00	; 0
-  aa:	08 c0       	rjmp	.+16     	; 0xbc <DIO_SetPinDirection+0x2a>
-  ac:	e4 e3       	ldi	r30, 0x34	; 52
-  ae:	f0 e0       	ldi	r31, 0x00	; 0
-  b0:	05 c0       	rjmp	.+10     	; 0xbc <DIO_SetPinDirection+0x2a>
-  b2:	e1 e3       	ldi	r30, 0x31	; 49
+  9e:	68 30       	cpi	r22, 0x08	; 8
+  a0:	80 f5       	brcc	.+96     	; 0x102 <DIO_SetPinDirection+0x64>
+  a2:	81 30       	cpi	r24, 0x01	; 1
+  a4:	79 f0       	breq	.+30     	; 0xc4 <DIO_SetPinDirection+0x26>
+  a6:	28 f0       	brcs	.+10     	; 0xb2 <DIO_SetPinDirection+0x14>
+  a8:	82 30       	cpi	r24, 0x02	; 2
+  aa:	31 f0       	breq	.+12     	; 0xb8 <DIO_SetPinDirection+0x1a>
+  ac:	83 30       	cpi	r24, 0x03	; 3
+  ae:	39 f0       	breq	.+14     	; 0xbe <DIO_SetPinDirection+0x20>
+  b0:	2a c0       	rjmp	.+84     	; 0x106 <DIO_SetPinDirection+0x68>
+  b2:	ea e3       	ldi	r30, 0x3A	; 58
   b4:	f0 e0       	ldi	r31, 0x00	; 0
-  b6:	02 c0       	rjmp	.+4      	; 0xbc <DIO_SetPinDirection+0x2a>
-  b8:	e7 e3       	ldi	r30, 0x37	; 55
+  b6:	08 c0       	rjmp	.+16     	; 0xc8 <DIO_SetPinDirection+0x2a>
+  b8:	e4 e3       	ldi	r30, 0x34	; 52
   ba:	f0 e0       	ldi	r31, 0x00	; 0
-  bc:	41 30       	cpi	r20, 0x01	; 1
-  be:	61 f4       	brne	.+24     	; 0xd8 <DIO_SetPinDirection+0x46>
-  c0:	20 81       	ld	r18, Z
-  c2:	81 e0       	ldi	r24, 0x01	; 1
-  c4:	90 e0       	ldi	r25, 0x00	; 0
-  c6:	02 c0       	rjmp	.+4      	; 0xcc <DIO_SetPinDirection+0x3a>
-  c8:	88 0f       	add	r24, r24
-  ca:	99 1f       	adc	r25, r25
-  cc:	6a 95       	dec	r22
-  ce:	e2 f7       	brpl	.-8      	; 0xc8 <DIO_SetPinDirection+0x36>
-  d0:	82 2b       	or	r24, r18
-  d2:	80 83       	st	Z, r24
-  d4:	80 e0       	ldi	r24, 0x00	; 0
-  d6:	08 95       	ret
-  d8:	41 11       	cpse	r20, r1
-  da:	11 c0       	rjmp	.+34     	; 0xfe <DIO_SetPinDirection+0x6c>
-  dc:	20 81       	ld	r18, Z
-  de:	81 e0       	ldi	r24, 0x01	; 1
-  e0:	90 e0       	ldi	r25, 0x00	; 0
-  e2:	02 c0       	rjmp	.+4      	; 0xe8 <DIO_SetPinDirection+0x56>
-  e4:	88 0f       	add	r24, r24
-  e6:	99 1f       	adc	r25, r25
-  e8:	6a 95       	dec	r22
-  ea:	e2 f7       	brpl	.-8      	; 0xe4 <DIO_SetPinDirection+0x52>
-  ec:	80 95       	com	r24
-  ee:	82 23       	and	r24, r18
-  f0:	80 83       	st	Z, r24
-  f2:	80 e0       	ldi	r24, 0x00	; 0
-  f4:	08 95       	ret
-  f6:	82 e0       	ldi	r24, 0x02	; 2
-  f8:	08 95       	ret
-  fa:	83 e0       	ldi	r24, 0x03	; 3
-  fc:	08 95       	ret
-  fe:	81 e0       	ldi	r24, 0x01	; 1
+  bc:	05 c0       	rjmp	.+10     	; 0xc8 <DIO_SetPinDirection+0x2a>
+  be:	e1 e3       	ldi	r30, 0x31	; 49
+  c0:	f0 e0       	ldi	r31, 0x00	; 0
+  c2:	02 c0       	rjmp	.+4      	; 0xc8 <DIO_SetPinDirection+0x2a>
+  c4:	e7 e3       	ldi	r30, 0x37	; 55
+  c6:	f0 e0       	ldi	r31, 0x00	; 0
+  c8:	41 30       	cpi	r20, 0x01	; 1
+  ca:	61 f4       	brne	.+24     	; 0xe4 <DIO_SetPinDirection+0x46>
+  cc:	20 81       	ld	r18, Z
+  ce:	81 e0       	ldi	r24, 0x01	; 1
+  d0:	90 e0       	ldi	r25, 0x00	; 0
+  d2:	02 c0       	rjmp	.+4      	; 0xd8 <DIO_SetPinDirection+0x3a>
+  d4:	88 0f       	add	r24, r24
+  d6:	99 1f       	adc	r25, r25
+  d8:	6a 95       	dec	r22
+  da:	e2 f7       	brpl	.-8      	; 0xd4 <DIO_SetPinDirection+0x36>
+  dc:	82 2b       	or	r24, r18
+  de:	80 83       	st	Z, r24
+  e0:	80 e0       	ldi	r24, 0x00	; 0
+  e2:	08 95       	ret
+  e4:	41 11       	cpse	r20, r1
+  e6:	11 c0       	rjmp	.+34     	; 0x10a <DIO_SetPinDirection+0x6c>
+  e8:	20 81       	ld	r18, Z
+  ea:	81 e0       	ldi	r24, 0x01	; 1
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	02 c0       	rjmp	.+4      	; 0xf4 <DIO_SetPinDirection+0x56>
+  f0:	88 0f       	add	r24, r24
+  f2:	99 1f       	adc	r25, r25
+  f4:	6a 95       	dec	r22
+  f6:	e2 f7       	brpl	.-8      	; 0xf0 <DIO_SetPinDirection+0x52>
+  f8:	80 95       	com	r24
+  fa:	82 23       	and	r24, r18
+  fc:	80 83       	st	Z, r24
+  fe:	80 e0       	ldi	r24, 0x00	; 0
  100:	08 95       	ret
+ 102:	82 e0       	ldi	r24, 0x02	; 2
+ 104:	08 95       	ret
+ 106:	83 e0       	ldi	r24, 0x03	; 3
+ 108:	08 95       	ret
+ 10a:	81 e0       	ldi	r24, 0x01	; 1
+ 10c:	08 95       	ret
 
-00000102 <DIO_WritePin>:
+0000010e <DIO_WritePin>:
 * @return function error state.
 */
 DIO_ERROR_state_t DIO_WritePin(uint8_t port, uint8_t pin, uint8_t data)
 {
    /* check if invalid pin is given. */
    if(PIN_7 < pin)
- 102:	68 30       	cpi	r22, 0x08	; 8
- 104:	80 f5       	brcc	.+96     	; 0x166 <DIO_WritePin+0x64>
+ 10e:	68 30       	cpi	r22, 0x08	; 8
+ 110:	80 f5       	brcc	.+96     	; 0x172 <DIO_WritePin+0x64>
 
    /* pointers to carry the required port registers address. */
    volatile uint8_t * prt_port_data = NULL_PTR;
    
    /* sets the data pointer according to the required port. */
    switch(port)
- 106:	81 30       	cpi	r24, 0x01	; 1
- 108:	79 f0       	breq	.+30     	; 0x128 <DIO_WritePin+0x26>
- 10a:	28 f0       	brcs	.+10     	; 0x116 <DIO_WritePin+0x14>
- 10c:	82 30       	cpi	r24, 0x02	; 2
- 10e:	31 f0       	breq	.+12     	; 0x11c <DIO_WritePin+0x1a>
- 110:	83 30       	cpi	r24, 0x03	; 3
- 112:	39 f0       	breq	.+14     	; 0x122 <DIO_WritePin+0x20>
- 114:	2a c0       	rjmp	.+84     	; 0x16a <DIO_WritePin+0x68>
+ 112:	81 30       	cpi	r24, 0x01	; 1
+ 114:	79 f0       	breq	.+30     	; 0x134 <DIO_WritePin+0x26>
+ 116:	28 f0       	brcs	.+10     	; 0x122 <DIO_WritePin+0x14>
+ 118:	82 30       	cpi	r24, 0x02	; 2
+ 11a:	31 f0       	breq	.+12     	; 0x128 <DIO_WritePin+0x1a>
+ 11c:	83 30       	cpi	r24, 0x03	; 3
+ 11e:	39 f0       	breq	.+14     	; 0x12e <DIO_WritePin+0x20>
+ 120:	2a c0       	rjmp	.+84     	; 0x176 <DIO_WritePin+0x68>
    {
       case PORTA:
          prt_port_data = &PORTA_DATA;
- 116:	eb e3       	ldi	r30, 0x3B	; 59
- 118:	f0 e0       	ldi	r31, 0x00	; 0
- 11a:	08 c0       	rjmp	.+16     	; 0x12c <DIO_WritePin+0x2a>
+ 122:	eb e3       	ldi	r30, 0x3B	; 59
+ 124:	f0 e0       	ldi	r31, 0x00	; 0
+ 126:	08 c0       	rjmp	.+16     	; 0x138 <DIO_WritePin+0x2a>
          break;
       case PORTB:
          prt_port_data = &PORTB_DATA;
          break;
       case PORTC:
          prt_port_data = &PORTC_DATA;
- 11c:	e5 e3       	ldi	r30, 0x35	; 53
- 11e:	f0 e0       	ldi	r31, 0x00	; 0
+ 128:	e5 e3       	ldi	r30, 0x35	; 53
+ 12a:	f0 e0       	ldi	r31, 0x00	; 0
          break;
- 120:	05 c0       	rjmp	.+10     	; 0x12c <DIO_WritePin+0x2a>
+ 12c:	05 c0       	rjmp	.+10     	; 0x138 <DIO_WritePin+0x2a>
       case PORTD:
          prt_port_data = &PORTD_DATA;
- 122:	e2 e3       	ldi	r30, 0x32	; 50
- 124:	f0 e0       	ldi	r31, 0x00	; 0
+ 12e:	e2 e3       	ldi	r30, 0x32	; 50
+ 130:	f0 e0       	ldi	r31, 0x00	; 0
          break;
- 126:	02 c0       	rjmp	.+4      	; 0x12c <DIO_WritePin+0x2a>
+ 132:	02 c0       	rjmp	.+4      	; 0x138 <DIO_WritePin+0x2a>
    {
       case PORTA:
          prt_port_data = &PORTA_DATA;
          break;
       case PORTB:
          prt_port_data = &PORTB_DATA;
- 128:	e8 e3       	ldi	r30, 0x38	; 56
- 12a:	f0 e0       	ldi	r31, 0x00	; 0
+ 134:	e8 e3       	ldi	r30, 0x38	; 56
+ 136:	f0 e0       	ldi	r31, 0x00	; 0
          break;
       default:
          return E_DIO_INVALID_PORT;
    }
    /* set or clear value in the pin. */
    if(HIGH == data)
- 12c:	41 30       	cpi	r20, 0x01	; 1
- 12e:	61 f4       	brne	.+24     	; 0x148 <DIO_WritePin+0x46>
+ 138:	41 30       	cpi	r20, 0x01	; 1
+ 13a:	61 f4       	brne	.+24     	; 0x154 <DIO_WritePin+0x46>
    {
       SET_BIT(*prt_port_data,pin);
- 130:	20 81       	ld	r18, Z
- 132:	81 e0       	ldi	r24, 0x01	; 1
- 134:	90 e0       	ldi	r25, 0x00	; 0
- 136:	02 c0       	rjmp	.+4      	; 0x13c <DIO_WritePin+0x3a>
- 138:	88 0f       	add	r24, r24
- 13a:	99 1f       	adc	r25, r25
- 13c:	6a 95       	dec	r22
- 13e:	e2 f7       	brpl	.-8      	; 0x138 <DIO_WritePin+0x36>
- 140:	82 2b       	or	r24, r18
- 142:	80 83       	st	Z, r24
+ 13c:	20 81       	ld	r18, Z
+ 13e:	81 e0       	ldi	r24, 0x01	; 1
+ 140:	90 e0       	ldi	r25, 0x00	; 0
+ 142:	02 c0       	rjmp	.+4      	; 0x148 <DIO_WritePin+0x3a>
+ 144:	88 0f       	add	r24, r24
+ 146:	99 1f       	adc	r25, r25
+ 148:	6a 95       	dec	r22
+ 14a:	e2 f7       	brpl	.-8      	; 0x144 <DIO_WritePin+0x36>
+ 14c:	82 2b       	or	r24, r18
+ 14e:	80 83       	st	Z, r24
    {
       return E_DIO_INVALID_WRITE_DATA;
    }
    
    /* return success message. */
    return E_DIO_SUCCESS;
- 144:	80 e0       	ldi	r24, 0x00	; 0
- 146:	08 95       	ret
+ 150:	80 e0       	ldi	r24, 0x00	; 0
+ 152:	08 95       	ret
    /* set or clear value in the pin. */
    if(HIGH == data)
    {
       SET_BIT(*prt_port_data,pin);
    }
    else if(LOW == data)
- 148:	41 11       	cpse	r20, r1
- 14a:	11 c0       	rjmp	.+34     	; 0x16e <DIO_WritePin+0x6c>
+ 154:	41 11       	cpse	r20, r1
+ 156:	11 c0       	rjmp	.+34     	; 0x17a <DIO_WritePin+0x6c>
    {
       CLEAR_BIT(*prt_port_data,pin);
- 14c:	20 81       	ld	r18, Z
- 14e:	81 e0       	ldi	r24, 0x01	; 1
- 150:	90 e0       	ldi	r25, 0x00	; 0
- 152:	02 c0       	rjmp	.+4      	; 0x158 <DIO_WritePin+0x56>
- 154:	88 0f       	add	r24, r24
- 156:	99 1f       	adc	r25, r25
- 158:	6a 95       	dec	r22
- 15a:	e2 f7       	brpl	.-8      	; 0x154 <DIO_WritePin+0x52>
- 15c:	80 95       	com	r24
- 15e:	82 23       	and	r24, r18
- 160:	80 83       	st	Z, r24
+ 158:	20 81       	ld	r18, Z
+ 15a:	81 e0       	ldi	r24, 0x01	; 1
+ 15c:	90 e0       	ldi	r25, 0x00	; 0
+ 15e:	02 c0       	rjmp	.+4      	; 0x164 <DIO_WritePin+0x56>
+ 160:	88 0f       	add	r24, r24
+ 162:	99 1f       	adc	r25, r25
+ 164:	6a 95       	dec	r22
+ 166:	e2 f7       	brpl	.-8      	; 0x160 <DIO_WritePin+0x52>
+ 168:	80 95       	com	r24
+ 16a:	82 23       	and	r24, r18
+ 16c:	80 83       	st	Z, r24
    {
       return E_DIO_INVALID_WRITE_DATA;
    }
    
    /* return success message. */
    return E_DIO_SUCCESS;
- 162:	80 e0       	ldi	r24, 0x00	; 0
- 164:	08 95       	ret
+ 16e:	80 e0       	ldi	r24, 0x00	; 0
+ 170:	08 95       	ret
 DIO_ERROR_state_t DIO_WritePin(uint8_t port, uint8_t pin, uint8_t data)
 {
    /* check if invalid pin is given. */
    if(PIN_7 < pin)
    {
       return E_DIO_INVALID_PIN;
- 166:	82 e0       	ldi	r24, 0x02	; 2
- 168:	08 95       	ret
+ 172:	82 e0       	ldi	r24, 0x02	; 2
+ 174:	08 95       	ret
          break;
       case PORTD:
          prt_port_data = &PORTD_DATA;
          break;
       default:
          return E_DIO_INVALID_PORT;
- 16a:	83 e0       	ldi	r24, 0x03	; 3
- 16c:	08 95       	ret
+ 176:	83 e0       	ldi	r24, 0x03	; 3
+ 178:	08 95       	ret
       CLEAR_BIT(*prt_port_data,pin);
    }
    /* if data is invalid. */
    else
    {
       return E_DIO_INVALID_WRITE_DATA;
- 16e:	84 e0       	ldi	r24, 0x04	; 4
+ 17a:	84 e0       	ldi	r24, 0x04	; 4
    }
    
    /* return success message. */
    return E_DIO_SUCCESS;
 }
- 170:	08 95       	ret
+ 17c:	08 95       	ret
 
-00000172 <SPI_Init>:
-*
-* @return function error state.
-*/
-SPI_ERROR_state_t SPI_Init(void)
-{
-   if(INIT == gu8_IsDriverInit)
- 172:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
- 176:	81 30       	cpi	r24, 0x01	; 1
- 178:	d9 f0       	breq	.+54     	; 0x1b0 <SPI_Init+0x3e>
-      return E_SPI_INIT_BEFORE;
+0000017e <SPI_Init>:
+         }
+      }
    }
-   
-   if( (SPI_CONTROL_MASK & MASTER_SELECT) )
-   {
-      DIO_SetPinDirection(SS_PORT, SS_PIN, OUTPUT);
- 17a:	41 e0       	ldi	r20, 0x01	; 1
- 17c:	64 e0       	ldi	r22, 0x04	; 4
- 17e:	81 e0       	ldi	r24, 0x01	; 1
- 180:	0e 94 49 00 	call	0x92	; 0x92 <DIO_SetPinDirection>
-      DIO_WritePin(SS_PORT, SS_PIN, HIGH);
- 184:	41 e0       	ldi	r20, 0x01	; 1
- 186:	64 e0       	ldi	r22, 0x04	; 4
- 188:	81 e0       	ldi	r24, 0x01	; 1
- 18a:	0e 94 81 00 	call	0x102	; 0x102 <DIO_WritePin>
-      DIO_SetPinDirection(MOSI_PORT, MOSI_PIN, OUTPUT);
- 18e:	41 e0       	ldi	r20, 0x01	; 1
- 190:	65 e0       	ldi	r22, 0x05	; 5
- 192:	81 e0       	ldi	r24, 0x01	; 1
- 194:	0e 94 49 00 	call	0x92	; 0x92 <DIO_SetPinDirection>
-      DIO_SetPinDirection(SCK_PORT, SCK_PIN, OUTPUT);
- 198:	41 e0       	ldi	r20, 0x01	; 1
- 19a:	67 e0       	ldi	r22, 0x07	; 7
- 19c:	81 e0       	ldi	r24, 0x01	; 1
- 19e:	0e 94 49 00 	call	0x92	; 0x92 <DIO_SetPinDirection>
-      SPI_CONTROL_R = SPI_CONTROL_MASK;   
- 1a2:	80 e5       	ldi	r24, 0x50	; 80
- 1a4:	8d b9       	out	0x0d, r24	; 13
-   {
-      DIO_SetPinDirection(MISO_PORT, MISO_PIN, OUTPUT);
-      SPI_CONTROL_R = SPI_EN;
-   }
-   
-   gu8_IsDriverInit = INIT;
- 1a6:	81 e0       	ldi	r24, 0x01	; 1
- 1a8:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
-   
-   return E_SPI_SUCCESS;
- 1ac:	80 e0       	ldi	r24, 0x00	; 0
- 1ae:	08 95       	ret
-*/
-SPI_ERROR_state_t SPI_Init(void)
-{
-   if(INIT == gu8_IsDriverInit)
-   {
-      return E_SPI_INIT_BEFORE;
- 1b0:	82 e0       	ldi	r24, 0x02	; 2
-   }
-   
-   gu8_IsDriverInit = INIT;
    
    return E_SPI_SUCCESS;
 }
- 1b2:	08 95       	ret
+ 17e:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 182:	81 30       	cpi	r24, 0x01	; 1
+ 184:	d9 f0       	breq	.+54     	; 0x1bc <SPI_Init+0x3e>
+ 186:	41 e0       	ldi	r20, 0x01	; 1
+ 188:	64 e0       	ldi	r22, 0x04	; 4
+ 18a:	81 e0       	ldi	r24, 0x01	; 1
+ 18c:	0e 94 4f 00 	call	0x9e	; 0x9e <DIO_SetPinDirection>
+ 190:	41 e0       	ldi	r20, 0x01	; 1
+ 192:	64 e0       	ldi	r22, 0x04	; 4
+ 194:	81 e0       	ldi	r24, 0x01	; 1
+ 196:	0e 94 87 00 	call	0x10e	; 0x10e <DIO_WritePin>
+ 19a:	41 e0       	ldi	r20, 0x01	; 1
+ 19c:	65 e0       	ldi	r22, 0x05	; 5
+ 19e:	81 e0       	ldi	r24, 0x01	; 1
+ 1a0:	0e 94 4f 00 	call	0x9e	; 0x9e <DIO_SetPinDirection>
+ 1a4:	41 e0       	ldi	r20, 0x01	; 1
+ 1a6:	67 e0       	ldi	r22, 0x07	; 7
+ 1a8:	81 e0       	ldi	r24, 0x01	; 1
+ 1aa:	0e 94 4f 00 	call	0x9e	; 0x9e <DIO_SetPinDirection>
+ 1ae:	80 e5       	ldi	r24, 0x50	; 80
+ 1b0:	8d b9       	out	0x0d, r24	; 13
+ 1b2:	81 e0       	ldi	r24, 0x01	; 1
+ 1b4:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 1b8:	80 e0       	ldi	r24, 0x00	; 0
+ 1ba:	08 95       	ret
+ 1bc:	82 e0       	ldi	r24, 0x02	; 2
+ 1be:	08 95       	ret
 
-000001b4 <SPI_SendChar>:
+000001c0 <SPI_SendChar>:
+ 1c0:	90 91 60 00 	lds	r25, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 1c4:	99 23       	and	r25, r25
+ 1c6:	51 f0       	breq	.+20     	; 0x1dc <SPI_SendChar+0x1c>
+ 1c8:	8f b9       	out	0x0f, r24	; 15
+ 1ca:	77 9b       	sbis	0x0e, 7	; 14
+ 1cc:	fe cf       	rjmp	.-4      	; 0x1ca <SPI_SendChar+0xa>
+ 1ce:	9e b1       	in	r25, 0x0e	; 14
+ 1d0:	89 2f       	mov	r24, r25
+ 1d2:	80 74       	andi	r24, 0x40	; 64
+ 1d4:	96 ff       	sbrs	r25, 6
+ 1d6:	03 c0       	rjmp	.+6      	; 0x1de <SPI_SendChar+0x1e>
+ 1d8:	81 e0       	ldi	r24, 0x01	; 1
+ 1da:	08 95       	ret
+ 1dc:	83 e0       	ldi	r24, 0x03	; 3
+ 1de:	08 95       	ret
 
-SPI_ERROR_state_t SPI_SendChar(uint8_t character)
+000001e0 <SPI_SelectSlave>:
+
+SPI_ERROR_state_t SPI_SelectSlave(uint8_t slave_CH)
 {
- 1b4:	cf 93       	push	r28
- 1b6:	c8 2f       	mov	r28, r24
-   DIO_WritePin(SS_PORT, SS_PIN, LOW);
- 1b8:	40 e0       	ldi	r20, 0x00	; 0
- 1ba:	64 e0       	ldi	r22, 0x04	; 4
- 1bc:	81 e0       	ldi	r24, 0x01	; 1
- 1be:	0e 94 81 00 	call	0x102	; 0x102 <DIO_WritePin>
-   
    if(NOT_INIT == gu8_IsDriverInit)
- 1c2:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
- 1c6:	88 23       	and	r24, r24
- 1c8:	71 f0       	breq	.+28     	; 0x1e6 <SPI_SendChar+0x32>
+ 1e0:	90 91 60 00 	lds	r25, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 1e4:	99 23       	and	r25, r25
+ 1e6:	49 f0       	breq	.+18     	; 0x1fa <SPI_SelectSlave+0x1a>
    {
       return E_SPI_NOT_INIT;
    }
    
-   SPI_DATA_R = character;
- 1ca:	cf b9       	out	0x0f, r28	; 15
+   switch(slave_CH)
+ 1e8:	81 11       	cpse	r24, r1
+ 1ea:	09 c0       	rjmp	.+18     	; 0x1fe <SPI_SelectSlave+0x1e>
+   {
+      #ifdef SS_CH_0
+      case SS_CH_0:
+         DIO_WritePin(SS_CH_0_PORT, SS_CH_0_PIN, LOW);
+ 1ec:	40 e0       	ldi	r20, 0x00	; 0
+ 1ee:	64 e0       	ldi	r22, 0x04	; 4
+ 1f0:	81 e0       	ldi	r24, 0x01	; 1
+ 1f2:	0e 94 87 00 	call	0x10e	; 0x10e <DIO_WritePin>
+      default:
+         return E_SPI_INVALID_SS_CH;
    
-   while(!(SPI_STATUS_R & SPI_TRANSMIT_COMPLETE_BIT ))
- 1cc:	77 9b       	sbis	0x0e, 7	; 14
- 1ce:	fe cf       	rjmp	.-4      	; 0x1cc <SPI_SendChar+0x18>
-   {
-      
    }
-   if( (SPI_STATUS_R & SPI_WRITE_COLLISION_BIT ) )
- 1d0:	8e b1       	in	r24, 0x0e	; 14
- 1d2:	c8 2f       	mov	r28, r24
- 1d4:	c0 74       	andi	r28, 0x40	; 64
- 1d6:	86 fd       	sbrc	r24, 6
- 1d8:	08 c0       	rjmp	.+16     	; 0x1ea <SPI_SendChar+0x36>
-   {
-      return E_SPI_WRITE_COLLISION;
-   }
-
-   DIO_WritePin(SS_PORT, SS_PIN, HIGH);
- 1da:	41 e0       	ldi	r20, 0x01	; 1
- 1dc:	64 e0       	ldi	r22, 0x04	; 4
- 1de:	81 e0       	ldi	r24, 0x01	; 1
- 1e0:	0e 94 81 00 	call	0x102	; 0x102 <DIO_WritePin>
    
    return E_SPI_SUCCESS;
- 1e4:	03 c0       	rjmp	.+6      	; 0x1ec <SPI_SendChar+0x38>
+ 1f6:	80 e0       	ldi	r24, 0x00	; 0
+ 1f8:	08 95       	ret
+
+SPI_ERROR_state_t SPI_SelectSlave(uint8_t slave_CH)
 {
-   DIO_WritePin(SS_PORT, SS_PIN, LOW);
-   
    if(NOT_INIT == gu8_IsDriverInit)
    {
       return E_SPI_NOT_INIT;
- 1e6:	c3 e0       	ldi	r28, 0x03	; 3
- 1e8:	01 c0       	rjmp	.+2      	; 0x1ec <SPI_SendChar+0x38>
-   {
-      
+ 1fa:	83 e0       	ldi	r24, 0x03	; 3
+ 1fc:	08 95       	ret
+      case SS_CH_0:
+         DIO_WritePin(SS_CH_0_PORT, SS_CH_0_PIN, LOW);
+         break;
+      #endif
+      default:
+         return E_SPI_INVALID_SS_CH;
+ 1fe:	85 e0       	ldi	r24, 0x05	; 5
+   
    }
-   if( (SPI_STATUS_R & SPI_WRITE_COLLISION_BIT ) )
-   {
-      return E_SPI_WRITE_COLLISION;
- 1ea:	c1 e0       	ldi	r28, 0x01	; 1
-   }
-
-   DIO_WritePin(SS_PORT, SS_PIN, HIGH);
    
    return E_SPI_SUCCESS;
+   
 }
- 1ec:	8c 2f       	mov	r24, r28
- 1ee:	cf 91       	pop	r28
- 1f0:	08 95       	ret
+ 200:	08 95       	ret
 
-000001f2 <_exit>:
- 1f2:	f8 94       	cli
+00000202 <SPI_UnselectSlave>:
 
-000001f4 <__stop_program>:
- 1f4:	ff cf       	rjmp	.-2      	; 0x1f4 <__stop_program>
+SPI_ERROR_state_t SPI_UnselectSlave(uint8_t slave_CH)
+{
+   if(NOT_INIT == gu8_IsDriverInit)
+ 202:	90 91 60 00 	lds	r25, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 206:	99 23       	and	r25, r25
+ 208:	49 f0       	breq	.+18     	; 0x21c <SPI_UnselectSlave+0x1a>
+   {
+      return E_SPI_NOT_INIT;
+   }
+   
+   switch(slave_CH)
+ 20a:	81 11       	cpse	r24, r1
+ 20c:	09 c0       	rjmp	.+18     	; 0x220 <SPI_UnselectSlave+0x1e>
+   {
+      #ifdef SS_CH_0
+      case SS_CH_0:
+         DIO_WritePin(SS_CH_0_PORT, SS_CH_0_PIN, LOW);
+ 20e:	40 e0       	ldi	r20, 0x00	; 0
+ 210:	64 e0       	ldi	r22, 0x04	; 4
+ 212:	81 e0       	ldi	r24, 0x01	; 1
+ 214:	0e 94 87 00 	call	0x10e	; 0x10e <DIO_WritePin>
+      default:
+      return E_SPI_INVALID_SS_CH;
+      
+   }
+   
+   return E_SPI_SUCCESS;
+ 218:	80 e0       	ldi	r24, 0x00	; 0
+ 21a:	08 95       	ret
+
+SPI_ERROR_state_t SPI_UnselectSlave(uint8_t slave_CH)
+{
+   if(NOT_INIT == gu8_IsDriverInit)
+   {
+      return E_SPI_NOT_INIT;
+ 21c:	83 e0       	ldi	r24, 0x03	; 3
+ 21e:	08 95       	ret
+      case SS_CH_0:
+         DIO_WritePin(SS_CH_0_PORT, SS_CH_0_PIN, LOW);
+         break;
+      #endif
+      default:
+      return E_SPI_INVALID_SS_CH;
+ 220:	85 e0       	ldi	r24, 0x05	; 5
+      
+   }
+   
+   return E_SPI_SUCCESS;
+ 222:	08 95       	ret
+
+00000224 <_exit>:
+ 224:	f8 94       	cli
+
+00000226 <__stop_program>:
+ 226:	ff cf       	rjmp	.-2      	; 0x226 <__stop_program>
