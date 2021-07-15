@@ -16,12 +16,13 @@
 
  /*- LOCAL FUNCTIONS PROTOTYPES
  ----------------------------*/
-static void TestNotInit(void);
 static void TestInit(void);
 static void TestSendChar(void);
 static void TestReceiveChar(void);
 static void TestReceiveString(void);
 static void TestReceiveString(void);
+static void TestEnableInterrupt(void);
+static void TestDisableInterrupt(void);
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
@@ -31,52 +32,23 @@ static uint8_t* ptr_null;
 ------------------------*/
 
 /**
-* @brief: This function calls all driver function except for init before
-* initialization to make sure it returns not init error.
-*/
-void TestNotInit(void)
-{
-	SPI_ERROR_state_t error_state;
-
-	/* call UART_sendChar before initialization */
-	error_state = SPI_SendChar('a');
-	assert(error_state == E_SPI_NOT_INIT);
-	error_state = E_SPI_SUCCESS;
-
-	uint8_t data[10];
-	/* call UART_readChar before initialization */
-	error_state = SPI_ReadChar(&data);
-	assert(error_state == E_SPI_NOT_INIT);
-	error_state = E_SPI_SUCCESS;
-
-	/* call UART_sendString before initialization */
-	error_state = SPI_Send(&data);
-	assert(error_state == E_SPI_NOT_INIT);
-	error_state = E_SPI_SUCCESS;
-
-	/* call UART_readString before initialization */
-	error_state = SPI_Read(&data);
-	assert(error_state == E_SPI_NOT_INIT);
-}
-
-/**
 * @brief: This function tests init function.
 */
 void TestInit(void)
 {
 	SPI_ERROR_state_t error_state;
 
-	/* initialize with invalid baud rate */
-	error_state = SPI_Init();
+	/* initialize with invalid channel */
+	error_state = SPI_Init(255);
+	assert(error_state == E_SPI_INVALID_CH);
+
+	/* initialize */
+	error_state = SPI_Init(SPI_CH_0);
 	assert(error_state == E_SPI_SUCCESS);
 	/* make sure data is written correctly in registers */
-	assert(SPI_CONTROL_R == SPI_CONTROL_MASK);
+	assert(SPI_CONTROL_R == SPI_CH_0_CONTROL_MASK);
 	assert(PORTB_DATA == 0x10);
 	assert(PORTB_DIR == 0xB0);
-
-	/* call init function agan after initialization */
-	error_state = SPI_Init();
-	assert(error_state == E_SPI_INIT_BEFORE);
 }
 
 /**
@@ -88,10 +60,19 @@ void TestSendChar(void)
 	SPI_STATUS_R |= SPI_TRANSMIT_COMPLETE_BIT;
 
 	SPI_ERROR_state_t error_state;
-	error_state = SPI_SendChar('a');
+	/* invalid spi channel */
+	error_state = SPI_TransmitChar(20, 'a', SPI_CH_0_SS_CH_0);
+	assert(error_state == E_SPI_INVALID_CH);
+
+	/* invalid slave line */
+	error_state = SPI_TransmitChar(SPI_CH_0, 'a', 20);
+	assert(error_state == E_SPI_INVALID_SS_CH);
+
+	error_state = SPI_TransmitChar(SPI_CH_0, 'a', SPI_CH_0_SS_CH_0);
 	assert(error_state == E_SPI_SUCCESS);
 	/* make sure write data is written in the register */
 	assert(SPI_DATA_R == 'a');
+	assert(PORTB_DATA == 0x10);
 }
 
 /**
@@ -106,13 +87,26 @@ void TestReceiveChar(void)
 
 	SPI_ERROR_state_t error_state;
 	/* test sending null pointer to the read character function */
-	error_state = SPI_ReadChar(ptr_null);
+	error_state = SPI_ReceiveChar(SPI_CH_0, ptr_null, SPI_CH_0_SS_CH_0);
 	assert(error_state == E_SPI_NULL_PTR);
+	assert(PORTB_DATA == 0x10);
 
 	uint8_t data;
-	error_state = SPI_ReadChar(&data);
+
+	/* invalid spi channel */
+	error_state = SPI_ReceiveChar(20, &data, SPI_CH_0_SS_CH_0);
+	assert(error_state == E_SPI_INVALID_CH);
+
+	/* invalid slave line */
+	error_state = SPI_ReceiveChar(SPI_CH_0, &data, 20);
+	assert(error_state == E_SPI_INVALID_SS_CH);
+
+
+	error_state = SPI_ReceiveChar(SPI_CH_0, &data, SPI_CH_0_SS_CH_0);
 	assert(error_state == E_SPI_SUCCESS);
 	assert(data == 'b');
+	assert(PORTB_DATA == 0x10);
+
 }
 
 /**
@@ -125,12 +119,23 @@ void TestSendString(void)
 
 	SPI_ERROR_state_t error_state;
 	/* test sending null pointer to the function */
-	error_state = SPI_Send(ptr_null);
+	error_state = SPI_TransmitString(SPI_CH_0, ptr_null, SPI_CH_0_SS_CH_0);
 	assert(error_state == E_SPI_NULL_PTR);
+	assert(PORTB_DATA == 0x10);
 
-	error_state = SPI_Send("dawdwwaz");
+	/* invalid spi channel */
+	error_state = SPI_TransmitString(20, "dawdwwaz", SPI_CH_0_SS_CH_0);
+	assert(error_state == E_SPI_INVALID_CH);
+
+	/* invalid slave line */
+	error_state = SPI_TransmitString(SPI_CH_0, "dawdwwaz", 20);
+	assert(error_state == E_SPI_INVALID_SS_CH);
+
+	error_state = SPI_TransmitString(SPI_CH_0, "dawdwwaz", SPI_CH_0_SS_CH_0);
 	assert(error_state == E_SPI_SUCCESS);
 	assert(SPI_DATA_R == 'z');
+	assert(PORTB_DATA == 0x10);
+
 }
 
 /**
@@ -145,11 +150,20 @@ void TestReceiveString(void)
 
 	SPI_ERROR_state_t error_state;
 	/* test sending null pointer to the function */
-	error_state = SPI_Read(ptr_null);
+	error_state = SPI_ReceiveString(SPI_CH_0, ptr_null, SPI_CH_0_SS_CH_0);
 	assert(error_state == E_SPI_NULL_PTR);
 
 	uint8_t data[10];
-	error_state = SPI_Read(&data);
+
+	/* invalid spi channel */
+	error_state = SPI_ReceiveString(20, &data, SPI_CH_0_SS_CH_0);
+	assert(error_state == E_SPI_INVALID_CH);
+
+	/* invalid slave line */
+	error_state = SPI_ReceiveString(SPI_CH_0, &data, 20);
+	assert(error_state == E_SPI_INVALID_SS_CH);
+
+	error_state = SPI_ReceiveString(SPI_CH_0, &data, SPI_CH_0_SS_CH_0);
 	assert(error_state == E_SPI_SUCCESS);
 	assert(data[0] == NEW_LINE);
 	/* make sure end of string character is inserted at the end of the string */
@@ -157,33 +171,40 @@ void TestReceiveString(void)
 }
 
 /**
-* @brief: This function tests selecting a slave.
+* @brief: This function tests enabling an interrupt.
 */
-void TestSelectSlave(void)
+void TestEnableInterrupt(void)
 {
+	SPI_CONTROL_R &= ~(SPI_INTERRUPT_EN);
 	SPI_ERROR_state_t error_state;
-	/* test sending invalid channel number to the function */
-	error_state = SPI_SelectSlave(20);
-	assert(error_state == E_SPI_INVALID_SS_CH);
 
-	error_state = SPI_SelectSlave(SS_CH_0);
+	/* invalid spi channel */
+	error_state = SPI_EnableInterrupt(20);
+	assert(error_state == E_SPI_INVALID_CH);
+	assert(!(SPI_CONTROL_R & SPI_INTERRUPT_EN));
+
+	error_state = SPI_EnableInterrupt(SPI_CH_0);
 	assert(error_state == E_SPI_SUCCESS);
-	assert(PORTB_DATA == 0x00);
+	assert((SPI_CONTROL_R & SPI_INTERRUPT_EN));
 }
 
 /**
-* @brief: This function tests unselecting a slave.
+* @brief: This function tests disabling an interrupt.
 */
-void TestUnselectSlave(void)
+void TestDisableInterrupt(void)
 {
-	SPI_ERROR_state_t error_state;
-	/* test sending invalid channel number to the function */
-	error_state = SPI_UnselectSlave(20);
-	assert(error_state == E_SPI_INVALID_SS_CH);
+	SPI_CONTROL_R |= (SPI_INTERRUPT_EN);
 
-	error_state = SPI_UnselectSlave(SS_CH_0);
+	SPI_ERROR_state_t error_state;
+
+	/* invalid spi channel */
+	error_state = SPI_DisableInterrupt(20);
+	assert(error_state == E_SPI_INVALID_CH);
+	assert((SPI_CONTROL_R & SPI_INTERRUPT_EN));
+
+	error_state = SPI_DisableInterrupt(SPI_CH_0);
 	assert(error_state == E_SPI_SUCCESS);
-	assert(PORTB_DATA == 0x10);
+	assert(!(SPI_CONTROL_R & SPI_INTERRUPT_EN));
 }
 
 /*- APIs IMPLEMENTATION
@@ -193,8 +214,6 @@ void TestUnselectSlave(void)
 */
 void main(void)
 {
-	TestNotInit();
-
 	TestInit();
 
 	TestSendChar();
@@ -205,10 +224,10 @@ void main(void)
 
 	TestReceiveString();
 
-	TestSelectSlave();
+	TestEnableInterrupt();
 
-	TestUnselectSlave();
-	
+	TestDisableInterrupt();
+
 	/* prints if no assertion error was raised */
 	printf("all tests passed successfully!\n");
 }

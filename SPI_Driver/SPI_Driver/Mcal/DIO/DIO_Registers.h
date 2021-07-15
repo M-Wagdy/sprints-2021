@@ -9,7 +9,7 @@
 #ifndef __DIO_REGISTERS_H__
 #define __DIO_REGISTERS_H__
 
-#define TEST 0
+#define TEST 1
 
 #if !TEST
 

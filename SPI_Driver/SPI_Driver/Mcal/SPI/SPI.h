@@ -18,24 +18,27 @@
 /*- FUNCTION DECLARATIONS ----------------------------------*/
 
 /* initialize SPI */
-SPI_ERROR_state_t SPI_Init(void);
+SPI_ERROR_state_t SPI_Init(uint8_t SpiNumber);
 
 /* put a character in the SPI driver */
-SPI_ERROR_state_t SPI_SendChar(uint8_t character);
+SPI_ERROR_state_t SPI_TransmitChar(uint8_t SpiNumber,uint8_t TxChar,uint8_t slave_CH);
 
 /* read a character from the SPI driver */
-SPI_ERROR_state_t SPI_ReadChar(uint8_t * character);
+SPI_ERROR_state_t SPI_ReceiveChar(uint8_t SpiNumber,uint8_t * RxData,uint8_t slave_CH);
 
 /* sends a stream of characters */
-SPI_ERROR_state_t SPI_Send(uint8_t * data);
+SPI_ERROR_state_t SPI_TransmitString(uint8_t SpiNumber,uint8_t * TxString,uint8_t slave_CH);
 
 /* receives a stream of characters */
-SPI_ERROR_state_t SPI_Read(uint8_t * data);
+SPI_ERROR_state_t SPI_ReceiveString(uint8_t SpiNumber,uint8_t * RxString,uint8_t slave_CH);
 
-/* selects a slave line */
-SPI_ERROR_state_t SPI_SelectSlave(uint8_t slave_CH);
+/* enable SPI interrupts */
+SPI_ERROR_state_t SPI_EnableInterrupt(uint8_t SpiNumber);
 
-/* unselect a slave line */
-SPI_ERROR_state_t SPI_UnselectSlave(uint8_t slave_CH);
+/* disable SPI interrupts */
+SPI_ERROR_state_t SPI_DisableInterrupt(uint8_t SpiNumber);
+
+/* set callback function */
+SPI_ERROR_state_t SPI_SetCallback(uint8_t SpiNumber, Ptr_VoidFuncVoid_t Callback);
 
 #endif /* __SPI_H__ */

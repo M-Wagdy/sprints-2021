@@ -25,11 +25,11 @@ static void ECU_2_Function(void);
 */
 static void ECU_1_Function(void)
 {
-   SPI_Init();
+   SPI_Init(SPI_CH_0);
    
-   SPI_SelectSlave(SS_CH_0);
-   SPI_SendChar(0x1F);
-   SPI_UnselectSlave(SS_CH_0);
+//   SPI_SelectSlave(SPI_CH_0_SS_CH_0);
+   SPI_TransmitChar(SPI_CH_0, 0x1F, SPI_CH_0_SS_CH_0);
+  // SPI_UnselectSlave(SPI_CH_0_SS_CH_0);
 }
 
 /**
@@ -39,10 +39,10 @@ static void ECU_2_Function(void)
 {
    PORTA_DIR = 0xFF;
 
-   SPI_Init();
+   SPI_Init(SPI_CH_0);
 
    uint8_t character;
-   SPI_ReadChar(&character);
+   SPI_ReceiveChar(SPI_CH_0, &character, SLAVE_SS_CH);
    PORTA_DATA = character;   
 }
 

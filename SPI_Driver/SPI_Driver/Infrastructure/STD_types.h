@@ -20,6 +20,8 @@ typedef signed short sint16_t;               /*                    -32768 .. +32
 typedef signed int sint32_t;                 /*             -2147483648 .. +2147483647                */
 typedef signed long long sint64_t;           /*-9,223,372,036,854,775,808 .. 9,223,372,036,854,775,807*/
 
+typedef void(*Ptr_VoidFuncVoid_t)(void);
+
 /*- MACROS -------------------------------------------------*/
 #define NULL_PTR        ((void*)(0))
 
