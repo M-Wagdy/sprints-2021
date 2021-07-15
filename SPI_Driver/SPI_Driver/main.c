@@ -20,6 +20,9 @@ static void ECU_2_Function(void);
 
 /*- LOCAL FUNCTIONS IMPLEMENTATION
 ------------------------*/
+/**
+* @brief: This function is the master node main function.
+*/
 static void ECU_1_Function(void)
 {
    SPI_Init();
@@ -29,6 +32,9 @@ static void ECU_1_Function(void)
    SPI_UnselectSlave(SS_CH_0);
 }
 
+/**
+* @brief: This function is the slave node main function.
+*/
 static void ECU_2_Function(void)
 {
    PORTA_DIR = 0xFF;

@@ -17,6 +17,8 @@ Discarded input sections
  .bss           0x00000000        0x0 Mcal/DIO/DIO.o
  .text.DIO_EnablePinPullup
                 0x00000000       0x4a Mcal/DIO/DIO.o
+ .text.DIO_WritePin
+                0x00000000       0x70 Mcal/DIO/DIO.o
  .text.DIO_ReadPin
                 0x00000000       0x60 Mcal/DIO/DIO.o
  .text.DIO_TogglePin
@@ -24,12 +26,16 @@ Discarded input sections
  .text          0x00000000        0x0 Mcal/SPI/SPI.o
  .data          0x00000000        0x0 Mcal/SPI/SPI.o
  .bss           0x00000000        0x0 Mcal/SPI/SPI.o
- .text.SPI_ReadChar
-                0x00000000       0x2c Mcal/SPI/SPI.o
+ .text.SPI_SendChar
+                0x00000000       0x20 Mcal/SPI/SPI.o
  .text.SPI_Send
                 0x00000000       0x3c Mcal/SPI/SPI.o
  .text.SPI_Read
-                0x00000000       0x72 Mcal/SPI/SPI.o
+                0x00000000       0x6c Mcal/SPI/SPI.o
+ .text.SPI_SelectSlave
+                0x00000000       0x22 Mcal/SPI/SPI.o
+ .text.SPI_UnselectSlave
+                0x00000000       0x22 Mcal/SPI/SPI.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
@@ -190,7 +196,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x228
+.text           0x00000000      0x170
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
                 0x00000000                __vector_default
@@ -270,33 +276,24 @@ END GROUP
                 0x00000078                __vector_20
                 0x0000007c                . = ALIGN (0x2)
  *(.text.*)
- .text.ECU_1_Function
-                0x0000007c       0x18 main.o
- .text.main     0x00000094        0xa main.o
-                0x00000094                main
+ .text.ECU_2_Function
+                0x0000007c       0x26 main.o
+ .text.main     0x000000a2        0xa main.o
+                0x000000a2                main
  .text.DIO_SetPinDirection
-                0x0000009e       0x70 Mcal/DIO/DIO.o
-                0x0000009e                DIO_SetPinDirection
- .text.DIO_WritePin
-                0x0000010e       0x70 Mcal/DIO/DIO.o
-                0x0000010e                DIO_WritePin
+                0x000000ac       0x70 Mcal/DIO/DIO.o
+                0x000000ac                DIO_SetPinDirection
  .text.SPI_Init
-                0x0000017e       0x42 Mcal/SPI/SPI.o
-                0x0000017e                SPI_Init
- .text.SPI_SendChar
-                0x000001c0       0x20 Mcal/SPI/SPI.o
-                0x000001c0                SPI_SendChar
- .text.SPI_SelectSlave
-                0x000001e0       0x22 Mcal/SPI/SPI.o
-                0x000001e0                SPI_SelectSlave
- .text.SPI_UnselectSlave
-                0x00000202       0x22 Mcal/SPI/SPI.o
-                0x00000202                SPI_UnselectSlave
-                0x00000224                . = ALIGN (0x2)
+                0x0000011c       0x24 Mcal/SPI/SPI.o
+                0x0000011c                SPI_Init
+ .text.SPI_ReadChar
+                0x00000140       0x2c Mcal/SPI/SPI.o
+                0x00000140                SPI_ReadChar
+                0x0000016c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000224        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00000224                _exit
-                0x00000224                exit
+ .fini9         0x0000016c        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x0000016c                _exit
+                0x0000016c                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -315,11 +312,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000224        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000016c        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000228                _etext = .
+                0x00000170                _etext = .
 
-.data           0x00800060        0x0 load address 0x00000228
+.data           0x00800060        0x0 load address 0x00000170
                 [!provide]                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -339,8 +336,8 @@ END GROUP
                 0x00800060        0x1 Mcal/SPI/SPI.o
  *(COMMON)
                 0x00800061                PROVIDE (__bss_end, .)
-                0x00000228                __data_load_start = LOADADDR (.data)
-                0x00000228                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000170                __data_load_start = LOADADDR (.data)
+                0x00000170                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800061        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -425,47 +422,48 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xac7
+.debug_info     0x00000000      0xa46
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_info    0x000004e6      0x121 main.o
- .debug_info    0x00000607      0x224 Mcal/DIO/DIO.o
- .debug_info    0x0000082b      0x29c Mcal/SPI/SPI.o
+ .debug_info    0x000004e6       0xf5 main.o
+ .debug_info    0x000005db      0x224 Mcal/DIO/DIO.o
+ .debug_info    0x000007ff      0x247 Mcal/SPI/SPI.o
 
-.debug_abbrev   0x00000000      0x6dc
+.debug_abbrev   0x00000000      0x6fc
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_abbrev  0x000004a3       0xae main.o
- .debug_abbrev  0x00000551       0xca Mcal/DIO/DIO.o
- .debug_abbrev  0x0000061b       0xc1 Mcal/SPI/SPI.o
+ .debug_abbrev  0x000004a3       0xb0 main.o
+ .debug_abbrev  0x00000553       0xca Mcal/DIO/DIO.o
+ .debug_abbrev  0x0000061d       0xdf Mcal/SPI/SPI.o
 
-.debug_line     0x00000000      0x724
+.debug_line     0x00000000      0x712
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_line    0x00000116       0xb6 main.o
- .debug_line    0x000001cc      0x2a3 Mcal/DIO/DIO.o
- .debug_line    0x0000046f      0x2b5 Mcal/SPI/SPI.o
+ .debug_line    0x00000116       0xbc main.o
+ .debug_line    0x000001d2      0x2a3 Mcal/DIO/DIO.o
+ .debug_line    0x00000475      0x29d Mcal/SPI/SPI.o
 
-.debug_frame    0x00000000      0x11c
+.debug_frame    0x00000000      0x12c
  *(.debug_frame)
- .debug_frame   0x00000000       0x34 main.o
- .debug_frame   0x00000034       0x64 Mcal/DIO/DIO.o
- .debug_frame   0x00000098       0x84 Mcal/SPI/SPI.o
+ .debug_frame   0x00000000       0x44 main.o
+ .debug_frame   0x00000044       0x64 Mcal/DIO/DIO.o
+ .debug_frame   0x000000a8       0x84 Mcal/SPI/SPI.o
 
 .debug_str      0x00000000      0x447
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_str     0x00000196      0x197 main.o
-                                0x1b0 (size before relaxing)
- .debug_str     0x0000032d       0xab Mcal/DIO/DIO.o
+ .debug_str     0x00000196      0x17f main.o
+                                0x198 (size before relaxing)
+ .debug_str     0x00000315       0xab Mcal/DIO/DIO.o
                                 0x208 (size before relaxing)
- .debug_str     0x000003d8       0x6f Mcal/SPI/SPI.o
+ .debug_str     0x000003c0       0x87 Mcal/SPI/SPI.o
                                 0x225 (size before relaxing)
 
-.debug_loc      0x00000000      0x660
+.debug_loc      0x00000000      0x69b
  *(.debug_loc)
- .debug_loc     0x00000000      0x3fa Mcal/DIO/DIO.o
- .debug_loc     0x000003fa      0x266 Mcal/SPI/SPI.o
+ .debug_loc     0x00000000       0x48 main.o
+ .debug_loc     0x00000048      0x3fa Mcal/DIO/DIO.o
+ .debug_loc     0x00000442      0x259 Mcal/SPI/SPI.o
 
 .debug_macinfo
  *(.debug_macinfo)
