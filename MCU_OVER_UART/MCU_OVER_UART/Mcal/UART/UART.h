@@ -17,7 +17,7 @@
 /*- FUNCTION DECLARATIONS ----------------------------------*/
 
 /* Function that initialize UART. */
-UART_ERROR_state_t UART_Init(void);
+UART_ERROR_state_t UART_Init(uint8_t UartNumber);
 
 /* Function that writes character to transmit buffer. */
 UART_ERROR_state_t UART_TransmitChar(uint8_t UartNumber, uint8_t TxChar);

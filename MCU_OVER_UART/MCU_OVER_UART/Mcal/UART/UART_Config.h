@@ -9,9 +9,6 @@
 #ifndef __UART_CONFIG_H__
 #define __UART_CONFIG_H__
 
-/*- INCLUDES -----------------------------------------------*/
-#include "../../Infrastructure/STD_types.h"
-
 /*--Configuration Macros------------------------------*/
 #define ENABLE_RX                         (uint8_t)(0x10)
 #define ENABLE_TX                         (uint8_t)(0x08)

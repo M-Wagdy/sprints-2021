@@ -63,7 +63,7 @@ static uint8_t StringCompare(uint8_t * str1, uint8_t * str2)
 void Traffic_init(void)
 {
    LED_Init();
-   UART_Init();
+   UART_Init(UART_CH_0);
 }
 
 void Traffic_update(void)
