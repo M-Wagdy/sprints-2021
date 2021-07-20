@@ -45,7 +45,7 @@ I2C_ERROR_state_t I2C_Init(uint8_t I2C_CH)
    *ptr_I2CStatusR = I2C_CH_0_PRESCALER;
 
    /* set bit rate */
-   *ptr_I2CBitRateR = I2C_8_MHZ_115200_RATE_1_PRESCALAR;
+   *ptr_I2CBitRateR = I2C_CH_0_BIT_RATE;
 
    /* set control configuration */
    *ptr_I2CControlR = I2C_CH_0_CONTROL_MASK;
@@ -109,7 +109,7 @@ I2C_ERROR_state_t I2C_Start(uint8_t I2C_CH)
    }
    
    /* clear interrupt flag and set start condition */
-   *ptr_I2CControlR |= (I2C_START_BIT | I2C_EN | I2C_INTERRUPT_FLAG);
+   *ptr_I2CControlR = (I2C_START_BIT | I2C_EN | I2C_INTERRUPT_FLAG);
    /* loop until interrupt flag is raised */
    while (!(*ptr_I2CControlR & I2C_INTERRUPT_FLAG));
    
@@ -141,7 +141,7 @@ I2C_ERROR_state_t I2C_RepeatedStart(uint8_t I2C_CH)
    }
    
    /* clear interrupt flag and set start condition */
-   *ptr_I2CControlR |= (I2C_START_BIT | I2C_EN | I2C_INTERRUPT_FLAG);
+   *ptr_I2CControlR = (I2C_INTERRUPT_FLAG | I2C_START_BIT | I2C_EN );
    /* loop until interrupt flag is raised */
    while (!(*ptr_I2CControlR & I2C_INTERRUPT_FLAG));
    
@@ -296,8 +296,9 @@ I2C_ERROR_state_t I2C_Stop(uint8_t I2C_CH)
    }
    
    /* set stop condition */
-   *ptr_I2CControlR |= (I2C_INTERRUPT_FLAG | I2C_EN | I2C_STOP_BIT);
-         
+   *ptr_I2CControlR = (I2C_INTERRUPT_FLAG | I2C_EN | I2C_STOP_BIT);
+   
+   while (*ptr_I2CControlR & I2C_STOP_BIT);
    /* return success message */
    return E_I2C_SUCCESS;
 }

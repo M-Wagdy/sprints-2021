@@ -33,9 +33,10 @@
 #define I2C_NUMBERS                 (uint8_t)(1)
 
 #define I2C_CH_0                    (uint8_t)(0)
-#define I2C_CH_0_PRESCALER          I2C_PRESCALAR_1
-#define I2C_CH_0_CONTROL_MASK       (I2C_EN | I2C_ACK_EN)
-
+#define I2C_CH_0_PRESCALER          I2C_PRESCALAR_64
+#define I2C_CH_0_CONTROL_MASK       (I2C_EN)
+#define I2C_CH_0_BIT_RATE           I2C_8_MHZ_115200_RATE_1_PRESCALAR
+           
 #define I2C_STATUS_START            (uint8_t)(0x08)
 #define I2C_STATUS_T_ACK_ADDR       (uint8_t)(0x18)
 #define I2C_STATUS_T_ACK_DATA       (uint8_t)(0x28)
