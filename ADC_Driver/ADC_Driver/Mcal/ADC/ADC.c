@@ -47,9 +47,10 @@ ADC_ERROR_state_t ADC_Init(void)
 }
 
 /**
-* @brief: This function initialize I2C channel.
+* @brief: This function read the ADC pin value.
 *
-* @param [in]  I2C_CH   -  I2C channel number.
+* @param [in]  ADC_CH   -  ADC channel number.
+* @param [in]  Data     -  pointer to where to store ADC readings.
 *
 * @return function error state.
 */
