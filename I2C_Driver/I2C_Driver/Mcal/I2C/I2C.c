@@ -140,8 +140,9 @@ I2C_ERROR_state_t I2C_RepeatedStart(uint8_t I2C_CH)
          return E_I2C_INVALID_CH;
    }
    
+   *ptr_I2CControlR = I2C_EN;
    /* clear interrupt flag and set start condition */
-   *ptr_I2CControlR = (I2C_INTERRUPT_FLAG | I2C_START_BIT | I2C_EN );
+   *ptr_I2CControlR |= (I2C_INTERRUPT_FLAG | I2C_START_BIT);
    /* loop until interrupt flag is raised */
    while (!(*ptr_I2CControlR & I2C_INTERRUPT_FLAG));
    
