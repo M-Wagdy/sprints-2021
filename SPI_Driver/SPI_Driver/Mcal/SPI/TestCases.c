@@ -19,7 +19,7 @@
 static void TestInit(void);
 static void TestSendChar(void);
 static void TestReceiveChar(void);
-static void TestReceiveString(void);
+static void TestSendString(void);
 static void TestReceiveString(void);
 static void TestEnableInterrupt(void);
 static void TestDisableInterrupt(void);
