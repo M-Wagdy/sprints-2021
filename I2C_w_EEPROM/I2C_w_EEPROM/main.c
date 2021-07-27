@@ -18,6 +18,10 @@
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
+static uint8_t * gu8_CommandMessage = "Please enter a READ/WRITE Command: \r";
+static uint8_t * gu8_AddressMessage = "Please enter an Address: \r";
+static uint8_t * gu8_DataMessage = "Please enter data: \r";
+
 static uint8_t * gu8_WriteMessage = "WRITE";
 static uint8_t * gu8_ReadMessage = "READ";
 static uint8_t * gu8_UARTMessageReply = "\rOK \r";
@@ -36,6 +40,9 @@ int main(void)
       uint8_t data;
       uint8_t address;
       
+      /* get command message */
+      UART_TransmitString(UART_CH_0, gu8_CommandMessage);
+      
       /* get command */
       UART_ReceiveString(UART_CH_0, string);
       
@@ -43,11 +50,17 @@ int main(void)
       
       if (StringCompare(string,gu8_WriteMessage) == TRUE)
       {
+         /* get address message */
+         UART_TransmitString(UART_CH_0, gu8_AddressMessage);
+         
          /* get address */
          UART_ReceiveChar(UART_CH_0, &address);
          
          /* respond "OK" */
          UART_TransmitString(UART_CH_0, gu8_UARTMessageReply);
+         
+         /* get data message */
+         UART_TransmitString(UART_CH_0, gu8_DataMessage);
          
          /* get data to write */
          UART_ReceiveChar(UART_CH_0, &data);
@@ -60,6 +73,9 @@ int main(void)
       }
       else if(StringCompare(string,gu8_ReadMessage) == TRUE)
       {
+         /* get address message */
+         UART_TransmitString(UART_CH_0, gu8_AddressMessage);
+         
          /* get address */
          UART_ReceiveChar(UART_CH_0, &address);
          
@@ -74,6 +90,9 @@ int main(void)
          
          /* transmit the data in the address */
          UART_TransmitChar(UART_CH_0, data);
+         
+         /* new line */
+         UART_TransmitChar(UART_CH_0, NEW_LINE);
       }
       else
       {
