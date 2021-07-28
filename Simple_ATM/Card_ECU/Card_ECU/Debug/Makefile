@@ -35,11 +35,11 @@ LINKER_SCRIPT_DEP:=
 SUBDIRS :=  \
 ../App/Card \
 ../Firmware/EEPROM \
-../Firmware/Terminal \
 ../Mcal \
-../Mcal/I2C \
 ../Mcal/DIO \
 ../Mcal/Global_Interrupts \
+../Mcal/I2C \
+../Mcal/Timer \
 ../Mcal/SPI \
 ../Mcal/UART \
 ../Infrastructure \
@@ -51,14 +51,14 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../App/Card/Card.c \
 ../Firmware/EEPROM/EEPROM.c \
-../Firmware/Terminal/Terminal.c \
 ../Infrastructure/utils.c \
 ../main.c \
 ../Mcal/DIO/DIO.c \
 ../Mcal/Global_Interrupts/Global_Interrupts.c \
 ../Mcal/I2C/I2C.c \
 ../Mcal/SPI/SPI.c \
-../Mcal/UART/UART.c
+../Mcal/Timer/TIMER_DRIVER.c \
+../Mcal/UART/uart.c
 
 
 PREPROCESSING_SRCS += 
@@ -70,50 +70,50 @@ ASM_SRCS +=
 OBJS +=  \
 App/Card/Card.o \
 Firmware/EEPROM/EEPROM.o \
-Firmware/Terminal/Terminal.o \
 Infrastructure/utils.o \
 main.o \
 Mcal/DIO/DIO.o \
 Mcal/Global_Interrupts/Global_Interrupts.o \
 Mcal/I2C/I2C.o \
 Mcal/SPI/SPI.o \
-Mcal/UART/UART.o
+Mcal/Timer/TIMER_DRIVER.o \
+Mcal/UART/uart.o
 
 OBJS_AS_ARGS +=  \
 App/Card/Card.o \
 Firmware/EEPROM/EEPROM.o \
-Firmware/Terminal/Terminal.o \
 Infrastructure/utils.o \
 main.o \
 Mcal/DIO/DIO.o \
 Mcal/Global_Interrupts/Global_Interrupts.o \
 Mcal/I2C/I2C.o \
 Mcal/SPI/SPI.o \
-Mcal/UART/UART.o
+Mcal/Timer/TIMER_DRIVER.o \
+Mcal/UART/uart.o
 
 C_DEPS +=  \
 App/Card/Card.d \
 Firmware/EEPROM/EEPROM.d \
-Firmware/Terminal/Terminal.d \
 Infrastructure/utils.d \
 main.d \
 Mcal/DIO/DIO.d \
 Mcal/Global_Interrupts/Global_Interrupts.d \
 Mcal/I2C/I2C.d \
 Mcal/SPI/SPI.d \
-Mcal/UART/UART.d
+Mcal/Timer/TIMER_DRIVER.d \
+Mcal/UART/uart.d
 
 C_DEPS_AS_ARGS +=  \
 App/Card/Card.d \
 Firmware/EEPROM/EEPROM.d \
-Firmware/Terminal/Terminal.d \
 Infrastructure/utils.d \
 main.d \
 Mcal/DIO/DIO.d \
 Mcal/Global_Interrupts/Global_Interrupts.d \
 Mcal/I2C/I2C.d \
 Mcal/SPI/SPI.d \
-Mcal/UART/UART.d
+Mcal/Timer/TIMER_DRIVER.d \
+Mcal/UART/uart.d
 
 OUTPUT_FILE_PATH +=Card_ECU.elf
 
@@ -137,13 +137,6 @@ App/Card/Card.o: ../App/Card/Card.c
 	
 
 Firmware/EEPROM/EEPROM.o: ../Firmware/EEPROM/EEPROM.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-Firmware/Terminal/Terminal.o: ../Firmware/Terminal/Terminal.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -192,7 +185,14 @@ Mcal/SPI/SPI.o: ../Mcal/SPI/SPI.c
 	@echo Finished building: $<
 	
 
-Mcal/UART/UART.o: ../Mcal/UART/UART.c
+Mcal/Timer/TIMER_DRIVER.o: ../Mcal/Timer/TIMER_DRIVER.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Mcal/UART/uart.o: ../Mcal/UART/uart.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

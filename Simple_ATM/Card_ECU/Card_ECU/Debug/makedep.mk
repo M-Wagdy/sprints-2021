@@ -6,8 +6,6 @@ App\Card\Card.c
 
 Firmware\EEPROM\EEPROM.c
 
-Firmware\Terminal\Terminal.c
-
 Infrastructure\utils.c
 
 main.c
@@ -20,5 +18,7 @@ Mcal\I2C\I2C.c
 
 Mcal\SPI\SPI.c
 
-Mcal\UART\UART.c
+Mcal\Timer\TIMER_DRIVER.c
+
+Mcal\UART\uart.c
 

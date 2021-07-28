@@ -5,25 +5,18 @@ App/Card/Card.d App/Card/Card.o: ../App/Card/Card.c ../App/Card/Card.h \
  ../App/Card/../../Mcal/Global_Interrupts/../../Infrastructure/STD_types.h \
  ../App/Card/../../Mcal/Global_Interrupts/Global_Interrupts_Registers.h \
  ../App/Card/../../Mcal/Global_Interrupts/Global_Interrupts_Config.h \
- ../App/Card/../../Mcal/SPI/SPI.h \
- ../App/Card/../../Mcal/SPI/../../Infrastructure/STD_types.h \
- ../App/Card/../../Mcal/SPI/../DIO/DIO.h \
- ../App/Card/../../Mcal/SPI/../DIO/../../Infrastructure/STD_types.h \
- ../App/Card/../../Mcal/SPI/../DIO/DIO_Registers.h \
- ../App/Card/../../Mcal/SPI/../DIO/DIO_retval.h \
- ../App/Card/../../Mcal/SPI/../DIO/DIO_Config.h \
- ../App/Card/../../Mcal/SPI/SPI_Registers.h \
- ../App/Card/../../Mcal/SPI/SPI_retval.h \
- ../App/Card/../../Mcal/SPI/SPI_Config.h \
- ../App/Card/../../Firmware/Terminal/Terminal.h \
- ../App/Card/../../Firmware/Terminal/../../Mcal/UART/UART.h \
- ../App/Card/../../Firmware/Terminal/../../Mcal/UART/../../Infrastructure/STD_types.h \
- ../App/Card/../../Firmware/Terminal/../../Mcal/UART/UART_Registers.h \
- ../App/Card/../../Firmware/Terminal/../../Mcal/UART/UART_Config.h \
- ../App/Card/../../Firmware/Terminal/../../Mcal/UART/UART_retval.h \
- ../App/Card/../../Firmware/Terminal/Terminal_retval.h \
- ../App/Card/../../Firmware/Terminal/../../Infrastructure/STD_types.h \
- ../App/Card/../../Firmware/Terminal/Terminal_Config.h \
+ ../App/Card/../../Mcal/SPI/SPI.h ../App/Card/../../Mcal/SPI/SPI_CONFIG.h \
+ ../App/Card/../../Mcal/SPI/SPI_PRIV.h ../App/Card/../../Mcal/UART/uart.h \
+ ../App/Card/../../Mcal/UART/../../Infrastructure/STD_types.h \
+ ../App/Card/../../Mcal/UART/Macros.h \
+ ../App/Card/../../Mcal/UART/uartConfig.h \
+ ../App/Card/../../Mcal/DIO/DIO.h \
+ ../App/Card/../../Mcal/DIO/../../Infrastructure/STD_types.h \
+ ../App/Card/../../Mcal/DIO/../../Infrastructure/BIT_MATH.h \
+ ../App/Card/../../Mcal/DIO/../MC_REGISTERS.h \
+ ../App/Card/../../Mcal/DIO/../../Infrastructure/STD_types.h \
+ ../App/Card/../../Mcal/DIO/DIO_Config.h \
+ ../App/Card/../../Mcal/DIO/DIO_RetVal.h \
  ../App/Card/../../Firmware/EEPROM/EEPROM.h \
  ../App/Card/../../Firmware/EEPROM/../../Mcal/I2C/I2C.h \
  ../App/Card/../../Firmware/EEPROM/../../Mcal/I2C/../../Infrastructure/STD_types.h \
@@ -50,41 +43,31 @@ App/Card/Card.d App/Card/Card.o: ../App/Card/Card.c ../App/Card/Card.h \
 
 ../App/Card/../../Mcal/SPI/SPI.h:
 
-../App/Card/../../Mcal/SPI/../../Infrastructure/STD_types.h:
+../App/Card/../../Mcal/SPI/SPI_CONFIG.h:
 
-../App/Card/../../Mcal/SPI/../DIO/DIO.h:
+../App/Card/../../Mcal/SPI/SPI_PRIV.h:
 
-../App/Card/../../Mcal/SPI/../DIO/../../Infrastructure/STD_types.h:
+../App/Card/../../Mcal/UART/uart.h:
 
-../App/Card/../../Mcal/SPI/../DIO/DIO_Registers.h:
+../App/Card/../../Mcal/UART/../../Infrastructure/STD_types.h:
 
-../App/Card/../../Mcal/SPI/../DIO/DIO_retval.h:
+../App/Card/../../Mcal/UART/Macros.h:
 
-../App/Card/../../Mcal/SPI/../DIO/DIO_Config.h:
+../App/Card/../../Mcal/UART/uartConfig.h:
 
-../App/Card/../../Mcal/SPI/SPI_Registers.h:
+../App/Card/../../Mcal/DIO/DIO.h:
 
-../App/Card/../../Mcal/SPI/SPI_retval.h:
+../App/Card/../../Mcal/DIO/../../Infrastructure/STD_types.h:
 
-../App/Card/../../Mcal/SPI/SPI_Config.h:
+../App/Card/../../Mcal/DIO/../../Infrastructure/BIT_MATH.h:
 
-../App/Card/../../Firmware/Terminal/Terminal.h:
+../App/Card/../../Mcal/DIO/../MC_REGISTERS.h:
 
-../App/Card/../../Firmware/Terminal/../../Mcal/UART/UART.h:
+../App/Card/../../Mcal/DIO/../../Infrastructure/STD_types.h:
 
-../App/Card/../../Firmware/Terminal/../../Mcal/UART/../../Infrastructure/STD_types.h:
+../App/Card/../../Mcal/DIO/DIO_Config.h:
 
-../App/Card/../../Firmware/Terminal/../../Mcal/UART/UART_Registers.h:
-
-../App/Card/../../Firmware/Terminal/../../Mcal/UART/UART_Config.h:
-
-../App/Card/../../Firmware/Terminal/../../Mcal/UART/UART_retval.h:
-
-../App/Card/../../Firmware/Terminal/Terminal_retval.h:
-
-../App/Card/../../Firmware/Terminal/../../Infrastructure/STD_types.h:
-
-../App/Card/../../Firmware/Terminal/Terminal_Config.h:
+../App/Card/../../Mcal/DIO/DIO_RetVal.h:
 
 ../App/Card/../../Firmware/EEPROM/EEPROM.h:
 

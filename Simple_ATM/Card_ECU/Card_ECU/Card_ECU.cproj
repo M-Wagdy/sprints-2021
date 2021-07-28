@@ -30,15 +30,15 @@
     <EraseKey />
     <AsfFrameworkConfig>
       <framework-data xmlns="">
-  <options />
-  <configurations />
-  <files />
-  <documentation help="" />
-  <offline-documentation help="" />
-  <dependencies>
-    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.49.1" />
-  </dependencies>
-</framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.49.1" />
+        </dependencies>
+      </framework-data>
     </AsfFrameworkConfig>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -138,16 +138,10 @@
     <Compile Include="Firmware\EEPROM\EEPROM_retval.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Firmware\Terminal\Terminal.c">
+    <Compile Include="Infrastructure\Bit Operations.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Firmware\Terminal\Terminal.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Firmware\Terminal\Terminal_Config.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Firmware\Terminal\Terminal_retval.h">
+    <Compile Include="Infrastructure\BIT_MATH.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Infrastructure\STD_types.h">
@@ -169,9 +163,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Mcal\DIO\DIO_Config.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Mcal\DIO\DIO_Registers.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Mcal\DIO\DIO_retval.h">
@@ -210,39 +201,48 @@
     <Compile Include="Mcal\SPI\SPI.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Mcal\SPI\SPI_Config.h">
+    <Compile Include="Mcal\SPI\SPI_CONFIG.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Mcal\SPI\SPI_Registers.h">
+    <Compile Include="Mcal\SPI\SPI_PRIV.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Mcal\SPI\SPI_retval.h">
+    <Compile Include="Mcal\Timer\TIMER_DRIVER.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Mcal\UART\UART.c">
+    <Compile Include="Mcal\Timer\TIMER_DRIVER.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Mcal\UART\UART.h">
+    <Compile Include="Mcal\Timer\TIMER_DRIVER_PRIV.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Mcal\UART\UART_Config.h">
+    <Compile Include="Mcal\Timer\TIMER_DRIVER_typedefs.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Mcal\UART\UART_Registers.h">
+    <Compile Include="Mcal\UART\Macros.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Mcal\UART\UART_retval.h">
+    <Compile Include="Mcal\UART\uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\UART\uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\UART\uartConfig.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\UART\uartReg.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\Card" />
     <Folder Include="Firmware\EEPROM" />
-    <Folder Include="Firmware\Terminal" />
     <Folder Include="Mcal" />
-    <Folder Include="Mcal\I2C" />
     <Folder Include="Mcal\DIO" />
     <Folder Include="Mcal\Global_Interrupts" />
+    <Folder Include="Mcal\I2C" />
+    <Folder Include="Mcal\Timer" />
     <Folder Include="Mcal\SPI" />
     <Folder Include="Mcal\UART" />
     <Folder Include="Infrastructure" />

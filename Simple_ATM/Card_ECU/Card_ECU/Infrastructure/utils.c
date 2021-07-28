@@ -62,3 +62,22 @@ uint8_t StringCompare(uint8_t * str1, uint8_t * str2)
    }
    return u8_isEqual;
 }
+
+/**
+* @brief: This function gets string size.
+*
+* @param [in]  string   -  pointer to the string.
+*
+* @return function error state.
+*/
+uint8_t StringLength(uint8_t * string)
+{
+   uint8_t u8_counter = 0;
+  
+   while(string[u8_counter] != END_OF_STRING && string[u8_counter] != NEW_LINE)
+   {
+      u8_counter++;
+   }
+   
+   return u8_counter;
+}

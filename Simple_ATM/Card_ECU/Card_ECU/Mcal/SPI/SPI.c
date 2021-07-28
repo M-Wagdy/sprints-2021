@@ -1,511 +1,267 @@
 /*
  * SPI.c
  *
- * Created: 7/14/2021 2:09:27 PM
- *  Author: Mohamed Wagdy
- */ 
-
-/*- INCLUDES
-----------------------------------------------*/
+ *  Created on: Jul 17, 2021
+ *      Author: zoldeyck
+ */
+#include "../../INFRASTRUCTURE/STD_types.h"
+#include "../../INFRASTRUCTURE/Bit Operations.h"
+#include "../DIO/DIO.h"
 #include "SPI.h"
 
-/*- LOCAL MACROS
-------------------------------------------*/
-#define HIGH                        (uint8_t)(1)
-#define LOW                         (uint8_t)(0)
+void static (*SPI_TX_Complete_callback)(void)=NULL_PTR;
 
-#define DATA_COUNTER_START          (uint8_t)(0)
-#define DATA_SIZE                   (uint8_t)(1)
-#define DATA_RETURN_TO_PREV_INDEX   (uint8_t)(2)
+void __vector_12(void)__attribute__((signal,used));//TX_complete
 
-/*- GLOBAL STATIC VARIABLES
--------------------------------*/
-static Ptr_VoidFuncVoid_t g_Callback[SPI_NUMBERS];
-
-/*- APIs IMPLEMENTATION
------------------------------------*/
-/**
-* @brief: This function initialize SPI channel.
-*
-* @param [in]  SpiNumber   -  SPI channel number.
-*
-* @return function error state.
-*/
-SPI_ERROR_state_t SPI_Init(uint8_t SpiNumber)
-{
-   switch(SpiNumber)
-   {
-      #ifdef SPI_CH_0
-      case SPI_CH_0:
-         /* initialize master node */
-         if( (SPI_CH_0_CONTROL_MASK & MASTER_SELECT) )
-         {
-            /* initialize slave select pins */
-            #ifdef SPI_CH_0_SS_CH_0
-               DIO_SetPinDirection(SPI_CH_0_SS_CH_0_PORT, SPI_CH_0_SS_CH_0_PIN, OUTPUT);
-               DIO_WritePin(SPI_CH_0_SS_CH_0_PORT, SPI_CH_0_SS_CH_0_PIN, HIGH);
-            #endif
-            /* initialize MOSI and clock source pins */
-            DIO_SetPinDirection(SPI_CH_0_MOSI_PORT, SPI_CH_0_MOSI_PIN, OUTPUT);
-            DIO_SetPinDirection(SPI_CH_0_SCK_PORT, SPI_CH_0_SCK_PIN, OUTPUT);
-            /* sets SPI control register */
-            SPI_CONTROL_R = SPI_CH_0_CONTROL_MASK;
-         }
-         /* initialize slave node */
-         else
-         {
-            /* initialize MISO pins */
-            DIO_SetPinDirection(SPI_CH_0_MISO_PORT, SPI_CH_0_MISO_PIN, OUTPUT);
-            /* sets SPI control register */
-            SPI_CONTROL_R = SPI_EN;
-         }
-         break;
-      #endif
-      default:
-         return E_SPI_INVALID_CH;
-      
-   }
-   
-   /* return success message */
-   return E_SPI_SUCCESS;
+uint8_t SPI_Init(uint8_t SpiNumber) {
+	uint8_t ErrRetVal = OperationStarted;
+	uint8_t Dummy = 0;
+	if (SpiNumber <= NumOfSPIChannels) {
+		WRITE_REG(SPI_ControlReg, ResgisterDefaultVal);
+		switch (SPI_Mode) {
+		case Master:
+			/*SPI Master Mode*/
+			MODIFY_REG(SPI_ControlReg, MasterSlaveModeSelect_MSK,
+					Master<<MasterSlaveModeSelect_BIT);
+			/*SPI PIN Initialization*/
+			DIO_SetPinDirection(SPI_PORT, SPI_SS_PIN, PIN_OUTPUT);
+			DIO_WritePin(SPI_PORT, SPI_SS_PIN,PIN_HIGH);
+			DIO_SetPinDirection(SPI_PORT, SPI_SCK_PIN, PIN_OUTPUT);
+			DIO_SetPinDirection(SPI_PORT, SPI_MOSI_PIN, PIN_OUTPUT);
+			/*selecting the clock mode*/
+			MODIFY_REG(SPI_ControlReg, ClockPhase_MSK,
+					READ_BIT(SPI_ClockMode,0)<<ClockPhase_BIT);
+			MODIFY_REG(SPI_ControlReg, ClockPolarity_MSK,
+					READ_BIT(SPI_ClockMode,1)<<ClockPolarity_BIT);
+			/*Setting the Data Order*/
+			MODIFY_REG(SPI_ControlReg, DataOrder_MSK,
+					SPI_DataOrder<<DataOrder_BIT);
+			/*Set SPI Clock Frequency*/
+			MODIFY_REG(SPI_StatusReg, ClockSelectBit_2_MSK,
+					READ_BIT(SPI_Freq,2)<<ClockSelectBit_2_BIT);
+			MODIFY_REG(SPI_ControlReg, ClockSelectBit_1_MSK,
+					READ_BIT(SPI_Freq,1)<<ClockSelectBit_1_BIT);
+			MODIFY_REG(SPI_ControlReg, ClockSelectBit_0_MSK,
+					READ_BIT(SPI_Freq,0)<<ClockSelectBit_0_BIT);
+			/*clearing flags*/
+			Dummy = READ_BIT(SPI_StatusReg,WriteCollisionFlag_BIT);
+			Dummy = READ_BIT(SPI_StatusReg,InterruptFlag_BIT);
+			Dummy = READ_REG(SPI_DataReg);
+			/*enable SPI Module*/
+			SET_BIT(SPI_ControlReg, SPIEnable_BIT);
+			ErrRetVal = OperationSuccess;
+			break;
+		case Slave:
+			/*SPI Slave Mode*/
+			MODIFY_REG(SPI_ControlReg, MasterSlaveModeSelect_MSK,
+					Slave<<MasterSlaveModeSelect_BIT);
+			/*SPI PIN Initialization*/
+			DIO_SetPinDirection(SPI_PORT, SPI_MISO_PIN, PIN_OUTPUT);
+			/*selecting the clock mode*/
+			MODIFY_REG(SPI_ControlReg, ClockPhase_MSK,
+					READ_BIT(SPI_ClockMode,0)<<ClockPhase_BIT);
+			MODIFY_REG(SPI_ControlReg, ClockPolarity_MSK,
+					READ_BIT(SPI_ClockMode,1)<<ClockPolarity_BIT);
+			/*Setting the Data Order*/
+			MODIFY_REG(SPI_ControlReg, DataOrder_MSK,
+					SPI_DataOrder<<DataOrder_BIT);
+			/*Set SPI Clock Frequency*/
+			/*not necessary as we are in slave case*/
+			/*clearing flags*/
+			Dummy = READ_BIT(SPI_StatusReg, WriteCollisionFlag_BIT);
+			Dummy = READ_BIT(SPI_StatusReg, InterruptFlag_BIT);
+			Dummy = READ_REG(SPI_DataReg);
+			/*removing garbage from slave Data register*/
+			SPI_DataReg='\0';
+			/*enable SPI Module*/
+			SET_BIT(SPI_ControlReg, SPIEnable_BIT);
+			ErrRetVal = OperationSuccess;
+			break;
+		default:
+			/*error selected SPI mode is unavailable*/
+			ErrRetVal = SelectedSPIModeUnavailable;
+		}
+	} else {
+		/*error out of spi channels range.*/
+		ErrRetVal = Unavailable_SPI_Channel;
+	}
+	return ErrRetVal;
 }
 
-/**
-* @brief: This function sends a character through SPI.
-*
-* @param [in]  SpiNumber   -  SPI channel number.
-* @param [in]  TxChar      -  character to send.
-* @param [in]  slave_CH    -  slave select line.
-*
-* @return function error state.
-*/
-SPI_ERROR_state_t SPI_TransmitChar(uint8_t SpiNumber, uint8_t TxChar, uint8_t slave_CH)
-{
-   volatile uint8_t * ptr_SPIDataR;
-   volatile uint8_t * ptr_SPIStatusR;
-   uint8_t u8_SSPort;
-   uint8_t u8_SSPin;
-   
-   /* get the required spi data */
-   switch(SpiNumber)
-   {
-      #ifdef SPI_CH_0
-      case SPI_CH_0:
-         ptr_SPIDataR = &SPI_DATA_R;
-         ptr_SPIStatusR = &SPI_STATUS_R;
-         break;
-      #endif
-      default:
-         return E_SPI_INVALID_CH;
-   }
-   
-   /* get the required slave select port and pin */
-   switch(slave_CH)
-   {
-      #ifdef SPI_CH_0_SS_CH_0
-      case SPI_CH_0_SS_CH_0:
-         u8_SSPort = SPI_CH_0_SS_CH_0_PORT;
-         u8_SSPin = SPI_CH_0_SS_CH_0_PIN;
-         break;
-      #endif
-      case SLAVE_SS_CH:
-         break;
-      default:
-         return E_SPI_INVALID_SS_CH;
-   }
-   
-   if(SLAVE_SS_CH != slave_CH)
-   {
-      /* select slave line */
-      DIO_WritePin(u8_SSPort, u8_SSPin, LOW);
-   }
-   
-   /* sets character in the SPI register */
-   *ptr_SPIDataR = TxChar;
-   
-   /* loops until transmitting is complete */
-   while(!(*ptr_SPIStatusR & SPI_TRANSMIT_COMPLETE_BIT ));
-   /* check if there is a write collision error flag */
-   if( (*ptr_SPIStatusR & SPI_WRITE_COLLISION_BIT ) )
-   {
-      return E_SPI_WRITE_COLLISION;
-   }
-   
-   if(SLAVE_SS_CH != slave_CH)
-   {
-      /* unselect slave line */
-      DIO_WritePin(u8_SSPort, u8_SSPin, HIGH);
-   }
-   
-   /* return success message */
-   return E_SPI_SUCCESS;
+uint8_t SPI_TransmitChar(uint8_t SpiNumber, uint8_t TxChar, uint8_t slave_CH) {
+	uint8_t ErrRetVal = OperationStarted;
+	uint8_t dummy = 0;
+	uint8_t Data=0 ;
+	switch (SPI_Mode) {
+	case Master:
+		if (slave_CH <= NumOfSPISlaves) {
+			/*pulling slave select down*/
+			DIO_WritePin(SlaveID_1_Port, SlaveID_1_Pin, PIN_LOW);
+			/*making data available in the shift register (transmitting start)*/
+			WRITE_REG(SPI_DataReg, TxChar);
+			/*checking for write collision*/
+			if (READ_BIT(SPI_StatusReg, WriteCollisionFlag_BIT)) {
+				ErrRetVal = WriteCollisionOccurs;
+				dummy = READ_REG(SPI_DataReg);
+				/*flag is cleared*/
+			} else {
+				ErrRetVal = OperationSuccess;
+			}
+
+		} else {
+			ErrRetVal = Non_Existant_Slave;
+		}
+		break;
+	case Slave:
+		DIO_ReadPin(SlaveID_1_Port, SlaveID_1_Pin,&Data);
+		if (Data) {
+			/*making data available in the shift register*/
+			WRITE_REG(SPI_DataReg, TxChar);
+			/*checking for write collision*/
+			if (READ_BIT(SPI_StatusReg, WriteCollisionFlag_BIT)) {
+				ErrRetVal = WriteCollisionOccurs;
+				dummy = READ_REG(SPI_DataReg);
+				/*flag is cleared*/
+			} else {
+				ErrRetVal = OperationSuccess;
+			}
+		} else {
+			ErrRetVal = OperationFail;
+		}
+		break;
+	}
+	return ErrRetVal;
 }
 
-/**
-* @brief: This function receives a character through SPI.
-*
-* @param [in]  SpiNumber   -  SPI channel number.
-* @param [in]  slave_CH    -  slave select line.
-* @param [out] RxData      -  address to where to store the received character.
-*
-* @return function error state.
-*/
-SPI_ERROR_state_t SPI_ReceiveChar(uint8_t SpiNumber,uint8_t * RxData,uint8_t slave_CH)
-{
-   /* make sure a null pointer isn't passed to the function */
-   if(NULL_PTR == RxData)
-   {
-      return E_SPI_NULL_PTR;
-   }
-   
-   volatile uint8_t * ptr_SPIDataR;
-   volatile uint8_t * ptr_SPIStatusR;
-   uint8_t u8_SSPort;
-   uint8_t u8_SSPin;
-   
-   /* get the required spi data */
-   switch(SpiNumber)
-   {
-      #ifdef SPI_CH_0
-      case SPI_CH_0:
-         ptr_SPIDataR = &SPI_DATA_R;
-         ptr_SPIStatusR = &SPI_STATUS_R;
-         break;
-      #endif
-      default:
-         return E_SPI_INVALID_CH;
-   }
-   
-   /* get the required slave select port and pin */
-   switch(slave_CH)
-   {
-      #ifdef SPI_CH_0_SS_CH_0
-      case SPI_CH_0_SS_CH_0:
-         u8_SSPort = SPI_CH_0_SS_CH_0_PORT;
-         u8_SSPin = SPI_CH_0_SS_CH_0_PIN;
-         break;
-      #endif
-      case SLAVE_SS_CH:
-         break;
-      default:
-         return E_SPI_INVALID_SS_CH;
-   }
-   
-   if(SLAVE_SS_CH != slave_CH)
-   {
-      /* select slave line */
-      DIO_WritePin(u8_SSPort, u8_SSPin, LOW);
-   }
-   
-   /* loops until transmitting is complete */
-   while(!(*ptr_SPIStatusR & SPI_TRANSMIT_COMPLETE_BIT ))
-   {
-      /* check if there is a write collision error flag */
-      if( (*ptr_SPIStatusR & SPI_WRITE_COLLISION_BIT ) )
-      {
-         return E_SPI_WRITE_COLLISION;
-      }
-   }
-   
-   /* get data */
-   *RxData = *ptr_SPIDataR;
-   
-   if(SLAVE_SS_CH != slave_CH)
-   {
-      /* unselect slave line */
-      DIO_WritePin(u8_SSPort, u8_SSPin, HIGH);
-   }
-   
-   /* return success message */
-   return E_SPI_SUCCESS;
-   
+uint8_t SPI_ReceiveChar(uint8_t SpiNumber, ptr_uint8_t RxData, uint8_t slave_CH) {
+	uint8_t ErrRetVal = OperationStarted;
+	switch (SPI_Mode) {
+	case Master:
+		if (slave_CH <= NumOfSPISlaves) {
+			/*check that transmission is completed*/
+			if ((READ_BIT(SPI_StatusReg, InterruptFlag_BIT))) {
+				/*Read Data from data_register*/
+				*RxData = SPI_DataReg;
+				DIO_WritePin(SlaveID_1_Port, SlaveID_1_Pin, PIN_HIGH);
+				ErrRetVal = OperationSuccess;
+			} else {
+				ErrRetVal = OperationFail;
+			}
+		} else {
+			/*error out of spi channels range.*/
+			ErrRetVal = Unavailable_SPI_Channel;
+		}
+		break;
+	case Slave:
+		if ((READ_BIT(SPI_StatusReg, InterruptFlag_BIT))) {
+			*RxData = SPI_DataReg;
+			ErrRetVal = OperationSuccess;
+		} else {
+			ErrRetVal = OperationFail;
+		}
+		break;
+	}
+	return ErrRetVal;
 }
 
-/**
-* @brief: This function sends a stream of characters through SPI.
-*
-* @param [in]  SpiNumber   -  SPI channel number.
-* @param [in]  slave_CH    -  slave select line.
-* @param [in]  TxString    -  array of characters to send.
-*
-* @return function error state.
-*/
-SPI_ERROR_state_t SPI_TransmitString(uint8_t SpiNumber, uint8_t * TxString, uint8_t slave_CH)
+uint8_t SPI_DataExchange (uint8_t SpiNumber, uint8_t TxChar, ptr_uint8_t RxData, uint8_t slave_CH)
 {
-   uint8_t counter = DATA_COUNTER_START;
-   
-   /* make sure a null pointer isn't passed to the function */
-   if(NULL_PTR == TxString)
-   {
-      return E_SPI_NULL_PTR;
-   }
-   
-   volatile uint8_t * ptr_SPIDataR;
-   volatile uint8_t * ptr_SPIStatusR;
-   uint8_t u8_SSPort;
-   uint8_t u8_SSPin;
-   
-   /* get the required spi data */
-   switch(SpiNumber)
-   {
-      #ifdef SPI_CH_0
-      case SPI_CH_0:
-         ptr_SPIDataR = &SPI_DATA_R;
-         ptr_SPIStatusR = &SPI_STATUS_R;
-         break;
-      #endif
-      default:
-         return E_SPI_INVALID_CH;
-   }
-   
-   /* get the required slave select port and pin */
-   switch(slave_CH)
-   {
-      #ifdef SPI_CH_0_SS_CH_0
-      case SPI_CH_0_SS_CH_0:
-         u8_SSPort = SPI_CH_0_SS_CH_0_PORT;
-         u8_SSPin = SPI_CH_0_SS_CH_0_PIN;
-         break;
-      #endif
-      case SLAVE_SS_CH:
-         break;
-      default:
-         return E_SPI_INVALID_SS_CH;
-   }
-   
-   if(SLAVE_SS_CH != slave_CH)
-   {
-      /* select slave line */
-      DIO_WritePin(u8_SSPort, u8_SSPin, LOW);
-   }
-   
-   /* sends all characters until it finds an end of string character */
-   while(TxString[counter] != END_OF_STRING)
-   {
-      /* puts data */
-      *ptr_SPIDataR = TxString[counter];
-      
-      /* loops until transmitting is complete */
-      while(!(*ptr_SPIStatusR & SPI_TRANSMIT_COMPLETE_BIT ))
-      {
-         /* check if there is a write collision error flag */
-         if( (*ptr_SPIStatusR & SPI_WRITE_COLLISION_BIT ) )
-         {
-            return E_SPI_WRITE_COLLISION;
-         }
-      }
-      counter++;
-   }
-   
-   if(SLAVE_SS_CH != slave_CH)
-   {
-      /* unselect slave line */
-      DIO_WritePin(u8_SSPort, u8_SSPin, HIGH);
-   }
-   
-   /* return success message */
-   return E_SPI_SUCCESS;
+	uint8_t RETVAL = OperationStarted;
+	switch(SPI_Mode){
+	case Master:
+		SPI_TransmitChar(SPIChannel_1, TxChar, SlaveID_1);
+		while(SPI_ReceiveChar(SPIChannel_1, RxData, SlaveID_1) != OperationSuccess) ;
+		RETVAL = OperationSuccess;
+		break;
+	case Slave:
+//		while (SPI_ReceiveChar(SPIChannel_1, RxData, SlaveID_1)	!= OperationSuccess);
+//		while (SPI_TransmitChar(SPIChannel_1, TxChar, SlaveID_1) != OperationSuccess);
+		while (SPI_TransmitChar(SPIChannel_1, TxChar, SlaveID_1) != OperationSuccess);
+		while (SPI_ReceiveChar(SPIChannel_1, RxData, SlaveID_1)	!= OperationSuccess);
+		RETVAL = OperationSuccess;
+		break;
+	}
+	return RETVAL;
 }
 
-/**
-* @brief: This function receives a stream of characters through SPI.
-*
-* @param [in]  SpiNumber   -  SPI channel number.
-* @param [in]  slave_CH    -  slave select line.
-* @param [out] RxString    -  array of characters to receive.
-*
-* @return function error state.
-*/
-SPI_ERROR_state_t SPI_ReceiveString(uint8_t SpiNumber,uint8_t * RxString,uint8_t slave_CH)
-{
-   uint8_t counter = DATA_COUNTER_START;
-   
-   /* make sure a null pointer isn't passed to the function */
-   if(NULL_PTR == RxString)
-   {
-      return E_SPI_NULL_PTR;
-   }
-   
-   volatile uint8_t * ptr_SPIDataR;
-   volatile uint8_t * ptr_SPIStatusR;
-   uint8_t u8_SSPort;
-   uint8_t u8_SSPin;
-   
-   /* get the required spi data */
-   switch(SpiNumber)
-   {
-      #ifdef SPI_CH_0
-      case SPI_CH_0:
-         ptr_SPIDataR = &SPI_DATA_R;
-         ptr_SPIStatusR = &SPI_STATUS_R;
-         break;
-      #endif
-      default:
-         return E_SPI_INVALID_CH;
-   }
-   
-   /* get the required slave select port and pin */
-   switch(slave_CH)
-   {
-      #ifdef SPI_CH_0_SS_CH_0
-      case SPI_CH_0_SS_CH_0:
-         u8_SSPort = SPI_CH_0_SS_CH_0_PORT;
-         u8_SSPin = SPI_CH_0_SS_CH_0_PIN;
-         break;
-      #endif
-      case SLAVE_SS_CH:
-         break;
-      default:
-         return E_SPI_INVALID_SS_CH;
-   }
-   
-   if(SLAVE_SS_CH != slave_CH)
-   {
-      /* select slave line */
-      DIO_WritePin(u8_SSPort, u8_SSPin, LOW);
-   }
-   
-   /* receives all characters until it gets a new line character */
-   while(1)
-   {
-      /* loops until transmitting is complete */
-      while(!(*ptr_SPIStatusR & SPI_TRANSMIT_COMPLETE_BIT ))
-      {
-         /* check if there is a write collision error flag */
-         if( (*ptr_SPIStatusR & SPI_WRITE_COLLISION_BIT ) )
-         {
-            return E_SPI_WRITE_COLLISION;
-         }
-      }
-      /* get data */
-      RxString[counter] = *ptr_SPIDataR;
-      
-      /* check if new line is received */
-      if(RxString[counter] == NEW_LINE)
-      {
-         /* put an end of string character in the array and breaks from the loop */
-         RxString[counter + DATA_SIZE] = END_OF_STRING;
-         break;
-      }
-      counter++;
-      
-      /* check if it got a back space character */
-      if(RxString[counter - DATA_SIZE] == BACKSPACE)
-      {
-         /* return to the previous character to overwrite it */
-         if (counter - DATA_SIZE != DATA_COUNTER_START)
-         {
-            counter -= DATA_RETURN_TO_PREV_INDEX;
-         }
-         else
-         {
-            counter = DATA_COUNTER_START;
-         }
-      }
-   }
-   
-   if(SLAVE_SS_CH != slave_CH)
-   {
-      /* unselect slave line */
-      DIO_WritePin(u8_SSPort, u8_SSPin, HIGH);
-   }
-   
-   /* return success message */
-   return E_SPI_SUCCESS;
+uint8_t SPI_TransmitString(uint8_t SpiNumber, ptr_uint8_t TxString,
+		uint8_t slave_CH) {
+	uint8_t ErrRetVal = OperationStarted;
+	uint8_t iterator = 0;
+	uint8_t Dummy = 0;
+	while(iterator <= 255)
+	{
+		if (*TxString == '\0') {
+			ErrRetVal = OperationSuccess;
+			while (SPI_DataExchange(SpiNumber, '\0', &Dummy, slave_CH) != OperationSuccess);
+			break;
+		} else {
+			while (SPI_DataExchange(SpiNumber, *TxString, &Dummy, slave_CH) != OperationSuccess);
+			iterator++;
+			TxString++;
+		}
+	}
+return ErrRetVal;
 }
 
-/**
-* @brief: This function enables SPI interrupt.
-*
-* @param [in]  SpiNumber   -  SPI channel number.
-*
-* @return function error state.
-*/
-SPI_ERROR_state_t SPI_EnableInterrupt(uint8_t SpiNumber)
-{
-   volatile uint8_t * ptr_SPIControlR;
-   
-   /* get the required spi data */
-   switch(SpiNumber)
-   {
-      #ifdef SPI_CH_0
-      case SPI_CH_0:
-         ptr_SPIControlR = &SPI_CONTROL_R;
-      break;
-      #endif
-      default:
-         return E_SPI_INVALID_CH;
-   }
-   
-   /* enable interrupt */
-   *ptr_SPIControlR |= SPI_INTERRUPT_EN;
-   
-   /* return success message */
-   return E_SPI_SUCCESS;
+uint8_t SPI_ReceiveString(uint8_t SpiNumber, ptr_uint8_t RxString,
+		uint8_t slave_CH) {
+	uint8_t ErrRetVal = OperationStarted;
+	uint8_t* RxStringAddress=RxString;
+	uint8_t iterator = 0;
+	uint8_t Dummy = 0;
+	while (iterator <= 255) {
+		if (SPI_DataExchange(SpiNumber, Dummy, RxString,
+				slave_CH)==OperationSuccess) {
+			if (*RxString == '\0') {
+				if (RxString == RxStringAddress) {
+					continue;
+				} else {
+					ErrRetVal = OperationSuccess;
+					break;
+				}
+			} else {
+				RxString++;
+				iterator++;
+			}
+		} else {
+			continue;
+		}
+	}
+	return ErrRetVal;
 }
 
-/**
-* @brief: This function disables SPI interrupt.
-*
-* @param [in]  SpiNumber   -  SPI channel number.
-*
-* @return function error state.
-*/
-SPI_ERROR_state_t SPI_DisableInterrupt(uint8_t SpiNumber)
+uint8_t SPI_EnableInterrupt(uint8_t SpiNumber)
 {
-   volatile uint8_t * ptr_SPIControlR;
-   
-   /* get the required SPI data */
-   switch(SpiNumber)
-   {
-      #ifdef SPI_CH_0
-      case SPI_CH_0:
-         ptr_SPIControlR = &SPI_CONTROL_R;
-         break;
-      #endif
-      default:
-         return E_SPI_INVALID_CH;
-   }
-   
-   /* enable interrupt */
-   *ptr_SPIControlR &= ~(SPI_INTERRUPT_EN);
-   
-   /* return success message */
-   return E_SPI_SUCCESS;
+	uint8_t ErrRetVal = OperationStarted;
+	/*Enable Global Interrupt*/
+	SET_BIT(STATUS_REG, 7);
+	/*Enable Local Interrupt*/
+	MODIFY_REG(SPI_ControlReg,
+			InterruptEnable_MSK,
+			InterruptEnable_MSK);
+	ErrRetVal = OperationSuccess;
+	return ErrRetVal;
 }
 
-/**
-* @brief: This function sets a callback function.
-*
-* @param [in]  SpiNumber   -  SPI channel number.
-* @param [in]  Callback    -  address of the callback function.
-*
-* @return function error state.
-*/
-SPI_ERROR_state_t SPI_SetCallback(uint8_t SpiNumber, Ptr_VoidFuncVoid_t Callback)
+uint8_t SPI_DisableInterrupt(uint8_t SpiNumber)
 {
-   /* making sure an initialized pointer is sent to the function */
-   if(NULL_PTR == Callback)
-   {
-      return E_SPI_NULL_PTR;
-   }
-   
-   volatile uint8_t u8_SPIIndex;
-   
-   /* get the required spi data */
-   switch(SpiNumber)
-   {
-      #ifdef SPI_CH_0
-      case SPI_CH_0:
-         u8_SPIIndex = SPI_CH_0;
-         break;
-      #endif
-      default:
-         return E_SPI_INVALID_CH;
-   }
-   
-   g_Callback[u8_SPIIndex] = Callback;
-      
-   /* return success status */
-   return E_SPI_SUCCESS;
+	uint8_t ErrRetVal = OperationStarted;
+	CLEAR_BIT(SPI_ControlReg, InterruptEnable_BIT);
+	ErrRetVal = OperationSuccess;
+	return ErrRetVal;
+}
+
+uint8_t SPI_Set_TX_CompleteCallback(uint8_t SpiNumber,void(*callBack)(void))
+{
+	uint8_t ErrRetVal = 0;
+		if (callBack != NULL_PTR)
+			SPI_TX_Complete_callback = callBack;
+		return ErrRetVal;
+}
+
+void __vector_12(void)
+{
+	if (SPI_TX_Complete_callback != NULL_PTR)
+		SPI_TX_Complete_callback();
 }

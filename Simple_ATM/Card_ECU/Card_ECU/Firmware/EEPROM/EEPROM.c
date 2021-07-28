@@ -8,6 +8,7 @@
 /*- INCLUDES
 ----------------------------------------------*/
 #include "EEPROM.h"
+//#include "../../Mcal/TIMER/TIMER_DRIVER.h"
 
 /*- LOCAL MACROS
 ------------------------------------------*/
@@ -58,7 +59,7 @@ EEPROM_ERROR_state_t EEPROM_Init(uint8_t EEPROM_CH)
 *
 * @param [in]  EEPROM_CH   -  EEPROM channel number.
 * @param [in]  address     -  Address to read from.
-* @param [in]  data        -  Pointer to where to store received data.
+* @param [out] data        -  Pointer to where to store received data.
 *
 * @return function error state.
 */
@@ -194,4 +195,61 @@ EEPROM_ERROR_state_t EEPROM_Write(uint8_t EEPROM_CH, uint8_t address, uint8_t da
    
    /* return success message */
    return E_EEPROM_SUCCESS;
+}
+
+/**
+* @brief: This function writes an EEPROM memory block.
+*
+* @param [in]  EEPROM_CH   -  EEPROM channel number.
+* @param [in]  address     -  Address to write to.
+* @param [out] data        -  Pointer to where to store received data.
+* @param [in]  bytes_num   -  number of bytes to read.
+*
+* @return function error state.
+*/
+EEPROM_ERROR_state_t EEPROM_ReadBytes(uint8_t EEPROM_CH, uint8_t start_address, uint8_t * data, uint8_t bytes_num)
+{
+   I2C_ERROR_state_t e_state;
+   
+   for(uint8_t au8_BytesCounter = 0 ; au8_BytesCounter < bytes_num; au8_BytesCounter++)
+   {
+      e_state = EEPROM_Read(EEPROM_CH, (start_address + au8_BytesCounter), &data[au8_BytesCounter]);
+      if(E_I2C_SUCCESS != e_state)
+      {
+         return E_EEPROM_I2C_ERROR;
+      }
+   }
+   
+   /* return success message */
+   return E_EEPROM_SUCCESS;
+}
+
+/**
+* @brief: This function writes an EEPROM memory block.
+*
+* @param [in]  EEPROM_CH   -  EEPROM channel number.
+* @param [in]  address     -  Address to write to.
+* @param [in]  data        -  Data to write.
+* @param [in]  bytes_num   -  number of bytes to write.
+*
+* @return function error state.
+*/
+EEPROM_ERROR_state_t EEPROM_WriteBytes(uint8_t EEPROM_CH, uint8_t start_address, uint8_t * data, uint8_t bytes_num)
+{
+   I2C_ERROR_state_t e_state;
+   
+   for(uint8_t au8_BytesCounter = 0 ; au8_BytesCounter < bytes_num; au8_BytesCounter++)
+   {
+      e_state = EEPROM_Write(EEPROM_CH, (start_address + au8_BytesCounter), data[au8_BytesCounter]);
+      if(E_I2C_SUCCESS != e_state)
+      {
+         return E_EEPROM_I2C_ERROR;
+      }
+      dummy_delay();
+      //TIM_Delay_MS(TIMER0, 1000);
+   }
+   
+   /* return success message */
+   return E_EEPROM_SUCCESS;
+   
 }

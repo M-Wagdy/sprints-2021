@@ -13,7 +13,8 @@
 #include "../../Infrastructure/utils.h"
 #include "../../Mcal/Global_Interrupts/Global_Interrupts.h"
 #include "../../Mcal/SPI/SPI.h"
-#include "../../Firmware/Terminal/Terminal.h"
+#include "../../Mcal/UART/uart.h"
+#include "../../Mcal/DIO/DIO.h"
 #include "../../Firmware/EEPROM/EEPROM.h"
 
 /*- STRUCTS AND UNIONS -------------------------------------*/
@@ -28,13 +29,19 @@ typedef struct STR_cardData_t {
 /*- FUNCTION DECLARATIONS ----------------------------------*/
 
 /* Function that initialize Card ECU*/
-void CARD_Init();
+void CARD_Init(void);
 
 /* Function that reads from the EEPROM */
-void CARD_GetUserData(STR_cardData_t * CardData);
+void CARD_GetData(void);
 
 /* Function that write to the EEPROM */
-void CARD_SetUserData(void);
+void CARD_SetData(void);
+
+/* Function that send data through SPI */
+void CARD_Send(void);
+
+/* Function that receive data from uart */
+void CARD_Receive(void);
 
 
 
