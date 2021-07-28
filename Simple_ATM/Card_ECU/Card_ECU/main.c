@@ -24,26 +24,20 @@ int main(void)
 {
    CARD_Init();
    
-   CARD_SetUserData();
-   
    CARD_GetUserData(&CardData);
    
-   UART_TransmitString(UART_CH_0, CardData.au8_CardHolderName);
-   UART_TransmitChar(UART_CH_0, '\r');
-   UART_TransmitChar(UART_CH_0, '\r');
-   UART_TransmitString(UART_CH_0, CardData.au8_PAN);
-   UART_TransmitChar(UART_CH_0, '\r');
-   UART_TransmitChar(UART_CH_0, '\r');
-   UART_TransmitString(UART_CH_0, CardData.au8_PIN);
-   UART_TransmitChar(UART_CH_0, '\r');
-   UART_TransmitChar(UART_CH_0, '\r');
+   if(CardData.au8_PIN[0] == 0xFF)
+   {
+      CARD_SetUserData();
+   }
+
    /* Replace with your application code */
    while (1) 
    {
       Terminal_Read(TerminalData);
       if(StringCompare(TerminalData, gu8_AdminCommand) == TRUE)
       {
-         Terminal_Write(TERMINAL_CH_0_UART_CH, "yayyyy\r");
+         CARD_SetUserData();
       }
    }
 }

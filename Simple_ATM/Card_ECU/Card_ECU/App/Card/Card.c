@@ -75,50 +75,37 @@ void CARD_GetUserData(STR_cardData_t * CardData)
 */
 void CARD_SetUserData(void)
 {
-   DIO_SetPinDirection(PORTA, PIN_0, OUTPUT);
-   uint8_t TerminalData[255];
+   uint8_t TerminalData[10];
    GLOBALINTTERUPTS_Disable();
    
    Terminal_Write(TERMINAL_CH_0_UART_CH, gu8_CardHolderNameMessage);
    
-   Terminal_Read(TerminalData);
-   while(TerminalData[0] == END_OF_STRING)
-   {
-      Terminal_Read(TerminalData);
-   }
-   DIO_WritePin(PORTA, PIN_0, 1);
+   UART_ReceiveString(UART_CH_0, TerminalData);
    for(uint8_t i = 0; i<CARD_HOLDER_NAME_STRING_SIZE; i++)
    {
       /* store data to the given address */
       EEPROM_Write(EEPROM_CH_0, (CARD_HOLDER_NAME_START_ADDRESS + i), TerminalData[i]);
+      dummy_delay();
    }
    
    Terminal_Write(TERMINAL_CH_0_UART_CH, gu8_PANMessage);
    
-   Terminal_Read(TerminalData);
-   while(TerminalData[0] == '\0')
-   {
-      Terminal_Read(TerminalData);
-   }
-   
+   UART_ReceiveString(UART_CH_0, TerminalData);
    for(uint8_t i = 0; i<PAN_STRING_SIZE; i++)
    {
       /* store data to the given address */
       EEPROM_Write(EEPROM_CH_0, (PAN_START_ADDRESS + i), TerminalData[i]);
+      dummy_delay();
    }
    
    Terminal_Write(TERMINAL_CH_0_UART_CH, gu8_PINMessage);
    
-   Terminal_Read(TerminalData);
-   while(TerminalData[0] == '\0')
-   {
-      Terminal_Read(TerminalData);
-   }
-   
+   UART_ReceiveString(UART_CH_0, TerminalData);
    for(uint8_t i = 0; i<PIN_STRING_SIZE; i++)
    {
       /* store data to the given address */
       EEPROM_Write(EEPROM_CH_0, (PIN_START_ADDRESS + i), TerminalData[i]);
+      dummy_delay();
    }
    
    GLOBALINTTERUPTS_Enable();

@@ -29,20 +29,32 @@ Discarded input sections
  .text          0x00000000        0x0 Infrastructure/utils.o
  .data          0x00000000        0x0 Infrastructure/utils.o
  .bss           0x00000000        0x0 Infrastructure/utils.o
- .text.dummy_delay
-                0x00000000       0x54 Infrastructure/utils.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
  .text          0x00000000        0x0 Mcal/DIO/DIO.o
  .data          0x00000000        0x0 Mcal/DIO/DIO.o
  .bss           0x00000000        0x0 Mcal/DIO/DIO.o
+ .text.DIO_SetPinDirection
+                0x00000000       0x70 Mcal/DIO/DIO.o
  .text.DIO_EnablePinPullup
                 0x00000000       0x4a Mcal/DIO/DIO.o
+ .text.DIO_WritePin
+                0x00000000       0x70 Mcal/DIO/DIO.o
  .text.DIO_ReadPin
                 0x00000000       0x60 Mcal/DIO/DIO.o
  .text.DIO_TogglePin
                 0x00000000       0x4a Mcal/DIO/DIO.o
+ .debug_info    0x00000000      0x224 Mcal/DIO/DIO.o
+ .debug_abbrev  0x00000000       0xca Mcal/DIO/DIO.o
+ .debug_loc     0x00000000      0x3fa Mcal/DIO/DIO.o
+ .debug_aranges
+                0x00000000       0x40 Mcal/DIO/DIO.o
+ .debug_ranges  0x00000000       0x30 Mcal/DIO/DIO.o
+ .debug_line    0x00000000      0x2a3 Mcal/DIO/DIO.o
+ .debug_str     0x00000000      0x20f Mcal/DIO/DIO.o
+ .comment       0x00000000       0x31 Mcal/DIO/DIO.o
+ .debug_frame   0x00000000       0x64 Mcal/DIO/DIO.o
  .text          0x00000000        0x0 Mcal/Global_Interrupts/Global_Interrupts.o
  .data          0x00000000        0x0 Mcal/Global_Interrupts/Global_Interrupts.o
  .bss           0x00000000        0x0 Mcal/Global_Interrupts/Global_Interrupts.o
@@ -93,10 +105,10 @@ Discarded input sections
  .text          0x00000000        0x0 Mcal/UART/UART.o
  .data          0x00000000        0x0 Mcal/UART/UART.o
  .bss           0x00000000        0x0 Mcal/UART/UART.o
+ .text.UART_TransmitChar
+                0x00000000       0x12 Mcal/UART/UART.o
  .text.UART_ReceiveChar
                 0x00000000       0x20 Mcal/UART/UART.o
- .text.UART_ReceiveString
-                0x00000000       0x5e Mcal/UART/UART.o
  .text.UART_DisableInterrupt
                 0x00000000       0x20 Mcal/UART/UART.o
  .text.UART_FlushReceiveBuffer
@@ -288,7 +300,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x76c
+.text           0x00000000      0x6a2
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
                 0x00000000                __vector_default
@@ -376,87 +388,84 @@ END GROUP
                 0x000000a4       0x68 App/Card/Card.o
                 0x000000a4                CARD_GetUserData
  .text.CARD_SetUserData
-                0x0000010c      0x114 App/Card/Card.o
+                0x0000010c       0xe4 App/Card/Card.o
                 0x0000010c                CARD_SetUserData
  .text.EEPROM_Init
-                0x00000220       0x1a Firmware/EEPROM/EEPROM.o
-                0x00000220                EEPROM_Init
+                0x000001f0       0x1a Firmware/EEPROM/EEPROM.o
+                0x000001f0                EEPROM_Init
  .text.EEPROM_Read
-                0x0000023a       0x86 Firmware/EEPROM/EEPROM.o
-                0x0000023a                EEPROM_Read
+                0x0000020a       0x86 Firmware/EEPROM/EEPROM.o
+                0x0000020a                EEPROM_Read
  .text.EEPROM_Write
-                0x000002c0       0x5c Firmware/EEPROM/EEPROM.o
-                0x000002c0                EEPROM_Write
+                0x00000290       0x5c Firmware/EEPROM/EEPROM.o
+                0x00000290                EEPROM_Write
  .text.TERMINAL_ReadCallBack
-                0x0000031c       0x4a Firmware/Terminal/Terminal.o
-                0x0000031c                TERMINAL_ReadCallBack
+                0x000002ec       0x4a Firmware/Terminal/Terminal.o
+                0x000002ec                TERMINAL_ReadCallBack
  .text.TERMINAL_Init
-                0x00000366       0x38 Firmware/Terminal/Terminal.o
-                0x00000366                TERMINAL_Init
+                0x00000336       0x38 Firmware/Terminal/Terminal.o
+                0x00000336                TERMINAL_Init
  .text.Terminal_Read
-                0x0000039e       0x3c Firmware/Terminal/Terminal.o
-                0x0000039e                Terminal_Read
+                0x0000036e       0x3c Firmware/Terminal/Terminal.o
+                0x0000036e                Terminal_Read
  .text.Terminal_Write
-                0x000003da       0x22 Firmware/Terminal/Terminal.o
-                0x000003da                Terminal_Write
+                0x000003aa       0x22 Firmware/Terminal/Terminal.o
+                0x000003aa                Terminal_Write
+ .text.dummy_delay
+                0x000003cc       0x54 Infrastructure/utils.o
+                0x000003cc                dummy_delay
  .text.StringCompare
-                0x000003fc       0x42 Infrastructure/utils.o
-                0x000003fc                StringCompare
- .text.main     0x0000043e       0x82 main.o
-                0x0000043e                main
- .text.DIO_SetPinDirection
-                0x000004c0       0x70 Mcal/DIO/DIO.o
-                0x000004c0                DIO_SetPinDirection
- .text.DIO_WritePin
-                0x00000530       0x70 Mcal/DIO/DIO.o
-                0x00000530                DIO_WritePin
+                0x00000420       0x42 Infrastructure/utils.o
+                0x00000420                StringCompare
+ .text.main     0x00000462       0x36 main.o
+                0x00000462                main
  .text.GLOBALINTTERUPTS_Enable
-                0x000005a0        0x8 Mcal/Global_Interrupts/Global_Interrupts.o
-                0x000005a0                GLOBALINTTERUPTS_Enable
+                0x00000498        0x8 Mcal/Global_Interrupts/Global_Interrupts.o
+                0x00000498                GLOBALINTTERUPTS_Enable
  .text.GLOBALINTTERUPTS_Disable
-                0x000005a8        0x8 Mcal/Global_Interrupts/Global_Interrupts.o
-                0x000005a8                GLOBALINTTERUPTS_Disable
+                0x000004a0        0x8 Mcal/Global_Interrupts/Global_Interrupts.o
+                0x000004a0                GLOBALINTTERUPTS_Disable
  .text.I2C_Init
-                0x000005b0       0x18 Mcal/I2C/I2C.o
-                0x000005b0                I2C_Init
+                0x000004a8       0x18 Mcal/I2C/I2C.o
+                0x000004a8                I2C_Init
  .text.I2C_Start
-                0x000005c8       0x16 Mcal/I2C/I2C.o
-                0x000005c8                I2C_Start
+                0x000004c0       0x16 Mcal/I2C/I2C.o
+                0x000004c0                I2C_Start
  .text.I2C_RepeatedStart
-                0x000005de       0x16 Mcal/I2C/I2C.o
-                0x000005de                I2C_RepeatedStart
+                0x000004d6       0x16 Mcal/I2C/I2C.o
+                0x000004d6                I2C_RepeatedStart
  .text.I2C_Write
-                0x000005f4       0x1a Mcal/I2C/I2C.o
-                0x000005f4                I2C_Write
+                0x000004ec       0x1a Mcal/I2C/I2C.o
+                0x000004ec                I2C_Write
  .text.I2C_ReadNoAck
-                0x0000060e       0x28 Mcal/I2C/I2C.o
-                0x0000060e                I2C_ReadNoAck
+                0x00000506       0x28 Mcal/I2C/I2C.o
+                0x00000506                I2C_ReadNoAck
  .text.I2C_Stop
-                0x00000636       0x18 Mcal/I2C/I2C.o
-                0x00000636                I2C_Stop
+                0x0000052e       0x18 Mcal/I2C/I2C.o
+                0x0000052e                I2C_Stop
  .text.UART_Init
-                0x0000064e       0x18 Mcal/UART/UART.o
-                0x0000064e                UART_Init
- .text.UART_TransmitChar
-                0x00000666       0x12 Mcal/UART/UART.o
-                0x00000666                UART_TransmitChar
+                0x00000546       0x18 Mcal/UART/UART.o
+                0x00000546                UART_Init
  .text.UART_TransmitString
-                0x00000678       0x2e Mcal/UART/UART.o
-                0x00000678                UART_TransmitString
+                0x0000055e       0x2e Mcal/UART/UART.o
+                0x0000055e                UART_TransmitString
+ .text.UART_ReceiveString
+                0x0000058c       0x50 Mcal/UART/UART.o
+                0x0000058c                UART_ReceiveString
  .text.UART_EnableInterrupt
-                0x000006a6       0x1e Mcal/UART/UART.o
-                0x000006a6                UART_EnableInterrupt
+                0x000005dc       0x1e Mcal/UART/UART.o
+                0x000005dc                UART_EnableInterrupt
  .text.UART_SetCallback
-                0x000006c4       0x56 Mcal/UART/UART.o
-                0x000006c4                UART_SetCallback
+                0x000005fa       0x56 Mcal/UART/UART.o
+                0x000005fa                UART_SetCallback
  .text.__vector_13
-                0x0000071a       0x4e Mcal/UART/UART.o
-                0x0000071a                __vector_13
-                0x00000768                . = ALIGN (0x2)
+                0x00000650       0x4e Mcal/UART/UART.o
+                0x00000650                __vector_13
+                0x0000069e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000768        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00000768                _exit
-                0x00000768                exit
+ .fini9         0x0000069e        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x0000069e                _exit
+                0x0000069e                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -475,11 +484,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000768        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000069e        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000076c                _etext = .
+                0x000006a2                _etext = .
 
-.data           0x00800060       0x4e load address 0x0000076c
+.data           0x00800060       0x46 load address 0x000006a2
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -489,37 +498,37 @@ END GROUP
  .rodata.str1.1
                 0x00800060       0x40 App/Card/Card.o
  .rodata.str1.1
-                0x008000a0        0xe main.o
+                0x008000a0        0x6 main.o
  *(.gnu.linkonce.r*)
-                0x008000ae                . = ALIGN (0x2)
-                0x008000ae                _edata = .
-                0x008000ae                PROVIDE (__data_end, .)
+                0x008000a6                . = ALIGN (0x2)
+                0x008000a6                _edata = .
+                0x008000a6                PROVIDE (__data_end, .)
 
-.bss            0x008000ae      0x21b
-                0x008000ae                PROVIDE (__bss_start, .)
+.bss            0x008000a6      0x21b
+                0x008000a6                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.gu8_IsFinished
-                0x008000ae        0x1 Firmware/Terminal/Terminal.o
+                0x008000a6        0x1 Firmware/Terminal/Terminal.o
  .bss.gu8_Counter
-                0x008000af        0x1 Firmware/Terminal/Terminal.o
+                0x008000a7        0x1 Firmware/Terminal/Terminal.o
  .bss.gu8_RxBuffer
-                0x008000b0       0xff Firmware/Terminal/Terminal.o
+                0x008000a8       0xff Firmware/Terminal/Terminal.o
  .bss.g_RxCallback
-                0x008001af        0x2 Mcal/UART/UART.o
+                0x008001a7        0x2 Mcal/UART/UART.o
  *(COMMON)
- COMMON         0x008001b1      0x118 main.o
-                0x008001b1                TerminalData
-                0x008002b0                CardData
-                0x008002c9                PROVIDE (__bss_end, .)
-                0x0000076c                __data_load_start = LOADADDR (.data)
-                0x000007ba                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x008001a9      0x118 main.o
+                0x008001a9                TerminalData
+                0x008002a8                CardData
+                0x008002c1                PROVIDE (__bss_end, .)
+                0x000006a2                __data_load_start = LOADADDR (.data)
+                0x000006e8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008002c9        0x0
+.noinit         0x008002c1        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008002c9                _end = .
+                0x008002c1                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -567,7 +576,6 @@ END GROUP
  .comment       0x00000030       0x31 Firmware/Terminal/Terminal.o
  .comment       0x00000030       0x31 Infrastructure/utils.o
  .comment       0x00000030       0x31 main.o
- .comment       0x00000030       0x31 Mcal/DIO/DIO.o
  .comment       0x00000030       0x31 Mcal/Global_Interrupts/Global_Interrupts.o
  .comment       0x00000030       0x31 Mcal/I2C/I2C.o
  .comment       0x00000030       0x31 Mcal/UART/UART.o
@@ -592,7 +600,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x238
+.debug_aranges  0x00000000      0x1f8
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x30 App/Card/Card.o
@@ -605,99 +613,90 @@ END GROUP
  .debug_aranges
                 0x000000c0       0x20 main.o
  .debug_aranges
-                0x000000e0       0x40 Mcal/DIO/DIO.o
+                0x000000e0       0x28 Mcal/Global_Interrupts/Global_Interrupts.o
  .debug_aranges
-                0x00000120       0x28 Mcal/Global_Interrupts/Global_Interrupts.o
+                0x00000108       0x78 Mcal/I2C/I2C.o
  .debug_aranges
-                0x00000148       0x78 Mcal/I2C/I2C.o
- .debug_aranges
-                0x000001c0       0x78 Mcal/UART/UART.o
+                0x00000180       0x78 Mcal/UART/UART.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1f16
+.debug_info     0x00000000     0x1b52
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_info    0x000004e6      0x4cd App/Card/Card.o
- .debug_info    0x000009b3      0x2e1 Firmware/EEPROM/EEPROM.o
- .debug_info    0x00000c94      0x265 Firmware/Terminal/Terminal.o
- .debug_info    0x00000ef9      0x143 Infrastructure/utils.o
- .debug_info    0x0000103c      0x33f main.o
- .debug_info    0x0000137b      0x224 Mcal/DIO/DIO.o
- .debug_info    0x0000159f       0x99 Mcal/Global_Interrupts/Global_Interrupts.o
- .debug_info    0x00001638      0x457 Mcal/I2C/I2C.o
- .debug_info    0x00001a8f      0x487 Mcal/UART/UART.o
+ .debug_info    0x000004e6      0x45b App/Card/Card.o
+ .debug_info    0x00000941      0x2e1 Firmware/EEPROM/EEPROM.o
+ .debug_info    0x00000c22      0x265 Firmware/Terminal/Terminal.o
+ .debug_info    0x00000e87      0x143 Infrastructure/utils.o
+ .debug_info    0x00000fca      0x211 main.o
+ .debug_info    0x000011db       0x99 Mcal/Global_Interrupts/Global_Interrupts.o
+ .debug_info    0x00001274      0x457 Mcal/I2C/I2C.o
+ .debug_info    0x000016cb      0x487 Mcal/UART/UART.o
 
-.debug_abbrev   0x00000000      0xd07
+.debug_abbrev   0x00000000      0xc32
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_abbrev  0x000004a3      0x12d App/Card/Card.o
  .debug_abbrev  0x000005d0       0xd9 Firmware/EEPROM/EEPROM.o
  .debug_abbrev  0x000006a9       0xeb Firmware/Terminal/Terminal.o
  .debug_abbrev  0x00000794       0xc4 Infrastructure/utils.o
- .debug_abbrev  0x00000858      0x108 main.o
- .debug_abbrev  0x00000960       0xca Mcal/DIO/DIO.o
- .debug_abbrev  0x00000a2a       0x51 Mcal/Global_Interrupts/Global_Interrupts.o
- .debug_abbrev  0x00000a7b      0x12c Mcal/I2C/I2C.o
- .debug_abbrev  0x00000ba7      0x160 Mcal/UART/UART.o
+ .debug_abbrev  0x00000858       0xfd main.o
+ .debug_abbrev  0x00000955       0x51 Mcal/Global_Interrupts/Global_Interrupts.o
+ .debug_abbrev  0x000009a6      0x12c Mcal/I2C/I2C.o
+ .debug_abbrev  0x00000ad2      0x160 Mcal/UART/UART.o
 
-.debug_line     0x00000000     0x14ed
+.debug_line     0x00000000     0x11e0
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_line    0x00000116      0x2c2 App/Card/Card.o
- .debug_line    0x000003d8      0x243 Firmware/EEPROM/EEPROM.o
- .debug_line    0x0000061b      0x220 Firmware/Terminal/Terminal.o
- .debug_line    0x0000083b      0x114 Infrastructure/utils.o
- .debug_line    0x0000094f      0x15c main.o
- .debug_line    0x00000aab      0x2a3 Mcal/DIO/DIO.o
- .debug_line    0x00000d4e       0xb5 Mcal/Global_Interrupts/Global_Interrupts.o
- .debug_line    0x00000e03      0x32c Mcal/I2C/I2C.o
- .debug_line    0x0000112f      0x3be Mcal/UART/UART.o
+ .debug_line    0x00000116      0x2c8 App/Card/Card.o
+ .debug_line    0x000003de      0x243 Firmware/EEPROM/EEPROM.o
+ .debug_line    0x00000621      0x220 Firmware/Terminal/Terminal.o
+ .debug_line    0x00000841      0x114 Infrastructure/utils.o
+ .debug_line    0x00000955       0xec main.o
+ .debug_line    0x00000a41       0xb5 Mcal/Global_Interrupts/Global_Interrupts.o
+ .debug_line    0x00000af6      0x32c Mcal/I2C/I2C.o
+ .debug_line    0x00000e22      0x3be Mcal/UART/UART.o
 
-.debug_frame    0x00000000      0x430
+.debug_frame    0x00000000      0x3cc
  *(.debug_frame)
  .debug_frame   0x00000000       0x6c App/Card/Card.o
  .debug_frame   0x0000006c       0x60 Firmware/EEPROM/EEPROM.o
  .debug_frame   0x000000cc       0x54 Firmware/Terminal/Terminal.o
  .debug_frame   0x00000120       0x44 Infrastructure/utils.o
  .debug_frame   0x00000164       0x24 main.o
- .debug_frame   0x00000188       0x64 Mcal/DIO/DIO.o
- .debug_frame   0x000001ec       0x34 Mcal/Global_Interrupts/Global_Interrupts.o
- .debug_frame   0x00000220       0xe4 Mcal/I2C/I2C.o
- .debug_frame   0x00000304      0x12c Mcal/UART/UART.o
+ .debug_frame   0x00000188       0x34 Mcal/Global_Interrupts/Global_Interrupts.o
+ .debug_frame   0x000001bc       0xe4 Mcal/I2C/I2C.o
+ .debug_frame   0x000002a0      0x12c Mcal/UART/UART.o
 
-.debug_str      0x00000000      0x94e
+.debug_str      0x00000000      0x8a8
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_str     0x00000196      0x2b0 App/Card/Card.o
-                                0x2c9 (size before relaxing)
- .debug_str     0x00000446       0xad Firmware/EEPROM/EEPROM.o
+ .debug_str     0x00000196      0x2a0 App/Card/Card.o
+                                0x2b9 (size before relaxing)
+ .debug_str     0x00000436       0xb2 Firmware/EEPROM/EEPROM.o
                                 0x236 (size before relaxing)
- .debug_str     0x000004f3       0xee Firmware/Terminal/Terminal.o
+ .debug_str     0x000004e8       0xfc Firmware/Terminal/Terminal.o
                                 0x28e (size before relaxing)
- .debug_str     0x000005e1       0x52 Infrastructure/utils.o
+ .debug_str     0x000005e4       0x46 Infrastructure/utils.o
                                 0x1bc (size before relaxing)
- .debug_str     0x00000633       0x3d main.o
-                                0x258 (size before relaxing)
- .debug_str     0x00000670       0x8a Mcal/DIO/DIO.o
-                                0x20f (size before relaxing)
- .debug_str     0x000006fa       0x2e Mcal/Global_Interrupts/Global_Interrupts.o
+ .debug_str     0x0000062a       0x2b main.o
+                                0x223 (size before relaxing)
+ .debug_str     0x00000655       0x2e Mcal/Global_Interrupts/Global_Interrupts.o
                                 0x1be (size before relaxing)
- .debug_str     0x00000728       0xf8 Mcal/I2C/I2C.o
+ .debug_str     0x00000683       0xf8 Mcal/I2C/I2C.o
                                 0x2d4 (size before relaxing)
- .debug_str     0x00000820      0x12e Mcal/UART/UART.o
+ .debug_str     0x0000077b      0x12d Mcal/UART/UART.o
                                 0x32c (size before relaxing)
 
-.debug_loc      0x00000000     0x16c7
+.debug_loc      0x00000000     0x12d9
  *(.debug_loc)
- .debug_loc     0x00000000      0x151 App/Card/Card.o
- .debug_loc     0x00000151      0x3e1 Firmware/EEPROM/EEPROM.o
- .debug_loc     0x00000532      0x1df Firmware/Terminal/Terminal.o
- .debug_loc     0x00000711      0x111 Infrastructure/utils.o
- .debug_loc     0x00000822      0x3fa Mcal/DIO/DIO.o
- .debug_loc     0x00000c1c      0x49b Mcal/I2C/I2C.o
- .debug_loc     0x000010b7      0x610 Mcal/UART/UART.o
+ .debug_loc     0x00000000      0x168 App/Card/Card.o
+ .debug_loc     0x00000168      0x3e1 Firmware/EEPROM/EEPROM.o
+ .debug_loc     0x00000549      0x1df Firmware/Terminal/Terminal.o
+ .debug_loc     0x00000728      0x111 Infrastructure/utils.o
+ .debug_loc     0x00000839      0x49b Mcal/I2C/I2C.o
+ .debug_loc     0x00000cd4      0x605 Mcal/UART/UART.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -717,17 +716,16 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x1a8
+.debug_ranges   0x00000000      0x178
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x20 App/Card/Card.o
  .debug_ranges  0x00000020       0x20 Firmware/EEPROM/EEPROM.o
  .debug_ranges  0x00000040       0x28 Firmware/Terminal/Terminal.o
  .debug_ranges  0x00000068       0x18 Infrastructure/utils.o
  .debug_ranges  0x00000080       0x10 main.o
- .debug_ranges  0x00000090       0x30 Mcal/DIO/DIO.o
- .debug_ranges  0x000000c0       0x18 Mcal/Global_Interrupts/Global_Interrupts.o
- .debug_ranges  0x000000d8       0x68 Mcal/I2C/I2C.o
- .debug_ranges  0x00000140       0x68 Mcal/UART/UART.o
+ .debug_ranges  0x00000090       0x18 Mcal/Global_Interrupts/Global_Interrupts.o
+ .debug_ranges  0x000000a8       0x68 Mcal/I2C/I2C.o
+ .debug_ranges  0x00000110       0x68 Mcal/UART/UART.o
 
 .debug_macro
  *(.debug_macro)

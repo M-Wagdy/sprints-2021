@@ -237,7 +237,7 @@ UART_ERROR_state_t UART_ReceiveString(uint8_t UartNumber, uint8_t * RxString)
          a new line character */
       if(RxString[counter] == NEW_LINE)
       {
-         RxString[counter + STRING_NEXT_CHAR] = END_OF_STRING;
+         RxString[counter] = END_OF_STRING;
          break;
       }
       counter++;

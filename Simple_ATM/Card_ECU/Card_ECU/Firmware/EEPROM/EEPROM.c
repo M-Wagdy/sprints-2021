@@ -101,11 +101,6 @@ EEPROM_ERROR_state_t EEPROM_Read(uint8_t EEPROM_CH, uint8_t address, uint8_t * d
    }
 
    /* repeated start */
-   e_state = I2C_Stop(u8_I2C_CH);
-   if(E_I2C_SUCCESS != e_state)
-   {
-      return E_EEPROM_I2C_ERROR;
-   }
    e_state = I2C_RepeatedStart(u8_I2C_CH);
    if(E_I2C_SUCCESS != e_state)
    {
