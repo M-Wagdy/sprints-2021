@@ -34,71 +34,83 @@ int main(void)
    EEPROM_Init(EEPROM_CH_0);
    UART_Init(UART_CH_0);
    
-   while(1)
+   uint8_t string[MAX_STRING_SIZE];
+   uint8_t data;
+   uint8_t address;
+   
+   EEPROM_WriteBytes(EEPROM_CH_0, 0x00, gu8_WriteMessage, 5);
+   
+   UART_TransmitString(UART_CH_0, string);
+   
+   /*while(1)
    {
       uint8_t string[MAX_STRING_SIZE];
       uint8_t data;
       uint8_t address;
       
-      /* get command message */
+      EEPROM_ReadBytes(EEPROM_CH_0, 0x00, string, 5)
+      
+      UART_TransmitString(UART_CH_0, string);
+      
+      / * get command message * /
       UART_TransmitString(UART_CH_0, gu8_CommandMessage);
       
-      /* get command */
+      / * get command * /
       UART_ReceiveString(UART_CH_0, string);
       
       
       
       if (StringCompare(string,gu8_WriteMessage) == TRUE)
       {
-         /* get address message */
+         / * get address message * /
          UART_TransmitString(UART_CH_0, gu8_AddressMessage);
          
-         /* get address */
+         / * get address * /
          UART_ReceiveChar(UART_CH_0, &address);
          
-         /* respond "OK" */
+         / * respond "OK" * /
          UART_TransmitString(UART_CH_0, gu8_UARTMessageReply);
          
-         /* get data message */
+         / * get data message * /
          UART_TransmitString(UART_CH_0, gu8_DataMessage);
          
-         /* get data to write */
+         / * get data to write * /
          UART_ReceiveChar(UART_CH_0, &data);
          
-         /* write data in the given address in the EEPROM */
+         / * write data in the given address in the EEPROM * /
          EEPROM_Write(EEPROM_CH_0, address, data);
          
-         /* respond "OK" */
+         / * respond "OK" * /
          UART_TransmitString(UART_CH_0, gu8_UARTMessageReply);
       }
       else if(StringCompare(string,gu8_ReadMessage) == TRUE)
       {
-         /* get address message */
+         / * get address message * /
          UART_TransmitString(UART_CH_0, gu8_AddressMessage);
          
-         /* get address */
+         / * get address * /
          UART_ReceiveChar(UART_CH_0, &address);
          
-         /* respond "OK" */
+         / * respond "OK" * /
          UART_TransmitString(UART_CH_0, gu8_UARTMessageReply);
          
-         /* get data from the given address */
+         / * get data from the given address * /
          EEPROM_Read(EEPROM_CH_0, address, &data);
          
-         /* transmit a reply message before transmitting the data in the address */
+         / * transmit a reply message before transmitting the data in the address * /
          UART_TransmitString(UART_CH_0, gu8_ReadMessageReply);
          
-         /* transmit the data in the address */
+         / * transmit the data in the address * /
          UART_TransmitChar(UART_CH_0, data);
          
-         /* new line */
+         / * new line * /
          UART_TransmitChar(UART_CH_0, NEW_LINE);
       }
       else
       {
-         /* transmit "Invalid Command" message */
+         / * transmit "Invalid Command" message * /
          UART_TransmitString(UART_CH_0, gu8_InvalidMessageReply);
       }
-   }
+   }*/
 }
 
