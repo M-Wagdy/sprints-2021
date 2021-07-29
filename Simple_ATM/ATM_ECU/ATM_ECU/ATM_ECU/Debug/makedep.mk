@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+App\Admin\admin.c
+
 App\ATM\ATM.c
 
 App\User\User.c
@@ -20,9 +22,13 @@ Firmware\LCD\LCD_Config.c
 
 Firmware\Motor\motor.c
 
+Firmware\Temp\temp.c
+
 Infrastructure\utils.c
 
 main.c
+
+Mcal\ADC\adc.c
 
 Mcal\DIO\DIO.c
 

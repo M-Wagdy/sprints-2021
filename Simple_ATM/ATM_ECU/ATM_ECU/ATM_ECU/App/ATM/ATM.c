@@ -10,7 +10,7 @@ uint8_t ATM_Init()
    /*initializing the SPI*/
    SPI_Init(SPIChannel_1); //Adel
    /*initializing the push button*/
-   PSHBTTN_Init(PORTB, PIN2, PULLED_UP); //Adel
+   PSHBTTN_Init(PORT_B, PIN2, PULLED_DWN); //Adel
    /*initializing the keypad*/
    KEYPAD_Init(); //Rehab
    /*initializing the ATM LCD*/
@@ -21,7 +21,7 @@ uint8_t ATM_Init()
    EEPROM_Init(EEPROM_CH_0); //Wagdy
    /*initializing temperature sensor*/
    /*this line could require further modification*/
-   TEMPSENSOR_Init(); //Essam
+   TEMP_Init(TEMP_CH_0); //Essam
    ErrRetVal=OperationSuccess;
    return ErrRetVal;
 }

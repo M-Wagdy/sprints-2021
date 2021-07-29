@@ -56,6 +56,7 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../App/Admin/admin.c \
 ../App/ATM/ATM.c \
 ../App/User/User.c \
 ../Firmware/Button/PushButton.c \
@@ -65,8 +66,10 @@ C_SRCS +=  \
 ../Firmware/LCD/LCD.c \
 ../Firmware/LCD/LCD_Config.c \
 ../Firmware/Motor/motor.c \
+../Firmware/Temp/temp.c \
 ../Infrastructure/utils.c \
 ../main.c \
+../Mcal/ADC/adc.c \
 ../Mcal/DIO/DIO.c \
 ../Mcal/I2C/I2C.c \
 ../Mcal/SPI/SPI.c \
@@ -81,6 +84,7 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+App/Admin/admin.o \
 App/ATM/ATM.o \
 App/User/User.o \
 Firmware/Button/PushButton.o \
@@ -90,8 +94,10 @@ Firmware/Keypad/Keypad_Config.o \
 Firmware/LCD/LCD.o \
 Firmware/LCD/LCD_Config.o \
 Firmware/Motor/motor.o \
+Firmware/Temp/temp.o \
 Infrastructure/utils.o \
 main.o \
+Mcal/ADC/adc.o \
 Mcal/DIO/DIO.o \
 Mcal/I2C/I2C.o \
 Mcal/SPI/SPI.o \
@@ -99,6 +105,7 @@ Mcal/Timer/TIMER_DRIVER.o \
 Mcal/UART/uart.o
 
 OBJS_AS_ARGS +=  \
+App/Admin/admin.o \
 App/ATM/ATM.o \
 App/User/User.o \
 Firmware/Button/PushButton.o \
@@ -108,8 +115,10 @@ Firmware/Keypad/Keypad_Config.o \
 Firmware/LCD/LCD.o \
 Firmware/LCD/LCD_Config.o \
 Firmware/Motor/motor.o \
+Firmware/Temp/temp.o \
 Infrastructure/utils.o \
 main.o \
+Mcal/ADC/adc.o \
 Mcal/DIO/DIO.o \
 Mcal/I2C/I2C.o \
 Mcal/SPI/SPI.o \
@@ -117,6 +126,7 @@ Mcal/Timer/TIMER_DRIVER.o \
 Mcal/UART/uart.o
 
 C_DEPS +=  \
+App/Admin/admin.d \
 App/ATM/ATM.d \
 App/User/User.d \
 Firmware/Button/PushButton.d \
@@ -126,8 +136,10 @@ Firmware/Keypad/Keypad_Config.d \
 Firmware/LCD/LCD.d \
 Firmware/LCD/LCD_Config.d \
 Firmware/Motor/motor.d \
+Firmware/Temp/temp.d \
 Infrastructure/utils.d \
 main.d \
+Mcal/ADC/adc.d \
 Mcal/DIO/DIO.d \
 Mcal/I2C/I2C.d \
 Mcal/SPI/SPI.d \
@@ -135,6 +147,7 @@ Mcal/Timer/TIMER_DRIVER.d \
 Mcal/UART/uart.d
 
 C_DEPS_AS_ARGS +=  \
+App/Admin/admin.d \
 App/ATM/ATM.d \
 App/User/User.d \
 Firmware/Button/PushButton.d \
@@ -144,8 +157,10 @@ Firmware/Keypad/Keypad_Config.d \
 Firmware/LCD/LCD.d \
 Firmware/LCD/LCD_Config.d \
 Firmware/Motor/motor.d \
+Firmware/Temp/temp.d \
 Infrastructure/utils.d \
 main.d \
+Mcal/ADC/adc.d \
 Mcal/DIO/DIO.d \
 Mcal/I2C/I2C.d \
 Mcal/SPI/SPI.d \
@@ -166,6 +181,13 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+App/Admin/admin.o: ../App/Admin/admin.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 App/ATM/ATM.o: ../App/ATM/ATM.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
@@ -229,6 +251,13 @@ Firmware/Motor/motor.o: ../Firmware/Motor/motor.c
 	@echo Finished building: $<
 	
 
+Firmware/Temp/temp.o: ../Firmware/Temp/temp.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 Infrastructure/utils.o: ../Infrastructure/utils.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
@@ -237,6 +266,13 @@ Infrastructure/utils.o: ../Infrastructure/utils.c
 	
 
 ./main.o: .././main.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Mcal/ADC/adc.o: ../Mcal/ADC/adc.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

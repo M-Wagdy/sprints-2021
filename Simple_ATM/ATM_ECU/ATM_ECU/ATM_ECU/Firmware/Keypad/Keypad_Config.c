@@ -8,13 +8,13 @@
 #include "Keypad.h"
 
 Str_KeypadConfig_t gastr_KeypadConfig[KEYPAD_TOTAL_PINS_NUMBER] = {
-																		{PORT_B,PIN0,PIN_INPUT},
-																		{PORT_B,PIN1,PIN_INPUT},
-																		{PORT_B,PIN2,PIN_INPUT},
-																		{PORT_B,PIN3,PIN_INPUT},
-																		{PORT_B,PIN4,PIN_OUTPUT},
-																		{PORT_B,PIN5,PIN_OUTPUT},
-																		{PORT_B,PIN6,PIN_OUTPUT}
+																		{PORT_A,PIN4,PIN_INPUT},
+																		{PORT_A,PIN5,PIN_INPUT},
+																		{PORT_A,PIN6,PIN_INPUT},
+																		{PORT_A,PIN7,PIN_INPUT},
+																		{PORT_A,PIN1,PIN_OUTPUT},
+																		{PORT_A,PIN2,PIN_OUTPUT},
+																		{PORT_A,PIN3,PIN_OUTPUT}
 																  };
 																  
 																  

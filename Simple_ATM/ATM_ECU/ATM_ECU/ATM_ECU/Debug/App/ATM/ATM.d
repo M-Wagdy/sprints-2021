@@ -2,6 +2,7 @@ App/ATM/ATM.d App/ATM/ATM.o: ../App/ATM/ATM.c ../App/ATM/ATM.h \
  ../App/ATM/../User/User.h \
  ../App/ATM/../User/../../Infrastructure/utils.h \
  ../App/ATM/../User/../../Infrastructure/STD_types.h \
+ ../App/ATM/../User/../../Infrastructure/BIT_MATH.h \
  ../App/ATM/../User/../../Mcal/DIO/DIO.h \
  ../App/ATM/../User/../../Mcal/DIO/../../Infrastructure/STD_types.h \
  ../App/ATM/../User/../../Mcal/DIO/../../Infrastructure/BIT_MATH.h \
@@ -18,6 +19,10 @@ App/ATM/ATM.d App/ATM/ATM.o: ../App/ATM/ATM.c ../App/ATM/ATM.h \
  ../App/ATM/../User/../../Mcal/UART/uartConfig.h \
  ../App/ATM/../User/../../Mcal/Timer/TIMER_DRIVER.h \
  ../App/ATM/../User/../../Mcal/Timer/TIMER_DRIVER_typedefs.h \
+ ../App/ATM/../User/../../Mcal/ADC/adc.h \
+ ../App/ATM/../User/../../Mcal/ADC/../../Infrastructure/Macros.h \
+ ../App/ATM/../User/../../Mcal/ADC/../../Infrastructure/STD_types.h \
+ ../App/ATM/../User/../../Mcal/ADC/adcConfig.h \
  ../App/ATM/../User/../../Firmware/EEPROM/EEPROM.h \
  ../App/ATM/../User/../../Firmware/EEPROM/../../Mcal/I2C/I2C.h \
  ../App/ATM/../User/../../Firmware/EEPROM/../../Mcal/I2C/../../Infrastructure/STD_types.h \
@@ -45,7 +50,17 @@ App/ATM/ATM.d App/ATM/ATM.o: ../App/ATM/ATM.c ../App/ATM/ATM.h \
  ../App/ATM/../User/../../Firmware/LCD/../../Infrastructure/BIT_MATH.h \
  ../App/ATM/../User/../../Firmware/LCD/../../Mcal/DIO/DIO.h \
  ../App/ATM/../User/../../Firmware/LCD/LCD_Config.h \
- ../App/ATM/../User/../../Firmware/LCD/LCD_RetVal.h
+ ../App/ATM/../User/../../Firmware/LCD/LCD_RetVal.h \
+ ../App/ATM/../User/../../Firmware/Temp/temp.h \
+ ../App/ATM/../User/../../Firmware/Temp/../../Infrastructure/STD_types.h \
+ ../App/ATM/../User/../../Firmware/Temp/../../Infrastructure/Macros.h \
+ ../App/ATM/../User/../../Firmware/Temp/../../Mcal/ADC/adc.h \
+ ../App/ATM/../User/../../Firmware/Temp/../../Mcal/DIO/DIO.h \
+ ../App/ATM/../Admin/admin.h ../App/ATM/../Admin/admin_Config.h \
+ ../App/ATM/../Admin/../../MCAL/I2C/I2C.h \
+ ../App/ATM/../Admin/../../MCAL/UART/uart.h \
+ ../App/ATM/../Admin/../../MCAL/DIO/DIO.h \
+ ../App/ATM/../Admin/../../Firmware/EEPROM/EEPROM.h
 
 ../App/ATM/ATM.h:
 
@@ -54,6 +69,8 @@ App/ATM/ATM.d App/ATM/ATM.o: ../App/ATM/ATM.c ../App/ATM/ATM.h \
 ../App/ATM/../User/../../Infrastructure/utils.h:
 
 ../App/ATM/../User/../../Infrastructure/STD_types.h:
+
+../App/ATM/../User/../../Infrastructure/BIT_MATH.h:
 
 ../App/ATM/../User/../../Mcal/DIO/DIO.h:
 
@@ -86,6 +103,14 @@ App/ATM/ATM.d App/ATM/ATM.o: ../App/ATM/ATM.c ../App/ATM/ATM.h \
 ../App/ATM/../User/../../Mcal/Timer/TIMER_DRIVER.h:
 
 ../App/ATM/../User/../../Mcal/Timer/TIMER_DRIVER_typedefs.h:
+
+../App/ATM/../User/../../Mcal/ADC/adc.h:
+
+../App/ATM/../User/../../Mcal/ADC/../../Infrastructure/Macros.h:
+
+../App/ATM/../User/../../Mcal/ADC/../../Infrastructure/STD_types.h:
+
+../App/ATM/../User/../../Mcal/ADC/adcConfig.h:
 
 ../App/ATM/../User/../../Firmware/EEPROM/EEPROM.h:
 
@@ -142,3 +167,25 @@ App/ATM/ATM.d App/ATM/ATM.o: ../App/ATM/ATM.c ../App/ATM/ATM.h \
 ../App/ATM/../User/../../Firmware/LCD/LCD_Config.h:
 
 ../App/ATM/../User/../../Firmware/LCD/LCD_RetVal.h:
+
+../App/ATM/../User/../../Firmware/Temp/temp.h:
+
+../App/ATM/../User/../../Firmware/Temp/../../Infrastructure/STD_types.h:
+
+../App/ATM/../User/../../Firmware/Temp/../../Infrastructure/Macros.h:
+
+../App/ATM/../User/../../Firmware/Temp/../../Mcal/ADC/adc.h:
+
+../App/ATM/../User/../../Firmware/Temp/../../Mcal/DIO/DIO.h:
+
+../App/ATM/../Admin/admin.h:
+
+../App/ATM/../Admin/admin_Config.h:
+
+../App/ATM/../Admin/../../MCAL/I2C/I2C.h:
+
+../App/ATM/../Admin/../../MCAL/UART/uart.h:
+
+../App/ATM/../Admin/../../MCAL/DIO/DIO.h:
+
+../App/ATM/../Admin/../../Firmware/EEPROM/EEPROM.h:

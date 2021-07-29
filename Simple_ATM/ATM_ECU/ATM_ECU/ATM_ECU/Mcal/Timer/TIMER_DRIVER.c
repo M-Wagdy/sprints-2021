@@ -10,6 +10,8 @@
 #include "TIMER_DRIVER_PRIV.h"
 #include "TIMER_DRIVER.h"
 
+
+
 void __vector_11(void)__attribute__((signal,used));
 void __vector_10(void)__attribute__((signal,used));
 void __vector_4(void)__attribute__((signal,used));
@@ -103,8 +105,8 @@ TIM_ERROR_t TIM_Delay_US(TIM_SELECT_t Timer, Delay_value_t delayVal) {
 TIM_ERROR_t TIM_Delay_MS(TIM_SELECT_t Timer, Delay_value_t delayVal) {
 	TIM_ERROR_t retVal = EXIT_SUCCESFUL;
 	uint32_t i = 0;
-	uint32_t quotant = delayVal*1000 / 256;
-	uint8_t remainder = delayVal*1000 % 256;
+	volatile uint32_t quotant = (delayVal*1000) / 256;
+	volatile uint8_t remainder = (delayVal*1000) % 256;
 	switch (Timer) {
 	case TIMER0:
 		if (remainder != 0) {
@@ -610,7 +612,7 @@ TIM_ERROR_t TIM_Init_OC_PIN(TIM_SELECT_t Timer,
 	switch (Timer) {
 	case TIMER0:
 		if (compareMatch_output_mode != CO_DISABLED_MODE) {
-			retVal = DIO_SetPinDirection(PORTB, PIN3, PIN_OUTPUT);
+			retVal = DIO_SetPinDirection(PORT_B, PIN3, PIN_OUTPUT);
 		} else {
 			retVal = EXIT_FAILURE;
 		}
@@ -619,7 +621,7 @@ TIM_ERROR_t TIM_Init_OC_PIN(TIM_SELECT_t Timer,
 		break;
 	case TIMER2:
 		if (compareMatch_output_mode != CO_DISABLED_MODE) {
-			retVal = DIO_SetPinDirection(PORTD, PIN7, PIN_OUTPUT);
+			retVal = DIO_SetPinDirection(PORT_D, PIN7, PIN_OUTPUT);
 		} else {
 			retVal = EXIT_FAILURE;
 		}

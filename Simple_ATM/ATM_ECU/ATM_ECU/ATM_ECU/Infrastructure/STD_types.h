@@ -23,6 +23,9 @@ typedef signed long long sint64_t;           /*-9,223,372,036,854,775,808 .. 9,2
 typedef uint8_t * ptr_uint8_t;
 typedef sint8_t * ptr_int8_t;
 
+typedef float                            f32_t;
+typedef double                           f64_t;
+
 typedef void(*Ptr_VoidFuncVoid_t)(void);
 
 /*- MACROS -------------------------------------------------*/

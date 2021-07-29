@@ -1,6 +1,7 @@
 App/User/User.d App/User/User.o: ../App/User/User.c ../App/User/User.h \
  ../App/User/../../Infrastructure/utils.h \
  ../App/User/../../Infrastructure/STD_types.h \
+ ../App/User/../../Infrastructure/BIT_MATH.h \
  ../App/User/../../Mcal/DIO/DIO.h \
  ../App/User/../../Mcal/DIO/../../Infrastructure/STD_types.h \
  ../App/User/../../Mcal/DIO/../../Infrastructure/BIT_MATH.h \
@@ -15,6 +16,10 @@ App/User/User.d App/User/User.o: ../App/User/User.c ../App/User/User.h \
  ../App/User/../../Mcal/UART/uartConfig.h \
  ../App/User/../../Mcal/Timer/TIMER_DRIVER.h \
  ../App/User/../../Mcal/Timer/TIMER_DRIVER_typedefs.h \
+ ../App/User/../../Mcal/ADC/adc.h \
+ ../App/User/../../Mcal/ADC/../../Infrastructure/Macros.h \
+ ../App/User/../../Mcal/ADC/../../Infrastructure/STD_types.h \
+ ../App/User/../../Mcal/ADC/adcConfig.h \
  ../App/User/../../Firmware/EEPROM/EEPROM.h \
  ../App/User/../../Firmware/EEPROM/../../Mcal/I2C/I2C.h \
  ../App/User/../../Firmware/EEPROM/../../Mcal/I2C/../../Infrastructure/STD_types.h \
@@ -42,13 +47,20 @@ App/User/User.d App/User/User.o: ../App/User/User.c ../App/User/User.h \
  ../App/User/../../Firmware/LCD/../../Infrastructure/BIT_MATH.h \
  ../App/User/../../Firmware/LCD/../../Mcal/DIO/DIO.h \
  ../App/User/../../Firmware/LCD/LCD_Config.h \
- ../App/User/../../Firmware/LCD/LCD_RetVal.h
+ ../App/User/../../Firmware/LCD/LCD_RetVal.h \
+ ../App/User/../../Firmware/Temp/temp.h \
+ ../App/User/../../Firmware/Temp/../../Infrastructure/STD_types.h \
+ ../App/User/../../Firmware/Temp/../../Infrastructure/Macros.h \
+ ../App/User/../../Firmware/Temp/../../Mcal/ADC/adc.h \
+ ../App/User/../../Firmware/Temp/../../Mcal/DIO/DIO.h
 
 ../App/User/User.h:
 
 ../App/User/../../Infrastructure/utils.h:
 
 ../App/User/../../Infrastructure/STD_types.h:
+
+../App/User/../../Infrastructure/BIT_MATH.h:
 
 ../App/User/../../Mcal/DIO/DIO.h:
 
@@ -81,6 +93,14 @@ App/User/User.d App/User/User.o: ../App/User/User.c ../App/User/User.h \
 ../App/User/../../Mcal/Timer/TIMER_DRIVER.h:
 
 ../App/User/../../Mcal/Timer/TIMER_DRIVER_typedefs.h:
+
+../App/User/../../Mcal/ADC/adc.h:
+
+../App/User/../../Mcal/ADC/../../Infrastructure/Macros.h:
+
+../App/User/../../Mcal/ADC/../../Infrastructure/STD_types.h:
+
+../App/User/../../Mcal/ADC/adcConfig.h:
 
 ../App/User/../../Firmware/EEPROM/EEPROM.h:
 
@@ -137,3 +157,13 @@ App/User/User.d App/User/User.o: ../App/User/User.c ../App/User/User.h \
 ../App/User/../../Firmware/LCD/LCD_Config.h:
 
 ../App/User/../../Firmware/LCD/LCD_RetVal.h:
+
+../App/User/../../Firmware/Temp/temp.h:
+
+../App/User/../../Firmware/Temp/../../Infrastructure/STD_types.h:
+
+../App/User/../../Firmware/Temp/../../Infrastructure/Macros.h:
+
+../App/User/../../Firmware/Temp/../../Mcal/ADC/adc.h:
+
+../App/User/../../Firmware/Temp/../../Mcal/DIO/DIO.h:

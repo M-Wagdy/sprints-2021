@@ -10,6 +10,7 @@
 
 /*includes*/
 #include "../User/User.h"
+#include "../Admin/admin.h"
 
 /*APIs prototypes*/
 uint8_t ATM_Init();

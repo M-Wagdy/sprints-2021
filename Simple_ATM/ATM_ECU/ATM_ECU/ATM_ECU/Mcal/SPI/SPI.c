@@ -210,13 +210,15 @@ uint8_t SPI_ReceiveString(uint8_t SpiNumber, ptr_uint8_t RxString,
 	uint8_t* RxStringAddress=RxString;
 	uint8_t iterator = 0;
 	uint8_t Dummy = 0;
+   uint8_t flag = 0;
 	while (iterator <= 255) {
 		if (SPI_DataExchange(SpiNumber, Dummy, RxString,
 				slave_CH)==OperationSuccess) {
 			if (*RxString == '\0') {
-				if (RxString == RxStringAddress) {
-					continue;
-				} else {
+				if (RxString == RxStringAddress && flag <= 2) {
+               flag++;
+   				continue;
+   				} else {
 					ErrRetVal = OperationSuccess;
 					break;
 				}
