@@ -5,10 +5,15 @@
  * Author : Mohamed Wagdy
  */ 
 
+/*- INCLUDES
+----------------------------------------------*/
 #include "App/Card/Card.h"
 
+/*- APIs IMPLEMENTATION
+-----------------------------------*/
 int main(void)
 {
+   /* Initialize Card Drivers */
    CARD_Init();
 
    /* Replace with your application code */
