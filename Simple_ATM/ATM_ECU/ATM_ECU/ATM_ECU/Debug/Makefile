@@ -33,19 +33,44 @@ LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
+../App/ATM \
+../App/Admin \
+../App/User \
+../Firmware/Motor \
+../Firmware/EEPROM \
+../Firmware/LCD \
+../Firmware/Keypad \
+../Firmware/Button \
+../Firmware/Temp \
 ../Mcal \
 ../Mcal/DIO \
+../Mcal/I2C \
+../Mcal/ADC \
+../Mcal/Timer \
 ../Mcal/SPI \
 ../Mcal/UART \
-../Infrastructure
+../Infrastructure \
+../Firmware \
+../App
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../App/ATM/ATM.c \
+../App/User/User.c \
+../Firmware/Button/PushButton.c \
+../Firmware/EEPROM/EEPROM.c \
+../Firmware/Keypad/Keypad.c \
+../Firmware/Keypad/Keypad_Config.c \
+../Firmware/LCD/LCD.c \
+../Firmware/LCD/LCD_Config.c \
+../Firmware/Motor/motor.c \
 ../Infrastructure/utils.c \
 ../main.c \
 ../Mcal/DIO/DIO.c \
+../Mcal/I2C/I2C.c \
 ../Mcal/SPI/SPI.c \
+../Mcal/Timer/TIMER_DRIVER.c \
 ../Mcal/UART/uart.c
 
 
@@ -56,31 +81,75 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+App/ATM/ATM.o \
+App/User/User.o \
+Firmware/Button/PushButton.o \
+Firmware/EEPROM/EEPROM.o \
+Firmware/Keypad/Keypad.o \
+Firmware/Keypad/Keypad_Config.o \
+Firmware/LCD/LCD.o \
+Firmware/LCD/LCD_Config.o \
+Firmware/Motor/motor.o \
 Infrastructure/utils.o \
 main.o \
 Mcal/DIO/DIO.o \
+Mcal/I2C/I2C.o \
 Mcal/SPI/SPI.o \
+Mcal/Timer/TIMER_DRIVER.o \
 Mcal/UART/uart.o
 
 OBJS_AS_ARGS +=  \
+App/ATM/ATM.o \
+App/User/User.o \
+Firmware/Button/PushButton.o \
+Firmware/EEPROM/EEPROM.o \
+Firmware/Keypad/Keypad.o \
+Firmware/Keypad/Keypad_Config.o \
+Firmware/LCD/LCD.o \
+Firmware/LCD/LCD_Config.o \
+Firmware/Motor/motor.o \
 Infrastructure/utils.o \
 main.o \
 Mcal/DIO/DIO.o \
+Mcal/I2C/I2C.o \
 Mcal/SPI/SPI.o \
+Mcal/Timer/TIMER_DRIVER.o \
 Mcal/UART/uart.o
 
 C_DEPS +=  \
+App/ATM/ATM.d \
+App/User/User.d \
+Firmware/Button/PushButton.d \
+Firmware/EEPROM/EEPROM.d \
+Firmware/Keypad/Keypad.d \
+Firmware/Keypad/Keypad_Config.d \
+Firmware/LCD/LCD.d \
+Firmware/LCD/LCD_Config.d \
+Firmware/Motor/motor.d \
 Infrastructure/utils.d \
 main.d \
 Mcal/DIO/DIO.d \
+Mcal/I2C/I2C.d \
 Mcal/SPI/SPI.d \
+Mcal/Timer/TIMER_DRIVER.d \
 Mcal/UART/uart.d
 
 C_DEPS_AS_ARGS +=  \
+App/ATM/ATM.d \
+App/User/User.d \
+Firmware/Button/PushButton.d \
+Firmware/EEPROM/EEPROM.d \
+Firmware/Keypad/Keypad.d \
+Firmware/Keypad/Keypad_Config.d \
+Firmware/LCD/LCD.d \
+Firmware/LCD/LCD_Config.d \
+Firmware/Motor/motor.d \
 Infrastructure/utils.d \
 main.d \
 Mcal/DIO/DIO.d \
+Mcal/I2C/I2C.d \
 Mcal/SPI/SPI.d \
+Mcal/Timer/TIMER_DRIVER.d \
 Mcal/UART/uart.d
 
 OUTPUT_FILE_PATH +=ATM_ECU.elf
@@ -97,6 +166,69 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+App/ATM/ATM.o: ../App/ATM/ATM.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+App/User/User.o: ../App/User/User.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Firmware/Button/PushButton.o: ../Firmware/Button/PushButton.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Firmware/EEPROM/EEPROM.o: ../Firmware/EEPROM/EEPROM.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Firmware/Keypad/Keypad.o: ../Firmware/Keypad/Keypad.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Firmware/Keypad/Keypad_Config.o: ../Firmware/Keypad/Keypad_Config.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Firmware/LCD/LCD.o: ../Firmware/LCD/LCD.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Firmware/LCD/LCD_Config.o: ../Firmware/LCD/LCD_Config.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Firmware/Motor/motor.o: ../Firmware/Motor/motor.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 Infrastructure/utils.o: ../Infrastructure/utils.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
@@ -118,7 +250,21 @@ Mcal/DIO/DIO.o: ../Mcal/DIO/DIO.c
 	@echo Finished building: $<
 	
 
+Mcal/I2C/I2C.o: ../Mcal/I2C/I2C.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 Mcal/SPI/SPI.o: ../Mcal/SPI/SPI.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Mcal/Timer/TIMER_DRIVER.o: ../Mcal/Timer/TIMER_DRIVER.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

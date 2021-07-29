@@ -18,7 +18,5 @@ Mcal\I2C\I2C.c
 
 Mcal\SPI\SPI.c
 
-Mcal\Timer\TIMER_DRIVER.c
-
 Mcal\UART\uart.c
 

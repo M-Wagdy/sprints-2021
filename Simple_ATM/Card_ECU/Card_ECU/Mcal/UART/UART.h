@@ -22,6 +22,7 @@ uint8_t UART_ReceiveString(uint8_t UartNumber,ptr_uint8_t RxString);
 uint8_t UART_EnableInterrupt(uint8_t UartNumber,uint8_t UartInterruptType);
 uint8_t UART_DisableInterrupt(uint8_t UartNumber,uint8_t UartInterruptType);
 uint8_t UART_SetCallback(uint8_t UartNumber,uint8_t UartInterruptType,Ptr_VoidFuncVoid_t Callback);
+uint8_t UART_GetData(uint8_t UartNumber, ptr_uint8_t RxChar);
 void UART_FlushReceiveBuffer(void);
 
 

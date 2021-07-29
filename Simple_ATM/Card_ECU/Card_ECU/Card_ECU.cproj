@@ -207,18 +207,6 @@
     <Compile Include="Mcal\SPI\SPI_PRIV.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Mcal\Timer\TIMER_DRIVER.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Mcal\Timer\TIMER_DRIVER.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Mcal\Timer\TIMER_DRIVER_PRIV.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Mcal\Timer\TIMER_DRIVER_typedefs.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Mcal\UART\Macros.h">
       <SubType>compile</SubType>
     </Compile>
@@ -242,7 +230,6 @@
     <Folder Include="Mcal\DIO" />
     <Folder Include="Mcal\Global_Interrupts" />
     <Folder Include="Mcal\I2C" />
-    <Folder Include="Mcal\Timer" />
     <Folder Include="Mcal\SPI" />
     <Folder Include="Mcal\UART" />
     <Folder Include="Infrastructure" />

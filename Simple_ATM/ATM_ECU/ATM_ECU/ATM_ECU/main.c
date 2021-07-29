@@ -23,13 +23,13 @@ int main(void)
    
    UART_TransmitString(UART_1, "Starting SPI Transmission");
    
-   SPI_ReceiveString(SPIChannel_1, PAN, SlaveID_1);
+   /*SPI_ReceiveString(SPIChannel_1, PAN, SlaveID_1);
    SPI_ReceiveString(SPIChannel_1, PIN, SlaveID_1);
 
    UART_TransmitString(UART_1, "Received PAN:");
    UART_TransmitString(UART_1, PAN);
    UART_TransmitString(UART_1, "Received PIN:");
-   UART_TransmitString(UART_1, PIN);
+   UART_TransmitString(UART_1, PIN);*/
 
    /* Replace with your application code */
    while (1) 

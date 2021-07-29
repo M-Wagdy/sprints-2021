@@ -84,9 +84,9 @@ void CARD_Init()
 */
 void CARD_GetData(void)
 {
-   EEPROM_ReadBytes(EEPROM_CH_0, CARD_HOLDER_NAME_START_ADDRESS, gSTR_CardData.au8_CardHolderName, CARD_HOLDER_NAME_STRING_SIZE);
-   EEPROM_ReadBytes(EEPROM_CH_0, PAN_START_ADDRESS, gSTR_CardData.au8_PAN, PAN_STRING_SIZE);
-   EEPROM_ReadBytes(EEPROM_CH_0, PIN_START_ADDRESS, gSTR_CardData.au8_PIN, PIN_STRING_SIZE);
+   EEPROM_ReadBytes(EEPROM_CH_0, MEMORY_BLOCK_1, CARD_HOLDER_NAME_START_ADDRESS, gSTR_CardData.au8_CardHolderName, CARD_HOLDER_NAME_STRING_SIZE);
+   EEPROM_ReadBytes(EEPROM_CH_0, MEMORY_BLOCK_1, PAN_START_ADDRESS, gSTR_CardData.au8_PAN, PAN_STRING_SIZE);
+   EEPROM_ReadBytes(EEPROM_CH_0, MEMORY_BLOCK_1, PIN_START_ADDRESS, gSTR_CardData.au8_PIN, PIN_STRING_SIZE);
 }
 
 /**
@@ -111,7 +111,7 @@ void CARD_SetData(void)
       UART_ReceiveString(UART_1, gu8_TerminalData);
    }
    
-   EEPROM_WriteBytes(EEPROM_CH_0, CARD_HOLDER_NAME_START_ADDRESS, gu8_TerminalData, CARD_HOLDER_NAME_STRING_SIZE);
+   EEPROM_WriteBytes(EEPROM_CH_0, MEMORY_BLOCK_1, CARD_HOLDER_NAME_START_ADDRESS, gu8_TerminalData, CARD_HOLDER_NAME_STRING_SIZE);
    
    /* Set PAN */
    UART_TransmitString(UART_1, gu8_PANMessage);
@@ -123,7 +123,7 @@ void CARD_SetData(void)
       UART_ReceiveString(UART_1, gu8_TerminalData);
    }
    
-   EEPROM_WriteBytes(EEPROM_CH_0, PAN_START_ADDRESS, gu8_TerminalData, PAN_STRING_SIZE);
+   EEPROM_WriteBytes(EEPROM_CH_0, MEMORY_BLOCK_1, PAN_START_ADDRESS, gu8_TerminalData, PAN_STRING_SIZE);
    
    /* Set PIN */
    UART_TransmitString(UART_1, gu8_PINMessage);
@@ -135,7 +135,7 @@ void CARD_SetData(void)
       UART_ReceiveString(UART_1, gu8_TerminalData);
    }
    
-   EEPROM_WriteBytes(EEPROM_CH_0, PIN_START_ADDRESS, gu8_TerminalData, PIN_STRING_SIZE);
+   EEPROM_WriteBytes(EEPROM_CH_0, MEMORY_BLOCK_1, PIN_START_ADDRESS, gu8_TerminalData, PIN_STRING_SIZE);
    
    UART_TransmitString(UART_1, gu8_CardDataUpdatedMessage);
    
