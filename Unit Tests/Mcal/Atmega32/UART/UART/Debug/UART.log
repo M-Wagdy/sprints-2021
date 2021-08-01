@@ -1,0 +1,3 @@
+﻿  UART.c
+H:\Mohamed Sprints\sprints-2021\Mcal\Atmega32\UART\UART.c(64,87): warning C4333: '>>': right shift by too large amount, data loss
+  UART.vcxproj -> H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\UART\Debug\UART.exe
