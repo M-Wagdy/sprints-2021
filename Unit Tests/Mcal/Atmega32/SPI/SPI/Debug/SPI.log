@@ -1,0 +1,11 @@
+﻿  DIO.c
+  SPI.c
+  TestCases.c
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(163,43): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'uint8_t (*)[10]'
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(163,38): warning C4024: 'SPI_ReceiveString': different types for formal and actual parameter 2
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(167,49): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'uint8_t (*)[10]'
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(167,44): warning C4024: 'SPI_ReceiveString': different types for formal and actual parameter 2
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(170,49): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'uint8_t (*)[10]'
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(170,44): warning C4024: 'SPI_ReceiveString': different types for formal and actual parameter 2
+  Generating Code...
+  SPI.vcxproj -> H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\Debug\SPI.exe
