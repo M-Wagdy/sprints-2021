@@ -72,6 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>H:\Mohamed Sprints\sprints-2021;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -139,10 +140,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DIO.c" />
+    <ClCompile Include="..\..\..\..\..\Mcal\Atmega32\DIO\DIO.c" />
+    <ClCompile Include="..\..\..\..\..\Mcal\Atmega32\SPI\SPI.c" />
     <ClCompile Include="MockDIORegisters.c" />
     <ClCompile Include="MockSPIRegisters.c" />
-    <ClCompile Include="SPI.c" />
     <ClCompile Include="SPI_Config.c" />
     <ClCompile Include="TestCases.c" />
   </ItemGroup>

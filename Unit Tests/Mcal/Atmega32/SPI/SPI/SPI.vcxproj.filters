@@ -21,16 +21,16 @@
     <ClCompile Include="MockSPIRegisters.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SPI.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SPI_Config.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TestCases.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DIO.c">
+    <ClCompile Include="..\..\..\..\..\Mcal\Atmega32\DIO\DIO.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Mcal\Atmega32\SPI\SPI.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

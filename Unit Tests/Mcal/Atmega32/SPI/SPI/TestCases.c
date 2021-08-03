@@ -9,7 +9,7 @@
  ----------------------------------------------*/
 #include <assert.h>
 #include <stdio.h>
-#include "../../../../../Mcal/Atmega32/SPI/SPI.h"
+#include "Mcal/Atmega32/SPI/SPI.h"
 
  /*- LOCAL MACROS
  ------------------------------------------*/
