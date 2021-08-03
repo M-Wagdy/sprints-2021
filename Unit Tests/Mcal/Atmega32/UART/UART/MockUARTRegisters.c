@@ -4,7 +4,7 @@
  * Created: 7/13/2021 6:05:33 PM
  *  Author: Mohamed Wagdy
  */ 
-#include "../../../../../Infrastructure/STD_types.h"
+#include "Infrastructure/STD_types.h"
 
 /* initialize registers valaues */
 uint8_t UART_DATA_R = 0x00;

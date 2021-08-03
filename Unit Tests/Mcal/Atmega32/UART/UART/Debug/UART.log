@@ -1,3 +1,7 @@
 ﻿  UART.c
 H:\Mohamed Sprints\sprints-2021\Mcal\Atmega32\UART\UART.c(64,87): warning C4333: '>>': right shift by too large amount, data loss
+  TestCases.c
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\UART\UART\TestCases.c(128,53): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'uint8_t (*)[10]'
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\UART\UART\TestCases.c(128,48): warning C4024: 'UART_ReceiveString': different types for formal and actual parameter 2
+  Generating Code...
   UART.vcxproj -> H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\UART\Debug\UART.exe

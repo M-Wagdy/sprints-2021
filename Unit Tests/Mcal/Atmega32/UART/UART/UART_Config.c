@@ -6,7 +6,7 @@
  */ 
 /*- INCLUDES
 ----------------------------------------------*/
-#include "../../../../../Mcal/Atmega32/UART/UART_Config.h"
+#include "Mcal/Atmega32/UART/UART_Config.h"
 
 /*- GLOBAL EXTERN VARIABLES
 -------------------------------*/
