@@ -3,31 +3,31 @@ TrafficSign.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000428  00000000  00000000  00000094  2**1
+  0 .text         00000440  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000064  00800060  00000428  000004bc  2**0
+  1 .data         00000064  00800060  00000440  000004d4  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000001  008000c4  008000c4  00000520  2**0
+  2 .bss          00000001  008000c4  008000c4  00000538  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000520  2**0
+  3 .comment      00000030  00000000  00000000  00000538  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000550  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000568  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000158  00000000  00000000  0000058c  2**0
+  5 .debug_aranges 00000158  00000000  00000000  000005a4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001486  00000000  00000000  000006e4  2**0
+  6 .debug_info   00001479  00000000  00000000  000006fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000987  00000000  00000000  00001b6a  2**0
+  7 .debug_abbrev 00000992  00000000  00000000  00001b75  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000c46  00000000  00000000  000024f1  2**0
+  8 .debug_line   00000d29  00000000  00000000  00002507  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000020c  00000000  00000000  00003138  2**2
+  9 .debug_frame  00000218  00000000  00000000  00003230  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000078b  00000000  00000000  00003344  2**0
+ 10 .debug_str    00000781  00000000  00000000  00003448  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000c56  00000000  00000000  00003acf  2**0
+ 11 .debug_loc    00000e1b  00000000  00000000  00003bc9  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000f0  00000000  00000000  00004725  2**0
+ 12 .debug_ranges 000000f0  00000000  00000000  000049e4  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -67,7 +67,7 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	e8 e2       	ldi	r30, 0x28	; 40
+  66:	e0 e4       	ldi	r30, 0x40	; 64
   68:	f4 e0       	ldi	r31, 0x04	; 4
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
@@ -89,8 +89,8 @@ Disassembly of section .text:
   80:	a5 3c       	cpi	r26, 0xC5	; 197
   82:	b2 07       	cpc	r27, r18
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
-  86:	0e 94 0d 02 	call	0x41a	; 0x41a <main>
-  8a:	0c 94 12 02 	jmp	0x424	; 0x424 <_exit>
+  86:	0e 94 19 02 	call	0x432	; 0x432 <main>
+  8a:	0c 94 1e 02 	jmp	0x43c	; 0x43c <_exit>
 
 0000008e <__bad_interrupt>:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -586,457 +586,482 @@ DIO_ERROR_state_t DIO_WritePin(uint8_t port, uint8_t pin, uint8_t data)
    /* return success status */
    return E_UART_SUCCESS;
 }
- 22e:	90 91 c2 00 	lds	r25, 0x00C2	; 0x8000c2 <UART_CH_0>
- 232:	98 13       	cpse	r25, r24
- 234:	0b c0       	rjmp	.+22     	; 0x24c <UART_Init+0x1e>
- 236:	80 91 c1 00 	lds	r24, 0x00C1	; 0x8000c1 <UART_CH_0_CONTROL>
- 23a:	8a b9       	out	0x0a, r24	; 10
- 23c:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <UART_CH_0_CONTROL_2>
- 240:	80 bd       	out	0x20, r24	; 32
- 242:	80 91 bf 00 	lds	r24, 0x00BF	; 0x8000bf <UART_CH_0_BaudRate>
- 246:	89 b9       	out	0x09, r24	; 9
- 248:	80 e0       	ldi	r24, 0x00	; 0
- 24a:	08 95       	ret
- 24c:	86 e0       	ldi	r24, 0x06	; 6
- 24e:	08 95       	ret
+ 22e:	81 11       	cpse	r24, r1
+ 230:	1c c0       	rjmp	.+56     	; 0x26a <UART_Init+0x3c>
+ 232:	80 91 bf 00 	lds	r24, 0x00BF	; 0x8000bf <UART_CH_0_BaudRate>
+ 236:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <UART_CH_0_BaudRate+0x1>
+ 23a:	8f 3f       	cpi	r24, 0xFF	; 255
+ 23c:	91 05       	cpc	r25, r1
+ 23e:	09 f0       	breq	.+2      	; 0x242 <UART_Init+0x14>
+ 240:	b0 f4       	brcc	.+44     	; 0x26e <UART_Init+0x40>
+ 242:	80 91 c2 00 	lds	r24, 0x00C2	; 0x8000c2 <UART_CH_0_CONTROL>
+ 246:	8a b9       	out	0x0a, r24	; 10
+ 248:	80 91 c1 00 	lds	r24, 0x00C1	; 0x8000c1 <UART_CH_0_CONTROL_2>
+ 24c:	80 bd       	out	0x20, r24	; 32
+ 24e:	80 91 bf 00 	lds	r24, 0x00BF	; 0x8000bf <UART_CH_0_BaudRate>
+ 252:	89 b9       	out	0x09, r24	; 9
+ 254:	80 91 bf 00 	lds	r24, 0x00BF	; 0x8000bf <UART_CH_0_BaudRate>
+ 258:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <UART_CH_0_BaudRate+0x1>
+ 25c:	8f 3f       	cpi	r24, 0xFF	; 255
+ 25e:	91 05       	cpc	r25, r1
+ 260:	41 f0       	breq	.+16     	; 0x272 <UART_Init+0x44>
+ 262:	38 f0       	brcs	.+14     	; 0x272 <UART_Init+0x44>
+ 264:	90 bd       	out	0x20, r25	; 32
+ 266:	80 e0       	ldi	r24, 0x00	; 0
+ 268:	08 95       	ret
+ 26a:	86 e0       	ldi	r24, 0x06	; 6
+ 26c:	08 95       	ret
+ 26e:	85 e0       	ldi	r24, 0x05	; 5
+ 270:	08 95       	ret
+ 272:	80 e0       	ldi	r24, 0x00	; 0
+ 274:	08 95       	ret
 
-00000250 <UART_TransmitString>:
+00000276 <UART_TransmitString>:
 UART_ERROR_state_t UART_TransmitString(uint8_t UartNumber,uint8_t * TxString)
 {
    uint8_t counter = STRING_COUNTER_START;
 
    /* making sure an initialized pointer is sent to the function */
    if(NULL_PTR == TxString)
- 250:	61 15       	cp	r22, r1
- 252:	71 05       	cpc	r23, r1
- 254:	99 f0       	breq	.+38     	; 0x27c <UART_TransmitString+0x2c>
+ 276:	61 15       	cp	r22, r1
+ 278:	71 05       	cpc	r23, r1
+ 27a:	81 f0       	breq	.+32     	; 0x29c <UART_TransmitString+0x26>
    }
    
    volatile uint8_t * ptru8_UARTStatusR;
    volatile uint8_t * ptru8_UARTDataR;
    
-   if(UART_CH_0 == UartNumber)
- 256:	90 91 c2 00 	lds	r25, 0x00C2	; 0x8000c2 <UART_CH_0>
- 25a:	98 17       	cp	r25, r24
- 25c:	39 f0       	breq	.+14     	; 0x26c <UART_TransmitString+0x1c>
-      ptru8_UARTStatusR = &UART_STATUS_R;
-      ptru8_UARTDataR = &UART_DATA_R;
-   }
-   else
-   {
-       return E_UART_INVALID_CH;
- 25e:	86 e0       	ldi	r24, 0x06	; 6
- 260:	08 95       	ret
+   switch(UartNumber)
+ 27c:	81 11       	cpse	r24, r1
+ 27e:	10 c0       	rjmp	.+32     	; 0x2a0 <UART_TransmitString+0x2a>
+ 280:	05 c0       	rjmp	.+10     	; 0x28c <UART_TransmitString+0x16>
    
    /* keeps sending data until it finds an end of string character in the string */
    while(TxString[counter] != END_OF_STRING)
    {
       /* Wait for empty transmit buffer */
       while ( !( *ptru8_UARTStatusR & EMPTY_BUFFER_BIT) );
- 262:	5d 9b       	sbis	0x0b, 5	; 11
- 264:	fe cf       	rjmp	.-4      	; 0x262 <UART_TransmitString+0x12>
+ 282:	5d 9b       	sbis	0x0b, 5	; 11
+ 284:	fe cf       	rjmp	.-4      	; 0x282 <UART_TransmitString+0xc>
       
       /* Put data into buffer, sends the data */
       *ptru8_UARTDataR = TxString[counter];
- 266:	8c b9       	out	0x0c, r24	; 12
+ 286:	8c b9       	out	0x0c, r24	; 12
       counter++;
- 268:	9f 5f       	subi	r25, 0xFF	; 255
- 26a:	01 c0       	rjmp	.+2      	; 0x26e <UART_TransmitString+0x1e>
- 26c:	90 e0       	ldi	r25, 0x00	; 0
-   {
-       return E_UART_INVALID_CH;
+ 288:	9f 5f       	subi	r25, 0xFF	; 255
+ 28a:	01 c0       	rjmp	.+2      	; 0x28e <UART_TransmitString+0x18>
+   }
+   
+   volatile uint8_t * ptru8_UARTStatusR;
+   volatile uint8_t * ptru8_UARTDataR;
+   
+   switch(UartNumber)
+ 28c:	90 e0       	ldi	r25, 0x00	; 0
+      default:
+         return E_UART_INVALID_CH;
    }
    
    /* keeps sending data until it finds an end of string character in the string */
    while(TxString[counter] != END_OF_STRING)
- 26e:	fb 01       	movw	r30, r22
- 270:	e9 0f       	add	r30, r25
- 272:	f1 1d       	adc	r31, r1
- 274:	80 81       	ld	r24, Z
- 276:	81 11       	cpse	r24, r1
- 278:	f4 cf       	rjmp	.-24     	; 0x262 <UART_TransmitString+0x12>
- 27a:	08 95       	ret
+ 28e:	fb 01       	movw	r30, r22
+ 290:	e9 0f       	add	r30, r25
+ 292:	f1 1d       	adc	r31, r1
+ 294:	80 81       	ld	r24, Z
+ 296:	81 11       	cpse	r24, r1
+ 298:	f4 cf       	rjmp	.-24     	; 0x282 <UART_TransmitString+0xc>
+ 29a:	08 95       	ret
    uint8_t counter = STRING_COUNTER_START;
 
    /* making sure an initialized pointer is sent to the function */
    if(NULL_PTR == TxString)
    {
       return E_UART_NULL_PTR;
- 27c:	84 e0       	ldi	r24, 0x04	; 4
+ 29c:	84 e0       	ldi	r24, 0x04	; 4
+ 29e:	08 95       	ret
+      case UART_CH_0:
+         ptru8_UARTStatusR = &UART_STATUS_R;
+         ptru8_UARTDataR = &UART_DATA_R;
+         break;
+      default:
+         return E_UART_INVALID_CH;
+ 2a0:	86 e0       	ldi	r24, 0x06	; 6
       counter++;
    }
    
    /* return success status */
    return E_UART_SUCCESS;
 }
- 27e:	08 95       	ret
+ 2a2:	08 95       	ret
 
-00000280 <UART_ReceiveString>:
+000002a4 <UART_ReceiveString>:
 UART_ERROR_state_t UART_ReceiveString(uint8_t UartNumber, uint8_t * RxString)
 {
    uint8_t counter = STRING_COUNTER_START;
    
    /* making sure an initialized pointer is sent to the function */
    if(NULL_PTR == RxString)
- 280:	61 15       	cp	r22, r1
- 282:	71 05       	cpc	r23, r1
- 284:	59 f1       	breq	.+86     	; 0x2dc <UART_ReceiveString+0x5c>
+ 2a4:	61 15       	cp	r22, r1
+ 2a6:	71 05       	cpc	r23, r1
+ 2a8:	41 f1       	breq	.+80     	; 0x2fa <UART_ReceiveString+0x56>
    }
    
    volatile uint8_t * ptru8_UARTStatusR;
    volatile uint8_t * ptru8_UARTDataR;
    
-   if(UART_CH_0 == UartNumber)
- 286:	90 91 c2 00 	lds	r25, 0x00C2	; 0x8000c2 <UART_CH_0>
- 28a:	98 17       	cp	r25, r24
- 28c:	29 f0       	breq	.+10     	; 0x298 <UART_ReceiveString+0x18>
-      ptru8_UARTStatusR = &UART_STATUS_R;
-      ptru8_UARTDataR = &UART_DATA_R;
-   }
-   else
-   {
-      return E_UART_INVALID_CH;
- 28e:	86 e0       	ldi	r24, 0x06	; 6
- 290:	08 95       	ret
+   switch(UartNumber)
+ 2aa:	81 11       	cpse	r24, r1
+ 2ac:	28 c0       	rjmp	.+80     	; 0x2fe <UART_ReceiveString+0x5a>
+ 2ae:	03 c0       	rjmp	.+6      	; 0x2b6 <UART_ReceiveString+0x12>
             counter -= STRING_RETURN_TO_PREV_CHAR;
          }
          /* return to the string start if the counter is still at first character */
          else
          {
             counter = STRING_COUNTER_START;
- 292:	80 e0       	ldi	r24, 0x00	; 0
- 294:	98 2f       	mov	r25, r24
- 296:	01 c0       	rjmp	.+2      	; 0x29a <UART_ReceiveString+0x1a>
- 298:	90 e0       	ldi	r25, 0x00	; 0
+ 2b0:	80 e0       	ldi	r24, 0x00	; 0
+   }
+   
+   volatile uint8_t * ptru8_UARTStatusR;
+   volatile uint8_t * ptru8_UARTDataR;
+   
+   switch(UartNumber)
+ 2b2:	98 2f       	mov	r25, r24
+ 2b4:	01 c0       	rjmp	.+2      	; 0x2b8 <UART_ReceiveString+0x14>
+ 2b6:	90 e0       	ldi	r25, 0x00	; 0
    }
    
    while(1)
    {
       /* Wait for data to be received */
       while ( !(*ptru8_UARTStatusR & RECEIVE_COMPLETE_BIT) );
- 29a:	5f 9b       	sbis	0x0b, 7	; 11
- 29c:	fe cf       	rjmp	.-4      	; 0x29a <UART_ReceiveString+0x1a>
+ 2b8:	5f 9b       	sbis	0x0b, 7	; 11
+ 2ba:	fe cf       	rjmp	.-4      	; 0x2b8 <UART_ReceiveString+0x14>
       /* Get and return received data from buffer */
       RxString[counter] = *ptru8_UARTDataR;
- 29e:	29 2f       	mov	r18, r25
- 2a0:	30 e0       	ldi	r19, 0x00	; 0
- 2a2:	fb 01       	movw	r30, r22
- 2a4:	e2 0f       	add	r30, r18
- 2a6:	f3 1f       	adc	r31, r19
- 2a8:	8c b1       	in	r24, 0x0c	; 12
- 2aa:	80 83       	st	Z, r24
+ 2bc:	29 2f       	mov	r18, r25
+ 2be:	30 e0       	ldi	r19, 0x00	; 0
+ 2c0:	fb 01       	movw	r30, r22
+ 2c2:	e2 0f       	add	r30, r18
+ 2c4:	f3 1f       	adc	r31, r19
+ 2c6:	8c b1       	in	r24, 0x0c	; 12
+ 2c8:	80 83       	st	Z, r24
       
       /* enters an end of string character and breaks from the loop on receiving
          a new line character */
       if(RxString[counter] == NEW_LINE)
- 2ac:	8d 30       	cpi	r24, 0x0D	; 13
- 2ae:	41 f4       	brne	.+16     	; 0x2c0 <UART_ReceiveString+0x40>
+ 2ca:	8d 30       	cpi	r24, 0x0D	; 13
+ 2cc:	41 f4       	brne	.+16     	; 0x2de <UART_ReceiveString+0x3a>
       {
          RxString[counter + STRING_NEXT_CHAR] = END_OF_STRING;
- 2b0:	2f 5f       	subi	r18, 0xFF	; 255
- 2b2:	3f 4f       	sbci	r19, 0xFF	; 255
- 2b4:	fb 01       	movw	r30, r22
- 2b6:	e2 0f       	add	r30, r18
- 2b8:	f3 1f       	adc	r31, r19
- 2ba:	10 82       	st	Z, r1
+ 2ce:	2f 5f       	subi	r18, 0xFF	; 255
+ 2d0:	3f 4f       	sbci	r19, 0xFF	; 255
+ 2d2:	fb 01       	movw	r30, r22
+ 2d4:	e2 0f       	add	r30, r18
+ 2d6:	f3 1f       	adc	r31, r19
+ 2d8:	10 82       	st	Z, r1
          }
       }
    }
    
    /* return success status */
    return E_UART_SUCCESS;
- 2bc:	80 e0       	ldi	r24, 0x00	; 0
- 2be:	08 95       	ret
+ 2da:	80 e0       	ldi	r24, 0x00	; 0
+ 2dc:	08 95       	ret
       if(RxString[counter] == NEW_LINE)
       {
          RxString[counter + STRING_NEXT_CHAR] = END_OF_STRING;
          break;
       }
       counter++;
- 2c0:	81 e0       	ldi	r24, 0x01	; 1
- 2c2:	89 0f       	add	r24, r25
+ 2de:	81 e0       	ldi	r24, 0x01	; 1
+ 2e0:	89 0f       	add	r24, r25
       
       /* return to the previous character to overwrite if the entered character 
          is backspace */
       if(RxString[counter - STRING_PREV_CHAR] == BACKSPACE)
- 2c4:	fb 01       	movw	r30, r22
- 2c6:	e8 0f       	add	r30, r24
- 2c8:	f1 1d       	adc	r31, r1
- 2ca:	31 97       	sbiw	r30, 0x01	; 1
- 2cc:	20 81       	ld	r18, Z
- 2ce:	28 30       	cpi	r18, 0x08	; 8
- 2d0:	09 f7       	brne	.-62     	; 0x294 <UART_ReceiveString+0x14>
+ 2e2:	fb 01       	movw	r30, r22
+ 2e4:	e8 0f       	add	r30, r24
+ 2e6:	f1 1d       	adc	r31, r1
+ 2e8:	31 97       	sbiw	r30, 0x01	; 1
+ 2ea:	20 81       	ld	r18, Z
+ 2ec:	28 30       	cpi	r18, 0x08	; 8
+ 2ee:	09 f7       	brne	.-62     	; 0x2b2 <UART_ReceiveString+0xe>
       {
          if (counter - STRING_PREV_CHAR != STRING_COUNTER_START)
- 2d2:	81 30       	cpi	r24, 0x01	; 1
- 2d4:	f1 f2       	breq	.-68     	; 0x292 <UART_ReceiveString+0x12>
+ 2f0:	81 30       	cpi	r24, 0x01	; 1
+ 2f2:	f1 f2       	breq	.-68     	; 0x2b0 <UART_ReceiveString+0xc>
          {
             counter -= STRING_RETURN_TO_PREV_CHAR;
- 2d6:	8f ef       	ldi	r24, 0xFF	; 255
- 2d8:	89 0f       	add	r24, r25
- 2da:	dc cf       	rjmp	.-72     	; 0x294 <UART_ReceiveString+0x14>
+ 2f4:	8f ef       	ldi	r24, 0xFF	; 255
+ 2f6:	89 0f       	add	r24, r25
+ 2f8:	dc cf       	rjmp	.-72     	; 0x2b2 <UART_ReceiveString+0xe>
    uint8_t counter = STRING_COUNTER_START;
    
    /* making sure an initialized pointer is sent to the function */
    if(NULL_PTR == RxString)
    {
       return E_UART_NULL_PTR;
- 2dc:	84 e0       	ldi	r24, 0x04	; 4
+ 2fa:	84 e0       	ldi	r24, 0x04	; 4
+ 2fc:	08 95       	ret
+      case UART_CH_0:
+         ptru8_UARTStatusR = &UART_STATUS_R;
+         ptru8_UARTDataR = &UART_DATA_R;
+         break;
+      default:
+         return E_UART_INVALID_CH;
+ 2fe:	86 e0       	ldi	r24, 0x06	; 6
       }
    }
    
    /* return success status */
    return E_UART_SUCCESS;
 }
- 2de:	08 95       	ret
+ 300:	08 95       	ret
 
-000002e0 <StringCompare>:
-extern const uint8_t UART_CH_0;
+00000302 <StringCompare>:
+static uint8_t * gu8_InvalidMessageReply = (uint8_t *)"Invalid Command \r";
 
 /*- LOCAL FUNCTIONS IMPLEMENTATION
 ------------------------*/
 static uint8_t StringCompare(uint8_t * str1, uint8_t * str2)
 {
- 2e0:	dc 01       	movw	r26, r24
+ 302:	dc 01       	movw	r26, r24
    uint8_t u8_counter = 0;
- 2e2:	40 e0       	ldi	r20, 0x00	; 0
+ 304:	40 e0       	ldi	r20, 0x00	; 0
    uint8_t u8_isEqual = TRUE;
    
    while(str1[u8_counter] != END_OF_STRING && str1[u8_counter] != NEW_LINE)
- 2e4:	0a c0       	rjmp	.+20     	; 0x2fa <StringCompare+0x1a>
+ 306:	0a c0       	rjmp	.+20     	; 0x31c <StringCompare+0x1a>
    {
       if(str1[u8_counter] != str2[u8_counter])
- 2e6:	fb 01       	movw	r30, r22
- 2e8:	e2 0f       	add	r30, r18
- 2ea:	f3 1f       	adc	r31, r19
- 2ec:	20 81       	ld	r18, Z
- 2ee:	92 17       	cp	r25, r18
- 2f0:	19 f0       	breq	.+6      	; 0x2f8 <StringCompare+0x18>
+ 308:	fb 01       	movw	r30, r22
+ 30a:	e2 0f       	add	r30, r18
+ 30c:	f3 1f       	adc	r31, r19
+ 30e:	20 81       	ld	r18, Z
+ 310:	92 17       	cp	r25, r18
+ 312:	19 f0       	breq	.+6      	; 0x31a <StringCompare+0x18>
       {
          u8_isEqual = FALSE;
          u8_counter++;
- 2f2:	4f 5f       	subi	r20, 0xFF	; 255
+ 314:	4f 5f       	subi	r20, 0xFF	; 255
    
    while(str1[u8_counter] != END_OF_STRING && str1[u8_counter] != NEW_LINE)
    {
       if(str1[u8_counter] != str2[u8_counter])
       {
          u8_isEqual = FALSE;
- 2f4:	80 e0       	ldi	r24, 0x00	; 0
+ 316:	80 e0       	ldi	r24, 0x00	; 0
          u8_counter++;
          break;
- 2f6:	0e c0       	rjmp	.+28     	; 0x314 <StringCompare+0x34>
+ 318:	0e c0       	rjmp	.+28     	; 0x336 <StringCompare+0x34>
       }
       u8_counter++;
- 2f8:	4f 5f       	subi	r20, 0xFF	; 255
+ 31a:	4f 5f       	subi	r20, 0xFF	; 255
 static uint8_t StringCompare(uint8_t * str1, uint8_t * str2)
 {
    uint8_t u8_counter = 0;
    uint8_t u8_isEqual = TRUE;
    
    while(str1[u8_counter] != END_OF_STRING && str1[u8_counter] != NEW_LINE)
- 2fa:	24 2f       	mov	r18, r20
- 2fc:	30 e0       	ldi	r19, 0x00	; 0
- 2fe:	fd 01       	movw	r30, r26
- 300:	e2 0f       	add	r30, r18
- 302:	f3 1f       	adc	r31, r19
- 304:	90 81       	ld	r25, Z
- 306:	99 23       	and	r25, r25
- 308:	21 f0       	breq	.+8      	; 0x312 <StringCompare+0x32>
- 30a:	9d 30       	cpi	r25, 0x0D	; 13
- 30c:	61 f7       	brne	.-40     	; 0x2e6 <StringCompare+0x6>
+ 31c:	24 2f       	mov	r18, r20
+ 31e:	30 e0       	ldi	r19, 0x00	; 0
+ 320:	fd 01       	movw	r30, r26
+ 322:	e2 0f       	add	r30, r18
+ 324:	f3 1f       	adc	r31, r19
+ 326:	90 81       	ld	r25, Z
+ 328:	99 23       	and	r25, r25
+ 32a:	21 f0       	breq	.+8      	; 0x334 <StringCompare+0x32>
+ 32c:	9d 30       	cpi	r25, 0x0D	; 13
+ 32e:	61 f7       	brne	.-40     	; 0x308 <StringCompare+0x6>
 /*- LOCAL FUNCTIONS IMPLEMENTATION
 ------------------------*/
 static uint8_t StringCompare(uint8_t * str1, uint8_t * str2)
 {
    uint8_t u8_counter = 0;
    uint8_t u8_isEqual = TRUE;
- 30e:	81 e0       	ldi	r24, 0x01	; 1
- 310:	01 c0       	rjmp	.+2      	; 0x314 <StringCompare+0x34>
- 312:	81 e0       	ldi	r24, 0x01	; 1
+ 330:	81 e0       	ldi	r24, 0x01	; 1
+ 332:	01 c0       	rjmp	.+2      	; 0x336 <StringCompare+0x34>
+ 334:	81 e0       	ldi	r24, 0x01	; 1
          u8_counter++;
          break;
       }
       u8_counter++;
    }
    if( str2[u8_counter] != END_OF_STRING )
- 314:	fb 01       	movw	r30, r22
- 316:	e4 0f       	add	r30, r20
- 318:	f1 1d       	adc	r31, r1
- 31a:	90 81       	ld	r25, Z
- 31c:	91 11       	cpse	r25, r1
+ 336:	fb 01       	movw	r30, r22
+ 338:	e4 0f       	add	r30, r20
+ 33a:	f1 1d       	adc	r31, r1
+ 33c:	90 81       	ld	r25, Z
+ 33e:	91 11       	cpse	r25, r1
    {
       u8_isEqual = FALSE;
- 31e:	80 e0       	ldi	r24, 0x00	; 0
+ 340:	80 e0       	ldi	r24, 0x00	; 0
    }
    return u8_isEqual;
 }
- 320:	08 95       	ret
+ 342:	08 95       	ret
 
-00000322 <Traffic_init>:
+00000344 <Traffic_init>:
 
 /*- APIs IMPLEMENTATION
 -----------------------------------*/
 void Traffic_init(void)
 {
    LED_Init();
- 322:	0e 94 49 00 	call	0x92	; 0x92 <LED_Init>
+ 344:	0e 94 49 00 	call	0x92	; 0x92 <LED_Init>
    UART_Init(UART_CH_0);
- 326:	80 91 c2 00 	lds	r24, 0x00C2	; 0x8000c2 <UART_CH_0>
- 32a:	0e 94 17 01 	call	0x22e	; 0x22e <UART_Init>
- 32e:	08 95       	ret
+ 348:	80 e0       	ldi	r24, 0x00	; 0
+ 34a:	0e 94 17 01 	call	0x22e	; 0x22e <UART_Init>
+ 34e:	08 95       	ret
 
-00000330 <Traffic_update>:
+00000350 <Traffic_update>:
 }
 
 void Traffic_update(void)
 {
- 330:	1f 93       	push	r17
- 332:	cf 93       	push	r28
- 334:	df 93       	push	r29
- 336:	cd b7       	in	r28, 0x3d	; 61
- 338:	de b7       	in	r29, 0x3e	; 62
- 33a:	c8 5c       	subi	r28, 0xC8	; 200
- 33c:	d1 09       	sbc	r29, r1
- 33e:	0f b6       	in	r0, 0x3f	; 63
- 340:	f8 94       	cli
- 342:	de bf       	out	0x3e, r29	; 62
- 344:	0f be       	out	0x3f, r0	; 63
- 346:	cd bf       	out	0x3d, r28	; 61
+ 350:	cf 93       	push	r28
+ 352:	df 93       	push	r29
+ 354:	cd b7       	in	r28, 0x3d	; 61
+ 356:	de b7       	in	r29, 0x3e	; 62
+ 358:	c8 5c       	subi	r28, 0xC8	; 200
+ 35a:	d1 09       	sbc	r29, r1
+ 35c:	0f b6       	in	r0, 0x3f	; 63
+ 35e:	f8 94       	cli
+ 360:	de bf       	out	0x3e, r29	; 62
+ 362:	0f be       	out	0x3f, r0	; 63
+ 364:	cd bf       	out	0x3d, r28	; 61
    uint8_t string[MAX_STRING_SIZE];
    UART_ReceiveString(UART_CH_0, string);
- 348:	10 91 c2 00 	lds	r17, 0x00C2	; 0x8000c2 <UART_CH_0>
- 34c:	be 01       	movw	r22, r28
- 34e:	6f 5f       	subi	r22, 0xFF	; 255
- 350:	7f 4f       	sbci	r23, 0xFF	; 255
- 352:	81 2f       	mov	r24, r17
- 354:	0e 94 40 01 	call	0x280	; 0x280 <UART_ReceiveString>
+ 366:	be 01       	movw	r22, r28
+ 368:	6f 5f       	subi	r22, 0xFF	; 255
+ 36a:	7f 4f       	sbci	r23, 0xFF	; 255
+ 36c:	80 e0       	ldi	r24, 0x00	; 0
+ 36e:	0e 94 52 01 	call	0x2a4	; 0x2a4 <UART_ReceiveString>
    
    if(StringCompare(string,gu8_StartMessage) == TRUE)
- 358:	60 e6       	ldi	r22, 0x60	; 96
- 35a:	70 e0       	ldi	r23, 0x00	; 0
- 35c:	ce 01       	movw	r24, r28
- 35e:	01 96       	adiw	r24, 0x01	; 1
- 360:	0e 94 70 01 	call	0x2e0	; 0x2e0 <StringCompare>
- 364:	81 30       	cpi	r24, 0x01	; 1
- 366:	79 f4       	brne	.+30     	; 0x386 <Traffic_update+0x56>
+ 372:	60 e6       	ldi	r22, 0x60	; 96
+ 374:	70 e0       	ldi	r23, 0x00	; 0
+ 376:	ce 01       	movw	r24, r28
+ 378:	01 96       	adiw	r24, 0x01	; 1
+ 37a:	0e 94 81 01 	call	0x302	; 0x302 <StringCompare>
+ 37e:	81 30       	cpi	r24, 0x01	; 1
+ 380:	79 f4       	brne	.+30     	; 0x3a0 <Traffic_update+0x50>
    {
       LED_Off(LED_CH_2);
- 368:	82 e0       	ldi	r24, 0x02	; 2
- 36a:	0e 94 6d 00 	call	0xda	; 0xda <LED_Off>
+ 382:	82 e0       	ldi	r24, 0x02	; 2
+ 384:	0e 94 6d 00 	call	0xda	; 0xda <LED_Off>
       LED_Off(LED_CH_3);
- 36e:	83 e0       	ldi	r24, 0x03	; 3
- 370:	0e 94 6d 00 	call	0xda	; 0xda <LED_Off>
+ 388:	83 e0       	ldi	r24, 0x03	; 3
+ 38a:	0e 94 6d 00 	call	0xda	; 0xda <LED_Off>
       LED_On(LED_CH_1);
- 374:	81 e0       	ldi	r24, 0x01	; 1
- 376:	0e 94 8a 00 	call	0x114	; 0x114 <LED_On>
+ 38e:	81 e0       	ldi	r24, 0x01	; 1
+ 390:	0e 94 8a 00 	call	0x114	; 0x114 <LED_On>
       UART_TransmitString(UART_CH_0, gu8_StartMessageReply);
- 37a:	66 e6       	ldi	r22, 0x66	; 102
- 37c:	70 e0       	ldi	r23, 0x00	; 0
- 37e:	81 2f       	mov	r24, r17
- 380:	0e 94 28 01 	call	0x250	; 0x250 <UART_TransmitString>
- 384:	3f c0       	rjmp	.+126    	; 0x404 <__EEPROM_REGION_LENGTH__+0x4>
+ 394:	66 e6       	ldi	r22, 0x66	; 102
+ 396:	70 e0       	ldi	r23, 0x00	; 0
+ 398:	80 e0       	ldi	r24, 0x00	; 0
+ 39a:	0e 94 3b 01 	call	0x276	; 0x276 <UART_TransmitString>
+ 39e:	3f c0       	rjmp	.+126    	; 0x41e <__EEPROM_REGION_LENGTH__+0x1e>
    }
    else if(StringCompare(string, gu8_WaitMessage) == TRUE)
- 386:	68 e7       	ldi	r22, 0x78	; 120
- 388:	70 e0       	ldi	r23, 0x00	; 0
- 38a:	ce 01       	movw	r24, r28
- 38c:	01 96       	adiw	r24, 0x01	; 1
- 38e:	0e 94 70 01 	call	0x2e0	; 0x2e0 <StringCompare>
- 392:	81 30       	cpi	r24, 0x01	; 1
- 394:	71 f4       	brne	.+28     	; 0x3b2 <Traffic_update+0x82>
+ 3a0:	68 e7       	ldi	r22, 0x78	; 120
+ 3a2:	70 e0       	ldi	r23, 0x00	; 0
+ 3a4:	ce 01       	movw	r24, r28
+ 3a6:	01 96       	adiw	r24, 0x01	; 1
+ 3a8:	0e 94 81 01 	call	0x302	; 0x302 <StringCompare>
+ 3ac:	81 30       	cpi	r24, 0x01	; 1
+ 3ae:	71 f4       	brne	.+28     	; 0x3cc <Traffic_update+0x7c>
    {
       LED_Off(LED_CH_1);
- 396:	0e 94 6d 00 	call	0xda	; 0xda <LED_Off>
+ 3b0:	0e 94 6d 00 	call	0xda	; 0xda <LED_Off>
       LED_Off(LED_CH_3);
- 39a:	83 e0       	ldi	r24, 0x03	; 3
- 39c:	0e 94 6d 00 	call	0xda	; 0xda <LED_Off>
+ 3b4:	83 e0       	ldi	r24, 0x03	; 3
+ 3b6:	0e 94 6d 00 	call	0xda	; 0xda <LED_Off>
       LED_On(LED_CH_2);
- 3a0:	82 e0       	ldi	r24, 0x02	; 2
- 3a2:	0e 94 8a 00 	call	0x114	; 0x114 <LED_On>
+ 3ba:	82 e0       	ldi	r24, 0x02	; 2
+ 3bc:	0e 94 8a 00 	call	0x114	; 0x114 <LED_On>
       UART_TransmitString(UART_CH_0, gu8_WaitMessageReply);
- 3a6:	6d e7       	ldi	r22, 0x7D	; 125
- 3a8:	70 e0       	ldi	r23, 0x00	; 0
- 3aa:	81 2f       	mov	r24, r17
- 3ac:	0e 94 28 01 	call	0x250	; 0x250 <UART_TransmitString>
- 3b0:	29 c0       	rjmp	.+82     	; 0x404 <__EEPROM_REGION_LENGTH__+0x4>
+ 3c0:	6d e7       	ldi	r22, 0x7D	; 125
+ 3c2:	70 e0       	ldi	r23, 0x00	; 0
+ 3c4:	80 e0       	ldi	r24, 0x00	; 0
+ 3c6:	0e 94 3b 01 	call	0x276	; 0x276 <UART_TransmitString>
+ 3ca:	29 c0       	rjmp	.+82     	; 0x41e <__EEPROM_REGION_LENGTH__+0x1e>
    }
    else if(StringCompare(string, gu8_StopMessage) == TRUE)
- 3b2:	60 e9       	ldi	r22, 0x90	; 144
- 3b4:	70 e0       	ldi	r23, 0x00	; 0
- 3b6:	ce 01       	movw	r24, r28
- 3b8:	01 96       	adiw	r24, 0x01	; 1
- 3ba:	0e 94 70 01 	call	0x2e0	; 0x2e0 <StringCompare>
- 3be:	81 30       	cpi	r24, 0x01	; 1
- 3c0:	71 f4       	brne	.+28     	; 0x3de <Traffic_update+0xae>
+ 3cc:	60 e9       	ldi	r22, 0x90	; 144
+ 3ce:	70 e0       	ldi	r23, 0x00	; 0
+ 3d0:	ce 01       	movw	r24, r28
+ 3d2:	01 96       	adiw	r24, 0x01	; 1
+ 3d4:	0e 94 81 01 	call	0x302	; 0x302 <StringCompare>
+ 3d8:	81 30       	cpi	r24, 0x01	; 1
+ 3da:	71 f4       	brne	.+28     	; 0x3f8 <Traffic_update+0xa8>
    {
       LED_Off(LED_CH_1);
- 3c2:	0e 94 6d 00 	call	0xda	; 0xda <LED_Off>
+ 3dc:	0e 94 6d 00 	call	0xda	; 0xda <LED_Off>
       LED_Off(LED_CH_2);
- 3c6:	82 e0       	ldi	r24, 0x02	; 2
- 3c8:	0e 94 6d 00 	call	0xda	; 0xda <LED_Off>
+ 3e0:	82 e0       	ldi	r24, 0x02	; 2
+ 3e2:	0e 94 6d 00 	call	0xda	; 0xda <LED_Off>
       LED_On(LED_CH_3);
- 3cc:	83 e0       	ldi	r24, 0x03	; 3
- 3ce:	0e 94 8a 00 	call	0x114	; 0x114 <LED_On>
+ 3e6:	83 e0       	ldi	r24, 0x03	; 3
+ 3e8:	0e 94 8a 00 	call	0x114	; 0x114 <LED_On>
       UART_TransmitString(UART_CH_0, gu8_StopMessageReply);
- 3d2:	65 e9       	ldi	r22, 0x95	; 149
- 3d4:	70 e0       	ldi	r23, 0x00	; 0
- 3d6:	81 2f       	mov	r24, r17
- 3d8:	0e 94 28 01 	call	0x250	; 0x250 <UART_TransmitString>
- 3dc:	13 c0       	rjmp	.+38     	; 0x404 <__EEPROM_REGION_LENGTH__+0x4>
+ 3ec:	65 e9       	ldi	r22, 0x95	; 149
+ 3ee:	70 e0       	ldi	r23, 0x00	; 0
+ 3f0:	80 e0       	ldi	r24, 0x00	; 0
+ 3f2:	0e 94 3b 01 	call	0x276	; 0x276 <UART_TransmitString>
+ 3f6:	13 c0       	rjmp	.+38     	; 0x41e <__EEPROM_REGION_LENGTH__+0x1e>
    }
    else if(StringCompare(string, gu8_ATMessage) == TRUE)
- 3de:	65 ea       	ldi	r22, 0xA5	; 165
- 3e0:	70 e0       	ldi	r23, 0x00	; 0
- 3e2:	ce 01       	movw	r24, r28
- 3e4:	01 96       	adiw	r24, 0x01	; 1
- 3e6:	0e 94 70 01 	call	0x2e0	; 0x2e0 <StringCompare>
- 3ea:	81 30       	cpi	r24, 0x01	; 1
- 3ec:	31 f4       	brne	.+12     	; 0x3fa <Traffic_update+0xca>
+ 3f8:	65 ea       	ldi	r22, 0xA5	; 165
+ 3fa:	70 e0       	ldi	r23, 0x00	; 0
+ 3fc:	ce 01       	movw	r24, r28
+ 3fe:	01 96       	adiw	r24, 0x01	; 1
+ 400:	0e 94 81 01 	call	0x302	; 0x302 <StringCompare>
+ 404:	81 30       	cpi	r24, 0x01	; 1
+ 406:	31 f4       	brne	.+12     	; 0x414 <__EEPROM_REGION_LENGTH__+0x14>
    {
       UART_TransmitString(UART_CH_0, gu8_ATMessageReply);
- 3ee:	68 ea       	ldi	r22, 0xA8	; 168
- 3f0:	70 e0       	ldi	r23, 0x00	; 0
- 3f2:	81 2f       	mov	r24, r17
- 3f4:	0e 94 28 01 	call	0x250	; 0x250 <UART_TransmitString>
- 3f8:	05 c0       	rjmp	.+10     	; 0x404 <__EEPROM_REGION_LENGTH__+0x4>
+ 408:	68 ea       	ldi	r22, 0xA8	; 168
+ 40a:	70 e0       	ldi	r23, 0x00	; 0
+ 40c:	80 e0       	ldi	r24, 0x00	; 0
+ 40e:	0e 94 3b 01 	call	0x276	; 0x276 <UART_TransmitString>
+ 412:	05 c0       	rjmp	.+10     	; 0x41e <__EEPROM_REGION_LENGTH__+0x1e>
    }
    else
    {
       UART_TransmitString(UART_CH_0, gu8_InvalidMessageReply);
- 3fa:	6d ea       	ldi	r22, 0xAD	; 173
- 3fc:	70 e0       	ldi	r23, 0x00	; 0
- 3fe:	81 2f       	mov	r24, r17
- 400:	0e 94 28 01 	call	0x250	; 0x250 <UART_TransmitString>
+ 414:	6d ea       	ldi	r22, 0xAD	; 173
+ 416:	70 e0       	ldi	r23, 0x00	; 0
+ 418:	80 e0       	ldi	r24, 0x00	; 0
+ 41a:	0e 94 3b 01 	call	0x276	; 0x276 <UART_TransmitString>
    }
- 404:	c8 53       	subi	r28, 0x38	; 56
- 406:	df 4f       	sbci	r29, 0xFF	; 255
- 408:	0f b6       	in	r0, 0x3f	; 63
- 40a:	f8 94       	cli
- 40c:	de bf       	out	0x3e, r29	; 62
- 40e:	0f be       	out	0x3f, r0	; 63
- 410:	cd bf       	out	0x3d, r28	; 61
- 412:	df 91       	pop	r29
- 414:	cf 91       	pop	r28
- 416:	1f 91       	pop	r17
- 418:	08 95       	ret
+ 41e:	c8 53       	subi	r28, 0x38	; 56
+ 420:	df 4f       	sbci	r29, 0xFF	; 255
+ 422:	0f b6       	in	r0, 0x3f	; 63
+ 424:	f8 94       	cli
+ 426:	de bf       	out	0x3e, r29	; 62
+ 428:	0f be       	out	0x3f, r0	; 63
+ 42a:	cd bf       	out	0x3d, r28	; 61
+ 42c:	df 91       	pop	r29
+ 42e:	cf 91       	pop	r28
+ 430:	08 95       	ret
 
-0000041a <main>:
+00000432 <main>:
 -----------------------------------------------*/
 #include "App/TrafficSign/TrafficSign.h"
 
 int main(void)
 {
    Traffic_init();
- 41a:	0e 94 91 01 	call	0x322	; 0x322 <Traffic_init>
+ 432:	0e 94 a2 01 	call	0x344	; 0x344 <Traffic_init>
    while (1) 
    {
       Traffic_update();
- 41e:	0e 94 98 01 	call	0x330	; 0x330 <Traffic_update>
- 422:	fd cf       	rjmp	.-6      	; 0x41e <main+0x4>
+ 436:	0e 94 a8 01 	call	0x350	; 0x350 <Traffic_update>
+ 43a:	fd cf       	rjmp	.-6      	; 0x436 <main+0x4>
 
-00000424 <_exit>:
- 424:	f8 94       	cli
+0000043c <_exit>:
+ 43c:	f8 94       	cli
 
-00000426 <__stop_program>:
- 426:	ff cf       	rjmp	.-2      	; 0x426 <__stop_program>
+0000043e <__stop_program>:
+ 43e:	ff cf       	rjmp	.-2      	; 0x43e <__stop_program>

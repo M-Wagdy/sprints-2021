@@ -34,10 +34,6 @@ static uint8_t * gu8_ATMessageReply = (uint8_t *)"OK \r";
 
 static uint8_t * gu8_InvalidMessageReply = (uint8_t *)"Invalid Command \r";
 
-/*- GLOBAL EXTERN VARIABLES
--------------------------------*/
-extern const uint8_t UART_CH_0;
-
 /*- LOCAL FUNCTIONS IMPLEMENTATION
 ------------------------*/
 static uint8_t StringCompare(uint8_t * str1, uint8_t * str2)

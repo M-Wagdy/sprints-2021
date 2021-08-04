@@ -23,15 +23,23 @@
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
+#if !TEST
 static Ptr_VoidFuncVoid_t g_TxCallback[UART_CH_NUMBER];
 static Ptr_VoidFuncVoid_t g_RxCallback[UART_CH_NUMBER];
+#else
+Ptr_VoidFuncVoid_t g_TxCallback[UART_CH_NUMBER];
+Ptr_VoidFuncVoid_t g_RxCallback[UART_CH_NUMBER];
+#endif
 
 /*- GLOBAL EXTERN VARIABLES
 -------------------------------*/
-extern const uint8_t UART_CH_0;
 extern const uint8_t UART_CH_0_CONTROL;
 extern const uint8_t UART_CH_0_CONTROL_2;
-extern const uint8_t UART_CH_0_BaudRate;
+#if !TEST
+extern const uint16_t UART_CH_0_BaudRate;
+#else
+extern uint16_t UART_CH_0_BaudRate;
+#endif
 
 /*- APIs IMPLEMENTATION
 -----------------------------------*/
@@ -43,30 +51,33 @@ extern const uint8_t UART_CH_0_BaudRate;
 */
 UART_ERROR_state_t UART_Init(uint8_t UartNumber)
 {
-   if(UART_CH_0 == UartNumber)
+   switch(UartNumber)
    {
-      /* make sure valid baud rate is given */
-      if(MAX_BAUD_VALUE < UART_CH_0_BaudRate)
-      {
-         return E_UART_INVALID_BAUD_RATE;
-      }
+      #ifdef UART_CH_0
+      case UART_CH_0:
+         /* make sure valid baud rate is given */
+         if(MAX_BAUD_VALUE < UART_CH_0_BaudRate)
+         {
+            return E_UART_INVALID_BAUD_RATE;
+         }
       
-      /* Enable Receiver and Transmitter */
-      UART_CONTROL_R = UART_CH_0_CONTROL;
-      /* Set Odd parity, 2 stop bits and 8 bits data size */
-      UART_CONTROL_2_R = UART_CH_0_CONTROL_2;
+         /* Enable Receiver and Transmitter */
+         UART_CONTROL_R = UART_CH_0_CONTROL;
+         /* Set Odd parity, 2 stop bits and 8 bits data size */
+         UART_CONTROL_2_R = UART_CH_0_CONTROL_2;
       
-      /* Set Baud Rate low bits */
-      UART_BAUDRATE_LOW_R = (uint8_t)UART_CH_0_BaudRate;
-      /* Set Baud Rate high bits if needed */
-      if(BAUD_MAX_LOW_BITS < UART_CH_0_BaudRate)
-      {
-         UART_BAUDRATE_HIGH_R = (uint8_t)( UART_CH_0_BaudRate >> BAUD_HIGH_BITS_SHIFT );
-      }
-   }
-   else
-   {
-      return E_UART_INVALID_CH;
+         /* Set Baud Rate low bits */
+         UART_BAUDRATE_LOW_R = (uint8_t)UART_CH_0_BaudRate;
+         /* Set Baud Rate high bits if needed */
+         if(BAUD_MAX_LOW_BITS < UART_CH_0_BaudRate)
+         {
+            UART_BAUDRATE_HIGH_R = (uint8_t)( UART_CH_0_BaudRate >> BAUD_HIGH_BITS_SHIFT );
+         }
+         
+         break;
+      #endif
+      default:
+         return E_UART_INVALID_CH;
    }
 
    /* return success status */
@@ -85,14 +96,14 @@ UART_ERROR_state_t UART_TransmitChar(uint8_t UartNumber, uint8_t TxChar)
    volatile uint8_t * ptru8_UARTStatusR;
    volatile uint8_t * ptru8_UARTDataR;
    
-   if(UART_CH_0 == UartNumber)
+   switch(UartNumber)
    {
-      ptru8_UARTStatusR = &UART_STATUS_R;
-      ptru8_UARTDataR = &UART_DATA_R;
-   }
-   else
-   {
-      return E_UART_INVALID_CH;
+      case UART_CH_0:
+         ptru8_UARTStatusR = &UART_STATUS_R;
+         ptru8_UARTDataR = &UART_DATA_R;
+         break;
+      default:
+         return E_UART_INVALID_CH;
    }
 
    /* Wait for empty transmit buffer */
@@ -129,14 +140,14 @@ UART_ERROR_state_t UART_ReceiveChar(uint8_t UartNumber,uint8_t * RxChar)
    volatile uint8_t * ptru8_UARTStatusR;
    volatile uint8_t * ptru8_UARTDataR;
    
-   if(UART_CH_0 == UartNumber)
+   switch(UartNumber)
    {
-      ptru8_UARTStatusR = &UART_STATUS_R;
-      ptru8_UARTDataR = &UART_DATA_R;
-   }
-   else
-   {
-      return E_UART_INVALID_CH;
+      case UART_CH_0:
+         ptru8_UARTStatusR = &UART_STATUS_R;
+         ptru8_UARTDataR = &UART_DATA_R;
+         break;
+      default:
+         return E_UART_INVALID_CH;
    }
    
    /* Wait for data to be received */
@@ -173,14 +184,14 @@ UART_ERROR_state_t UART_TransmitString(uint8_t UartNumber,uint8_t * TxString)
    volatile uint8_t * ptru8_UARTStatusR;
    volatile uint8_t * ptru8_UARTDataR;
    
-   if(UART_CH_0 == UartNumber)
+   switch(UartNumber)
    {
-      ptru8_UARTStatusR = &UART_STATUS_R;
-      ptru8_UARTDataR = &UART_DATA_R;
-   }
-   else
-   {
-       return E_UART_INVALID_CH;
+      case UART_CH_0:
+         ptru8_UARTStatusR = &UART_STATUS_R;
+         ptru8_UARTDataR = &UART_DATA_R;
+         break;
+      default:
+         return E_UART_INVALID_CH;
    }
    
    /* keeps sending data until it finds an end of string character in the string */
@@ -223,14 +234,14 @@ UART_ERROR_state_t UART_ReceiveString(uint8_t UartNumber, uint8_t * RxString)
    volatile uint8_t * ptru8_UARTStatusR;
    volatile uint8_t * ptru8_UARTDataR;
    
-   if(UART_CH_0 == UartNumber)
+   switch(UartNumber)
    {
-      ptru8_UARTStatusR = &UART_STATUS_R;
-      ptru8_UARTDataR = &UART_DATA_R;
-   }
-   else
-   {
-      return E_UART_INVALID_CH;
+      case UART_CH_0:
+         ptru8_UARTStatusR = &UART_STATUS_R;
+         ptru8_UARTDataR = &UART_DATA_R;
+         break;
+      default:
+         return E_UART_INVALID_CH;
    }
    
    while(1)
@@ -280,7 +291,7 @@ UART_ERROR_state_t UART_ReceiveString(uint8_t UartNumber, uint8_t * RxString)
 UART_ERROR_state_t UART_EnableInterrupt(uint8_t UartNumber,uint8_t UartInterruptType)
 {
    /* making sure a valid interrupt type was sent to the function */
-   if (RX_INT != UartInterruptType || TX_INT != UartInterruptType)
+   if (RX_INT != UartInterruptType && TX_INT != UartInterruptType)
    {
       return E_UART_INVALID_INT_TYPE;
    }
@@ -291,13 +302,13 @@ UART_ERROR_state_t UART_EnableInterrupt(uint8_t UartNumber,uint8_t UartInterrupt
    
    volatile uint8_t * ptru8_UARTControlR;
    
-   if(UART_CH_0 == UartNumber)
+   switch(UartNumber)
    {
-      ptru8_UARTControlR = &UART_CONTROL_R;
-   }
-   else
-   {
-      return E_UART_INVALID_CH;
+      case UART_CH_0:
+         ptru8_UARTControlR = &UART_CONTROL_R;
+         break;
+      default:
+         return E_UART_INVALID_CH;
    }
    
    /* enable interrupt */
@@ -318,7 +329,7 @@ UART_ERROR_state_t UART_EnableInterrupt(uint8_t UartNumber,uint8_t UartInterrupt
 UART_ERROR_state_t UART_DisableInterrupt(uint8_t UartNumber,uint8_t UartInterruptType)
 {
    /* making sure a valid interrupt type was sent to the function */
-   if (RX_INT != UartInterruptType || TX_INT != UartInterruptType)
+   if (RX_INT != UartInterruptType && TX_INT != UartInterruptType)
    {
       return E_UART_INVALID_INT_TYPE;
    }
@@ -329,13 +340,13 @@ UART_ERROR_state_t UART_DisableInterrupt(uint8_t UartNumber,uint8_t UartInterrup
    
    volatile uint8_t * ptru8_UARTControlR;
    
-   if(UART_CH_0 == UartNumber)
+   switch(UartNumber)
    {
-      ptru8_UARTControlR = &UART_CONTROL_R;
-   }
-   else
-   {
-      return E_UART_INVALID_CH;
+      case UART_CH_0:
+         ptru8_UARTControlR = &UART_CONTROL_R;
+         break;
+      default:
+         return E_UART_INVALID_CH;
    }
    
    
@@ -363,7 +374,7 @@ UART_ERROR_state_t UART_SetCallback(uint8_t UartNumber, uint8_t UartInterruptTyp
       return E_UART_NULL_PTR;
    }
    /* making sure a valid interrupt type was sent to the function */
-   else if (RX_INT != UartInterruptType || TX_INT != UartInterruptType)
+   else if (RX_INT != UartInterruptType && TX_INT != UartInterruptType)
    {
       return E_UART_INVALID_INT_TYPE;
    }
@@ -374,13 +385,13 @@ UART_ERROR_state_t UART_SetCallback(uint8_t UartNumber, uint8_t UartInterruptTyp
    
    volatile uint8_t u8_UARTIndex;
    
-   if(UART_CH_0 == UartNumber)
+   switch(UartNumber)
    {
-      u8_UARTIndex = UART_CH_0;
-   }
-   else
-   {
-      return E_UART_INVALID_CH;
+      case UART_CH_0:
+         u8_UARTIndex = UART_CH_0;
+         break;
+      default:
+         return E_UART_INVALID_CH;
    }
    
    /* set callback function */
@@ -413,14 +424,14 @@ UART_ERROR_state_t UART_FlushReceiveBuffer(uint8_t UartNumber)
    volatile uint8_t * ptru8_UARTStatusR;
    volatile uint8_t * ptru8_UARTDataR;
    
-   if(UART_CH_0 == UartNumber)
+   switch(UartNumber)
    {
-      ptru8_UARTStatusR = &UART_STATUS_R;
-      ptru8_UARTDataR = &UART_DATA_R;
-   }
-   else
-   {
-      return E_UART_INVALID_CH;
+      case UART_CH_0:
+         ptru8_UARTStatusR = &UART_STATUS_R;
+         ptru8_UARTDataR = &UART_DATA_R;
+         break;
+      default:
+         return E_UART_INVALID_CH;
    }
    
    /* dummy variable to flush the buffer */
@@ -448,13 +459,13 @@ UART_ERROR_state_t UART_SetData(uint8_t UartNumber,uint8_t TxChar)
 {
    volatile uint8_t * ptru8_UARTDataR;
    
-   if(UART_CH_0 == UartNumber)
+   switch(UartNumber)
    {
-      ptru8_UARTDataR = &UART_DATA_R;
-   }
-   else
-   {
-      return E_UART_INVALID_CH;
+      case UART_CH_0:
+         ptru8_UARTDataR = &UART_DATA_R;
+         break;
+      default:
+         return E_UART_INVALID_CH;
    }
 
    /* Put data into buffer, sends the data */
@@ -487,13 +498,13 @@ UART_ERROR_state_t UART_GetData(uint8_t UartNumber,uint8_t * RxChar)
    
    volatile uint8_t * ptru8_UARTDataR;
    
-   if(UART_CH_0 == UartNumber)
+   switch(UartNumber)
    {
-      ptru8_UARTDataR = &UART_DATA_R;
-   }
-   else
-   {
-      return E_UART_INVALID_CH;
+      case UART_CH_0:
+         ptru8_UARTDataR = &UART_DATA_R;
+         break;
+      default:
+         return E_UART_INVALID_CH;
    }
    
    /* Get and return received data from buffer */
