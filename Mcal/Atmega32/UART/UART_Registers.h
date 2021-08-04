@@ -8,7 +8,7 @@
 #ifndef __UART_REGISTERS_H__
 #define __UART_REGISTERS_H__
 
-#define TEST 1
+#define TEST 0
 
 #if !TEST
    /*- UART REGISTERS-----------------------------------------*/
