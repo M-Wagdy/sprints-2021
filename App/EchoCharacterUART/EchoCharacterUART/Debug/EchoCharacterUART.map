@@ -13,9 +13,9 @@ Discarded input sections
  .data          0x00000000        0x0 Mcal/UART/UART.o
  .bss           0x00000000        0x0 Mcal/UART/UART.o
  .text.UART_TransmitChar
-                0x00000000       0x16 Mcal/UART/UART.o
+                0x00000000       0x12 Mcal/UART/UART.o
  .text.UART_ReceiveChar
-                0x00000000       0x24 Mcal/UART/UART.o
+                0x00000000       0x20 Mcal/UART/UART.o
  .text.UART_EnableInterrupt
                 0x00000000        0x4 Mcal/UART/UART.o
  .text.UART_DisableInterrupt
@@ -23,11 +23,11 @@ Discarded input sections
  .text.UART_SetCallback
                 0x00000000        0xc Mcal/UART/UART.o
  .text.UART_FlushReceiveBuffer
-                0x00000000       0x16 Mcal/UART/UART.o
+                0x00000000       0x14 Mcal/UART/UART.o
  .text.UART_SetData
-                0x00000000       0x12 Mcal/UART/UART.o
+                0x00000000        0xc Mcal/UART/UART.o
  .text.UART_GetData
-                0x00000000       0x20 Mcal/UART/UART.o
+                0x00000000       0x1c Mcal/UART/UART.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
@@ -194,7 +194,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x172
+.text           0x00000000      0x166
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
                 0x00000000                __vector_default
@@ -275,21 +275,21 @@ END GROUP
                 0x00000082                . = ALIGN (0x2)
  *(.text.*)
  .text.UART_Init
-                0x00000082       0x22 Mcal/UART/UART.o
+                0x00000082       0x1e Mcal/UART/UART.o
                 0x00000082                UART_Init
  .text.UART_TransmitString
-                0x000000a4       0x30 Mcal/UART/UART.o
-                0x000000a4                UART_TransmitString
+                0x000000a0       0x2e Mcal/UART/UART.o
+                0x000000a0                UART_TransmitString
  .text.UART_ReceiveString
-                0x000000d4       0x60 Mcal/UART/UART.o
-                0x000000d4                UART_ReceiveString
- .text.main     0x00000134       0x3a main.o
-                0x00000134                main
-                0x0000016e                . = ALIGN (0x2)
+                0x000000ce       0x5e Mcal/UART/UART.o
+                0x000000ce                UART_ReceiveString
+ .text.main     0x0000012c       0x36 main.o
+                0x0000012c                main
+                0x00000162                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000016e        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x0000016e                _exit
-                0x0000016e                exit
+ .fini9         0x00000162        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000162                _exit
+                0x00000162                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -308,11 +308,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000016e        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000162        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000172                _etext = .
+                0x00000166                _etext = .
 
-.data           0x00800060        0x4 load address 0x00000172
+.data           0x00800060        0x4 load address 0x00000166
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -328,11 +328,9 @@ END GROUP
  .rodata.UART_CH_0_CONTROL
                 0x00800062        0x1 Mcal/UART/UART_Config.o
                 0x00800062                UART_CH_0_CONTROL
- .rodata.UART_CH_0
-                0x00800063        0x1 Mcal/UART/UART_Config.o
-                0x00800063                UART_CH_0
  *(.gnu.linkonce.r*)
                 0x00800064                . = ALIGN (0x2)
+ *fill*         0x00800063        0x1 
                 0x00800064                _edata = .
                 0x00800064                PROVIDE (__data_end, .)
 
@@ -342,8 +340,8 @@ END GROUP
  *(.bss*)
  *(COMMON)
                 [!provide]                PROVIDE (__bss_end, .)
-                0x00000172                __data_load_start = LOADADDR (.data)
-                0x00000176                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000166                __data_load_start = LOADADDR (.data)
+                0x0000016a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800064        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -428,46 +426,46 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xb6e
+.debug_info     0x00000000      0xb3a
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_info    0x000004e6      0x489 Mcal/UART/UART.o
- .debug_info    0x0000096f      0x146 main.o
- .debug_info    0x00000ab5       0xb9 Mcal/UART/UART_Config.o
+ .debug_info    0x000004e6      0x47c Mcal/UART/UART.o
+ .debug_info    0x00000962      0x131 main.o
+ .debug_info    0x00000a93       0xa7 Mcal/UART/UART_Config.o
 
-.debug_abbrev   0x00000000      0x6ea
+.debug_abbrev   0x00000000      0x6d2
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_abbrev  0x000004a3      0x135 Mcal/UART/UART.o
- .debug_abbrev  0x000005d8       0xc7 main.o
- .debug_abbrev  0x0000069f       0x4b Mcal/UART/UART_Config.o
+ .debug_abbrev  0x000005d8       0xaf main.o
+ .debug_abbrev  0x00000687       0x4b Mcal/UART/UART_Config.o
 
-.debug_line     0x00000000      0x540
+.debug_line     0x00000000      0x558
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_line    0x00000116      0x2fa Mcal/UART/UART.o
- .debug_line    0x00000410       0xba main.o
- .debug_line    0x000004ca       0x76 Mcal/UART/UART_Config.o
+ .debug_line    0x00000116      0x312 Mcal/UART/UART.o
+ .debug_line    0x00000428       0xba main.o
+ .debug_line    0x000004e2       0x76 Mcal/UART/UART_Config.o
 
 .debug_frame    0x00000000       0xfc
  *(.debug_frame)
  .debug_frame   0x00000000       0xc4 Mcal/UART/UART.o
  .debug_frame   0x000000c4       0x38 main.o
 
-.debug_str      0x00000000      0x527
+.debug_str      0x00000000      0x51d
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_str     0x00000196      0x355 Mcal/UART/UART.o
-                                0x377 (size before relaxing)
- .debug_str     0x000004eb       0x21 main.o
-                                0x1cf (size before relaxing)
- .debug_str     0x0000050c       0x1b Mcal/UART/UART_Config.o
-                                0x1d1 (size before relaxing)
+ .debug_str     0x00000196      0x34b Mcal/UART/UART.o
+                                0x36d (size before relaxing)
+ .debug_str     0x000004e1       0x21 main.o
+                                0x1c5 (size before relaxing)
+ .debug_str     0x00000502       0x1b Mcal/UART/UART_Config.o
+                                0x1c7 (size before relaxing)
 
-.debug_loc      0x00000000      0x3bb
+.debug_loc      0x00000000      0x3ed
  *(.debug_loc)
- .debug_loc     0x00000000      0x373 Mcal/UART/UART.o
- .debug_loc     0x00000373       0x48 main.o
+ .debug_loc     0x00000000      0x3a5 Mcal/UART/UART.o
+ .debug_loc     0x000003a5       0x48 main.o
 
 .debug_macinfo
  *(.debug_macinfo)

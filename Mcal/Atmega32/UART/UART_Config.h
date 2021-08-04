@@ -41,4 +41,7 @@
 
 #define UART_CH_NUMBER                    (uint8_t)(1)
 
+/* UART_CH_0 */
+#define UART_CH_0                         (uint8_t)(0)
+
 #endif /* __UART_CONFIG_H__ */

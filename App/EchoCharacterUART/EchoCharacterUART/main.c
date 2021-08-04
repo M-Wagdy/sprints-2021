@@ -13,10 +13,6 @@
 ------------------------------------------*/
 #define MAX_STRING_SIZE       (uint16_t)(200)
 
-/*- GLOBAL EXTERN VARIABLES
--------------------------------*/
-extern const uint8_t UART_CH_0;
-
 int main(void)
 {
    uint8_t string[MAX_STRING_SIZE];
