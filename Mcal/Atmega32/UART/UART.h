@@ -9,7 +9,7 @@
 #define __UART_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
+#include "../../../Infrastructure/STD_types.h"
 #include "UART_Registers.h"
 #include "UART_Config.h"
 #include "UART_retval.h"

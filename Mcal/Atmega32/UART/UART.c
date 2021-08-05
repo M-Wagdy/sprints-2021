@@ -23,14 +23,23 @@
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
+#if !TEST
 static Ptr_VoidFuncVoid_t g_TxCallback[UART_CH_NUMBER];
 static Ptr_VoidFuncVoid_t g_RxCallback[UART_CH_NUMBER];
+#else
+Ptr_VoidFuncVoid_t g_TxCallback[UART_CH_NUMBER];
+Ptr_VoidFuncVoid_t g_RxCallback[UART_CH_NUMBER];
+#endif
 
 /*- GLOBAL EXTERN VARIABLES
 -------------------------------*/
 extern const uint8_t UART_CH_0_CONTROL;
 extern const uint8_t UART_CH_0_CONTROL_2;
-extern const uint8_t UART_CH_0_BaudRate;
+#if !TEST
+extern const uint16_t UART_CH_0_BaudRate;
+#else
+extern uint16_t UART_CH_0_BaudRate;
+#endif
 
 /*- APIs IMPLEMENTATION
 -----------------------------------*/
@@ -282,7 +291,7 @@ UART_ERROR_state_t UART_ReceiveString(uint8_t UartNumber, uint8_t * RxString)
 UART_ERROR_state_t UART_EnableInterrupt(uint8_t UartNumber,uint8_t UartInterruptType)
 {
    /* making sure a valid interrupt type was sent to the function */
-   if (RX_INT != UartInterruptType || TX_INT != UartInterruptType)
+   if (RX_INT != UartInterruptType && TX_INT != UartInterruptType)
    {
       return E_UART_INVALID_INT_TYPE;
    }
@@ -320,7 +329,7 @@ UART_ERROR_state_t UART_EnableInterrupt(uint8_t UartNumber,uint8_t UartInterrupt
 UART_ERROR_state_t UART_DisableInterrupt(uint8_t UartNumber,uint8_t UartInterruptType)
 {
    /* making sure a valid interrupt type was sent to the function */
-   if (RX_INT != UartInterruptType || TX_INT != UartInterruptType)
+   if (RX_INT != UartInterruptType && TX_INT != UartInterruptType)
    {
       return E_UART_INVALID_INT_TYPE;
    }
@@ -365,7 +374,7 @@ UART_ERROR_state_t UART_SetCallback(uint8_t UartNumber, uint8_t UartInterruptTyp
       return E_UART_NULL_PTR;
    }
    /* making sure a valid interrupt type was sent to the function */
-   else if (RX_INT != UartInterruptType || TX_INT != UartInterruptType)
+   else if (RX_INT != UartInterruptType && TX_INT != UartInterruptType)
    {
       return E_UART_INVALID_INT_TYPE;
    }

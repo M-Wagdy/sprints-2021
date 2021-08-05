@@ -10,6 +10,7 @@
 #define __EEPROM_H__
 
 /*- INCLUDES -----------------------------------------------*/
+#include "Infrastructure/utils.h"
 #include "Mcal/Atmega32/I2C/I2C.h"
 #include "EEPROM_retval.h"
 #include "EEPROM_Config.h"

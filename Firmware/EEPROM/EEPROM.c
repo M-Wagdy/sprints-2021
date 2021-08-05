@@ -59,6 +59,11 @@ EEPROM_ERROR_state_t EEPROM_Init(uint8_t EEPROM_CH)
 */
 EEPROM_ERROR_state_t EEPROM_Read(uint8_t EEPROM_CH, uint8_t memoryBlock, uint8_t address, uint8_t * data)
 {
+   if(NULL_PTR == data)
+   {
+      return E_EEPROM_NULL_PTR;
+   }
+   
    I2C_ERROR_state_t e_state;
    
    uint8_t u8_I2C_CH;
@@ -204,6 +209,21 @@ EEPROM_ERROR_state_t EEPROM_Write(uint8_t EEPROM_CH, uint8_t memoryBlock, uint8_
 */
 EEPROM_ERROR_state_t EEPROM_ReadBytes(uint8_t EEPROM_CH, uint8_t memoryBlock, uint8_t start_address, uint8_t * data, uint8_t bytes_num)
 {
+   if(NULL_PTR == data)
+   {
+      return E_EEPROM_NULL_PTR;
+   }
+   
+   switch(EEPROM_CH)
+   {
+      #ifdef EEPROM_CH_0
+      case EEPROM_CH_0:
+         break;
+      #endif
+      default:
+         return E_EEPROM_INVALID_CH_NO;
+   }
+   
    I2C_ERROR_state_t e_state;
    
    for(uint8_t au8_BytesCounter = 0 ; au8_BytesCounter < bytes_num; au8_BytesCounter++)
@@ -232,6 +252,21 @@ EEPROM_ERROR_state_t EEPROM_ReadBytes(uint8_t EEPROM_CH, uint8_t memoryBlock, ui
 */
 EEPROM_ERROR_state_t EEPROM_WriteBytes(uint8_t EEPROM_CH, uint8_t memoryBlock, uint8_t start_address, uint8_t * data, uint8_t bytes_num)
 {
+   if(NULL_PTR == data)
+   {
+      return E_EEPROM_NULL_PTR;
+   }
+   
+   switch(EEPROM_CH)
+   {
+      #ifdef EEPROM_CH_0
+      case EEPROM_CH_0:
+         break;
+      #endif
+      default:
+         return E_EEPROM_INVALID_CH_NO;
+   }
+   
    I2C_ERROR_state_t e_state;
    
    for(uint8_t au8_BytesCounter = 0 ; au8_BytesCounter < bytes_num; au8_BytesCounter++)

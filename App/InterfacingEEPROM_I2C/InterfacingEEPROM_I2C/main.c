@@ -18,15 +18,15 @@
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
-static uint8_t * gu8_CommandMessage = "Please enter a READ/WRITE Command: \r";
-static uint8_t * gu8_AddressMessage = "Please enter an Address: \r";
-static uint8_t * gu8_DataMessage = "Please enter data: \r";
+static uint8_t * gu8_CommandMessage = (uint8_t *)"Please enter a READ/WRITE Command: \r";
+static uint8_t * gu8_AddressMessage = (uint8_t *)"Please enter an Address: \r";
+static uint8_t * gu8_DataMessage = (uint8_t *)"Please enter data: \r";
 
-static uint8_t * gu8_WriteMessage = "WRITE";
-static uint8_t * gu8_ReadMessage = "READ";
-static uint8_t * gu8_UARTMessageReply = "\rOK \r";
-static uint8_t * gu8_ReadMessageReply = "the data stored is: \r";
-static uint8_t * gu8_InvalidMessageReply = "Invalid Command \r";
+static uint8_t * gu8_WriteMessage = (uint8_t *)"WRITE";
+static uint8_t * gu8_ReadMessage = (uint8_t *)"READ";
+static uint8_t * gu8_UARTMessageReply = (uint8_t *)"\rOK \r";
+static uint8_t * gu8_ReadMessageReply = (uint8_t *)"the data stored is: \r";
+static uint8_t * gu8_InvalidMessageReply = (uint8_t *)"Invalid Command \r";
 
 int main(void)
 {
