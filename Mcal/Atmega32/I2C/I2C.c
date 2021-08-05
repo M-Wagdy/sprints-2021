@@ -336,7 +336,12 @@ I2C_ERROR_state_t I2C_Stop(uint8_t I2C_CH)
    /* set stop condition */
    *ptr_I2CControlR = (I2C_INTERRUPT_FLAG | I2C_EN | I2C_STOP_BIT);
    
-   while (!(*ptr_I2CControlR & I2C_STOP_BIT));
+   while (*ptr_I2CControlR & I2C_STOP_BIT)
+   {
+      #if TEST
+      *ptr_I2CControlR &= ~(I2C_STOP_BIT);
+      #endif
+   }
    /* return success message */
    return E_I2C_SUCCESS;
 }

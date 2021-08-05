@@ -377,7 +377,7 @@ void TestStopCond(void)
 	u8_ID = 18;
 	I2C_ErrorState = I2C_Stop(I2C_CH_0);
 	if (
-		(I2C_ErrorState == E_I2C_SUCCESS) && (I2C_CONTROL_R & I2C_STOP_BIT)
+		(I2C_ErrorState == E_I2C_SUCCESS) && !(I2C_CONTROL_R & I2C_STOP_BIT)
 		)
 	{
 		printf("Test Case ID: %u - PASSED \n", u8_ID);
