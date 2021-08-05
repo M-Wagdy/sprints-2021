@@ -10,6 +10,8 @@
 
 App\TrafficSign\TrafficSign.c
 
+Firmware\LED\LED_Config.c
+
 main.c
 
 Mcal\Atmega32\UART\UART_Config.c

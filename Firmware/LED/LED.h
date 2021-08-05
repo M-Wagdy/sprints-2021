@@ -26,7 +26,7 @@ LED_ERROR_state_t LED_Off(uint8_t LED_ch);
 LED_ERROR_state_t LED_On(uint8_t LED_ch);
 
 /* Function that toggles a LED */
-LED_ERROR_state_t LED_toggle(uint8_t LED_ch);
+LED_ERROR_state_t LED_Toggle(uint8_t LED_ch);
 
 /* Function that returns a LED state */
 LED_ERROR_state_t LED_Status(uint8_t LED_ch, uint8_t * state);

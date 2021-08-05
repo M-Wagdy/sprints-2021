@@ -183,6 +183,9 @@
     <Compile Include="App\TrafficSign\TrafficSign.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Firmware\LED\LED_Config.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>

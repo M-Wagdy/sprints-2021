@@ -47,4 +47,10 @@ typedef uint8_t LED_ERROR_state_t;
 */
 #define           E_LED_NOT_INIT          (LED_ERROR_state_t)( 4 )
 
+/**
+* @brief: This return value indicate that a function
+* was sent a null pointer in parameters.
+*/
+#define           E_LED_NULL_PTR          (LED_ERROR_state_t)( 5 )
+
 #endif /* __LED_RETVAL_H__ */

@@ -20,6 +20,21 @@
 -------------------------------*/
 static uint8_t gu8_IsLEDInit = NOT_INIT;
 
+/*- GLOBAL EXTERN VARIABLES
+-------------------------------*/
+#ifdef LED_CH_1
+extern const uint8_t LED_CH_1_PORT;
+extern const uint8_t LED_CH_1_PIN;
+#endif
+#ifdef LED_CH_2
+extern const uint8_t LED_CH_2_PORT;
+extern const uint8_t LED_CH_2_PIN;
+#endif
+#ifdef LED_CH_3
+extern const uint8_t LED_CH_3_PORT;
+extern const uint8_t LED_CH_3_PIN;
+#endif
+
 /*- APIs IMPLEMENTATION
 -----------------------------------*/
 
@@ -196,7 +211,7 @@ LED_ERROR_state_t LED_On(uint8_t LED_ch)
 *
 * @return function error state.
 */
-LED_ERROR_state_t LED_toggle(uint8_t LED_ch)
+LED_ERROR_state_t LED_Toggle(uint8_t LED_ch)
 {
    /* check if init function wasn't called before */
    if(NOT_INIT == gu8_IsLEDInit)
@@ -261,6 +276,10 @@ LED_ERROR_state_t LED_Status(uint8_t LED_ch, uint8_t * state)
    if(NOT_INIT == gu8_IsLEDInit)
    {
       return E_LED_NOT_INIT;
+   }
+   else if(NULL_PTR == state)
+   {
+      return E_LED_NULL_PTR;
    }
    
    uint8_t u8_ChPort;

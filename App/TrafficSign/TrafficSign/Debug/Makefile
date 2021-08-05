@@ -49,6 +49,7 @@ C_SRCS +=  \
 ../../../../Mcal/Atmega32/DIO/DIO.c \
 ../../../../Mcal/Atmega32/UART/UART.c \
 ../App/TrafficSign/TrafficSign.c \
+../Firmware/LED/LED_Config.c \
 ../main.c \
 ../Mcal/Atmega32/UART/UART_Config.c
 
@@ -64,6 +65,7 @@ Firmware/LED/LED.o \
 Mcal/Atmega32/DIO/DIO.o \
 Mcal/Atmega32/UART/UART.o \
 App/TrafficSign/TrafficSign.o \
+Firmware/LED/LED_Config.o \
 main.o \
 Mcal/Atmega32/UART/UART_Config.o
 
@@ -72,6 +74,7 @@ Firmware/LED/LED.o \
 Mcal/Atmega32/DIO/DIO.o \
 Mcal/Atmega32/UART/UART.o \
 App/TrafficSign/TrafficSign.o \
+Firmware/LED/LED_Config.o \
 main.o \
 Mcal/Atmega32/UART/UART_Config.o
 
@@ -80,6 +83,7 @@ Firmware/LED/LED.d \
 Mcal/Atmega32/DIO/DIO.d \
 Mcal/Atmega32/UART/UART.d \
 App/TrafficSign/TrafficSign.d \
+Firmware/LED/LED_Config.d \
 main.d \
 Mcal/Atmega32/UART/UART_Config.d
 
@@ -88,6 +92,7 @@ Firmware/LED/LED.d \
 Mcal/Atmega32/DIO/DIO.d \
 Mcal/Atmega32/UART/UART.d \
 App/TrafficSign/TrafficSign.d \
+Firmware/LED/LED_Config.d \
 main.d \
 Mcal/Atmega32/UART/UART_Config.d
 
@@ -127,6 +132,13 @@ Mcal/Atmega32/UART/UART.o: ../../../../Mcal/Atmega32/UART/UART.c
 	
 
 App/TrafficSign/TrafficSign.o: ../App/TrafficSign/TrafficSign.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../.."  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Firmware/LED/LED_Config.o: ../Firmware/LED/LED_Config.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../.."  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

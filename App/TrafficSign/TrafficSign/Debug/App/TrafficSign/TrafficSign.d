@@ -13,7 +13,9 @@ App/TrafficSign/TrafficSign.d App/TrafficSign/TrafficSign.o: \
  ../../../../Firmware/LED/../../Mcal/Atmega32/DIO/DIO_Config.h \
  ../../../../Firmware/LED/LED_retval.h \
  ../../../../Firmware/LED/../../Infrastructure/STD_types.h \
- ../../../../Firmware/LED/LED_Config.h
+ ../../../../Firmware/LED/LED_Config.h \
+ ../../../../Infrastructure/STD_types.h \
+ ../../../../Mcal/Atmega32/DIO/DIO_Config.h
 
 ../App/TrafficSign/TrafficSign.h:
 
@@ -44,3 +46,7 @@ h:\mohamed\ sprints\sprints-2021\infrastructure\std_types.h:
 ../../../../Firmware/LED/../../Infrastructure/STD_types.h:
 
 ../../../../Firmware/LED/LED_Config.h:
+
+../../../../Infrastructure/STD_types.h:
+
+../../../../Mcal/Atmega32/DIO/DIO_Config.h:
