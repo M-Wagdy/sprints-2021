@@ -4,7 +4,7 @@
  * Created: 7/16/2021 9:34:52 AM
  *  Author: Mohamed Wagdy
  */
-#include "../../../../../Infrastructure/STD_types.h"
+#include "Infrastructure/STD_types.h"
 
  /* initialize registers valaues */
 uint8_t I2C_DATA_R = 0xFF;

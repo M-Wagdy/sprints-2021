@@ -13,19 +13,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   4 .debug_aranges 000000c0  00000000  00000000  0000024c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000cb8  00000000  00000000  0000030c  2**0
+  5 .debug_info   00000cbb  00000000  00000000  0000030c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000006f1  00000000  00000000  00000fc4  2**0
+  6 .debug_abbrev 000006f1  00000000  00000000  00000fc7  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000005f8  00000000  00000000  000016b5  2**0
+  7 .debug_line   00000604  00000000  00000000  000016b8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000148  00000000  00000000  00001cb0  2**2
+  8 .debug_frame  00000148  00000000  00000000  00001cbc  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000004e1  00000000  00000000  00001df8  2**0
+  9 .debug_str    000004e1  00000000  00000000  00001e04  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000052b  00000000  00000000  000022d9  2**0
+ 10 .debug_loc    0000052b  00000000  00000000  000022e5  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000088  00000000  00000000  00002804  2**0
+ 11 .debug_ranges 00000088  00000000  00000000  00002810  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -82,7 +82,7 @@ Disassembly of section .text:
 00000082 <I2C_Init>:
    *ptr_I2CControlR = (I2C_INTERRUPT_FLAG | I2C_EN | I2C_STOP_BIT);
    
-   while (*ptr_I2CControlR & I2C_STOP_BIT);
+   while (!(*ptr_I2CControlR & I2C_STOP_BIT));
    /* return success message */
    return E_I2C_SUCCESS;
 }

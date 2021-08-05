@@ -19,9 +19,9 @@ Discarded input sections
  .text.I2C_Write
                 0x00000000       0x18 Mcal/Atmega32/SPI/I2C.o
  .text.I2C_ReadNoAck
-                0x00000000       0x28 Mcal/Atmega32/SPI/I2C.o
+                0x00000000       0x2e Mcal/Atmega32/SPI/I2C.o
  .text.I2C_Stop
-                0x00000000       0x18 Mcal/Atmega32/SPI/I2C.o
+                0x00000000       0x16 Mcal/Atmega32/SPI/I2C.o
  .text.I2C_EnableInterrupt
                 0x00000000       0x12 Mcal/Atmega32/SPI/I2C.o
  .text.I2C_DisableInterrupt
@@ -432,12 +432,12 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xcb8
+.debug_info     0x00000000      0xcbb
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_info    0x000004e6      0x485 Mcal/Atmega32/SPI/I2C.o
- .debug_info    0x0000096b      0x2b1 main.o
- .debug_info    0x00000c1c       0x9c Mcal/Atmega32/SPI/I2C_Config.o
+ .debug_info    0x000004e6      0x488 Mcal/Atmega32/SPI/I2C.o
+ .debug_info    0x0000096e      0x2b1 main.o
+ .debug_info    0x00000c1f       0x9c Mcal/Atmega32/SPI/I2C_Config.o
 
 .debug_abbrev   0x00000000      0x6f1
  *(.debug_abbrev)
@@ -446,12 +446,12 @@ END GROUP
  .debug_abbrev  0x000005e7       0xbf main.o
  .debug_abbrev  0x000006a6       0x4b Mcal/Atmega32/SPI/I2C_Config.o
 
-.debug_line     0x00000000      0x5f8
+.debug_line     0x00000000      0x604
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_line    0x00000116      0x338 Mcal/Atmega32/SPI/I2C.o
- .debug_line    0x0000044e      0x141 main.o
- .debug_line    0x0000058f       0x69 Mcal/Atmega32/SPI/I2C_Config.o
+ .debug_line    0x00000116      0x344 Mcal/Atmega32/SPI/I2C.o
+ .debug_line    0x0000045a      0x141 main.o
+ .debug_line    0x0000059b       0x69 Mcal/Atmega32/SPI/I2C_Config.o
 
 .debug_frame    0x00000000      0x148
  *(.debug_frame)
