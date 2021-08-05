@@ -1,0 +1,767 @@
+Archive member included to satisfy reference by file (symbol)
+
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                              C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o (exit)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+                              App/Card/Card.o (__do_copy_data)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+                              App/Card/Card.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+Gptr_uartRxInt      0x2               Mcal/UART/uart.o
+Gptr_uartTxInt      0x2               Mcal/UART/uart.o
+Gptr_uartDataEmptyRegInt
+                    0x2               Mcal/UART/uart.o
+
+Discarded input sections
+
+ .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+ .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+ .text          0x00000000        0x0 App/Card/Card.o
+ .data          0x00000000        0x0 App/Card/Card.o
+ .bss           0x00000000        0x0 App/Card/Card.o
+ .text          0x00000000        0x0 Firmware/EEPROM/EEPROM.o
+ .data          0x00000000        0x0 Firmware/EEPROM/EEPROM.o
+ .bss           0x00000000        0x0 Firmware/EEPROM/EEPROM.o
+ .text          0x00000000        0x0 Infrastructure/utils.o
+ .data          0x00000000        0x0 Infrastructure/utils.o
+ .bss           0x00000000        0x0 Infrastructure/utils.o
+ .text          0x00000000        0x0 main.o
+ .data          0x00000000        0x0 main.o
+ .bss           0x00000000        0x0 main.o
+ .text          0x00000000        0x0 Mcal/DIO/DIO.o
+ .data          0x00000000        0x0 Mcal/DIO/DIO.o
+ .bss           0x00000000        0x0 Mcal/DIO/DIO.o
+ .text.DIO_WritePin
+                0x00000000       0xb0 Mcal/DIO/DIO.o
+ .text.DIO_TogglePin
+                0x00000000       0x68 Mcal/DIO/DIO.o
+ .text.DIO_EnablePinPullup
+                0x00000000       0x68 Mcal/DIO/DIO.o
+ .text          0x00000000        0x0 Mcal/Global_Interrupts/Global_Interrupts.o
+ .data          0x00000000        0x0 Mcal/Global_Interrupts/Global_Interrupts.o
+ .bss           0x00000000        0x0 Mcal/Global_Interrupts/Global_Interrupts.o
+ .text          0x00000000        0x0 Mcal/I2C/I2C.o
+ .data          0x00000000        0x0 Mcal/I2C/I2C.o
+ .bss           0x00000000        0x0 Mcal/I2C/I2C.o
+ .text.I2C_SetSlaveAddress
+                0x00000000        0xc Mcal/I2C/I2C.o
+ .text.I2C_ReadAck
+                0x00000000       0x28 Mcal/I2C/I2C.o
+ .text.I2C_Status
+                0x00000000       0x1e Mcal/I2C/I2C.o
+ .text.I2C_EnableInterrupt
+                0x00000000       0x12 Mcal/I2C/I2C.o
+ .text.I2C_DisableInterrupt
+                0x00000000       0x12 Mcal/I2C/I2C.o
+ .text.I2C_SetCallback
+                0x00000000       0x28 Mcal/I2C/I2C.o
+ .text          0x00000000        0x0 Mcal/I2C/I2C_Config.o
+ .data          0x00000000        0x0 Mcal/I2C/I2C_Config.o
+ .bss           0x00000000        0x0 Mcal/I2C/I2C_Config.o
+ .text          0x00000000        0x0 Mcal/SPI/SPI.o
+ .data          0x00000000        0x0 Mcal/SPI/SPI.o
+ .bss           0x00000000        0x0 Mcal/SPI/SPI.o
+ .text.SPI_TransmitChar
+                0x00000000       0x40 Mcal/SPI/SPI.o
+ .text.SPI_ReceiveChar
+                0x00000000       0x12 Mcal/SPI/SPI.o
+ .rodata.str1.1
+                0x00000000       0x1f Mcal/SPI/SPI.o
+ .text.SPI_DataExchange
+                0x00000000       0x40 Mcal/SPI/SPI.o
+ .text.SPI_ReceiveString
+                0x00000000       0x26 Mcal/SPI/SPI.o
+ .text.SPI_DisableInterrupt
+                0x00000000        0xa Mcal/SPI/SPI.o
+ .text          0x00000000        0x0 Mcal/UART/uart.o
+ .data          0x00000000        0x0 Mcal/UART/uart.o
+ .bss           0x00000000        0x0 Mcal/UART/uart.o
+ .text.UART_TransmitChar
+                0x00000000        0xa Mcal/UART/uart.o
+ .text.UART_ReceiveChar
+                0x00000000        0xe Mcal/UART/uart.o
+ .text.UART_DisableInterrupt
+                0x00000000       0x2a Mcal/UART/uart.o
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00008000         xr
+data             0x00800060         0x00000800         rw !x
+eeprom           0x00810000         0x00000400         rw !x
+fuse             0x00820000         0x00000002         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+user_signatures  0x00850000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+LOAD App/Card/Card.o
+LOAD Firmware/EEPROM/EEPROM.o
+LOAD Infrastructure/utils.o
+LOAD main.o
+LOAD Mcal/DIO/DIO.o
+LOAD Mcal/Global_Interrupts/Global_Interrupts.o
+LOAD Mcal/I2C/I2C.o
+LOAD Mcal/I2C/I2C_Config.o
+LOAD Mcal/SPI/SPI.o
+LOAD Mcal/UART/uart.o
+START GROUP
+LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a
+END GROUP
+START GROUP
+LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a
+LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a
+LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a
+LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5\libatmega32a.a
+END GROUP
+                [0x00000000]                __TEXT_REGION_ORIGIN__ = DEFINED (__TEXT_REGION_ORIGIN__)?__TEXT_REGION_ORIGIN__:0x0
+                [0x00800060]                __DATA_REGION_ORIGIN__ = DEFINED (__DATA_REGION_ORIGIN__)?__DATA_REGION_ORIGIN__:0x800060
+                [0x00008000]                __TEXT_REGION_LENGTH__ = DEFINED (__TEXT_REGION_LENGTH__)?__TEXT_REGION_LENGTH__:0x20000
+                [0x00000800]                __DATA_REGION_LENGTH__ = DEFINED (__DATA_REGION_LENGTH__)?__DATA_REGION_LENGTH__:0xffa0
+                [0x00000400]                __EEPROM_REGION_LENGTH__ = DEFINED (__EEPROM_REGION_LENGTH__)?__EEPROM_REGION_LENGTH__:0x10000
+                [0x00000002]                __FUSE_REGION_LENGTH__ = DEFINED (__FUSE_REGION_LENGTH__)?__FUSE_REGION_LENGTH__:0x400
+                0x00000400                __LOCK_REGION_LENGTH__ = DEFINED (__LOCK_REGION_LENGTH__)?__LOCK_REGION_LENGTH__:0x400
+                0x00000400                __SIGNATURE_REGION_LENGTH__ = DEFINED (__SIGNATURE_REGION_LENGTH__)?__SIGNATURE_REGION_LENGTH__:0x400
+                0x00000400                __USER_SIGNATURE_REGION_LENGTH__ = DEFINED (__USER_SIGNATURE_REGION_LENGTH__)?__USER_SIGNATURE_REGION_LENGTH__:0x400
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0xa50
+ *(.vectors)
+ .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+                0x00000000                __vector_default
+                0x00000000                __vectors
+ *(.vectors)
+ *(.progmem.gcc*)
+                0x00000054                . = ALIGN (0x2)
+                0x00000054                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000054        0x0 linker stubs
+ *(.trampolines*)
+                0x00000054                __trampolines_end = .
+ *libprintf_flt.a:*(.progmem.data)
+ *libc.a:*(.progmem.data)
+ *(.progmem*)
+                0x00000054                . = ALIGN (0x2)
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000054                __ctors_start = .
+ *(.ctors)
+                0x00000054                __ctors_end = .
+                0x00000054                __dtors_start = .
+ *(.dtors)
+                0x00000054                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000054        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+                0x00000054                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000054        0xc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000060       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+                0x00000060                __do_copy_data
+ .init4         0x00000076       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000076                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000086        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+ *(.init9)
+ *(.text)
+ .text          0x0000008e        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+                0x0000008e                __vector_1
+                0x0000008e                __bad_interrupt
+                0x0000008e                __vector_6
+                0x0000008e                __vector_3
+                0x0000008e                __vector_11
+                0x0000008e                __vector_17
+                0x0000008e                __vector_19
+                0x0000008e                __vector_7
+                0x0000008e                __vector_5
+                0x0000008e                __vector_4
+                0x0000008e                __vector_9
+                0x0000008e                __vector_2
+                0x0000008e                __vector_8
+                0x0000008e                __vector_10
+                0x0000008e                __vector_16
+                0x0000008e                __vector_18
+                0x0000008e                __vector_20
+                0x00000092                . = ALIGN (0x2)
+ *(.text.*)
+ .text.Validate_CardHolderName
+                0x00000092       0x20 App/Card/Card.o
+ .text.Validate_PAN
+                0x000000b2       0x32 App/Card/Card.o
+ .text.Validate_PIN
+                0x000000e4       0x32 App/Card/Card.o
+ .text.CARD_Send
+                0x00000116       0x4e App/Card/Card.o
+                0x00000116                CARD_Send
+ .text.CARD_GetData
+                0x00000164       0x34 App/Card/Card.o
+                0x00000164                CARD_GetData
+ .text.CARD_SetData
+                0x00000198       0xdc App/Card/Card.o
+                0x00000198                CARD_SetData
+ .text.CARD_Init
+                0x00000274       0x4c App/Card/Card.o
+                0x00000274                CARD_Init
+ .text.CARD_Receive
+                0x000002c0       0x7c App/Card/Card.o
+                0x000002c0                CARD_Receive
+ .text.EEPROM_Init
+                0x0000033c       0x1a Firmware/EEPROM/EEPROM.o
+                0x0000033c                EEPROM_Init
+ .text.EEPROM_Read
+                0x00000356       0x8c Firmware/EEPROM/EEPROM.o
+                0x00000356                EEPROM_Read
+ .text.EEPROM_Write
+                0x000003e2       0x62 Firmware/EEPROM/EEPROM.o
+                0x000003e2                EEPROM_Write
+ .text.EEPROM_ReadBytes
+                0x00000444       0x60 Firmware/EEPROM/EEPROM.o
+                0x00000444                EEPROM_ReadBytes
+ .text.EEPROM_WriteBytes
+                0x000004a4       0x6e Firmware/EEPROM/EEPROM.o
+                0x000004a4                EEPROM_WriteBytes
+ .text.dummy_delay
+                0x00000512       0x54 Infrastructure/utils.o
+                0x00000512                dummy_delay
+ .text.StringCompare
+                0x00000566       0x42 Infrastructure/utils.o
+                0x00000566                StringCompare
+ .text.StringLength
+                0x000005a8       0x1a Infrastructure/utils.o
+                0x000005a8                StringLength
+ .text.main     0x000005c2        0x6 main.o
+                0x000005c2                main
+ .text.DIO_SetPinDirection
+                0x000005c8       0xb0 Mcal/DIO/DIO.o
+                0x000005c8                DIO_SetPinDirection
+ .text.DIO_ReadPin
+                0x00000678       0x68 Mcal/DIO/DIO.o
+                0x00000678                DIO_ReadPin
+ .text.GLOBALINTTERUPTS_Enable
+                0x000006e0        0x8 Mcal/Global_Interrupts/Global_Interrupts.o
+                0x000006e0                GLOBALINTTERUPTS_Enable
+ .text.GLOBALINTTERUPTS_Disable
+                0x000006e8        0x8 Mcal/Global_Interrupts/Global_Interrupts.o
+                0x000006e8                GLOBALINTTERUPTS_Disable
+ .text.I2C_Init
+                0x000006f0       0x1e Mcal/I2C/I2C.o
+                0x000006f0                I2C_Init
+ .text.I2C_Start
+                0x0000070e       0x16 Mcal/I2C/I2C.o
+                0x0000070e                I2C_Start
+ .text.I2C_RepeatedStart
+                0x00000724       0x18 Mcal/I2C/I2C.o
+                0x00000724                I2C_RepeatedStart
+ .text.I2C_Write
+                0x0000073c       0x18 Mcal/I2C/I2C.o
+                0x0000073c                I2C_Write
+ .text.I2C_ReadNoAck
+                0x00000754       0x2e Mcal/I2C/I2C.o
+                0x00000754                I2C_ReadNoAck
+ .text.I2C_Stop
+                0x00000782       0x18 Mcal/I2C/I2C.o
+                0x00000782                I2C_Stop
+ .text.SPI_Init
+                0x0000079a       0x3e Mcal/SPI/SPI.o
+                0x0000079a                SPI_Init
+ .text.SPI_TransmitString
+                0x000007d8       0x22 Mcal/SPI/SPI.o
+                0x000007d8                SPI_TransmitString
+ .text.SPI_EnableInterrupt
+                0x000007fa       0x10 Mcal/SPI/SPI.o
+                0x000007fa                SPI_EnableInterrupt
+ .text.SPI_Set_TX_CompleteCallback
+                0x0000080a       0x12 Mcal/SPI/SPI.o
+                0x0000080a                SPI_Set_TX_CompleteCallback
+ .text.__vector_12
+                0x0000081c       0x52 Mcal/SPI/SPI.o
+                0x0000081c                __vector_12
+ .text.UART_Init
+                0x0000086e       0x26 Mcal/UART/uart.o
+                0x0000086e                UART_Init
+ .text.UART_TransmitString
+                0x00000894       0x24 Mcal/UART/uart.o
+                0x00000894                UART_TransmitString
+ .text.UART_ReceiveString
+                0x000008b8       0x46 Mcal/UART/uart.o
+                0x000008b8                UART_ReceiveString
+ .text.UART_EnableInterrupt
+                0x000008fe       0x2a Mcal/UART/uart.o
+                0x000008fe                UART_EnableInterrupt
+ .text.UART_SetCallback
+                0x00000928       0x30 Mcal/UART/uart.o
+                0x00000928                UART_SetCallback
+ .text.UART_GetData
+                0x00000958        0xa Mcal/UART/uart.o
+                0x00000958                UART_GetData
+ .text.__vector_13
+                0x00000962       0x4e Mcal/UART/uart.o
+                0x00000962                __vector_13
+ .text.__vector_14
+                0x000009b0       0x4e Mcal/UART/uart.o
+                0x000009b0                __vector_14
+ .text.__vector_15
+                0x000009fe       0x4e Mcal/UART/uart.o
+                0x000009fe                __vector_15
+                0x00000a4c                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x00000a4c        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000a4c                _exit
+                0x00000a4c                exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x00000a4c        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ *(.fini0)
+                0x00000a50                _etext = .
+
+.data           0x00800060       0xee load address 0x00000a50
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ *(.data*)
+ *(.gnu.linkonce.d*)
+ *(.rodata)
+ *(.rodata*)
+ .rodata.str1.1
+                0x00800060       0xea App/Card/Card.o
+ .rodata.I2C_CH_0_BIT_RATE
+                0x0080014a        0x1 Mcal/I2C/I2C_Config.o
+                0x0080014a                I2C_CH_0_BIT_RATE
+ .rodata.I2C_CH_0_CONTROL_MASK
+                0x0080014b        0x1 Mcal/I2C/I2C_Config.o
+                0x0080014b                I2C_CH_0_CONTROL_MASK
+ .rodata.I2C_CH_0_PRESCALER
+                0x0080014c        0x1 Mcal/I2C/I2C_Config.o
+                0x0080014c                I2C_CH_0_PRESCALER
+ *(.gnu.linkonce.r*)
+                0x0080014e                . = ALIGN (0x2)
+ *fill*         0x0080014d        0x1 
+                0x0080014e                _edata = .
+                0x0080014e                PROVIDE (__data_end, .)
+
+.bss            0x0080014e      0x12b
+                0x0080014e                PROVIDE (__bss_start, .)
+ *(.bss)
+ *(.bss*)
+ .bss.gSTR_CardData
+                0x0080014e       0x19 App/Card/Card.o
+ .bss.gu8_TerminalData
+                0x00800167        0xa App/Card/Card.o
+ .bss.gu8_Counter
+                0x00800171        0x1 App/Card/Card.o
+ .bss.gu8_RxBuffer
+                0x00800172       0xff App/Card/Card.o
+ .bss.SPI_TX_Complete_callback
+                0x00800271        0x2 Mcal/SPI/SPI.o
+ *(COMMON)
+ COMMON         0x00800273        0x6 Mcal/UART/uart.o
+                0x00800273                Gptr_uartRxInt
+                0x00800275                Gptr_uartTxInt
+                0x00800277                Gptr_uartDataEmptyRegInt
+                0x00800279                PROVIDE (__bss_end, .)
+                0x00000a50                __data_load_start = LOADADDR (.data)
+                0x00000b3e                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800279        0x0
+                [!provide]                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                [!provide]                PROVIDE (__noinit_end, .)
+                0x00800279                _end = .
+                [!provide]                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.user_signatures
+ *(.user_signatures*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x30
+ *(.comment)
+ .comment       0x00000000       0x30 App/Card/Card.o
+                                 0x31 (size before relaxing)
+ .comment       0x00000030       0x31 Firmware/EEPROM/EEPROM.o
+ .comment       0x00000030       0x31 Infrastructure/utils.o
+ .comment       0x00000030       0x31 main.o
+ .comment       0x00000030       0x31 Mcal/DIO/DIO.o
+ .comment       0x00000030       0x31 Mcal/Global_Interrupts/Global_Interrupts.o
+ .comment       0x00000030       0x31 Mcal/I2C/I2C.o
+ .comment       0x00000030       0x31 Mcal/I2C/I2C_Config.o
+ .comment       0x00000030       0x31 Mcal/SPI/SPI.o
+ .comment       0x00000030       0x31 Mcal/UART/uart.o
+
+.note.gnu.avr.deviceinfo
+                0x00000000       0x3c
+ .note.gnu.avr.deviceinfo
+                0x00000000       0x3c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x2c0
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x58 App/Card/Card.o
+ .debug_aranges
+                0x00000058       0x40 Firmware/EEPROM/EEPROM.o
+ .debug_aranges
+                0x00000098       0x30 Infrastructure/utils.o
+ .debug_aranges
+                0x000000c8       0x20 main.o
+ .debug_aranges
+                0x000000e8       0x40 Mcal/DIO/DIO.o
+ .debug_aranges
+                0x00000128       0x28 Mcal/Global_Interrupts/Global_Interrupts.o
+ .debug_aranges
+                0x00000150       0x78 Mcal/I2C/I2C.o
+ .debug_aranges
+                0x000001c8       0x18 Mcal/I2C/I2C_Config.o
+ .debug_aranges
+                0x000001e0       0x68 Mcal/SPI/SPI.o
+ .debug_aranges
+                0x00000248       0x78 Mcal/UART/uart.o
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0x253e
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+ .debug_info    0x000004e6      0x94b App/Card/Card.o
+ .debug_info    0x00000e31      0x491 Firmware/EEPROM/EEPROM.o
+ .debug_info    0x000012c2      0x17c Infrastructure/utils.o
+ .debug_info    0x0000143e       0x9f main.o
+ .debug_info    0x000014dd      0x217 Mcal/DIO/DIO.o
+ .debug_info    0x000016f4       0x99 Mcal/Global_Interrupts/Global_Interrupts.o
+ .debug_info    0x0000178d      0x488 Mcal/I2C/I2C.o
+ .debug_info    0x00001c15       0x9c Mcal/I2C/I2C_Config.o
+ .debug_info    0x00001cb1      0x53a Mcal/SPI/SPI.o
+ .debug_info    0x000021eb      0x353 Mcal/UART/uart.o
+
+.debug_abbrev   0x00000000      0xd0c
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+ .debug_abbrev  0x000004a3      0x199 App/Card/Card.o
+ .debug_abbrev  0x0000063c       0xef Firmware/EEPROM/EEPROM.o
+ .debug_abbrev  0x0000072b       0xde Infrastructure/utils.o
+ .debug_abbrev  0x00000809       0x68 main.o
+ .debug_abbrev  0x00000871       0xb0 Mcal/DIO/DIO.o
+ .debug_abbrev  0x00000921       0x51 Mcal/Global_Interrupts/Global_Interrupts.o
+ .debug_abbrev  0x00000972      0x144 Mcal/I2C/I2C.o
+ .debug_abbrev  0x00000ab6       0x4b Mcal/I2C/I2C_Config.o
+ .debug_abbrev  0x00000b01      0x150 Mcal/SPI/SPI.o
+ .debug_abbrev  0x00000c51       0xbb Mcal/UART/uart.o
+
+.debug_line     0x00000000     0x1567
+ *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+ .debug_line    0x00000116      0x3fb App/Card/Card.o
+ .debug_line    0x00000511      0x2ec Firmware/EEPROM/EEPROM.o
+ .debug_line    0x000007fd      0x14f Infrastructure/utils.o
+ .debug_line    0x0000094c       0x57 main.o
+ .debug_line    0x000009a3      0x1cf Mcal/DIO/DIO.o
+ .debug_line    0x00000b72       0xb5 Mcal/Global_Interrupts/Global_Interrupts.o
+ .debug_line    0x00000c27      0x323 Mcal/I2C/I2C.o
+ .debug_line    0x00000f4a       0x57 Mcal/I2C/I2C_Config.o
+ .debug_line    0x00000fa1      0x2da Mcal/SPI/SPI.o
+ .debug_line    0x0000127b      0x2ec Mcal/UART/uart.o
+
+.debug_frame    0x00000000      0x654
+ *(.debug_frame)
+ .debug_frame   0x00000000       0xb4 App/Card/Card.o
+ .debug_frame   0x000000b4       0xd0 Firmware/EEPROM/EEPROM.o
+ .debug_frame   0x00000184       0x54 Infrastructure/utils.o
+ .debug_frame   0x000001d8       0x24 main.o
+ .debug_frame   0x000001fc       0x64 Mcal/DIO/DIO.o
+ .debug_frame   0x00000260       0x34 Mcal/Global_Interrupts/Global_Interrupts.o
+ .debug_frame   0x00000294       0xe4 Mcal/I2C/I2C.o
+ .debug_frame   0x00000378      0x130 Mcal/SPI/SPI.o
+ .debug_frame   0x000004a8      0x1ac Mcal/UART/uart.o
+
+.debug_str      0x00000000      0xb68
+ *(.debug_str)
+ .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+ .debug_str     0x00000196      0x4a5 App/Card/Card.o
+                                0x4c6 (size before relaxing)
+ .debug_str     0x0000063b       0xf8 Firmware/EEPROM/EEPROM.o
+                                0x2a8 (size before relaxing)
+ .debug_str     0x00000733       0x4a Infrastructure/utils.o
+                                0x1de (size before relaxing)
+ .debug_str     0x0000077d       0x11 main.o
+                                0x189 (size before relaxing)
+ .debug_str     0x0000078e       0x6f Mcal/DIO/DIO.o
+                                0x254 (size before relaxing)
+ .debug_str     0x000007fd       0x2e Mcal/Global_Interrupts/Global_Interrupts.o
+                                0x1cc (size before relaxing)
+ .debug_str     0x0000082b      0x133 Mcal/I2C/I2C.o
+                                0x31d (size before relaxing)
+ .debug_str     0x0000095e       0x19 Mcal/I2C/I2C_Config.o
+                                0x1c1 (size before relaxing)
+ .debug_str     0x00000977      0x125 Mcal/SPI/SPI.o
+                                0x376 (size before relaxing)
+ .debug_str     0x00000a9c       0xcc Mcal/UART/uart.o
+                                0x2e6 (size before relaxing)
+
+.debug_loc      0x00000000     0x1d05
+ *(.debug_loc)
+ .debug_loc     0x00000000       0xc8 App/Card/Card.o
+ .debug_loc     0x000000c8      0x97c Firmware/EEPROM/EEPROM.o
+ .debug_loc     0x00000a44      0x158 Infrastructure/utils.o
+ .debug_loc     0x00000b9c      0x2f4 Mcal/DIO/DIO.o
+ .debug_loc     0x00000e90      0x49b Mcal/I2C/I2C.o
+ .debug_loc     0x0000132b      0x575 Mcal/SPI/SPI.o
+ .debug_loc     0x000018a0      0x465 Mcal/UART/uart.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x00000000      0x2a8
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x88 App/Card/Card.o
+ .debug_ranges  0x00000088       0x80 Firmware/EEPROM/EEPROM.o
+ .debug_ranges  0x00000108       0x20 Infrastructure/utils.o
+ .debug_ranges  0x00000128       0x10 main.o
+ .debug_ranges  0x00000138       0x30 Mcal/DIO/DIO.o
+ .debug_ranges  0x00000168       0x18 Mcal/Global_Interrupts/Global_Interrupts.o
+ .debug_ranges  0x00000180       0x68 Mcal/I2C/I2C.o
+ .debug_ranges  0x000001e8       0x58 Mcal/SPI/SPI.o
+ .debug_ranges  0x00000240       0x68 Mcal/UART/uart.o
+
+.debug_macro
+ *(.debug_macro)
+OUTPUT(Card_ECU.elf elf32-avr)
+LOAD linker stubs

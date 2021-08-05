@@ -1,0 +1,12 @@
+﻿  EEPROM.c
+  TestCases.c
+H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\Firmware\EEPROM\EEPROM\TestCases.c(185,85): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'uint8_t (*)[3]'
+H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\Firmware\EEPROM\EEPROM\TestCases.c(185,80): warning C4024: 'EEPROM_ReadBytes': different types for formal and actual parameter 4
+H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\Firmware\EEPROM\EEPROM\TestCases.c(200,81): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'uint8_t (*)[3]'
+H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\Firmware\EEPROM\EEPROM\TestCases.c(200,76): warning C4024: 'EEPROM_ReadBytes': different types for formal and actual parameter 4
+H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\Firmware\EEPROM\EEPROM\TestCases.c(238,86): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'uint8_t (*)[3]'
+H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\Firmware\EEPROM\EEPROM\TestCases.c(238,81): warning C4024: 'EEPROM_WriteBytes': different types for formal and actual parameter 4
+H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\Firmware\EEPROM\EEPROM\TestCases.c(253,82): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'uint8_t (*)[3]'
+H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\Firmware\EEPROM\EEPROM\TestCases.c(253,77): warning C4024: 'EEPROM_WriteBytes': different types for formal and actual parameter 4
+  Generating Code...
+  EEPROM.vcxproj -> H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\Firmware\EEPROM\Debug\EEPROM.exe

@@ -1,0 +1,6 @@
+﻿  I2C.c
+  TestCases.c
+H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\Mcal\Atmega32\I2C\I2C\TestCases.c(532,53): warning C4047: 'function': 'Ptr_VoidFuncVoid_t' differs in levels of indirection from 'uint8_t *'
+H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\Mcal\Atmega32\I2C\I2C\TestCases.c(532,45): warning C4024: 'I2C_SetCallback': different types for formal and actual parameter 2
+  Generating Code...
+  I2C.vcxproj -> H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\Mcal\Atmega32\I2C\Debug\I2C.exe

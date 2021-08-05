@@ -1,0 +1,7 @@
+﻿  Card.c
+  TestCases.c
+  Generating Code...
+TestCases.obj : error LNK2001: unresolved external symbol _gu8_RxBuffer
+TestCases.obj : error LNK2001: unresolved external symbol _gu8_Counter
+TestCases.obj : error LNK2001: unresolved external symbol _gSTR_CardData
+H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\App\Card\Debug\Card.exe : fatal error LNK1120: 3 unresolved externals
