@@ -13,6 +13,8 @@
 
  /*- LOCAL MACROS
  ------------------------------------------*/
+#define NUMBER_OF_TESTCASES		(uint8_t)(24)
+#define INVALID_CHANNEL				(uint8_t)(20)
 
  /*- LOCAL FUNCTIONS PROTOTYPES
  ----------------------------*/
@@ -23,14 +25,19 @@ static void TestSendString(void);
 static void TestReceiveString(void);
 static void TestEnableInterrupt(void);
 static void TestDisableInterrupt(void);
+static void TestSetCallback(void);
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
 static uint8_t* ptr_null;
+static uint8_t u8_ID;
+static uint8_t u8_PassedCounter = 0;
+static SPI_ERROR_state_t SPI_ErrorState;
 
 /*- GLOBAL EXTERN VARIABLES
 -------------------------------*/
 extern const uint8_t SPI_CH_0_CONTROL_MASK;
+extern Ptr_VoidFuncVoid_t g_Callback[SPI_NUMBERS];
 
 /*- LOCAL FUNCTIONS IMPLEMENTATION
 ------------------------*/
@@ -40,19 +47,36 @@ extern const uint8_t SPI_CH_0_CONTROL_MASK;
 */
 void TestInit(void)
 {
-	SPI_ERROR_state_t error_state;
+	/* Invalid Channel */
+	u8_ID = 1;
+	SPI_ErrorState = SPI_Init(INVALID_CHANNEL);
+	if (
+		(SPI_ErrorState == E_SPI_INVALID_CH)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
-	/* initialize with invalid channel */
-	error_state = SPI_Init(255);
-	assert(error_state == E_SPI_INVALID_CH);
-
-	/* initialize */
-	error_state = SPI_Init(SPI_CH_0);
-	assert(error_state == E_SPI_SUCCESS);
-	/* make sure data is written correctly in registers */
-	assert(SPI_CONTROL_R == SPI_CH_0_CONTROL_MASK);
-	assert(PORTB_DATA == 0x10);
-	assert(PORTB_DIR == 0xB0);
+	/* Valid Channel */
+	u8_ID = 2;
+	SPI_ErrorState = SPI_Init(SPI_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_SUCCESS) && (SPI_CONTROL_R == SPI_CH_0_CONTROL_MASK) &&
+		(PORTB_DATA == 0x10) && (PORTB_DIR == 0xB0)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 }
 
 /**
@@ -63,20 +87,51 @@ void TestSendChar(void)
 	/* sets empty buffer bit in register */
 	SPI_STATUS_R |= SPI_TRANSMIT_COMPLETE_BIT;
 
-	SPI_ERROR_state_t error_state;
 	/* invalid spi channel */
-	error_state = SPI_TransmitChar(20, 'a', SPI_CH_0_SS_CH_0);
-	assert(error_state == E_SPI_INVALID_CH);
+	u8_ID = 3;
+	SPI_ErrorState = SPI_TransmitChar(INVALID_CHANNEL, 'a', SPI_CH_0_SS_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_INVALID_CH)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
 	/* invalid slave line */
-	error_state = SPI_TransmitChar(SPI_CH_0, 'a', 20);
-	assert(error_state == E_SPI_INVALID_SS_CH);
+	u8_ID = 4;
+	SPI_ErrorState = SPI_TransmitChar(SPI_CH_0, 'a', INVALID_CHANNEL);
+	if (
+		(SPI_ErrorState == E_SPI_INVALID_SS_CH)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
-	error_state = SPI_TransmitChar(SPI_CH_0, 'a', SPI_CH_0_SS_CH_0);
-	assert(error_state == E_SPI_SUCCESS);
-	/* make sure write data is written in the register */
-	assert(SPI_DATA_R == 'a');
-	assert(PORTB_DATA == 0x10);
+	/* Valid Channels */
+	u8_ID = 5;
+	SPI_ErrorState = SPI_TransmitChar(SPI_CH_0, 'a', SPI_CH_0_SS_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_SUCCESS) && (SPI_DATA_R == 'a') &&
+		(PORTB_DATA == 0x10)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 }
 
 /**
@@ -89,27 +144,68 @@ void TestReceiveChar(void)
 	/* sets receive completer bit in the status register */
 	SPI_STATUS_R |= SPI_TRANSMIT_COMPLETE_BIT;
 
-	SPI_ERROR_state_t error_state;
-	/* test sending null pointer to the read character function */
-	error_state = SPI_ReceiveChar(SPI_CH_0, ptr_null, SPI_CH_0_SS_CH_0);
-	assert(error_state == E_SPI_NULL_PTR);
-	assert(PORTB_DATA == 0x10);
+	/* Null Pointer */
+	u8_ID = 6;
+	SPI_ErrorState = SPI_ReceiveChar(SPI_CH_0, ptr_null, SPI_CH_0_SS_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_NULL_PTR) && (PORTB_DATA == 0x10) 
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
 	uint8_t data;
 
 	/* invalid spi channel */
-	error_state = SPI_ReceiveChar(20, &data, SPI_CH_0_SS_CH_0);
-	assert(error_state == E_SPI_INVALID_CH);
+	u8_ID = 7;
+	SPI_ErrorState = SPI_ReceiveChar(INVALID_CHANNEL, &data, SPI_CH_0_SS_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_INVALID_CH) 
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
 	/* invalid slave line */
-	error_state = SPI_ReceiveChar(SPI_CH_0, &data, 20);
-	assert(error_state == E_SPI_INVALID_SS_CH);
+	u8_ID = 8;
+	SPI_ErrorState = SPI_ReceiveChar(SPI_CH_0, &data, INVALID_CHANNEL);
+	if (
+		(SPI_ErrorState == E_SPI_INVALID_SS_CH)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
-
-	error_state = SPI_ReceiveChar(SPI_CH_0, &data, SPI_CH_0_SS_CH_0);
-	assert(error_state == E_SPI_SUCCESS);
-	assert(data == 'b');
-	assert(PORTB_DATA == 0x10);
+	/* Valid channels */
+	u8_ID = 9;
+	SPI_ErrorState = SPI_ReceiveChar(SPI_CH_0, &data, SPI_CH_0_SS_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_SUCCESS) && (data == 'b') &&
+		(PORTB_DATA == 0x10)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
 }
 
@@ -121,25 +217,66 @@ void TestSendString(void)
 	/* sets empty buffer bit in register */
 	SPI_STATUS_R |= SPI_TRANSMIT_COMPLETE_BIT;
 
-	SPI_ERROR_state_t error_state;
-	/* test sending null pointer to the function */
-	error_state = SPI_TransmitString(SPI_CH_0, ptr_null, SPI_CH_0_SS_CH_0);
-	assert(error_state == E_SPI_NULL_PTR);
-	assert(PORTB_DATA == 0x10);
+	/* Null Pointer */
+	u8_ID = 10;
+	SPI_ErrorState = SPI_TransmitString(SPI_CH_0, ptr_null, SPI_CH_0_SS_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_NULL_PTR) && (PORTB_DATA == 0x10)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
 	/* invalid spi channel */
-	error_state = SPI_TransmitString(20, "dawdwwaz", SPI_CH_0_SS_CH_0);
-	assert(error_state == E_SPI_INVALID_CH);
+	u8_ID = 11;
+	SPI_ErrorState = SPI_TransmitString(INVALID_CHANNEL, "dawdwwaz", SPI_CH_0_SS_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_INVALID_CH)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
 	/* invalid slave line */
-	error_state = SPI_TransmitString(SPI_CH_0, "dawdwwaz", 20);
-	assert(error_state == E_SPI_INVALID_SS_CH);
+	u8_ID = 12;
+	SPI_ErrorState = SPI_TransmitString(SPI_CH_0, "dawdwwaz", INVALID_CHANNEL);
+	if (
+		(SPI_ErrorState == E_SPI_INVALID_SS_CH)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
-	error_state = SPI_TransmitString(SPI_CH_0, "dawdwwaz", SPI_CH_0_SS_CH_0);
-	assert(error_state == E_SPI_SUCCESS);
-	assert(SPI_DATA_R == 'z');
-	assert(PORTB_DATA == 0x10);
-
+	/* Valid Channels */
+	u8_ID = 13;
+	SPI_ErrorState = SPI_TransmitString(SPI_CH_0, "dawdwwaz", SPI_CH_0_SS_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_SUCCESS) && (SPI_DATA_R == 'z') &&
+		(PORTB_DATA == 0x10)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 }
 
 /**
@@ -152,26 +289,67 @@ void TestReceiveString(void)
 	/* sets receive completer bit in the status register */
 	SPI_STATUS_R |= SPI_TRANSMIT_COMPLETE_BIT;
 
-	SPI_ERROR_state_t error_state;
-	/* test sending null pointer to the function */
-	error_state = SPI_ReceiveString(SPI_CH_0, ptr_null, SPI_CH_0_SS_CH_0);
-	assert(error_state == E_SPI_NULL_PTR);
+	/* Null Pointer */
+	u8_ID = 14;
+	SPI_ErrorState = SPI_ReceiveString(SPI_CH_0, ptr_null, SPI_CH_0_SS_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_NULL_PTR) 
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
 	uint8_t data[10];
 
 	/* invalid spi channel */
-	error_state = SPI_ReceiveString(20, &data, SPI_CH_0_SS_CH_0);
-	assert(error_state == E_SPI_INVALID_CH);
+	u8_ID = 15;
+	SPI_ErrorState = SPI_ReceiveString(INVALID_CHANNEL, &data, SPI_CH_0_SS_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_INVALID_CH)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
 	/* invalid slave line */
-	error_state = SPI_ReceiveString(SPI_CH_0, &data, 20);
-	assert(error_state == E_SPI_INVALID_SS_CH);
+	u8_ID = 16;
+	SPI_ErrorState = SPI_ReceiveString(SPI_CH_0, &data, INVALID_CHANNEL);
+	if (
+		(SPI_ErrorState == E_SPI_INVALID_SS_CH)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
-	error_state = SPI_ReceiveString(SPI_CH_0, &data, SPI_CH_0_SS_CH_0);
-	assert(error_state == E_SPI_SUCCESS);
-	assert(data[0] == NEW_LINE);
-	/* make sure end of string character is inserted at the end of the string */
-	assert(data[1] == END_OF_STRING);
+	/* Valid Channels */
+	u8_ID = 17;
+	SPI_ErrorState = SPI_ReceiveString(SPI_CH_0, &data, SPI_CH_0_SS_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_SUCCESS) && (data[0] == NEW_LINE) && (data[1] == END_OF_STRING)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 }
 
 /**
@@ -179,17 +357,38 @@ void TestReceiveString(void)
 */
 void TestEnableInterrupt(void)
 {
+	/* Unset interrupt in control register */
 	SPI_CONTROL_R &= ~(SPI_INTERRUPT_EN);
-	SPI_ERROR_state_t error_state;
 
 	/* invalid spi channel */
-	error_state = SPI_EnableInterrupt(20);
-	assert(error_state == E_SPI_INVALID_CH);
-	assert(!(SPI_CONTROL_R & SPI_INTERRUPT_EN));
+	u8_ID = 18;
+	SPI_ErrorState = SPI_EnableInterrupt(INVALID_CHANNEL);
+	if (
+		(SPI_ErrorState == E_SPI_INVALID_CH) && !(SPI_CONTROL_R & SPI_INTERRUPT_EN)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
-	error_state = SPI_EnableInterrupt(SPI_CH_0);
-	assert(error_state == E_SPI_SUCCESS);
-	assert((SPI_CONTROL_R & SPI_INTERRUPT_EN));
+	/* Valid Channel */
+	u8_ID = 19;
+	SPI_ErrorState = SPI_EnableInterrupt(SPI_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_SUCCESS) && (SPI_CONTROL_R & SPI_INTERRUPT_EN)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 }
 
 /**
@@ -197,18 +396,89 @@ void TestEnableInterrupt(void)
 */
 void TestDisableInterrupt(void)
 {
+	/* Set interrupt in control register */
 	SPI_CONTROL_R |= (SPI_INTERRUPT_EN);
 
-	SPI_ERROR_state_t error_state;
-
 	/* invalid spi channel */
-	error_state = SPI_DisableInterrupt(20);
-	assert(error_state == E_SPI_INVALID_CH);
-	assert((SPI_CONTROL_R & SPI_INTERRUPT_EN));
+	u8_ID = 20;
+	SPI_ErrorState = SPI_DisableInterrupt(INVALID_CHANNEL);
+	if (
+		(SPI_ErrorState == E_SPI_INVALID_CH) && (SPI_CONTROL_R & SPI_INTERRUPT_EN)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
-	error_state = SPI_DisableInterrupt(SPI_CH_0);
-	assert(error_state == E_SPI_SUCCESS);
-	assert(!(SPI_CONTROL_R & SPI_INTERRUPT_EN));
+	/* Valid channels */
+	u8_ID = 21;
+	SPI_ErrorState = SPI_DisableInterrupt(SPI_CH_0);
+	if (
+		(SPI_ErrorState == E_SPI_SUCCESS) && !(SPI_CONTROL_R & SPI_INTERRUPT_EN)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
+}
+
+/**
+* @brief: This function tests setting a callback function.
+*/
+void TestSetCallback(void)
+{
+	/* Null Pointer */
+	u8_ID = 22;
+	SPI_ErrorState = SPI_SetCallback(SPI_CH_0, ptr_null);
+	if (
+		(SPI_ErrorState == E_SPI_NULL_PTR) && (g_Callback[SPI_CH_0] != TestInit)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
+
+	/* Invalid Channel */
+	u8_ID = 23;
+	SPI_ErrorState = SPI_SetCallback(INVALID_CHANNEL, TestInit);
+	if (
+		(SPI_ErrorState == E_SPI_INVALID_CH) && (g_Callback[SPI_CH_0] != TestInit)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
+
+	/* Valid Channel */
+	u8_ID = 24;
+	SPI_ErrorState = SPI_SetCallback(SPI_CH_0, TestInit);
+	if (
+		(SPI_ErrorState == E_SPI_SUCCESS) && (g_Callback[SPI_CH_0] == TestInit)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 }
 
 /*- APIs IMPLEMENTATION
@@ -232,6 +502,11 @@ void main(void)
 
 	TestDisableInterrupt();
 
-	/* prints if no assertion error was raised */
-	printf("all tests passed successfully!\n");
+	TestSetCallback();
+
+	printf("%u/%u TestCases passed.\n", u8_PassedCounter, NUMBER_OF_TESTCASES);
+
+	printf("Press Enter key to close this window . . . \n");
+
+	getchar();
 }
