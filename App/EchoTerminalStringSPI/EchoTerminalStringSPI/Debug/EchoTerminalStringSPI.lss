@@ -3,29 +3,29 @@ EchoTerminalStringSPI.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000031c  00000000  00000000  00000074  2**1
+  0 .text         00000346  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         0000000c  00800060  0000031c  00000390  2**0
+  1 .data         0000000e  00800060  00000346  000003ba  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .comment      00000030  00000000  00000000  0000039c  2**0
+  2 .comment      00000030  00000000  00000000  000003c8  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000003cc  2**2
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000003f8  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000160  00000000  00000000  00000408  2**0
+  4 .debug_aranges 00000160  00000000  00000000  00000434  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   0000149c  00000000  00000000  00000568  2**0
+  5 .debug_info   000014c1  00000000  00000000  00000594  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000978  00000000  00000000  00001a04  2**0
+  6 .debug_abbrev 00000994  00000000  00000000  00001a55  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000cbf  00000000  00000000  0000237c  2**0
+  7 .debug_line   00000d9f  00000000  00000000  000023e9  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000290  00000000  00000000  0000303c  2**2
+  8 .debug_frame  000002a0  00000000  00000000  00003188  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000007f9  00000000  00000000  000032cc  2**0
+  9 .debug_str    000007f9  00000000  00000000  00003428  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000011b5  00000000  00000000  00003ac5  2**0
+ 10 .debug_loc    00001355  00000000  00000000  00003c21  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 000000f0  00000000  00000000  00004c7a  2**0
+ 11 .debug_ranges 000000f0  00000000  00000000  00004f76  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -65,16 +65,16 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	ec e1       	ldi	r30, 0x1C	; 28
+  66:	e6 e4       	ldi	r30, 0x46	; 70
   68:	f3 e0       	ldi	r31, 0x03	; 3
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
   6e:	0d 92       	st	X+, r0
-  70:	ac 36       	cpi	r26, 0x6C	; 108
+  70:	ae 36       	cpi	r26, 0x6E	; 110
   72:	b1 07       	cpc	r27, r17
   74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
-  76:	0e 94 8a 01 	call	0x314	; 0x314 <main>
-  7a:	0c 94 8c 01 	jmp	0x318	; 0x318 <_exit>
+  76:	0e 94 9f 01 	call	0x33e	; 0x33e <main>
+  7a:	0c 94 a1 01 	jmp	0x342	; 0x342 <_exit>
 
 0000007e <__bad_interrupt>:
   7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -575,150 +575,167 @@ SPI_ERROR_state_t SPI_ReceiveString(uint8_t SpiNumber,uint8_t * RxString,uint8_t
    return E_UART_SUCCESS;
 }
  28a:	81 11       	cpse	r24, r1
- 28c:	0b c0       	rjmp	.+22     	; 0x2a4 <UART_Init+0x1a>
- 28e:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <UART_CH_0_CONTROL>
- 292:	8a b9       	out	0x0a, r24	; 10
- 294:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <UART_CH_0_CONTROL_2>
- 298:	80 bd       	out	0x20, r24	; 32
- 29a:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <UART_CH_0_BaudRate>
- 29e:	89 b9       	out	0x09, r24	; 9
- 2a0:	80 e0       	ldi	r24, 0x00	; 0
- 2a2:	08 95       	ret
- 2a4:	86 e0       	ldi	r24, 0x06	; 6
- 2a6:	08 95       	ret
+ 28c:	1c c0       	rjmp	.+56     	; 0x2c6 <UART_Init+0x3c>
+ 28e:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <UART_CH_0_BaudRate>
+ 292:	90 91 6a 00 	lds	r25, 0x006A	; 0x80006a <UART_CH_0_BaudRate+0x1>
+ 296:	8f 3f       	cpi	r24, 0xFF	; 255
+ 298:	91 05       	cpc	r25, r1
+ 29a:	09 f0       	breq	.+2      	; 0x29e <UART_Init+0x14>
+ 29c:	b0 f4       	brcc	.+44     	; 0x2ca <UART_Init+0x40>
+ 29e:	80 91 6c 00 	lds	r24, 0x006C	; 0x80006c <UART_CH_0_CONTROL>
+ 2a2:	8a b9       	out	0x0a, r24	; 10
+ 2a4:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <UART_CH_0_CONTROL_2>
+ 2a8:	80 bd       	out	0x20, r24	; 32
+ 2aa:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <UART_CH_0_BaudRate>
+ 2ae:	89 b9       	out	0x09, r24	; 9
+ 2b0:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <UART_CH_0_BaudRate>
+ 2b4:	90 91 6a 00 	lds	r25, 0x006A	; 0x80006a <UART_CH_0_BaudRate+0x1>
+ 2b8:	8f 3f       	cpi	r24, 0xFF	; 255
+ 2ba:	91 05       	cpc	r25, r1
+ 2bc:	41 f0       	breq	.+16     	; 0x2ce <UART_Init+0x44>
+ 2be:	38 f0       	brcs	.+14     	; 0x2ce <UART_Init+0x44>
+ 2c0:	90 bd       	out	0x20, r25	; 32
+ 2c2:	80 e0       	ldi	r24, 0x00	; 0
+ 2c4:	08 95       	ret
+ 2c6:	86 e0       	ldi	r24, 0x06	; 6
+ 2c8:	08 95       	ret
+ 2ca:	85 e0       	ldi	r24, 0x05	; 5
+ 2cc:	08 95       	ret
+ 2ce:	80 e0       	ldi	r24, 0x00	; 0
+ 2d0:	08 95       	ret
 
-000002a8 <UART_TransmitString>:
+000002d2 <UART_TransmitString>:
 UART_ERROR_state_t UART_TransmitString(uint8_t UartNumber,uint8_t * TxString)
 {
    uint8_t counter = STRING_COUNTER_START;
 
    /* making sure an initialized pointer is sent to the function */
    if(NULL_PTR == TxString)
- 2a8:	61 15       	cp	r22, r1
- 2aa:	71 05       	cpc	r23, r1
- 2ac:	81 f0       	breq	.+32     	; 0x2ce <UART_TransmitString+0x26>
+ 2d2:	61 15       	cp	r22, r1
+ 2d4:	71 05       	cpc	r23, r1
+ 2d6:	81 f0       	breq	.+32     	; 0x2f8 <UART_TransmitString+0x26>
    }
    
    volatile uint8_t * ptru8_UARTStatusR;
    volatile uint8_t * ptru8_UARTDataR;
    
    switch(UartNumber)
- 2ae:	81 11       	cpse	r24, r1
- 2b0:	10 c0       	rjmp	.+32     	; 0x2d2 <UART_TransmitString+0x2a>
- 2b2:	05 c0       	rjmp	.+10     	; 0x2be <UART_TransmitString+0x16>
+ 2d8:	81 11       	cpse	r24, r1
+ 2da:	10 c0       	rjmp	.+32     	; 0x2fc <UART_TransmitString+0x2a>
+ 2dc:	05 c0       	rjmp	.+10     	; 0x2e8 <UART_TransmitString+0x16>
    
    /* keeps sending data until it finds an end of string character in the string */
    while(TxString[counter] != END_OF_STRING)
    {
       /* Wait for empty transmit buffer */
       while ( !( *ptru8_UARTStatusR & EMPTY_BUFFER_BIT) );
- 2b4:	5d 9b       	sbis	0x0b, 5	; 11
- 2b6:	fe cf       	rjmp	.-4      	; 0x2b4 <UART_TransmitString+0xc>
+ 2de:	5d 9b       	sbis	0x0b, 5	; 11
+ 2e0:	fe cf       	rjmp	.-4      	; 0x2de <UART_TransmitString+0xc>
       
       /* Put data into buffer, sends the data */
       *ptru8_UARTDataR = TxString[counter];
- 2b8:	8c b9       	out	0x0c, r24	; 12
+ 2e2:	8c b9       	out	0x0c, r24	; 12
       counter++;
- 2ba:	9f 5f       	subi	r25, 0xFF	; 255
- 2bc:	01 c0       	rjmp	.+2      	; 0x2c0 <UART_TransmitString+0x18>
+ 2e4:	9f 5f       	subi	r25, 0xFF	; 255
+ 2e6:	01 c0       	rjmp	.+2      	; 0x2ea <UART_TransmitString+0x18>
    }
    
    volatile uint8_t * ptru8_UARTStatusR;
    volatile uint8_t * ptru8_UARTDataR;
    
    switch(UartNumber)
- 2be:	90 e0       	ldi	r25, 0x00	; 0
+ 2e8:	90 e0       	ldi	r25, 0x00	; 0
       default:
          return E_UART_INVALID_CH;
    }
    
    /* keeps sending data until it finds an end of string character in the string */
    while(TxString[counter] != END_OF_STRING)
- 2c0:	fb 01       	movw	r30, r22
- 2c2:	e9 0f       	add	r30, r25
- 2c4:	f1 1d       	adc	r31, r1
- 2c6:	80 81       	ld	r24, Z
- 2c8:	81 11       	cpse	r24, r1
- 2ca:	f4 cf       	rjmp	.-24     	; 0x2b4 <UART_TransmitString+0xc>
- 2cc:	08 95       	ret
+ 2ea:	fb 01       	movw	r30, r22
+ 2ec:	e9 0f       	add	r30, r25
+ 2ee:	f1 1d       	adc	r31, r1
+ 2f0:	80 81       	ld	r24, Z
+ 2f2:	81 11       	cpse	r24, r1
+ 2f4:	f4 cf       	rjmp	.-24     	; 0x2de <UART_TransmitString+0xc>
+ 2f6:	08 95       	ret
    uint8_t counter = STRING_COUNTER_START;
 
    /* making sure an initialized pointer is sent to the function */
    if(NULL_PTR == TxString)
    {
       return E_UART_NULL_PTR;
- 2ce:	84 e0       	ldi	r24, 0x04	; 4
- 2d0:	08 95       	ret
+ 2f8:	84 e0       	ldi	r24, 0x04	; 4
+ 2fa:	08 95       	ret
       case UART_CH_0:
          ptru8_UARTStatusR = &UART_STATUS_R;
          ptru8_UARTDataR = &UART_DATA_R;
          break;
       default:
          return E_UART_INVALID_CH;
- 2d2:	86 e0       	ldi	r24, 0x06	; 6
+ 2fc:	86 e0       	ldi	r24, 0x06	; 6
       counter++;
    }
    
    /* return success status */
    return E_UART_SUCCESS;
 }
- 2d4:	08 95       	ret
+ 2fe:	08 95       	ret
 
-000002d6 <ECU_2_SlaveMain>:
+00000300 <ECU_2_SlaveMain>:
 
 /**
 * @brief: This function is the slave node main function.
 */
 static void ECU_2_SlaveMain(void)
 {
- 2d6:	cf 93       	push	r28
- 2d8:	df 93       	push	r29
- 2da:	cd b7       	in	r28, 0x3d	; 61
- 2dc:	de b7       	in	r29, 0x3e	; 62
- 2de:	ce 5f       	subi	r28, 0xFE	; 254
- 2e0:	d1 09       	sbc	r29, r1
- 2e2:	0f b6       	in	r0, 0x3f	; 63
- 2e4:	f8 94       	cli
- 2e6:	de bf       	out	0x3e, r29	; 62
- 2e8:	0f be       	out	0x3f, r0	; 63
- 2ea:	cd bf       	out	0x3d, r28	; 61
+ 300:	cf 93       	push	r28
+ 302:	df 93       	push	r29
+ 304:	cd b7       	in	r28, 0x3d	; 61
+ 306:	de b7       	in	r29, 0x3e	; 62
+ 308:	ce 5f       	subi	r28, 0xFE	; 254
+ 30a:	d1 09       	sbc	r29, r1
+ 30c:	0f b6       	in	r0, 0x3f	; 63
+ 30e:	f8 94       	cli
+ 310:	de bf       	out	0x3e, r29	; 62
+ 312:	0f be       	out	0x3f, r0	; 63
+ 314:	cd bf       	out	0x3d, r28	; 61
    uint8_t string[MAX_STRING_SIZE];
    
    UART_Init(UART_CH_0);
- 2ec:	80 e0       	ldi	r24, 0x00	; 0
- 2ee:	0e 94 45 01 	call	0x28a	; 0x28a <UART_Init>
+ 316:	80 e0       	ldi	r24, 0x00	; 0
+ 318:	0e 94 45 01 	call	0x28a	; 0x28a <UART_Init>
    SPI_Init(SPI_CH_0);
- 2f2:	80 e0       	ldi	r24, 0x00	; 0
- 2f4:	0e 94 b1 00 	call	0x162	; 0x162 <SPI_Init>
+ 31c:	80 e0       	ldi	r24, 0x00	; 0
+ 31e:	0e 94 b1 00 	call	0x162	; 0x162 <SPI_Init>
    
    while (1)
    {
       SPI_ReceiveString(SPI_CH_0, string, SLAVE_SS_CH);
- 2f8:	4f ef       	ldi	r20, 0xFF	; 255
- 2fa:	be 01       	movw	r22, r28
- 2fc:	6f 5f       	subi	r22, 0xFF	; 255
- 2fe:	7f 4f       	sbci	r23, 0xFF	; 255
- 300:	80 e0       	ldi	r24, 0x00	; 0
- 302:	0e 94 eb 00 	call	0x1d6	; 0x1d6 <SPI_ReceiveString>
+ 322:	4f ef       	ldi	r20, 0xFF	; 255
+ 324:	be 01       	movw	r22, r28
+ 326:	6f 5f       	subi	r22, 0xFF	; 255
+ 328:	7f 4f       	sbci	r23, 0xFF	; 255
+ 32a:	80 e0       	ldi	r24, 0x00	; 0
+ 32c:	0e 94 eb 00 	call	0x1d6	; 0x1d6 <SPI_ReceiveString>
       UART_TransmitString(UART_CH_0, string);
- 306:	be 01       	movw	r22, r28
- 308:	6f 5f       	subi	r22, 0xFF	; 255
- 30a:	7f 4f       	sbci	r23, 0xFF	; 255
- 30c:	80 e0       	ldi	r24, 0x00	; 0
- 30e:	0e 94 54 01 	call	0x2a8	; 0x2a8 <UART_TransmitString>
- 312:	f2 cf       	rjmp	.-28     	; 0x2f8 <ECU_2_SlaveMain+0x22>
+ 330:	be 01       	movw	r22, r28
+ 332:	6f 5f       	subi	r22, 0xFF	; 255
+ 334:	7f 4f       	sbci	r23, 0xFF	; 255
+ 336:	80 e0       	ldi	r24, 0x00	; 0
+ 338:	0e 94 69 01 	call	0x2d2	; 0x2d2 <UART_TransmitString>
+ 33c:	f2 cf       	rjmp	.-28     	; 0x322 <ECU_2_SlaveMain+0x22>
 
-00000314 <main>:
+0000033e <main>:
    }
 }
 
 int main(void)
 {
    ECU_2_SlaveMain();
- 314:	0e 94 6b 01 	call	0x2d6	; 0x2d6 <ECU_2_SlaveMain>
+ 33e:	0e 94 80 01 	call	0x300	; 0x300 <ECU_2_SlaveMain>
 
-00000318 <_exit>:
- 318:	f8 94       	cli
+00000342 <_exit>:
+ 342:	f8 94       	cli
 
-0000031a <__stop_program>:
- 31a:	ff cf       	rjmp	.-2      	; 0x31a <__stop_program>
+00000344 <__stop_program>:
+ 344:	ff cf       	rjmp	.-2      	; 0x344 <__stop_program>

@@ -20,7 +20,11 @@
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
+#if !TEST
 static Ptr_VoidFuncVoid_t g_Callback[SPI_NUMBERS];
+#else
+Ptr_VoidFuncVoid_t g_Callback[SPI_NUMBERS];
+#endif
 
 /*- GLOBAL EXTERN VARIABLES
 -------------------------------*/
