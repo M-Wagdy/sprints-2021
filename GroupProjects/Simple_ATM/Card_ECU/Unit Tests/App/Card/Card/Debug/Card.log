@@ -1,7 +1,4 @@
-﻿  Card.c
-  TestCases.c
-  Generating Code...
-TestCases.obj : error LNK2001: unresolved external symbol _gu8_RxBuffer
-TestCases.obj : error LNK2001: unresolved external symbol _gu8_Counter
-TestCases.obj : error LNK2001: unresolved external symbol _gSTR_CardData
-H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\App\Card\Debug\Card.exe : fatal error LNK1120: 3 unresolved externals
+﻿  TestCases.c
+H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Card_ECU\App\Card\Card.h(20,1): warning C4005: 'TEST': macro redefinition
+H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Card_ECU\Mcal\Global_Interrupts\Global_Interrupts_Registers.h(12): message : see previous definition of 'TEST'
+  Card.vcxproj -> H:\Mohamed Sprints\sprints-2021\GroupProjects\Simple_ATM\Card_ECU\Unit Tests\App\Card\Debug\Card.exe
