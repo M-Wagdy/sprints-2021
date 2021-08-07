@@ -13,6 +13,8 @@
 
  /*- LOCAL MACROS
  ------------------------------------------*/
+#define NUMBER_OF_TESTCASES		(uint8_t)(13)
+#define INVALID_CHANNEL				(uint8_t)(20)
 
  /*- LOCAL FUNCTIONS PROTOTYPES
  ----------------------------*/
@@ -27,11 +29,15 @@ static void TestCallBack(void);
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
 static uint8_t* ptr_null;
+static uint8_t u8_ID;
+static uint8_t u8_PassedCounter = 0;
+static ADC_ERROR_state_t ADC_ErrorState;
 
 /*- GLOBAL EXTERN VARIABLES
 -------------------------------*/
 extern const uint8_t ADC_REFERENCE_SELECTION;
 extern const uint8_t ADC_CONTROL_MASK;
+extern Ptr_VoidFuncVoid_t g_Callback;
 
 /*- LOCAL FUNCTIONS IMPLEMENTATION
 ------------------------*/
@@ -44,27 +50,68 @@ void CallBackFunc(void)
 
 }
 
-
 /**
  * @brief: This function tests calling functions before initialization.
  */
 void TestBeforeInit(void)
 {
-	ADC_ERROR_state_t error_state;
-	uint8_t data;
+	uint16_t u16_data;
 	
+	u8_ID = 1;
+	ADC_ErrorState = ADC_Read(ADC_CH_0, &u16_data);
+	if (
+		(ADC_ErrorState == E_ADC_NOT_INIT)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
-	error_state = ADC_Read(ADC_CH_0, &data);
-	assert(error_state == E_ADC_NOT_INIT);
+	u8_ID = 2;
+	ADC_ErrorState = ADC_EnableInterrupt();
+	if (
+		(ADC_ErrorState == E_ADC_NOT_INIT)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
-	error_state = ADC_EnableInterrupt();
-	assert(error_state == E_ADC_NOT_INIT);
+	u8_ID = 3;
+	ADC_ErrorState = ADC_DisableInterrupt();
+	if (
+		(ADC_ErrorState == E_ADC_NOT_INIT)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
-	error_state = ADC_DisableInterrupt();
-	assert(error_state == E_ADC_NOT_INIT);
-
-	error_state = ADC_SetCallback(CallBackFunc);
-	assert(error_state == E_ADC_NOT_INIT);
+	u8_ID = 4;
+	ADC_ErrorState = ADC_SetCallback(CallBackFunc);
+	if (
+		(ADC_ErrorState == E_ADC_NOT_INIT)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 }
 
 /**
@@ -72,18 +119,36 @@ void TestBeforeInit(void)
 */
 void TestInit(void)
 {
-	ADC_ERROR_state_t error_state;
-
 	/* initialize */
-	error_state = ADC_Init();
-	assert(error_state == E_ADC_SUCCESS);
-	assert(ADC_MUX_R == ADC_REFERENCE_SELECTION);
-	assert(ADC_CONTROL_AND_STATUS_R == ADC_CONTROL_MASK);
+	u8_ID = 5;
+	ADC_ErrorState = ADC_Init();
+	if (
+		(ADC_ErrorState == E_ADC_SUCCESS) && (ADC_MUX_R == ADC_REFERENCE_SELECTION) &&
+		(ADC_CONTROL_AND_STATUS_R == ADC_CONTROL_MASK)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
 	/* initialize before */
-	error_state = ADC_Init();
-	assert(error_state == E_ADC_INIT_BEFORE);
-	
+	u8_ID = 6;
+	ADC_ErrorState = ADC_Init();
+	if (
+		(ADC_ErrorState == E_ADC_INIT_BEFORE)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 }
 
 /**
@@ -91,20 +156,56 @@ void TestInit(void)
 */
 static void TestRead(void)
 {
-	ADC_ERROR_state_t error_state;
-	
-	uint8_t data;
+	uint16_t u16_data;
 
 	/* Null Pointer */
-	error_state = ADC_Read(ADC_CH_0, ptr_null);
-	assert(error_state == E_ADC_NULL_PTR);
+	u8_ID = 7;
+	ADC_ErrorState = ADC_Read(ADC_CH_0, ptr_null);
+	if (
+		(ADC_ErrorState == E_ADC_NULL_PTR)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
 	/* Invalid Channel */
-	error_state = ADC_Read(20, &data);
-	assert(error_state == E_ADC_INVALID_CH);
+	u8_ID = 8;
+	ADC_ErrorState = ADC_Read(INVALID_CHANNEL, &u16_data);
+	if (
+		(ADC_ErrorState == E_ADC_INVALID_CH)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
+	/* Pre-set ADC readings data. */
+	ADC_DATA_LOW_R = 0xFF;
+	ADC_DATA_HIGH_R = 0x03;
+	
 	/* Read */
-
+	u8_ID = 9;
+	ADC_ErrorState = ADC_Read(ADC_CH_0, &u16_data);
+	if (
+		(ADC_ErrorState == E_ADC_SUCCESS) && (u16_data == 0x3FF)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 }
 
 /**
@@ -112,12 +213,22 @@ static void TestRead(void)
 */
 void TestEnableInterrupt(void)
 {
+	/* Clear Interrupt Bit */
 	ADC_CONTROL_AND_STATUS_R &= ~(ADC_INTERRUPT_EN);
-	ADC_ERROR_state_t error_state;
 
-	error_state = ADC_EnableInterrupt();
-	assert(error_state == E_ADC_SUCCESS);
-	assert((ADC_CONTROL_AND_STATUS_R & ADC_INTERRUPT_EN));
+	u8_ID = 10;
+	ADC_ErrorState = ADC_EnableInterrupt();
+	if (
+		(ADC_ErrorState == E_ADC_SUCCESS) && (ADC_CONTROL_AND_STATUS_R & ADC_INTERRUPT_EN)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 }
 
 /**
@@ -125,13 +236,22 @@ void TestEnableInterrupt(void)
 */
 void TestDisableInterrupt(void)
 {
+	/* Set Interrupt Bit */
 	ADC_CONTROL_AND_STATUS_R |= (ADC_INTERRUPT_EN);
 
-	ADC_ERROR_state_t error_state;
-
-	error_state = ADC_DisableInterrupt();
-	assert(error_state == E_ADC_SUCCESS);
-	assert(!(ADC_CONTROL_AND_STATUS_R & ADC_INTERRUPT_EN));
+	u8_ID = 11;
+	ADC_ErrorState = ADC_DisableInterrupt();
+	if (
+		(ADC_ErrorState == E_ADC_SUCCESS) && !(ADC_CONTROL_AND_STATUS_R & ADC_INTERRUPT_EN)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 }
 
 /**
@@ -139,15 +259,35 @@ void TestDisableInterrupt(void)
 */
 static void TestCallBack(void)
 {
-	ADC_ERROR_state_t error_state;
-
 	/* Null Pointer */
-	error_state = ADC_SetCallback(ptr_null);
-	assert(error_state == E_ADC_NULL_PTR);
+	u8_ID = 12;
+	ADC_ErrorState = ADC_SetCallback(ptr_null);
+	if (
+		(ADC_ErrorState == E_ADC_NULL_PTR)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 
 	/* Set Callback */
-	error_state = ADC_SetCallback(CallBackFunc);
-	assert(error_state == E_ADC_SUCCESS);
+	u8_ID = 13;
+	ADC_ErrorState = ADC_SetCallback(CallBackFunc);
+	if (
+		(ADC_ErrorState == E_ADC_SUCCESS) && (g_Callback == CallBackFunc)
+		)
+	{
+		printf("Test Case ID: %u - PASSED \n", u8_ID);
+		u8_PassedCounter++;
+	}
+	else
+	{
+		printf("Test Case ID: %u - FAILED \n", u8_ID);
+	}
 }
 
 /*- APIs IMPLEMENTATION
@@ -169,6 +309,9 @@ void main(void)
 
 	TestCallBack();
 
-	/* prints if no assertion error was raised */
-	printf("all tests passed successfully!\n");
+	printf("%u/%u TestCases passed.\n", u8_PassedCounter, NUMBER_OF_TESTCASES);
+
+	printf("Press Enter key to close this window . . . \n");
+
+	getchar();
 }

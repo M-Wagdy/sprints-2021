@@ -15,7 +15,11 @@
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
+#if !TEST
 static Ptr_VoidFuncVoid_t g_Callback;
+#else
+Ptr_VoidFuncVoid_t g_Callback;
+#endif
 static uint8_t gu8_IsInit = NOT_INIT;
 
 /*- GLOBAL EXTERN VARIABLES
@@ -83,7 +87,12 @@ ADC_ERROR_state_t ADC_Read(uint8_t ADC_CH, uint16_t * Data)
    ADC_CONTROL_AND_STATUS_R |= ADC_START_CONVERSION;
    
    /* Wait for Interrupt Flag */
-   while(!(ADC_CONTROL_AND_STATUS_R & ADC_INTERRUPT_FLAG));
+   while(!(ADC_CONTROL_AND_STATUS_R & ADC_INTERRUPT_FLAG))
+   {
+      #if TEST
+         ADC_CONTROL_AND_STATUS_R |= ADC_INTERRUPT_FLAG;
+      #endif
+   }
    
    /* clear interrupt flag */
    ADC_CONTROL_AND_STATUS_R |= ADC_INTERRUPT_FLAG;
