@@ -3,14 +3,14 @@
  *
  * Created: 7/16/2021 9:32:00 AM
  *  Author: Mohamed Wagdy
- */ 
+ */
 
 
 #ifndef __I2C_H__
 #define __I2C_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
+#include "../../Infrastructure/STD_types.h"
 #include "I2C_Registers.h"
 #include "I2C_retval.h"
 #include "I2C_Config.h"

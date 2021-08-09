@@ -3,15 +3,15 @@
  *
  * Created: 7/20/2021 10:53:23 AM
  *  Author: Mohamed Wagdy
- */ 
+ */
 
 
 #ifndef __EEPROM_H__
 #define __EEPROM_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/utils.h"
-#include "Mcal/I2C/I2C.h"
+#include "../../Infrastructure/utils.h"
+#include "../../Mcal/I2C/I2C.h"
 #include "EEPROM_retval.h"
 #include "EEPROM_Config.h"
 

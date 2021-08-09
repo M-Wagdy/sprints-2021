@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ATM" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ATM" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ATM" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="../../../../ATM_ECU/App/ATM/ATM.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/App/ATM/ATM.h" />
+		<Unit filename="../../../../ATM_ECU/App/Admin/admin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/App/Admin/admin.h" />
+		<Unit filename="../../../../ATM_ECU/App/Admin/admin_Config.h" />
+		<Unit filename="../../../../ATM_ECU/App/User/User.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/App/User/User.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/Button/PushButton.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Firmware/Button/PushButton.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/Button/PushButton_TypeDef.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/EEPROM/EEPROM.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Firmware/EEPROM/EEPROM.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/EEPROM/EEPROM_Config.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/EEPROM/EEPROM_retval.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/Keypad/Keypad.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Firmware/Keypad/Keypad.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/Keypad/Keypad_Config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Firmware/Keypad/Keypad_Config.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/Keypad/Keypad_RetVal.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/LCD/LCD.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Firmware/LCD/LCD.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/LCD/LCD_Config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Firmware/LCD/LCD_Config.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/LCD/LCD_RetVal.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/Motor/motor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Firmware/Motor/motor.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/Motor/motorConfig.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/Motor/motorRetval.h" />
+		<Unit filename="../../../../ATM_ECU/Firmware/Temp/temp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Firmware/Temp/temp.h" />
+		<Unit filename="../../../../ATM_ECU/Infrastructure/BIT_MATH.h" />
+		<Unit filename="../../../../ATM_ECU/Infrastructure/Bit Operations.h" />
+		<Unit filename="../../../../ATM_ECU/Infrastructure/Macros.h" />
+		<Unit filename="../../../../ATM_ECU/Infrastructure/STD_types.h" />
+		<Unit filename="../../../../ATM_ECU/Infrastructure/registers.h" />
+		<Unit filename="../../../../ATM_ECU/Infrastructure/utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Infrastructure/utils.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/ADC/adc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Mcal/ADC/adc.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/ADC/adcConfig.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/ADC/adcReg.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/ADC/adcRetVal.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/DIO/DIO.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Mcal/DIO/DIO.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/DIO/DIO_Config.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/DIO/DIO_retval.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/I2C/I2C.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Mcal/I2C/I2C.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/I2C/I2C_Config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Mcal/I2C/I2C_Config.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/I2C/I2C_Registers.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/I2C/I2C_retval.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/MC_REGISTERS.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/SPI/SPI.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Mcal/SPI/SPI.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/SPI/SPI_CONFIG.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/SPI/SPI_PRIV.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/Timer/TIMER_DRIVER.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Mcal/Timer/TIMER_DRIVER.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/Timer/TIMER_DRIVER_PRIV.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/Timer/TIMER_DRIVER_typedefs.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/UART/Macros.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/UART/uart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../ATM_ECU/Mcal/UART/uart.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/UART/uartConfig.h" />
+		<Unit filename="../../../../ATM_ECU/Mcal/UART/uartReg.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

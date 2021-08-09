@@ -1,0 +1,4 @@
+﻿  TestCases.c
+C:\Users\marco\Downloads\Simple_ATM1\Simple_ATM\ATM_ECU\ATM_ECU\Unit Tests\App\Admin\Admin\TestCases.c(23,1): warning C4005: 'PAN_BYTES_NO': macro redefinition
+C:\Users\marco\Downloads\Simple_ATM1\Simple_ATM\ATM_ECU\ATM_ECU\ATM_ECU\App\Admin\admin_Config.h(44): message : see previous definition of 'PAN_BYTES_NO'
+  Admin.vcxproj -> C:\Users\marco\Downloads\Simple_ATM1\Simple_ATM\ATM_ECU\ATM_ECU\Unit Tests\App\Admin\Debug\Admin.exe

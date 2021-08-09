@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1628112986 source:a:\testing\adc_testing\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Mcal/ADC/adc.h"
+
+1628114807 a:\testing\adc_testing\mcal\adc\adc.h
+	"../../Infrastructure/TypeDef.h"
+	"../../Infrastructure/Macros.h"
+	"adcConfig.h"
+	"adcRetVal.h"
+
+1625855553 a:\testing\adc_testing\infrastructure\macros.h
+
+1628114712 a:\testing\adc_testing\infrastructure\typedef.h
+
+1628115797 a:\testing\adc_testing\mcal\adc\adcconfig.h
+
+1628119729 a:\testing\adc_testing\mcal\adc\adcretval.h
+
+1628118702 source:a:\testing\adc_testing\mcal\adc\adc.c
+	"adc.h"
+	"adcReg.h"
+
+1628115086 a:\testing\adc_testing\mcal\adc\adcreg.h
+
+1628114994 source:a:\testing\adc_testing\mcal\adc\adcmockreg.c
+	"../../Infrastructure/TypeDef.h"
+

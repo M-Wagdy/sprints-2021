@@ -3,11 +3,11 @@
  *
  * Created: 8/3/2021 10:58:20 AM
  *  Author: Mohamed Wagdy
- */ 
+ */
 
 /*- INCLUDES
 ----------------------------------------------*/
-#include "Mcal/I2C/I2C_Config.h"
+#include "../../Mcal/I2C/I2C_Config.h"
 
 /*- GLOBAL EXTERN VARIABLES
 -------------------------------*/

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="User_Mode" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin/Release/User_Mode" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="App/User/User.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="App/User/User.h" />
+		<Unit filename="Firmware/STUB_Button/PushButton_TypeDef.h" />
+		<Unit filename="Firmware/STUB_Button/STUB_PushButton.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Firmware/STUB_Button/STUB_PushButton.h" />
+		<Unit filename="Firmware/STUB_EEPROM/EEPROM_Config.h" />
+		<Unit filename="Firmware/STUB_EEPROM/EEPROM_retval.h" />
+		<Unit filename="Firmware/STUB_EEPROM/STUB_EEPROM.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Firmware/STUB_EEPROM/STUB_EEPROM.h" />
+		<Unit filename="Firmware/STUB_Keypad/Keypad_RetVal.h" />
+		<Unit filename="Firmware/STUB_Keypad/STUB_Keypad.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Firmware/STUB_Keypad/STUB_Keypad.h" />
+		<Unit filename="Firmware/STUB_LCD/LCD_RetVal.h" />
+		<Unit filename="Firmware/STUB_LCD/STUB_LCD.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Firmware/STUB_LCD/STUB_LCD.h" />
+		<Unit filename="Firmware/STUB_Motor/STUB_motor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Firmware/STUB_Motor/STUB_motor.h" />
+		<Unit filename="Firmware/STUB_Motor/motorConfig.h" />
+		<Unit filename="Firmware/STUB_Motor/motorRetval.h" />
+		<Unit filename="Firmware/STUB_Temp/STUB_temp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Firmware/STUB_Temp/STUB_temp.h" />
+		<Unit filename="Firmware/STUB_Temp/STUB_temp.h" />
+		<Unit filename="Infrastructure/STD_types.h" />
+		<Unit filename="Infrastructure/utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Infrastructure/utils.h" />
+		<Unit filename="Mcal/STUB_DIO/DIO_Config.h" />
+		<Unit filename="Mcal/STUB_DIO/DIO_retval.h" />
+		<Unit filename="Mcal/STUB_DIO/STUB_DIO.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Mcal/STUB_DIO/STUB_DIO.h" />
+		<Unit filename="Mcal/STUB_SPI/SPI_CONFIG.h" />
+		<Unit filename="Mcal/STUB_SPI/SPI_PRIV.h" />
+		<Unit filename="Mcal/STUB_SPI/STUB_SPI.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Mcal/STUB_SPI/STUB_SPI.h" />
+		<Unit filename="Mcal/STUB_UART/STUB_UART.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Mcal/STUB_UART/STUB_UART.h" />
+		<Unit filename="Mcal/STUB_UART/uartConfig.h" />
+		<Unit filename="TestCases.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

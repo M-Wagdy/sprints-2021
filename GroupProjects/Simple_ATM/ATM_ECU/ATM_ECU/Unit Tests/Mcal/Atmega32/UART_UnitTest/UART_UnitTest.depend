@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1628352668 source:a:\testing\uart_unittest\mcal\uart\uart.c
+	"uart.h"
+	"uartReg.h"
+
+1628348023 a:\testing\uart_unittest\mcal\uart\uart.h
+	"../../Infrastructure/TypeDef.h"
+	"../../Infrastructure/Macros.h"
+	"uartConfig.h"
+	"uartRetVal.h"
+
+1628344817 a:\testing\uart_unittest\infrastructure\typedef.h
+
+1628343932 a:\testing\uart_unittest\infrastructure\macros.h
+
+1628343932 a:\testing\uart_unittest\mcal\uart\uartconfig.h
+
+1628345550 a:\testing\uart_unittest\mcal\uart\uartretval.h
+
+1628344412 a:\testing\uart_unittest\mcal\uart\uartreg.h
+
+1628344188 source:a:\testing\uart_unittest\mcal\uart\uartmockreg.c
+	"../../Infrastructure/TypeDef.h"
+
+1628353461 source:a:\testing\uart_unittest\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Mcal/UART/uart.h"
+	"Mcal/UART/uartReg.h"
+

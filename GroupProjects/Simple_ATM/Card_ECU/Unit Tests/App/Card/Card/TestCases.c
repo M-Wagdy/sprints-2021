@@ -12,7 +12,7 @@
 
  /*- LOCAL MACROS
  ------------------------------------------*/
-#define NUMBER_OF_TESTCASES                  (uint8_t)(6)
+#define NUMBER_OF_TESTCASES                  (uint8_t)(5)
 #define GLOBAL_BUFFER_SIZE                   (uint8_t)(255)
 #define STRING_COUNTER_START                 (uint8_t)(0)
 
@@ -275,7 +275,7 @@ void TestInit(void)
 }
 
 /**
-* @brief: This function tests Card Get Data From EEPROM.
+* @brief: This function tests Led off API.
 */
 void TestGetData(void)
 {
@@ -302,7 +302,7 @@ void TestGetData(void)
 }
 
 /**
-* @brief: This function tests Card Set Data in EEPROM.
+* @brief: This function tests LED on API.
 */
 void TestSetData(void)
 {
@@ -329,7 +329,7 @@ void TestSetData(void)
 }
 
 /**
-* @brief: This function tests Card Enter Programming mode when receiving ADMIN from Terminal.
+* @brief: This function tests LED Status API.
 */
 void TestReceive(void)
 {
@@ -345,35 +345,6 @@ void TestReceive(void)
 
    /* Check Data Stored In Memory */
    if (CheckMemoryFromUser() == TRUE)
-   {
-      printf("Test Case ID: %u - PASSED \n", u8_ID);
-      u8_PassedCounter++;
-   }
-   else
-   {
-      printf("Test Case ID: %u - FAILED \n", u8_ID);
-   }
-
-   /* Add Letter after ADMIN word */
-   gu8_RxBuffer[5] = 'N';
-   gu8_RxBuffer[6] = NEW_LINE;
-   gu8_Counter = 6;
-
-   /* Clear Card Data */
-   ClearCardData();
-
-   /* Pre add data in memory */
-   FillMemoryOnes();
-
-   /* Update Card data */
-   CARD_GetData();
-
-   /* Doesn't set Data when the buffer doesn't contain Admin */
-   u8_ID = 6;
-   CARD_Receive();
-
-   /* Check Data Wasn't Changed In Memory */
-   if (CheckMemoryFilledOnes() == TRUE)
    {
       printf("Test Case ID: %u - PASSED \n", u8_ID);
       u8_PassedCounter++;

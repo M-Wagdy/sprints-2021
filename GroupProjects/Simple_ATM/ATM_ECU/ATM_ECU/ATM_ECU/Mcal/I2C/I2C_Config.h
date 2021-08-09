@@ -3,14 +3,14 @@
  *
  * Created: 7/16/2021 9:32:31 AM
  *  Author: Mohamed Wagdy
- */ 
+ */
 
 
 #ifndef __I2C_CONFIG_H__
 #define __I2C_CONFIG_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
+#include "../../Infrastructure/STD_types.h"
 
 /*- MACROS -------------------------------------------------*/
 #define I2C_INTERRUPT_EN            (uint8_t)(0X01)
@@ -28,7 +28,7 @@
 #define I2C_PRESCALAR_16            (uint8_t)(0X02)
 #define I2C_PRESCALAR_64            (uint8_t)(0X03)
 
-#define I2C_8_MHZ_115200_RATE_1_PRESCALAR       (uint8_t)(0X07)      
+#define I2C_8_MHZ_115200_RATE_1_PRESCALAR       (uint8_t)(0X07)
 
 #define I2C_STATUS_START            (uint8_t)(0x08)
 #define I2C_STATUS_T_ACK_ADDR       (uint8_t)(0x18)
