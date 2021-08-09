@@ -33,7 +33,4 @@
 #define  TIMER_INT_MASK       (*((volatile uint8_t *) (0x59)))
 #define  TIMER_INT_FLAG       (*((volatile uint8_t *) (0x58)))
 
-
-
-
 #endif /* __TIMER_REGISTERS_H__ */

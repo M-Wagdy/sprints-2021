@@ -13,7 +13,7 @@
 ------------------------------------------*/
 #define LOW                (uint8_t)( 0 )
 #define HIGH               (uint8_t)( 1 )
-#define F_CPU              (16000000)
+#define F_CPU              (8000000)
 
 /*- LOCAL FUNCTIONS PROTOTYPES
 ----------------------------*/
@@ -221,11 +221,11 @@ TIMER_ERROR_state_t TIM_Stop(TIM_CH_t TIM_channel)
 */
 TIMER_ERROR_state_t TIM_GetStatus(TIM_CH_t TIM_channel, uint8_t* FlagStatus)
 {
-   if(NULL_PTR == FlagStatus)
+   if (NULL_PTR == FlagStatus)
    {
       return TIMER_E_NULL_PTR;
    }
-   
+
    /* sets the registers pointers according to the required timer. */
    switch(TIM_channel)
    {
