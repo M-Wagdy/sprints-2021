@@ -30,15 +30,15 @@
     <EraseKey />
     <AsfFrameworkConfig>
       <framework-data xmlns="">
-  <options />
-  <configurations />
-  <files />
-  <documentation help="" />
-  <offline-documentation help="" />
-  <dependencies>
-    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.49.1" />
-  </dependencies>
-</framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.49.1" />
+        </dependencies>
+      </framework-data>
     </AsfFrameworkConfig>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -82,55 +82,94 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
       <AvrGcc>
-  <avrgcc.common.Device>-mmcu=atmega32a -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a"</avrgcc.common.Device>
-  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
-  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
-  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
-  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
-  <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
-  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
-  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
-  <avrgcc.compiler.symbols.DefSymbols>
-    <ListValues>
-      <Value>DEBUG</Value>
-    </ListValues>
-  </avrgcc.compiler.symbols.DefSymbols>
-  <avrgcc.compiler.directories.IncludePaths>
-    <ListValues>
-      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
-      <Value>..</Value>
-    </ListValues>
-  </avrgcc.compiler.directories.IncludePaths>
-  <avrgcc.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcc.compiler.optimization.level>
-  <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
-  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
-  <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
-  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
-  <avrgcc.linker.libraries.Libraries>
-    <ListValues>
-      <Value>libm</Value>
-    </ListValues>
-  </avrgcc.linker.libraries.Libraries>
-  <avrgcc.assembler.general.IncludePaths>
-    <ListValues>
-      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
-    </ListValues>
-  </avrgcc.assembler.general.IncludePaths>
-  <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>
-</AvrGcc>
+        <avrgcc.common.Device>-mmcu=atmega32a -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a"</avrgcc.common.Device>
+        <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+        <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+        <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+        <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+        <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+        <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+        <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+        <avrgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>DEBUG</Value>
+          </ListValues>
+        </avrgcc.compiler.symbols.DefSymbols>
+        <avrgcc.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
+            <Value>..</Value>
+          </ListValues>
+        </avrgcc.compiler.directories.IncludePaths>
+        <avrgcc.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcc.compiler.optimization.level>
+        <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+        <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+        <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
+        <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+        <avrgcc.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libm</Value>
+          </ListValues>
+        </avrgcc.linker.libraries.Libraries>
+        <avrgcc.assembler.general.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
+          </ListValues>
+        </avrgcc.assembler.general.IncludePaths>
+        <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>
+      </AvrGcc>
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Firmware\LCD_adel\LCD.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Firmware\LCD_adel\LCD.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Firmware\Motor\Motor.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Firmware\Motor\Motor.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Firmware\Motor\MotorConfig.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Firmware\Motor\MotorRetVal.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Firmware\USONIC\usonic.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Firmware\USONIC\usonic.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Firmware\USONIC\usonicConig.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Firmware\USONIC\usonicRetVal.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Infrastructure\BIT_MATH.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Infrastructure\infrastructure.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Infrastructure\Macros.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Infrastructure\MC_REGISTERS.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Infrastructure\STD_TYPES.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\STRING.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\TypeDef.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Infrastructure\utils.c">
@@ -140,6 +179,39 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\DIO\DIO.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\DIO\DIO.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\DIO\DIO_Config.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\DIO\DIO_REG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\DIO\DIO_retval.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\ICU\ICU.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\ICU\ICU.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\ICU\ICU_Cfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\ICU\ICU_Lcfg.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\ICU\ICU_Lcfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\ICU\ICU_RetVal.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Mcal\Timer\Timer.c">
@@ -160,11 +232,138 @@
     <Compile Include="Mcal\Timer\Timer_retval.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Mcal\UART\uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\UART\uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\UART\uartConfig.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\UART\uartMockReg.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\UART\uartReg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\UART\uartRetVal.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Debug\" />
+    <Folder Include="Debug\Firmware\" />
+    <Folder Include="Debug\Firmware\Motor\" />
+    <Folder Include="Debug\Firmware\USONIC\" />
+    <Folder Include="Debug\Infrastructure\" />
+    <Folder Include="Debug\Mcal\" />
+    <Folder Include="Debug\Mcal\DIO\" />
+    <Folder Include="Debug\Mcal\ICU\" />
+    <Folder Include="Debug\Mcal\Timer\" />
+    <Folder Include="Debug\Mcal\UART\" />
+    <Folder Include="Firmware\" />
+    <Folder Include="Firmware\LCD_adel\" />
+    <Folder Include="Firmware\Motor\" />
+    <Folder Include="Firmware\USONIC\" />
     <Folder Include="Infrastructure" />
     <Folder Include="Mcal" />
+    <Folder Include="Mcal\DIO\" />
+    <Folder Include="Mcal\ICU\" />
     <Folder Include="Mcal\Timer\" />
+    <Folder Include="Mcal\UART\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Debug\Firmware\Motor\Motor.d">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Firmware\Motor\Motor.o">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Firmware\USONIC\usonic.d">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Firmware\USONIC\usonic.o">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Infrastructure\utils.d">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Infrastructure\utils.o">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\main.d">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\main.o">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\makedep.mk">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Makefile">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\DIO\DIO.d">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\DIO\DIO.o">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\ICU\ICU.d">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\ICU\ICU.o">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\ICU\ICU_Lcfg.d">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\ICU\ICU_Lcfg.o">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\Timer\Timer.d">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\Timer\Timer.o">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\Timer\Timer_Lcfg.d">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\Timer\Timer_Lcfg.o">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\UART\uart.d">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\UART\uart.o">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\UART\uartMockReg.d">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\Mcal\UART\uartMockReg.o">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\USonic_Car.eep">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\USonic_Car.elf">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\USonic_Car.hex">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\USonic_Car.lss">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\USonic_Car.map">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Debug\USonic_Car.srec">
+      <SubType>compile</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

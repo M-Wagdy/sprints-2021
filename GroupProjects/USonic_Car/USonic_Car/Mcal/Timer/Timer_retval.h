@@ -10,7 +10,8 @@
 #define __TIMER_RETVAL_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_TYPES.h"
+#include "../../Infrastructure/STD_TYPES.h"
+
 
 /*- PRIMITIVE TYPES ----------------------------------------*/
 typedef uint8_t TIMER_ERROR_state_t;
