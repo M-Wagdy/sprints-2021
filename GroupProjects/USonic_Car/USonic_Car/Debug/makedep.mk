@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-Firmware\LCD_adel\LCD.c
+Firmware\LCD\LCD.c
 
 Firmware\Motor\Motor.c
 
@@ -17,6 +17,8 @@ Mcal\DIO\DIO.c
 Mcal\ICU\ICU.c
 
 Mcal\ICU\ICU_Lcfg.c
+
+Mcal\PWM\Pwm.c
 
 Mcal\Timer\Timer.c
 

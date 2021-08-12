@@ -5,7 +5,8 @@ Firmware/Motor/Motor.d Firmware/Motor/Motor.o: ../Firmware/Motor/Motor.c \
  ../Mcal/DIO/../../Infrastructure/STD_types.h \
  ../Mcal/DIO/../../Infrastructure/BIT_MATH.h \
  ../Mcal/DIO/../../Infrastructure/MC_REGISTERS.h ../Mcal/DIO/DIO_Config.h \
- ../Mcal/DIO/DIO_RetVal.h ../Firmware/Motor/MotorRetVal.h \
+ ../Mcal/DIO/DIO_RetVal.h ../Mcal/PWM/Pwm.h ../Mcal/PWM/Pwm_Config.h \
+ ../Mcal/PWM/Pwm_RetVal.h ../Firmware/Motor/MotorRetVal.h \
  ../Firmware/Motor/MotorConfig.h
 
 ../Firmware/Motor/Motor.h:
@@ -29,6 +30,12 @@ Firmware/Motor/Motor.d Firmware/Motor/Motor.o: ../Firmware/Motor/Motor.c \
 ../Mcal/DIO/DIO_Config.h:
 
 ../Mcal/DIO/DIO_RetVal.h:
+
+../Mcal/PWM/Pwm.h:
+
+../Mcal/PWM/Pwm_Config.h:
+
+../Mcal/PWM/Pwm_RetVal.h:
 
 ../Firmware/Motor/MotorRetVal.h:
 

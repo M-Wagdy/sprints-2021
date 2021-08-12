@@ -5,6 +5,7 @@
 #include "Infrastructure/BIT_MATH.h"
 #include "Infrastructure/MC_REGISTERS.h"
 #include "Mcal/DIO/DIO.h"
+#include "Mcal/PWM/Pwm.h"
 #include "MotorRetVal.h"
 #include "MotorConfig.h"
 
@@ -18,6 +19,6 @@
 /*APIs DECLARATIONS------------------------*/
 MOTOR_ERROR_state_t MOTOR_init(void);
 MOTOR_ERROR_state_t MOTOR_stop(uint8_t motor_no);
-MOTOR_ERROR_state_t MOTOR_start(uint8_t motor_no,uint8_t dir);
+MOTOR_ERROR_state_t MOTOR_start(uint8_t motor_no, uint8_t speed,uint8_t dir);
 MOTOR_ERROR_state_t MOTOR_Update_dir(uint8_t motor_no,uint8_t dir);
 #endif

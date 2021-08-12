@@ -121,10 +121,10 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Firmware\LCD_adel\LCD.c">
+    <Compile Include="Firmware\LCD\LCD.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Firmware\LCD_adel\LCD.h">
+    <Compile Include="Firmware\LCD\LCD.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Firmware\Motor\Motor.c">
@@ -157,19 +157,10 @@
     <Compile Include="Infrastructure\infrastructure.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Infrastructure\Macros.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Infrastructure\MC_REGISTERS.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Infrastructure\STD_TYPES.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Infrastructure\STRING.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Infrastructure\TypeDef.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Infrastructure\utils.c">
@@ -212,6 +203,18 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Mcal\ICU\ICU_RetVal.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\PWM\Pwm.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\PWM\Pwm.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\PWM\Pwm_Config.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mcal\PWM\Pwm_RetVal.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Mcal\Timer\Timer.c">
@@ -263,13 +266,14 @@
     <Folder Include="Debug\Mcal\Timer\" />
     <Folder Include="Debug\Mcal\UART\" />
     <Folder Include="Firmware\" />
-    <Folder Include="Firmware\LCD_adel\" />
+    <Folder Include="Firmware\LCD" />
     <Folder Include="Firmware\Motor\" />
     <Folder Include="Firmware\USONIC\" />
     <Folder Include="Infrastructure" />
     <Folder Include="Mcal" />
     <Folder Include="Mcal\DIO\" />
     <Folder Include="Mcal\ICU\" />
+    <Folder Include="Mcal\PWM\" />
     <Folder Include="Mcal\Timer\" />
     <Folder Include="Mcal\UART\" />
   </ItemGroup>

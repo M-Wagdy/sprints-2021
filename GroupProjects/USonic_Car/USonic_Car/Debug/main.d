@@ -18,11 +18,11 @@ main.d main.o: .././main.c .././Firmware/USONIC/usonic.h \
  .././Firmware/USONIC/../../Mcal/ICU/../../Infrastructure/MC_REGISTERS.h \
  .././Firmware/USONIC/../../Mcal/ICU/../DIO/DIO.h \
  .././Firmware/USONIC/../../Mcal/ICU/ICU_Cfg.h \
- .././Firmware/USONIC/../../Mcal/ICU/ICU_RetVal.h \
- .././Firmware/LCD_adel/LCD.h .././Firmware/Motor/Motor.h \
- ../Infrastructure/BIT_MATH.h ../Infrastructure/MC_REGISTERS.h \
- ../Mcal/DIO/DIO.h .././Firmware/Motor/MotorRetVal.h \
- .././Firmware/Motor/MotorConfig.h
+ .././Firmware/USONIC/../../Mcal/ICU/ICU_RetVal.h .././Firmware/LCD/LCD.h \
+ .././Firmware/Motor/Motor.h ../Infrastructure/BIT_MATH.h \
+ ../Infrastructure/MC_REGISTERS.h ../Mcal/DIO/DIO.h ../Mcal/PWM/Pwm.h \
+ ../Mcal/PWM/Pwm_Config.h ../Mcal/PWM/Pwm_RetVal.h \
+ .././Firmware/Motor/MotorRetVal.h .././Firmware/Motor/MotorConfig.h
 
 .././Firmware/USONIC/usonic.h:
 
@@ -70,7 +70,7 @@ main.d main.o: .././main.c .././Firmware/USONIC/usonic.h \
 
 .././Firmware/USONIC/../../Mcal/ICU/ICU_RetVal.h:
 
-.././Firmware/LCD_adel/LCD.h:
+.././Firmware/LCD/LCD.h:
 
 .././Firmware/Motor/Motor.h:
 
@@ -79,6 +79,12 @@ main.d main.o: .././main.c .././Firmware/USONIC/usonic.h \
 ../Infrastructure/MC_REGISTERS.h:
 
 ../Mcal/DIO/DIO.h:
+
+../Mcal/PWM/Pwm.h:
+
+../Mcal/PWM/Pwm_Config.h:
+
+../Mcal/PWM/Pwm_RetVal.h:
 
 .././Firmware/Motor/MotorRetVal.h:
 
