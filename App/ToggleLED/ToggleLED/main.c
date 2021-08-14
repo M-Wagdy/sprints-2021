@@ -22,8 +22,8 @@ int main(void)
    /* variable to get error status of the DIO API. */
    DIO_ERROR_state_t DIO_init_state;
    /* initialize DIO pin. */
-   DIO_init_state = DIO_SetPinDirection(PORTA, PIN_0, OUTPUT);
-   DIO_init_state |= DIO_SetPinDirection(PORTC, PIN_0, INPUT);
+   LED_Init();
+   DIO_init_state = DIO_SetPinDirection(PORTC, PIN_0, INPUT);
    
    /* if DIO init returned error make the program stuck in super loop for debugging. */
    if(E_DIO_SUCCESS != DIO_init_state)
@@ -41,7 +41,7 @@ int main(void)
       if(PRESSED == BUTTON_get_state())
       {
          /* toggle LED. */
-         LED_toggle();
+         LED_Toggle(LED_CH_1);
          /* loop in empty loop until button is unpressed */
          while(PRESSED == BUTTON_get_state()){}
       }

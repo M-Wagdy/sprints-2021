@@ -8,5 +8,7 @@
 
 ..\..\..\Mcal\Atmega32\DIO\DIO.c
 
+Firmware\LED\LED_Config.c
+
 main.c
 
