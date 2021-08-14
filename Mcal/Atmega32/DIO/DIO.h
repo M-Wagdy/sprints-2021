@@ -10,7 +10,7 @@
 #define __DIO_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
+#include "../../../Infrastructure/STD_types.h"
 #include "DIO_Registers.h"
 #include "DIO_retval.h"
 #include "DIO_Config.h"
@@ -41,6 +41,7 @@
 * @brief: Check if a specific bit is cleared in any register and return true if yes
 */
 #define BIT_IS_CLEAR(REG,BIT) ( !((REG) & ((uint8_t)(1)<<BIT)) )
+
 
 /*- FUNCTION DECLARATIONS ----------------------------------*/
 

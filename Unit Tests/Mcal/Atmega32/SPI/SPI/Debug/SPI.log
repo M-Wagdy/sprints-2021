@@ -1,0 +1,14 @@
+<<<<<<< HEAD
+﻿  SPI.c
+=======
+﻿  TestCases.c
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(311,59): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'uint8_t (*)[10]'
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(311,54): warning C4024: 'SPI_ReceiveString': different types for formal and actual parameter 2
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(326,52): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'uint8_t (*)[10]'
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(326,47): warning C4024: 'SPI_ReceiveString': different types for formal and actual parameter 2
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(341,52): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'uint8_t (*)[10]'
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(341,47): warning C4024: 'SPI_ReceiveString': different types for formal and actual parameter 2
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(440,53): warning C4047: 'function': 'Ptr_VoidFuncVoid_t' differs in levels of indirection from 'uint8_t *'
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\SPI\TestCases.c(440,45): warning C4024: 'SPI_SetCallback': different types for formal and actual parameter 2
+>>>>>>> b64051c180b3fabaa1f0f4ed150372ee713daac2
+  SPI.vcxproj -> H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\SPI\Debug\SPI.exe
