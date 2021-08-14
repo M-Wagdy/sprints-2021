@@ -9,7 +9,7 @@
 #ifndef __I2C_REGISTERS_H__
 #define __I2C_REGISTERS_H__
 
-#define TEST 1
+#define TEST 0
 
 #if !TEST
 /*- I2C REGISTERS-----------------------------------------*/

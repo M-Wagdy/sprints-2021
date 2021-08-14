@@ -1,0 +1,1071 @@
+
+TrafficSign.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000470  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000006a  00800060  00000470  00000504  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  008000ca  008000ca  0000056e  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000056e  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000005a0  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000170  00000000  00000000  000005dc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001575  00000000  00000000  0000074c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000a00  00000000  00000000  00001cc1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000df9  00000000  00000000  000026c1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000218  00000000  00000000  000034bc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000007ef  00000000  00000000  000036d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000edb  00000000  00000000  00003ec3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000f0  00000000  00000000  00004d9e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e0 e7       	ldi	r30, 0x70	; 112
+  68:	f4 e0       	ldi	r31, 0x04	; 4
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 3c       	cpi	r26, 0xCA	; 202
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	aa ec       	ldi	r26, 0xCA	; 202
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ab 3c       	cpi	r26, 0xCB	; 203
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 31 02 	call	0x462	; 0x462 <main>
+  8a:	0c 94 36 02 	jmp	0x46c	; 0x46c <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <LED_Init>:
+* @return function error state.
+*/
+LED_ERROR_state_t LED_Init(void)
+{
+   /* check if init function was called before */
+   if(INIT == gu8_IsLEDInit)
+  92:	80 91 ca 00 	lds	r24, 0x00CA	; 0x8000ca <__data_end>
+  96:	81 30       	cpi	r24, 0x01	; 1
+  98:	01 f1       	breq	.+64     	; 0xda <LED_Init+0x48>
+   
+   DIO_ERROR_state_t e_state;
+   
+   #ifdef LED_CH_1
+      /* configure LED pin */
+      e_state = DIO_SetPinDirection(LED_CH_1_PORT, LED_CH_1_PIN, OUTPUT);
+  9a:	60 91 c3 00 	lds	r22, 0x00C3	; 0x8000c3 <LED_CH_1_PIN>
+  9e:	41 e0       	ldi	r20, 0x01	; 1
+  a0:	80 91 c4 00 	lds	r24, 0x00C4	; 0x8000c4 <LED_CH_1_PORT>
+  a4:	0e 94 bf 00 	call	0x17e	; 0x17e <DIO_SetPinDirection>
+      /* make sure pin configuration is successful */
+      if(E_DIO_SUCCESS != e_state)
+  a8:	81 11       	cpse	r24, r1
+  aa:	19 c0       	rjmp	.+50     	; 0xde <LED_Init+0x4c>
+         return E_LED_DIO_ERROR;
+      }
+   #endif
+   #ifdef LED_CH_2
+      /* configure LED pin */
+      e_state = DIO_SetPinDirection(LED_CH_2_PORT, LED_CH_2_PIN, OUTPUT);
+  ac:	60 91 c1 00 	lds	r22, 0x00C1	; 0x8000c1 <LED_CH_2_PIN>
+  b0:	41 e0       	ldi	r20, 0x01	; 1
+  b2:	80 91 c2 00 	lds	r24, 0x00C2	; 0x8000c2 <LED_CH_2_PORT>
+  b6:	0e 94 bf 00 	call	0x17e	; 0x17e <DIO_SetPinDirection>
+      /* make sure pin configuration is successful */
+      if(E_DIO_SUCCESS != e_state)
+  ba:	81 11       	cpse	r24, r1
+  bc:	12 c0       	rjmp	.+36     	; 0xe2 <LED_Init+0x50>
+         return E_LED_DIO_ERROR;
+      }
+   #endif
+   #ifdef LED_CH_3
+      /* configure LED pin */
+      e_state = DIO_SetPinDirection(LED_CH_3_PORT, LED_CH_3_PIN, OUTPUT);
+  be:	60 91 bf 00 	lds	r22, 0x00BF	; 0x8000bf <LED_CH_3_PIN>
+  c2:	41 e0       	ldi	r20, 0x01	; 1
+  c4:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <LED_CH_3_PORT>
+  c8:	0e 94 bf 00 	call	0x17e	; 0x17e <DIO_SetPinDirection>
+      /* make sure pin configuration is successful */
+      if(E_DIO_SUCCESS != e_state)
+  cc:	81 11       	cpse	r24, r1
+  ce:	0b c0       	rjmp	.+22     	; 0xe6 <LED_Init+0x54>
+         return E_LED_DIO_ERROR;
+      }
+   #endif
+   
+   /* set global variable to initialized */
+   gu8_IsLEDInit = INIT;
+  d0:	81 e0       	ldi	r24, 0x01	; 1
+  d2:	80 93 ca 00 	sts	0x00CA, r24	; 0x8000ca <__data_end>
+   
+   /* return success message */
+   return E_LED_SUCCESS;
+  d6:	80 e0       	ldi	r24, 0x00	; 0
+  d8:	08 95       	ret
+LED_ERROR_state_t LED_Init(void)
+{
+   /* check if init function was called before */
+   if(INIT == gu8_IsLEDInit)
+   {
+      return E_LED_INIT_BEFORE;
+  da:	83 e0       	ldi	r24, 0x03	; 3
+  dc:	08 95       	ret
+      /* configure LED pin */
+      e_state = DIO_SetPinDirection(LED_CH_1_PORT, LED_CH_1_PIN, OUTPUT);
+      /* make sure pin configuration is successful */
+      if(E_DIO_SUCCESS != e_state)
+      {
+         return E_LED_DIO_ERROR;
+  de:	82 e0       	ldi	r24, 0x02	; 2
+  e0:	08 95       	ret
+      /* configure LED pin */
+      e_state = DIO_SetPinDirection(LED_CH_2_PORT, LED_CH_2_PIN, OUTPUT);
+      /* make sure pin configuration is successful */
+      if(E_DIO_SUCCESS != e_state)
+      {
+         return E_LED_DIO_ERROR;
+  e2:	82 e0       	ldi	r24, 0x02	; 2
+  e4:	08 95       	ret
+      /* configure LED pin */
+      e_state = DIO_SetPinDirection(LED_CH_3_PORT, LED_CH_3_PIN, OUTPUT);
+      /* make sure pin configuration is successful */
+      if(E_DIO_SUCCESS != e_state)
+      {
+         return E_LED_DIO_ERROR;
+  e6:	82 e0       	ldi	r24, 0x02	; 2
+   /* set global variable to initialized */
+   gu8_IsLEDInit = INIT;
+   
+   /* return success message */
+   return E_LED_SUCCESS;
+}
+  e8:	08 95       	ret
+
+000000ea <LED_Off>:
+* @return function error state.
+*/
+LED_ERROR_state_t LED_Off(uint8_t LED_ch)
+{
+   /* check if init function wasn't called before */
+   if(NOT_INIT == gu8_IsLEDInit)
+  ea:	90 91 ca 00 	lds	r25, 0x00CA	; 0x8000ca <__data_end>
+  ee:	99 23       	and	r25, r25
+  f0:	d9 f0       	breq	.+54     	; 0x128 <LED_Off+0x3e>
+   
+   uint8_t u8_ChPort;
+   uint8_t u8_ChPin;
+   
+   /* set the required port and pin to the LED */
+   switch(LED_ch)
+  f2:	82 30       	cpi	r24, 0x02	; 2
+  f4:	49 f0       	breq	.+18     	; 0x108 <LED_Off+0x1e>
+  f6:	83 30       	cpi	r24, 0x03	; 3
+  f8:	61 f0       	breq	.+24     	; 0x112 <LED_Off+0x28>
+  fa:	81 30       	cpi	r24, 0x01	; 1
+  fc:	b9 f4       	brne	.+46     	; 0x12c <LED_Off+0x42>
+   {
+      #ifdef LED_CH_1
+      case LED_CH_1:
+         u8_ChPort = LED_CH_1_PORT;
+  fe:	80 91 c4 00 	lds	r24, 0x00C4	; 0x8000c4 <LED_CH_1_PORT>
+         u8_ChPin = LED_CH_1_PIN;
+ 102:	60 91 c3 00 	lds	r22, 0x00C3	; 0x8000c3 <LED_CH_1_PIN>
+         break;   
+ 106:	09 c0       	rjmp	.+18     	; 0x11a <LED_Off+0x30>
+      #endif
+      #ifdef LED_CH_2
+      case LED_CH_2:
+         u8_ChPort = LED_CH_2_PORT;
+ 108:	80 91 c2 00 	lds	r24, 0x00C2	; 0x8000c2 <LED_CH_2_PORT>
+         u8_ChPin = LED_CH_2_PIN;
+ 10c:	60 91 c1 00 	lds	r22, 0x00C1	; 0x8000c1 <LED_CH_2_PIN>
+         break;
+ 110:	04 c0       	rjmp	.+8      	; 0x11a <LED_Off+0x30>
+      #endif
+      #ifdef LED_CH_3
+      case LED_CH_3:
+         u8_ChPort = LED_CH_3_PORT;
+ 112:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <LED_CH_3_PORT>
+         u8_ChPin = LED_CH_3_PIN;
+ 116:	60 91 bf 00 	lds	r22, 0x00BF	; 0x8000bf <LED_CH_3_PIN>
+   }
+   
+   DIO_ERROR_state_t DIOErrorState;
+   
+   /* set LED pin to low */
+   DIOErrorState = DIO_WritePin(u8_ChPort, u8_ChPin, LOW);
+ 11a:	40 e0       	ldi	r20, 0x00	; 0
+ 11c:	0e 94 f7 00 	call	0x1ee	; 0x1ee <DIO_WritePin>
+   
+   /* make sure DIO function was successful */
+   if(E_DIO_SUCCESS != DIOErrorState)
+ 120:	88 23       	and	r24, r24
+ 122:	31 f0       	breq	.+12     	; 0x130 <LED_Off+0x46>
+   {
+      return E_LED_DIO_ERROR;
+ 124:	82 e0       	ldi	r24, 0x02	; 2
+ 126:	08 95       	ret
+LED_ERROR_state_t LED_Off(uint8_t LED_ch)
+{
+   /* check if init function wasn't called before */
+   if(NOT_INIT == gu8_IsLEDInit)
+   {
+      return E_LED_NOT_INIT;
+ 128:	84 e0       	ldi	r24, 0x04	; 4
+ 12a:	08 95       	ret
+         u8_ChPort = LED_CH_3_PORT;
+         u8_ChPin = LED_CH_3_PIN;
+         break;
+      #endif
+      default:
+         return E_LED_INVALID_CH_NO;
+ 12c:	81 e0       	ldi	r24, 0x01	; 1
+ 12e:	08 95       	ret
+   {
+      return E_LED_DIO_ERROR;
+   }
+   
+   /* return success message */
+   return E_LED_SUCCESS;
+ 130:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 132:	08 95       	ret
+
+00000134 <LED_On>:
+* @return function error state.
+*/
+LED_ERROR_state_t LED_On(uint8_t LED_ch)
+{
+   /* check if init function wasn't called before */
+   if(NOT_INIT == gu8_IsLEDInit)
+ 134:	90 91 ca 00 	lds	r25, 0x00CA	; 0x8000ca <__data_end>
+ 138:	99 23       	and	r25, r25
+ 13a:	d9 f0       	breq	.+54     	; 0x172 <LED_On+0x3e>
+   
+   uint8_t u8_ChPort;
+   uint8_t u8_ChPin;
+   
+   /* set the required port and pin to the LED */
+   switch(LED_ch)
+ 13c:	82 30       	cpi	r24, 0x02	; 2
+ 13e:	49 f0       	breq	.+18     	; 0x152 <LED_On+0x1e>
+ 140:	83 30       	cpi	r24, 0x03	; 3
+ 142:	61 f0       	breq	.+24     	; 0x15c <LED_On+0x28>
+ 144:	81 30       	cpi	r24, 0x01	; 1
+ 146:	b9 f4       	brne	.+46     	; 0x176 <LED_On+0x42>
+   {
+      #ifdef LED_CH_1
+      case LED_CH_1:
+         u8_ChPort = LED_CH_1_PORT;
+ 148:	80 91 c4 00 	lds	r24, 0x00C4	; 0x8000c4 <LED_CH_1_PORT>
+         u8_ChPin = LED_CH_1_PIN;
+ 14c:	60 91 c3 00 	lds	r22, 0x00C3	; 0x8000c3 <LED_CH_1_PIN>
+         break;
+ 150:	09 c0       	rjmp	.+18     	; 0x164 <LED_On+0x30>
+      #endif
+      #ifdef LED_CH_2
+      case LED_CH_2:
+         u8_ChPort = LED_CH_2_PORT;
+ 152:	80 91 c2 00 	lds	r24, 0x00C2	; 0x8000c2 <LED_CH_2_PORT>
+         u8_ChPin = LED_CH_2_PIN;
+ 156:	60 91 c1 00 	lds	r22, 0x00C1	; 0x8000c1 <LED_CH_2_PIN>
+         break;
+ 15a:	04 c0       	rjmp	.+8      	; 0x164 <LED_On+0x30>
+      #endif
+      #ifdef LED_CH_3
+      case LED_CH_3:
+         u8_ChPort = LED_CH_3_PORT;
+ 15c:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <LED_CH_3_PORT>
+         u8_ChPin = LED_CH_3_PIN;
+ 160:	60 91 bf 00 	lds	r22, 0x00BF	; 0x8000bf <LED_CH_3_PIN>
+   }
+   
+   DIO_ERROR_state_t DIOErrorState;
+   
+   /* set LED pin to high */
+   DIOErrorState = DIO_WritePin(u8_ChPort, u8_ChPin, HIGH);
+ 164:	41 e0       	ldi	r20, 0x01	; 1
+ 166:	0e 94 f7 00 	call	0x1ee	; 0x1ee <DIO_WritePin>
+   
+   /* make sure DIO function was successful */
+   if(E_DIO_SUCCESS != DIOErrorState)
+ 16a:	88 23       	and	r24, r24
+ 16c:	31 f0       	breq	.+12     	; 0x17a <LED_On+0x46>
+   {
+      return E_LED_DIO_ERROR;
+ 16e:	82 e0       	ldi	r24, 0x02	; 2
+ 170:	08 95       	ret
+LED_ERROR_state_t LED_On(uint8_t LED_ch)
+{
+   /* check if init function wasn't called before */
+   if(NOT_INIT == gu8_IsLEDInit)
+   {
+      return E_LED_NOT_INIT;
+ 172:	84 e0       	ldi	r24, 0x04	; 4
+ 174:	08 95       	ret
+         u8_ChPort = LED_CH_3_PORT;
+         u8_ChPin = LED_CH_3_PIN;
+         break;
+      #endif
+      default:
+         return E_LED_INVALID_CH_NO;
+ 176:	81 e0       	ldi	r24, 0x01	; 1
+ 178:	08 95       	ret
+   {
+      return E_LED_DIO_ERROR;
+   }
+   
+   /* return success message */
+   return E_LED_SUCCESS;
+ 17a:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 17c:	08 95       	ret
+
+0000017e <DIO_SetPinDirection>:
+   
+   /* set pin resistor to pull up. */
+   SET_BIT(*prt_port_data, pin);
+   
+   return E_DIO_SUCCESS;
+}
+ 17e:	68 30       	cpi	r22, 0x08	; 8
+ 180:	80 f5       	brcc	.+96     	; 0x1e2 <DIO_SetPinDirection+0x64>
+ 182:	81 30       	cpi	r24, 0x01	; 1
+ 184:	79 f0       	breq	.+30     	; 0x1a4 <DIO_SetPinDirection+0x26>
+ 186:	28 f0       	brcs	.+10     	; 0x192 <DIO_SetPinDirection+0x14>
+ 188:	82 30       	cpi	r24, 0x02	; 2
+ 18a:	31 f0       	breq	.+12     	; 0x198 <DIO_SetPinDirection+0x1a>
+ 18c:	83 30       	cpi	r24, 0x03	; 3
+ 18e:	39 f0       	breq	.+14     	; 0x19e <DIO_SetPinDirection+0x20>
+ 190:	2a c0       	rjmp	.+84     	; 0x1e6 <DIO_SetPinDirection+0x68>
+ 192:	ea e3       	ldi	r30, 0x3A	; 58
+ 194:	f0 e0       	ldi	r31, 0x00	; 0
+ 196:	08 c0       	rjmp	.+16     	; 0x1a8 <DIO_SetPinDirection+0x2a>
+ 198:	e4 e3       	ldi	r30, 0x34	; 52
+ 19a:	f0 e0       	ldi	r31, 0x00	; 0
+ 19c:	05 c0       	rjmp	.+10     	; 0x1a8 <DIO_SetPinDirection+0x2a>
+ 19e:	e1 e3       	ldi	r30, 0x31	; 49
+ 1a0:	f0 e0       	ldi	r31, 0x00	; 0
+ 1a2:	02 c0       	rjmp	.+4      	; 0x1a8 <DIO_SetPinDirection+0x2a>
+ 1a4:	e7 e3       	ldi	r30, 0x37	; 55
+ 1a6:	f0 e0       	ldi	r31, 0x00	; 0
+ 1a8:	41 30       	cpi	r20, 0x01	; 1
+ 1aa:	61 f4       	brne	.+24     	; 0x1c4 <DIO_SetPinDirection+0x46>
+ 1ac:	20 81       	ld	r18, Z
+ 1ae:	81 e0       	ldi	r24, 0x01	; 1
+ 1b0:	90 e0       	ldi	r25, 0x00	; 0
+ 1b2:	02 c0       	rjmp	.+4      	; 0x1b8 <DIO_SetPinDirection+0x3a>
+ 1b4:	88 0f       	add	r24, r24
+ 1b6:	99 1f       	adc	r25, r25
+ 1b8:	6a 95       	dec	r22
+ 1ba:	e2 f7       	brpl	.-8      	; 0x1b4 <DIO_SetPinDirection+0x36>
+ 1bc:	82 2b       	or	r24, r18
+ 1be:	80 83       	st	Z, r24
+ 1c0:	80 e0       	ldi	r24, 0x00	; 0
+ 1c2:	08 95       	ret
+ 1c4:	41 11       	cpse	r20, r1
+ 1c6:	11 c0       	rjmp	.+34     	; 0x1ea <DIO_SetPinDirection+0x6c>
+ 1c8:	20 81       	ld	r18, Z
+ 1ca:	81 e0       	ldi	r24, 0x01	; 1
+ 1cc:	90 e0       	ldi	r25, 0x00	; 0
+ 1ce:	02 c0       	rjmp	.+4      	; 0x1d4 <DIO_SetPinDirection+0x56>
+ 1d0:	88 0f       	add	r24, r24
+ 1d2:	99 1f       	adc	r25, r25
+ 1d4:	6a 95       	dec	r22
+ 1d6:	e2 f7       	brpl	.-8      	; 0x1d0 <DIO_SetPinDirection+0x52>
+ 1d8:	80 95       	com	r24
+ 1da:	82 23       	and	r24, r18
+ 1dc:	80 83       	st	Z, r24
+ 1de:	80 e0       	ldi	r24, 0x00	; 0
+ 1e0:	08 95       	ret
+ 1e2:	82 e0       	ldi	r24, 0x02	; 2
+ 1e4:	08 95       	ret
+ 1e6:	83 e0       	ldi	r24, 0x03	; 3
+ 1e8:	08 95       	ret
+ 1ea:	81 e0       	ldi	r24, 0x01	; 1
+ 1ec:	08 95       	ret
+
+000001ee <DIO_WritePin>:
+* @return function error state.
+*/
+DIO_ERROR_state_t DIO_WritePin(uint8_t port, uint8_t pin, uint8_t data)
+{
+   /* check if invalid pin is given. */
+   if(PIN_7 < pin)
+ 1ee:	68 30       	cpi	r22, 0x08	; 8
+ 1f0:	80 f5       	brcc	.+96     	; 0x252 <DIO_WritePin+0x64>
+
+   /* pointers to carry the required port registers address. */
+   volatile uint8_t * prt_port_data = NULL_PTR;
+   
+   /* sets the data pointer according to the required port. */
+   switch(port)
+ 1f2:	81 30       	cpi	r24, 0x01	; 1
+ 1f4:	79 f0       	breq	.+30     	; 0x214 <DIO_WritePin+0x26>
+ 1f6:	28 f0       	brcs	.+10     	; 0x202 <DIO_WritePin+0x14>
+ 1f8:	82 30       	cpi	r24, 0x02	; 2
+ 1fa:	31 f0       	breq	.+12     	; 0x208 <DIO_WritePin+0x1a>
+ 1fc:	83 30       	cpi	r24, 0x03	; 3
+ 1fe:	39 f0       	breq	.+14     	; 0x20e <DIO_WritePin+0x20>
+ 200:	2a c0       	rjmp	.+84     	; 0x256 <DIO_WritePin+0x68>
+   {
+      case PORTA:
+         prt_port_data = &PORTA_DATA;
+ 202:	eb e3       	ldi	r30, 0x3B	; 59
+ 204:	f0 e0       	ldi	r31, 0x00	; 0
+ 206:	08 c0       	rjmp	.+16     	; 0x218 <DIO_WritePin+0x2a>
+         break;
+      case PORTB:
+         prt_port_data = &PORTB_DATA;
+         break;
+      case PORTC:
+         prt_port_data = &PORTC_DATA;
+ 208:	e5 e3       	ldi	r30, 0x35	; 53
+ 20a:	f0 e0       	ldi	r31, 0x00	; 0
+         break;
+ 20c:	05 c0       	rjmp	.+10     	; 0x218 <DIO_WritePin+0x2a>
+      case PORTD:
+         prt_port_data = &PORTD_DATA;
+ 20e:	e2 e3       	ldi	r30, 0x32	; 50
+ 210:	f0 e0       	ldi	r31, 0x00	; 0
+         break;
+ 212:	02 c0       	rjmp	.+4      	; 0x218 <DIO_WritePin+0x2a>
+   {
+      case PORTA:
+         prt_port_data = &PORTA_DATA;
+         break;
+      case PORTB:
+         prt_port_data = &PORTB_DATA;
+ 214:	e8 e3       	ldi	r30, 0x38	; 56
+ 216:	f0 e0       	ldi	r31, 0x00	; 0
+         break;
+      default:
+         return E_DIO_INVALID_PORT;
+   }
+   /* set or clear value in the pin. */
+   if(HIGH == data)
+ 218:	41 30       	cpi	r20, 0x01	; 1
+ 21a:	61 f4       	brne	.+24     	; 0x234 <DIO_WritePin+0x46>
+   {
+      SET_BIT(*prt_port_data,pin);
+ 21c:	20 81       	ld	r18, Z
+ 21e:	81 e0       	ldi	r24, 0x01	; 1
+ 220:	90 e0       	ldi	r25, 0x00	; 0
+ 222:	02 c0       	rjmp	.+4      	; 0x228 <DIO_WritePin+0x3a>
+ 224:	88 0f       	add	r24, r24
+ 226:	99 1f       	adc	r25, r25
+ 228:	6a 95       	dec	r22
+ 22a:	e2 f7       	brpl	.-8      	; 0x224 <DIO_WritePin+0x36>
+ 22c:	82 2b       	or	r24, r18
+ 22e:	80 83       	st	Z, r24
+   {
+      return E_DIO_INVALID_WRITE_DATA;
+   }
+   
+   /* return success message. */
+   return E_DIO_SUCCESS;
+ 230:	80 e0       	ldi	r24, 0x00	; 0
+ 232:	08 95       	ret
+   /* set or clear value in the pin. */
+   if(HIGH == data)
+   {
+      SET_BIT(*prt_port_data,pin);
+   }
+   else if(LOW == data)
+ 234:	41 11       	cpse	r20, r1
+ 236:	11 c0       	rjmp	.+34     	; 0x25a <DIO_WritePin+0x6c>
+   {
+      CLEAR_BIT(*prt_port_data,pin);
+ 238:	20 81       	ld	r18, Z
+ 23a:	81 e0       	ldi	r24, 0x01	; 1
+ 23c:	90 e0       	ldi	r25, 0x00	; 0
+ 23e:	02 c0       	rjmp	.+4      	; 0x244 <DIO_WritePin+0x56>
+ 240:	88 0f       	add	r24, r24
+ 242:	99 1f       	adc	r25, r25
+ 244:	6a 95       	dec	r22
+ 246:	e2 f7       	brpl	.-8      	; 0x240 <DIO_WritePin+0x52>
+ 248:	80 95       	com	r24
+ 24a:	82 23       	and	r24, r18
+ 24c:	80 83       	st	Z, r24
+   {
+      return E_DIO_INVALID_WRITE_DATA;
+   }
+   
+   /* return success message. */
+   return E_DIO_SUCCESS;
+ 24e:	80 e0       	ldi	r24, 0x00	; 0
+ 250:	08 95       	ret
+DIO_ERROR_state_t DIO_WritePin(uint8_t port, uint8_t pin, uint8_t data)
+{
+   /* check if invalid pin is given. */
+   if(PIN_7 < pin)
+   {
+      return E_DIO_INVALID_PIN;
+ 252:	82 e0       	ldi	r24, 0x02	; 2
+ 254:	08 95       	ret
+         break;
+      case PORTD:
+         prt_port_data = &PORTD_DATA;
+         break;
+      default:
+         return E_DIO_INVALID_PORT;
+ 256:	83 e0       	ldi	r24, 0x03	; 3
+ 258:	08 95       	ret
+      CLEAR_BIT(*prt_port_data,pin);
+   }
+   /* if data is invalid. */
+   else
+   {
+      return E_DIO_INVALID_WRITE_DATA;
+ 25a:	84 e0       	ldi	r24, 0x04	; 4
+   }
+   
+   /* return success message. */
+   return E_DIO_SUCCESS;
+}
+ 25c:	08 95       	ret
+
+0000025e <UART_Init>:
+   /* Get and return received data from buffer */
+   *RxChar = *ptru8_UARTDataR;
+   
+   /* return success status */
+   return E_UART_SUCCESS;
+}
+ 25e:	81 11       	cpse	r24, r1
+ 260:	1c c0       	rjmp	.+56     	; 0x29a <UART_Init+0x3c>
+ 262:	80 91 c5 00 	lds	r24, 0x00C5	; 0x8000c5 <UART_CH_0_BaudRate>
+ 266:	90 91 c6 00 	lds	r25, 0x00C6	; 0x8000c6 <UART_CH_0_BaudRate+0x1>
+ 26a:	8f 3f       	cpi	r24, 0xFF	; 255
+ 26c:	91 05       	cpc	r25, r1
+ 26e:	09 f0       	breq	.+2      	; 0x272 <UART_Init+0x14>
+ 270:	b0 f4       	brcc	.+44     	; 0x29e <UART_Init+0x40>
+ 272:	80 91 c8 00 	lds	r24, 0x00C8	; 0x8000c8 <UART_CH_0_CONTROL>
+ 276:	8a b9       	out	0x0a, r24	; 10
+ 278:	80 91 c7 00 	lds	r24, 0x00C7	; 0x8000c7 <UART_CH_0_CONTROL_2>
+ 27c:	80 bd       	out	0x20, r24	; 32
+ 27e:	80 91 c5 00 	lds	r24, 0x00C5	; 0x8000c5 <UART_CH_0_BaudRate>
+ 282:	89 b9       	out	0x09, r24	; 9
+ 284:	80 91 c5 00 	lds	r24, 0x00C5	; 0x8000c5 <UART_CH_0_BaudRate>
+ 288:	90 91 c6 00 	lds	r25, 0x00C6	; 0x8000c6 <UART_CH_0_BaudRate+0x1>
+ 28c:	8f 3f       	cpi	r24, 0xFF	; 255
+ 28e:	91 05       	cpc	r25, r1
+ 290:	41 f0       	breq	.+16     	; 0x2a2 <UART_Init+0x44>
+ 292:	38 f0       	brcs	.+14     	; 0x2a2 <UART_Init+0x44>
+ 294:	90 bd       	out	0x20, r25	; 32
+ 296:	80 e0       	ldi	r24, 0x00	; 0
+ 298:	08 95       	ret
+ 29a:	86 e0       	ldi	r24, 0x06	; 6
+ 29c:	08 95       	ret
+ 29e:	85 e0       	ldi	r24, 0x05	; 5
+ 2a0:	08 95       	ret
+ 2a2:	80 e0       	ldi	r24, 0x00	; 0
+ 2a4:	08 95       	ret
+
+000002a6 <UART_TransmitString>:
+UART_ERROR_state_t UART_TransmitString(uint8_t UartNumber,uint8_t * TxString)
+{
+   uint8_t counter = STRING_COUNTER_START;
+
+   /* making sure an initialized pointer is sent to the function */
+   if(NULL_PTR == TxString)
+ 2a6:	61 15       	cp	r22, r1
+ 2a8:	71 05       	cpc	r23, r1
+ 2aa:	81 f0       	breq	.+32     	; 0x2cc <UART_TransmitString+0x26>
+   }
+   
+   volatile uint8_t * ptru8_UARTStatusR;
+   volatile uint8_t * ptru8_UARTDataR;
+   
+   switch(UartNumber)
+ 2ac:	81 11       	cpse	r24, r1
+ 2ae:	10 c0       	rjmp	.+32     	; 0x2d0 <UART_TransmitString+0x2a>
+ 2b0:	05 c0       	rjmp	.+10     	; 0x2bc <UART_TransmitString+0x16>
+   
+   /* keeps sending data until it finds an end of string character in the string */
+   while(TxString[counter] != END_OF_STRING)
+   {
+      /* Wait for empty transmit buffer */
+      while ( !( *ptru8_UARTStatusR & EMPTY_BUFFER_BIT) );
+ 2b2:	5d 9b       	sbis	0x0b, 5	; 11
+ 2b4:	fe cf       	rjmp	.-4      	; 0x2b2 <UART_TransmitString+0xc>
+      
+      /* Put data into buffer, sends the data */
+      *ptru8_UARTDataR = TxString[counter];
+ 2b6:	8c b9       	out	0x0c, r24	; 12
+      counter++;
+ 2b8:	9f 5f       	subi	r25, 0xFF	; 255
+ 2ba:	01 c0       	rjmp	.+2      	; 0x2be <UART_TransmitString+0x18>
+   }
+   
+   volatile uint8_t * ptru8_UARTStatusR;
+   volatile uint8_t * ptru8_UARTDataR;
+   
+   switch(UartNumber)
+ 2bc:	90 e0       	ldi	r25, 0x00	; 0
+      default:
+         return E_UART_INVALID_CH;
+   }
+   
+   /* keeps sending data until it finds an end of string character in the string */
+   while(TxString[counter] != END_OF_STRING)
+ 2be:	fb 01       	movw	r30, r22
+ 2c0:	e9 0f       	add	r30, r25
+ 2c2:	f1 1d       	adc	r31, r1
+ 2c4:	80 81       	ld	r24, Z
+ 2c6:	81 11       	cpse	r24, r1
+ 2c8:	f4 cf       	rjmp	.-24     	; 0x2b2 <UART_TransmitString+0xc>
+ 2ca:	08 95       	ret
+   uint8_t counter = STRING_COUNTER_START;
+
+   /* making sure an initialized pointer is sent to the function */
+   if(NULL_PTR == TxString)
+   {
+      return E_UART_NULL_PTR;
+ 2cc:	84 e0       	ldi	r24, 0x04	; 4
+ 2ce:	08 95       	ret
+      case UART_CH_0:
+         ptru8_UARTStatusR = &UART_STATUS_R;
+         ptru8_UARTDataR = &UART_DATA_R;
+         break;
+      default:
+         return E_UART_INVALID_CH;
+ 2d0:	86 e0       	ldi	r24, 0x06	; 6
+      counter++;
+   }
+   
+   /* return success status */
+   return E_UART_SUCCESS;
+}
+ 2d2:	08 95       	ret
+
+000002d4 <UART_ReceiveString>:
+UART_ERROR_state_t UART_ReceiveString(uint8_t UartNumber, uint8_t * RxString)
+{
+   uint8_t counter = STRING_COUNTER_START;
+   
+   /* making sure an initialized pointer is sent to the function */
+   if(NULL_PTR == RxString)
+ 2d4:	61 15       	cp	r22, r1
+ 2d6:	71 05       	cpc	r23, r1
+ 2d8:	41 f1       	breq	.+80     	; 0x32a <UART_ReceiveString+0x56>
+   }
+   
+   volatile uint8_t * ptru8_UARTStatusR;
+   volatile uint8_t * ptru8_UARTDataR;
+   
+   switch(UartNumber)
+ 2da:	81 11       	cpse	r24, r1
+ 2dc:	28 c0       	rjmp	.+80     	; 0x32e <UART_ReceiveString+0x5a>
+ 2de:	03 c0       	rjmp	.+6      	; 0x2e6 <UART_ReceiveString+0x12>
+            counter -= STRING_RETURN_TO_PREV_CHAR;
+         }
+         /* return to the string start if the counter is still at first character */
+         else
+         {
+            counter = STRING_COUNTER_START;
+ 2e0:	80 e0       	ldi	r24, 0x00	; 0
+   }
+   
+   volatile uint8_t * ptru8_UARTStatusR;
+   volatile uint8_t * ptru8_UARTDataR;
+   
+   switch(UartNumber)
+ 2e2:	98 2f       	mov	r25, r24
+ 2e4:	01 c0       	rjmp	.+2      	; 0x2e8 <UART_ReceiveString+0x14>
+ 2e6:	90 e0       	ldi	r25, 0x00	; 0
+   }
+   
+   while(1)
+   {
+      /* Wait for data to be received */
+      while ( !(*ptru8_UARTStatusR & RECEIVE_COMPLETE_BIT) );
+ 2e8:	5f 9b       	sbis	0x0b, 7	; 11
+ 2ea:	fe cf       	rjmp	.-4      	; 0x2e8 <UART_ReceiveString+0x14>
+      /* Get and return received data from buffer */
+      RxString[counter] = *ptru8_UARTDataR;
+ 2ec:	29 2f       	mov	r18, r25
+ 2ee:	30 e0       	ldi	r19, 0x00	; 0
+ 2f0:	fb 01       	movw	r30, r22
+ 2f2:	e2 0f       	add	r30, r18
+ 2f4:	f3 1f       	adc	r31, r19
+ 2f6:	8c b1       	in	r24, 0x0c	; 12
+ 2f8:	80 83       	st	Z, r24
+      
+      /* enters an end of string character and breaks from the loop on receiving
+         a new line character */
+      if(RxString[counter] == NEW_LINE)
+ 2fa:	8d 30       	cpi	r24, 0x0D	; 13
+ 2fc:	41 f4       	brne	.+16     	; 0x30e <UART_ReceiveString+0x3a>
+      {
+         RxString[counter + STRING_NEXT_CHAR] = END_OF_STRING;
+ 2fe:	2f 5f       	subi	r18, 0xFF	; 255
+ 300:	3f 4f       	sbci	r19, 0xFF	; 255
+ 302:	fb 01       	movw	r30, r22
+ 304:	e2 0f       	add	r30, r18
+ 306:	f3 1f       	adc	r31, r19
+ 308:	10 82       	st	Z, r1
+         }
+      }
+   }
+   
+   /* return success status */
+   return E_UART_SUCCESS;
+ 30a:	80 e0       	ldi	r24, 0x00	; 0
+ 30c:	08 95       	ret
+      if(RxString[counter] == NEW_LINE)
+      {
+         RxString[counter + STRING_NEXT_CHAR] = END_OF_STRING;
+         break;
+      }
+      counter++;
+ 30e:	81 e0       	ldi	r24, 0x01	; 1
+ 310:	89 0f       	add	r24, r25
+      
+      /* return to the previous character to overwrite if the entered character 
+         is backspace */
+      if(RxString[counter - STRING_PREV_CHAR] == BACKSPACE)
+ 312:	fb 01       	movw	r30, r22
+ 314:	e8 0f       	add	r30, r24
+ 316:	f1 1d       	adc	r31, r1
+ 318:	31 97       	sbiw	r30, 0x01	; 1
+ 31a:	20 81       	ld	r18, Z
+ 31c:	28 30       	cpi	r18, 0x08	; 8
+ 31e:	09 f7       	brne	.-62     	; 0x2e2 <UART_ReceiveString+0xe>
+      {
+         if (counter - STRING_PREV_CHAR != STRING_COUNTER_START)
+ 320:	81 30       	cpi	r24, 0x01	; 1
+ 322:	f1 f2       	breq	.-68     	; 0x2e0 <UART_ReceiveString+0xc>
+         {
+            counter -= STRING_RETURN_TO_PREV_CHAR;
+ 324:	8f ef       	ldi	r24, 0xFF	; 255
+ 326:	89 0f       	add	r24, r25
+ 328:	dc cf       	rjmp	.-72     	; 0x2e2 <UART_ReceiveString+0xe>
+   uint8_t counter = STRING_COUNTER_START;
+   
+   /* making sure an initialized pointer is sent to the function */
+   if(NULL_PTR == RxString)
+   {
+      return E_UART_NULL_PTR;
+ 32a:	84 e0       	ldi	r24, 0x04	; 4
+ 32c:	08 95       	ret
+      case UART_CH_0:
+         ptru8_UARTStatusR = &UART_STATUS_R;
+         ptru8_UARTDataR = &UART_DATA_R;
+         break;
+      default:
+         return E_UART_INVALID_CH;
+ 32e:	86 e0       	ldi	r24, 0x06	; 6
+      }
+   }
+   
+   /* return success status */
+   return E_UART_SUCCESS;
+}
+ 330:	08 95       	ret
+
+00000332 <StringCompare>:
+static uint8_t * gu8_InvalidMessageReply = (uint8_t *)"Invalid Command \r";
+
+/*- LOCAL FUNCTIONS IMPLEMENTATION
+------------------------*/
+static uint8_t StringCompare(uint8_t * str1, uint8_t * str2)
+{
+ 332:	dc 01       	movw	r26, r24
+   uint8_t u8_counter = 0;
+ 334:	40 e0       	ldi	r20, 0x00	; 0
+   uint8_t u8_isEqual = TRUE;
+   
+   while(str1[u8_counter] != END_OF_STRING && str1[u8_counter] != NEW_LINE)
+ 336:	0a c0       	rjmp	.+20     	; 0x34c <StringCompare+0x1a>
+   {
+      if(str1[u8_counter] != str2[u8_counter])
+ 338:	fb 01       	movw	r30, r22
+ 33a:	e2 0f       	add	r30, r18
+ 33c:	f3 1f       	adc	r31, r19
+ 33e:	20 81       	ld	r18, Z
+ 340:	92 17       	cp	r25, r18
+ 342:	19 f0       	breq	.+6      	; 0x34a <StringCompare+0x18>
+      {
+         u8_isEqual = FALSE;
+         u8_counter++;
+ 344:	4f 5f       	subi	r20, 0xFF	; 255
+   
+   while(str1[u8_counter] != END_OF_STRING && str1[u8_counter] != NEW_LINE)
+   {
+      if(str1[u8_counter] != str2[u8_counter])
+      {
+         u8_isEqual = FALSE;
+ 346:	80 e0       	ldi	r24, 0x00	; 0
+         u8_counter++;
+         break;
+ 348:	0e c0       	rjmp	.+28     	; 0x366 <StringCompare+0x34>
+      }
+      u8_counter++;
+ 34a:	4f 5f       	subi	r20, 0xFF	; 255
+static uint8_t StringCompare(uint8_t * str1, uint8_t * str2)
+{
+   uint8_t u8_counter = 0;
+   uint8_t u8_isEqual = TRUE;
+   
+   while(str1[u8_counter] != END_OF_STRING && str1[u8_counter] != NEW_LINE)
+ 34c:	24 2f       	mov	r18, r20
+ 34e:	30 e0       	ldi	r19, 0x00	; 0
+ 350:	fd 01       	movw	r30, r26
+ 352:	e2 0f       	add	r30, r18
+ 354:	f3 1f       	adc	r31, r19
+ 356:	90 81       	ld	r25, Z
+ 358:	99 23       	and	r25, r25
+ 35a:	21 f0       	breq	.+8      	; 0x364 <StringCompare+0x32>
+ 35c:	9d 30       	cpi	r25, 0x0D	; 13
+ 35e:	61 f7       	brne	.-40     	; 0x338 <StringCompare+0x6>
+/*- LOCAL FUNCTIONS IMPLEMENTATION
+------------------------*/
+static uint8_t StringCompare(uint8_t * str1, uint8_t * str2)
+{
+   uint8_t u8_counter = 0;
+   uint8_t u8_isEqual = TRUE;
+ 360:	81 e0       	ldi	r24, 0x01	; 1
+ 362:	01 c0       	rjmp	.+2      	; 0x366 <StringCompare+0x34>
+ 364:	81 e0       	ldi	r24, 0x01	; 1
+         u8_counter++;
+         break;
+      }
+      u8_counter++;
+   }
+   if( str2[u8_counter] != END_OF_STRING )
+ 366:	fb 01       	movw	r30, r22
+ 368:	e4 0f       	add	r30, r20
+ 36a:	f1 1d       	adc	r31, r1
+ 36c:	90 81       	ld	r25, Z
+ 36e:	91 11       	cpse	r25, r1
+   {
+      u8_isEqual = FALSE;
+ 370:	80 e0       	ldi	r24, 0x00	; 0
+   }
+   return u8_isEqual;
+}
+ 372:	08 95       	ret
+
+00000374 <Traffic_init>:
+
+/*- APIs IMPLEMENTATION
+-----------------------------------*/
+void Traffic_init(void)
+{
+   LED_Init();
+ 374:	0e 94 49 00 	call	0x92	; 0x92 <LED_Init>
+   UART_Init(UART_CH_0);
+ 378:	80 e0       	ldi	r24, 0x00	; 0
+ 37a:	0e 94 2f 01 	call	0x25e	; 0x25e <UART_Init>
+ 37e:	08 95       	ret
+
+00000380 <Traffic_update>:
+}
+
+void Traffic_update(void)
+{
+ 380:	cf 93       	push	r28
+ 382:	df 93       	push	r29
+ 384:	cd b7       	in	r28, 0x3d	; 61
+ 386:	de b7       	in	r29, 0x3e	; 62
+ 388:	c8 5c       	subi	r28, 0xC8	; 200
+ 38a:	d1 09       	sbc	r29, r1
+ 38c:	0f b6       	in	r0, 0x3f	; 63
+ 38e:	f8 94       	cli
+ 390:	de bf       	out	0x3e, r29	; 62
+ 392:	0f be       	out	0x3f, r0	; 63
+ 394:	cd bf       	out	0x3d, r28	; 61
+   uint8_t string[MAX_STRING_SIZE];
+   UART_ReceiveString(UART_CH_0, string);
+ 396:	be 01       	movw	r22, r28
+ 398:	6f 5f       	subi	r22, 0xFF	; 255
+ 39a:	7f 4f       	sbci	r23, 0xFF	; 255
+ 39c:	80 e0       	ldi	r24, 0x00	; 0
+ 39e:	0e 94 6a 01 	call	0x2d4	; 0x2d4 <UART_ReceiveString>
+   
+   if(StringCompare(string,gu8_StartMessage) == TRUE)
+ 3a2:	60 e6       	ldi	r22, 0x60	; 96
+ 3a4:	70 e0       	ldi	r23, 0x00	; 0
+ 3a6:	ce 01       	movw	r24, r28
+ 3a8:	01 96       	adiw	r24, 0x01	; 1
+ 3aa:	0e 94 99 01 	call	0x332	; 0x332 <StringCompare>
+ 3ae:	81 30       	cpi	r24, 0x01	; 1
+ 3b0:	79 f4       	brne	.+30     	; 0x3d0 <Traffic_update+0x50>
+   {
+      LED_Off(LED_CH_2);
+ 3b2:	82 e0       	ldi	r24, 0x02	; 2
+ 3b4:	0e 94 75 00 	call	0xea	; 0xea <LED_Off>
+      LED_Off(LED_CH_3);
+ 3b8:	83 e0       	ldi	r24, 0x03	; 3
+ 3ba:	0e 94 75 00 	call	0xea	; 0xea <LED_Off>
+      LED_On(LED_CH_1);
+ 3be:	81 e0       	ldi	r24, 0x01	; 1
+ 3c0:	0e 94 9a 00 	call	0x134	; 0x134 <LED_On>
+      UART_TransmitString(UART_CH_0, gu8_StartMessageReply);
+ 3c4:	66 e6       	ldi	r22, 0x66	; 102
+ 3c6:	70 e0       	ldi	r23, 0x00	; 0
+ 3c8:	80 e0       	ldi	r24, 0x00	; 0
+ 3ca:	0e 94 53 01 	call	0x2a6	; 0x2a6 <UART_TransmitString>
+ 3ce:	3f c0       	rjmp	.+126    	; 0x44e <__EEPROM_REGION_LENGTH__+0x4e>
+   }
+   else if(StringCompare(string, gu8_WaitMessage) == TRUE)
+ 3d0:	68 e7       	ldi	r22, 0x78	; 120
+ 3d2:	70 e0       	ldi	r23, 0x00	; 0
+ 3d4:	ce 01       	movw	r24, r28
+ 3d6:	01 96       	adiw	r24, 0x01	; 1
+ 3d8:	0e 94 99 01 	call	0x332	; 0x332 <StringCompare>
+ 3dc:	81 30       	cpi	r24, 0x01	; 1
+ 3de:	71 f4       	brne	.+28     	; 0x3fc <Traffic_update+0x7c>
+   {
+      LED_Off(LED_CH_1);
+ 3e0:	0e 94 75 00 	call	0xea	; 0xea <LED_Off>
+      LED_Off(LED_CH_3);
+ 3e4:	83 e0       	ldi	r24, 0x03	; 3
+ 3e6:	0e 94 75 00 	call	0xea	; 0xea <LED_Off>
+      LED_On(LED_CH_2);
+ 3ea:	82 e0       	ldi	r24, 0x02	; 2
+ 3ec:	0e 94 9a 00 	call	0x134	; 0x134 <LED_On>
+      UART_TransmitString(UART_CH_0, gu8_WaitMessageReply);
+ 3f0:	6d e7       	ldi	r22, 0x7D	; 125
+ 3f2:	70 e0       	ldi	r23, 0x00	; 0
+ 3f4:	80 e0       	ldi	r24, 0x00	; 0
+ 3f6:	0e 94 53 01 	call	0x2a6	; 0x2a6 <UART_TransmitString>
+ 3fa:	29 c0       	rjmp	.+82     	; 0x44e <__EEPROM_REGION_LENGTH__+0x4e>
+   }
+   else if(StringCompare(string, gu8_StopMessage) == TRUE)
+ 3fc:	60 e9       	ldi	r22, 0x90	; 144
+ 3fe:	70 e0       	ldi	r23, 0x00	; 0
+ 400:	ce 01       	movw	r24, r28
+ 402:	01 96       	adiw	r24, 0x01	; 1
+ 404:	0e 94 99 01 	call	0x332	; 0x332 <StringCompare>
+ 408:	81 30       	cpi	r24, 0x01	; 1
+ 40a:	71 f4       	brne	.+28     	; 0x428 <__EEPROM_REGION_LENGTH__+0x28>
+   {
+      LED_Off(LED_CH_1);
+ 40c:	0e 94 75 00 	call	0xea	; 0xea <LED_Off>
+      LED_Off(LED_CH_2);
+ 410:	82 e0       	ldi	r24, 0x02	; 2
+ 412:	0e 94 75 00 	call	0xea	; 0xea <LED_Off>
+      LED_On(LED_CH_3);
+ 416:	83 e0       	ldi	r24, 0x03	; 3
+ 418:	0e 94 9a 00 	call	0x134	; 0x134 <LED_On>
+      UART_TransmitString(UART_CH_0, gu8_StopMessageReply);
+ 41c:	65 e9       	ldi	r22, 0x95	; 149
+ 41e:	70 e0       	ldi	r23, 0x00	; 0
+ 420:	80 e0       	ldi	r24, 0x00	; 0
+ 422:	0e 94 53 01 	call	0x2a6	; 0x2a6 <UART_TransmitString>
+ 426:	13 c0       	rjmp	.+38     	; 0x44e <__EEPROM_REGION_LENGTH__+0x4e>
+   }
+   else if(StringCompare(string, gu8_ATMessage) == TRUE)
+ 428:	65 ea       	ldi	r22, 0xA5	; 165
+ 42a:	70 e0       	ldi	r23, 0x00	; 0
+ 42c:	ce 01       	movw	r24, r28
+ 42e:	01 96       	adiw	r24, 0x01	; 1
+ 430:	0e 94 99 01 	call	0x332	; 0x332 <StringCompare>
+ 434:	81 30       	cpi	r24, 0x01	; 1
+ 436:	31 f4       	brne	.+12     	; 0x444 <__EEPROM_REGION_LENGTH__+0x44>
+   {
+      UART_TransmitString(UART_CH_0, gu8_ATMessageReply);
+ 438:	68 ea       	ldi	r22, 0xA8	; 168
+ 43a:	70 e0       	ldi	r23, 0x00	; 0
+ 43c:	80 e0       	ldi	r24, 0x00	; 0
+ 43e:	0e 94 53 01 	call	0x2a6	; 0x2a6 <UART_TransmitString>
+ 442:	05 c0       	rjmp	.+10     	; 0x44e <__EEPROM_REGION_LENGTH__+0x4e>
+   }
+   else
+   {
+      UART_TransmitString(UART_CH_0, gu8_InvalidMessageReply);
+ 444:	6d ea       	ldi	r22, 0xAD	; 173
+ 446:	70 e0       	ldi	r23, 0x00	; 0
+ 448:	80 e0       	ldi	r24, 0x00	; 0
+ 44a:	0e 94 53 01 	call	0x2a6	; 0x2a6 <UART_TransmitString>
+   }
+ 44e:	c8 53       	subi	r28, 0x38	; 56
+ 450:	df 4f       	sbci	r29, 0xFF	; 255
+ 452:	0f b6       	in	r0, 0x3f	; 63
+ 454:	f8 94       	cli
+ 456:	de bf       	out	0x3e, r29	; 62
+ 458:	0f be       	out	0x3f, r0	; 63
+ 45a:	cd bf       	out	0x3d, r28	; 61
+ 45c:	df 91       	pop	r29
+ 45e:	cf 91       	pop	r28
+ 460:	08 95       	ret
+
+00000462 <main>:
+-----------------------------------------------*/
+#include "App/TrafficSign/TrafficSign.h"
+
+int main(void)
+{
+   Traffic_init();
+ 462:	0e 94 ba 01 	call	0x374	; 0x374 <Traffic_init>
+   while (1) 
+   {
+      Traffic_update();
+ 466:	0e 94 c0 01 	call	0x380	; 0x380 <Traffic_update>
+ 46a:	fd cf       	rjmp	.-6      	; 0x466 <main+0x4>
+
+0000046c <_exit>:
+ 46c:	f8 94       	cli
+
+0000046e <__stop_program>:
+ 46e:	ff cf       	rjmp	.-2      	; 0x46e <__stop_program>

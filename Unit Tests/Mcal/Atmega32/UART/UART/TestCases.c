@@ -7,7 +7,6 @@
 
 /*- INCLUDES
 ----------------------------------------------*/
-#include <assert.h>
 #include <stdio.h>
 #include "Mcal/Atmega32/UART/UART.h"
 
