@@ -1,0 +1,29 @@
+<<<<<<< HEAD
+﻿  UART.c
+  MockUARTRegisters.c
+  TestCases.c
+=======
+<<<<<<< HEAD
+﻿  UART.c
+  TestCases.c
+=======
+﻿  TestCases.c
+>>>>>>> dbc0e5011ae4346f5d654f55ca4875ea7a1ed501
+>>>>>>> b64051c180b3fabaa1f0f4ed150372ee713daac2
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\UART\UART\TestCases.c(298,63): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'uint8_t (*)[10]'
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\UART\UART\TestCases.c(298,58): warning C4024: 'UART_ReceiveString': different types for formal and actual parameter 2
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\UART\UART\TestCases.c(313,57): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'uint8_t (*)[10]'
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\UART\UART\TestCases.c(313,52): warning C4024: 'UART_ReceiveString': different types for formal and actual parameter 2
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\UART\UART\TestCases.c(508,66): warning C4047: 'function': 'Ptr_VoidFuncVoid_t' differs in levels of indirection from 'uint8_t *'
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\UART\UART\TestCases.c(508,58): warning C4024: 'UART_SetCallback': different types for formal and actual parameter 3
+<<<<<<< HEAD
+  UART_Config.c
+  Generating Code...
+  LINK : H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\UART\Debug\UART.exe not found or not built by the last incremental link; performing full link
+=======
+<<<<<<< HEAD
+  Generating Code...
+=======
+>>>>>>> dbc0e5011ae4346f5d654f55ca4875ea7a1ed501
+>>>>>>> b64051c180b3fabaa1f0f4ed150372ee713daac2
+  UART.vcxproj -> H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\UART\Debug\UART.exe
