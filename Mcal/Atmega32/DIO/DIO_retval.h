@@ -10,7 +10,7 @@
 #define __DIO_RETVAL_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
+#include "../../../Infrastructure/STD_types.h"
 
 /*- PRIMITIVE TYPES ----------------------------------------*/
 typedef uint8_t DIO_ERROR_state_t;
@@ -39,18 +39,18 @@ typedef uint8_t DIO_ERROR_state_t;
 * @brief: This return value indicate that a DIO function
 * got invalid port number.
 */
-#define           E_DIO_INVALID_PORT        (DIO_ERROR_state_t)( 3 )
+#define           E_DIO_INVALID_PORT         (DIO_ERROR_state_t)( 3 )
 
 /**
 * @brief: This return value indicate that a DIO write function
 * got an invalid data.
 */
-#define           E_DIO_INVALID_WRITE_DATA  (DIO_ERROR_state_t)( 4 )
+#define           E_DIO_INVALID_WRITE_DATA   (DIO_ERROR_state_t)( 4 )
 
 /**
-* @brief: This return value indicate that a DIO init function
+* @brief: This return value indicate that a DIO function
 * got an uninitialized pointer.
 */
-#define           E_DIO_NULL_PTR            (DIO_ERROR_state_t)( 5 )
+#define           E_DIO_NULL_PTR             (DIO_ERROR_state_t)( 5 )
 
 #endif /* __DIO_RETVAL_H__ */
