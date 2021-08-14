@@ -338,6 +338,9 @@ void main(void)
 
    TestLEDStatus();
 
-   /* prints if no assertion error was raised */
    printf("%u/%u TestCases passed.\n", u8_PassedCounter, NUMBER_OF_TESTCASES);
+
+   printf("Press Enter key to close this window . . . \n");
+
+   getchar();
 }
