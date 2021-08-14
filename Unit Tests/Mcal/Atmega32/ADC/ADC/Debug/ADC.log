@@ -1,0 +1,7 @@
+﻿  ADC.c
+  TestCases.c
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\ADC\ADC\TestCases.c(164,46): warning C4133: 'function': incompatible types - from 'uint8_t *' to 'uint16_t *'
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\ADC\ADC\TestCases.c(265,43): warning C4047: 'function': 'Ptr_VoidFuncVoid_t' differs in levels of indirection from 'uint8_t *'
+H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\ADC\ADC\TestCases.c(265,35): warning C4024: 'ADC_SetCallback': different types for formal and actual parameter 1
+  Generating Code...
+  ADC.vcxproj -> H:\Mohamed Sprints\sprints-2021\Unit Tests\Mcal\Atmega32\ADC\Debug\ADC.exe
