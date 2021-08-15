@@ -1,0 +1,44 @@
+# depslib dependency file v1.0
+1628778356 source:a:\testing\motor_test\hal\motor\motor.c
+	"MOTOR.h"
+
+1628762531 a:\testing\motor_test\hal\motor\motor.h
+	"../../LIB/STD_TYPES.h"
+	"../../LIB/BIT_MATH.h"
+	"../../MCAL/PWM/PWM.h"
+	"MOTOR_Lcfg.h"
+
+1628758286 a:\testing\motor_test\lib\std_types.h
+
+1628717797 a:\testing\motor_test\lib\bit_math.h
+
+1628774445 a:\testing\motor_test\mcal\pwm\pwm.h
+	"../../LIB/STD_TYPES.h"
+	"PWM_Cfg.h"
+
+1628720293 a:\testing\motor_test\mcal\pwm\pwm_cfg.h
+
+1628762571 a:\testing\motor_test\hal\motor\motor_lcfg.h
+	"../../LIB/STD_TYPES.h"
+	"../../MCAL/DIO/DIO.h"
+
+1628774495 a:\testing\motor_test\mcal\dio\dio.h
+	"../../LIB/STD_TYPES.h"
+	"DIO_Cfg.h"
+
+1628718510 a:\testing\motor_test\mcal\dio\dio_cfg.h
+
+1628761054 source:a:\testing\motor_test\hal\motor\motor_lcfg.c
+	"MOTOR_Lcfg.h"
+
+1628777107 source:a:\testing\motor_test\main.c
+	<stdio.h>
+	<stdlib.h>
+	"HAL/MOTOR/MOTOR.h"
+
+1628771808 source:a:\testing\motor_test\mcal\dio\dio.c
+	"DIO.h"
+
+1628774569 source:a:\testing\motor_test\mcal\pwm\pwm.c
+	"PWM.h"
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="LCD_UnitTest" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/LCD_UnitTest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/LCD_UnitTest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="HAL/LCD/LCD.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="HAL/LCD/LCD.h" />
+		<Unit filename="HAL/LCD/LCD_Lcfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="HAL/LCD/LCD_Lcfg.h" />
+		<Unit filename="LIB/BIT_MATH.h" />
+		<Unit filename="LIB/LIB.h" />
+		<Unit filename="LIB/MC_REGISTERS.h" />
+		<Unit filename="LIB/STD_TYPES.h" />
+		<Unit filename="LIB/UTILS.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="LIB/UTILS.h" />
+		<Unit filename="MCAL/DIO/DIO.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="MCAL/DIO/DIO.h" />
+		<Unit filename="MCAL/DIO/DIO_Cfg.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

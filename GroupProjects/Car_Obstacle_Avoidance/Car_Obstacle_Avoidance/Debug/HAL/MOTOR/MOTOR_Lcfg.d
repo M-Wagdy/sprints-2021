@@ -1,0 +1,15 @@
+HAL/MOTOR/MOTOR_Lcfg.d HAL/MOTOR/MOTOR_Lcfg.o: ../HAL/MOTOR/MOTOR_Lcfg.c \
+ ../HAL/MOTOR/MOTOR_Lcfg.h ../HAL/MOTOR/../../LIB/STD_TYPES.h \
+ ../HAL/MOTOR/../../MCAL/DIO/DIO.h \
+ ../HAL/MOTOR/../../MCAL/DIO/../../LIB/STD_TYPES.h \
+ ../HAL/MOTOR/../../MCAL/DIO/../../LIB/BIT_MATH.h
+
+../HAL/MOTOR/MOTOR_Lcfg.h:
+
+../HAL/MOTOR/../../LIB/STD_TYPES.h:
+
+../HAL/MOTOR/../../MCAL/DIO/DIO.h:
+
+../HAL/MOTOR/../../MCAL/DIO/../../LIB/STD_TYPES.h:
+
+../HAL/MOTOR/../../MCAL/DIO/../../LIB/BIT_MATH.h:

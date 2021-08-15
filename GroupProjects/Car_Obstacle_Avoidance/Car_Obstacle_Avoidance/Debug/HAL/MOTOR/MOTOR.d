@@ -1,0 +1,37 @@
+HAL/MOTOR/MOTOR.d HAL/MOTOR/MOTOR.o: ../HAL/MOTOR/MOTOR.c \
+ ../HAL/MOTOR/MOTOR.h ../HAL/MOTOR/../../LIB/STD_TYPES.h \
+ ../HAL/MOTOR/../../LIB/BIT_MATH.h ../HAL/MOTOR/../../MCAL/PWM/PWM.h \
+ ../HAL/MOTOR/../../MCAL/PWM/../../LIB/STD_TYPES.h \
+ ../HAL/MOTOR/../../MCAL/PWM/../../LIB/BIT_MATH.h \
+ ../HAL/MOTOR/../../MCAL/PWM/../../MCAL/DIO/DIO.h \
+ ../HAL/MOTOR/../../MCAL/PWM/../../MCAL/DIO/../../LIB/STD_TYPES.h \
+ ../HAL/MOTOR/../../MCAL/PWM/../../MCAL/DIO/../../LIB/BIT_MATH.h \
+ ../HAL/MOTOR/../../MCAL/PWM/PWM_Cfg.h \
+ ../HAL/MOTOR/../../MCAL/PWM/PWM_Lcfg.h ../HAL/MOTOR/MOTOR_Lcfg.h \
+ ../HAL/MOTOR/../../MCAL/DIO/DIO.h
+
+../HAL/MOTOR/MOTOR.h:
+
+../HAL/MOTOR/../../LIB/STD_TYPES.h:
+
+../HAL/MOTOR/../../LIB/BIT_MATH.h:
+
+../HAL/MOTOR/../../MCAL/PWM/PWM.h:
+
+../HAL/MOTOR/../../MCAL/PWM/../../LIB/STD_TYPES.h:
+
+../HAL/MOTOR/../../MCAL/PWM/../../LIB/BIT_MATH.h:
+
+../HAL/MOTOR/../../MCAL/PWM/../../MCAL/DIO/DIO.h:
+
+../HAL/MOTOR/../../MCAL/PWM/../../MCAL/DIO/../../LIB/STD_TYPES.h:
+
+../HAL/MOTOR/../../MCAL/PWM/../../MCAL/DIO/../../LIB/BIT_MATH.h:
+
+../HAL/MOTOR/../../MCAL/PWM/PWM_Cfg.h:
+
+../HAL/MOTOR/../../MCAL/PWM/PWM_Lcfg.h:
+
+../HAL/MOTOR/MOTOR_Lcfg.h:
+
+../HAL/MOTOR/../../MCAL/DIO/DIO.h:
