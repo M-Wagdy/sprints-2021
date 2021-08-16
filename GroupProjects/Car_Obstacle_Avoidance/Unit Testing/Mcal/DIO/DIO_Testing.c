@@ -124,27 +124,36 @@ TEST(DIO_SetPinDirection, PIN_OUTPUT)
 	TEST_ASSERT_EQUAL_INT((u8_ErrorState),(ERROR_OK));
 }
 
-TEST(DIO_SetPinDirection, SettingOneBit)
-{
-	uint8_t Expected = 0b00001000;
-	DIO_SetPinDirection(PORT_A,PIN3,PIN_OUTPUT);
-	TEST_ASSERT_EQUAL_INT((Expected),(DDRA));
-}
-
-TEST(DIO_SetPinDirection, SettingTwoBits)
-{
-	uint8_t Expected = 0b00010010;
-	DIO_SetPinDirection(PORT_A,PIN1,PIN_OUTPUT);
-	DIO_SetPinDirection(PORT_A,PIN4,PIN_OUTPUT);
-	TEST_ASSERT_EQUAL_INT((Expected),(DDRA));
-}
-
-TEST(DIO_SetPinDirection, SettingClearingBit)
+TEST(DIO_SetPinDirection, RegisterUpdate_PORT_A)
 {
 	uint8_t Expected = 0b00000000;
-	DIO_SetPinDirection(PORT_A,PIN1,PIN_OUTPUT);
-	DIO_SetPinDirection(PORT_A,PIN1,PIN_INPUT);
+	BIT_WRITE(Expected,BIT5,PIN_OUTPUT);
+	DIO_SetPinDirection(PORT_A,PIN5,PIN_OUTPUT);
 	TEST_ASSERT_EQUAL_INT((Expected),(DDRA));
+}
+
+TEST(DIO_SetPinDirection, RegisterUpdate_PORT_B)
+{
+	uint8_t Expected = 0b00000000;
+	BIT_WRITE(Expected,BIT5,PIN_OUTPUT);
+	DIO_SetPinDirection(PORT_B,PIN5,PIN_OUTPUT);
+	TEST_ASSERT_EQUAL_INT((Expected),(DDRB));
+}
+
+TEST(DIO_SetPinDirection, RegisterUpdate_PORT_C)
+{
+	uint8_t Expected = 0b00000000;
+	BIT_WRITE(Expected,BIT5,PIN_OUTPUT);
+	DIO_SetPinDirection(PORT_C,PIN5,PIN_OUTPUT);
+	TEST_ASSERT_EQUAL_INT((Expected),(DDRC));
+}
+
+TEST(DIO_SetPinDirection, RegisterUpdate_PORT_D)
+{
+	uint8_t Expected = 0b00000000;
+	BIT_WRITE(Expected,BIT5,PIN_OUTPUT);
+	DIO_SetPinDirection(PORT_D,PIN5,PIN_OUTPUT);
+	TEST_ASSERT_EQUAL_INT((Expected),(DDRD));
 }
 
 TEST_GROUP_RUNNER(DIO_SetPinDirection)
@@ -166,9 +175,10 @@ TEST_GROUP_RUNNER(DIO_SetPinDirection)
 	RUN_TEST_CASE(DIO_SetPinDirection, PIN_INPUT);
 	RUN_TEST_CASE(DIO_SetPinDirection, PIN_OUTPUT);	
 	
-	RUN_TEST_CASE(DIO_SetPinDirection, SettingOneBit);
-	RUN_TEST_CASE(DIO_SetPinDirection, SettingTwoBits);
-	RUN_TEST_CASE(DIO_SetPinDirection, SettingClearingBit);
+	RUN_TEST_CASE(DIO_SetPinDirection, RegisterUpdate_PORT_A);
+	RUN_TEST_CASE(DIO_SetPinDirection, RegisterUpdate_PORT_B);
+	RUN_TEST_CASE(DIO_SetPinDirection, RegisterUpdate_PORT_C);
+	RUN_TEST_CASE(DIO_SetPinDirection, RegisterUpdate_PORT_D);
 }
 /*****************************************************************************************************/
 
@@ -288,27 +298,36 @@ TEST(DIO_WritePin, PIN_HIGH)
 	TEST_ASSERT_EQUAL_INT((u8_ErrorState),(ERROR_OK));
 }
 
-TEST(DIO_WritePin, SettingOneBit)
-{
-	uint8_t Expected = 0b00001000;
-	DIO_WritePin(PORT_A,PIN3,PIN_HIGH);
-	TEST_ASSERT_EQUAL_INT((Expected),(PORTA));
-}
-
-TEST(DIO_WritePin, SettingTwoBits)
-{
-	uint8_t Expected = 0b00010010;
-	DIO_WritePin(PORT_A,PIN1,PIN_HIGH);
-	DIO_WritePin(PORT_A,PIN4,PIN_HIGH);
-	TEST_ASSERT_EQUAL_INT((Expected),(PORTA));
-}
-
-TEST(DIO_WritePin, SettingClearingBit)
+TEST(DIO_WritePin, RegisterUpdate_PORT_A)
 {
 	uint8_t Expected = 0b00000000;
-	DIO_WritePin(PORT_A,PIN1,PIN_OUTPUT);
-	DIO_WritePin(PORT_A,PIN1,PIN_INPUT);
+	BIT_WRITE(Expected,BIT5,PIN_HIGH);
+	DIO_WritePin(PORT_A,PIN5,PIN_HIGH);
 	TEST_ASSERT_EQUAL_INT((Expected),(PORTA));
+}
+
+TEST(DIO_WritePin, RegisterUpdate_PORT_B)
+{
+	uint8_t Expected = 0b00000000;
+	BIT_WRITE(Expected,BIT5,PIN_HIGH);
+	DIO_WritePin(PORT_B,PIN5,PIN_HIGH);
+	TEST_ASSERT_EQUAL_INT((Expected),(PORTB));
+}
+
+TEST(DIO_WritePin, RegisterUpdate_PORT_C)
+{
+	uint8_t Expected = 0b00000000;
+	BIT_WRITE(Expected,BIT5,PIN_HIGH);
+	DIO_WritePin(PORT_C,PIN5,PIN_HIGH);
+	TEST_ASSERT_EQUAL_INT((Expected),(PORTC));
+}
+
+TEST(DIO_WritePin, RegisterUpdate_PORT_D)
+{
+	uint8_t Expected = 0b00000000;
+	BIT_WRITE(Expected,BIT5,PIN_HIGH);
+	DIO_WritePin(PORT_D,PIN5,PIN_HIGH);
+	TEST_ASSERT_EQUAL_INT((Expected),(PORTD));
 }
 
 TEST_GROUP_RUNNER(DIO_WritePin)
@@ -330,9 +349,10 @@ TEST_GROUP_RUNNER(DIO_WritePin)
 	RUN_TEST_CASE(DIO_WritePin, PIN_LOW);
 	RUN_TEST_CASE(DIO_WritePin, PIN_HIGH);	
 	
-	RUN_TEST_CASE(DIO_WritePin, SettingOneBit);
-	RUN_TEST_CASE(DIO_WritePin, SettingTwoBits);
-	RUN_TEST_CASE(DIO_WritePin, SettingClearingBit);	
+	RUN_TEST_CASE(DIO_WritePin, RegisterUpdate_PORT_A);
+	RUN_TEST_CASE(DIO_WritePin, RegisterUpdate_PORT_B);
+	RUN_TEST_CASE(DIO_WritePin, RegisterUpdate_PORT_C);
+	RUN_TEST_CASE(DIO_WritePin, RegisterUpdate_PORT_D);	
 }
 /*****************************************************************************************************/
 
@@ -429,28 +449,36 @@ TEST(DIO_TogglePin, PIN5)
 	TEST_ASSERT_EQUAL_INT((u8_ErrorState),(ERROR_OK));
 }
 
-TEST(DIO_TogglePin, TogglingFrom0To1)
+TEST(DIO_TogglePin, RegisterUpdate_PORT_A)
 {
-	uint8_t Expected = 0b10000000;
-	DIO_TogglePin(PORT_C,PIN7);
+	uint8_t Expected = 0b00000000;
+	BIT_TOGGLE(Expected,BIT5);
+	DIO_TogglePin(PORT_A,PIN5);
+	TEST_ASSERT_EQUAL_INT((Expected),(PORTA));
+}
+
+TEST(DIO_TogglePin, RegisterUpdate_PORT_B)
+{
+	uint8_t Expected = 0b00000000;
+	BIT_TOGGLE(Expected,BIT5);
+	DIO_TogglePin(PORT_B,PIN5);
+	TEST_ASSERT_EQUAL_INT((Expected),(PORTB));
+}
+
+TEST(DIO_TogglePin, RegisterUpdate_PORT_C)
+{
+	uint8_t Expected = 0b00000000;
+	BIT_TOGGLE(Expected,BIT5);
+	DIO_TogglePin(PORT_C,PIN5);
 	TEST_ASSERT_EQUAL_INT((Expected),(PORTC));
 }
 
-TEST(DIO_TogglePin, TogglingFrom1To0)
+TEST(DIO_TogglePin, RegisterUpdate_PORT_D)
 {
-	uint8_t Expected = 0b01000000;
-	DIO_TogglePin(PORT_C,PIN5);
-	DIO_TogglePin(PORT_C,PIN6);
-	DIO_TogglePin(PORT_C,PIN5);
-	TEST_ASSERT_EQUAL_INT((Expected),(PORTC));
-}
-
-TEST(DIO_TogglePin, TogglingMultipleBits)
-{
-	uint8_t Expected = 0b01000100;
-	DIO_TogglePin(PORT_C,PIN2);
-	DIO_TogglePin(PORT_C,PIN6);
-	TEST_ASSERT_EQUAL_INT((Expected),(PORTC));
+	uint8_t Expected = 0b00000000;
+	BIT_TOGGLE(Expected,BIT5);
+	DIO_TogglePin(PORT_D,PIN5);
+	TEST_ASSERT_EQUAL_INT((Expected),(PORTD));
 }
 
 TEST_GROUP_RUNNER(DIO_TogglePin)
@@ -468,9 +496,10 @@ TEST_GROUP_RUNNER(DIO_TogglePin)
 	RUN_TEST_CASE(DIO_TogglePin, PIN7);
 	RUN_TEST_CASE(DIO_TogglePin, PIN5);
 	
-	RUN_TEST_CASE(DIO_TogglePin, TogglingFrom0To1);
-	RUN_TEST_CASE(DIO_TogglePin, TogglingFrom1To0);
-	RUN_TEST_CASE(DIO_TogglePin, TogglingMultipleBits);
+	RUN_TEST_CASE(DIO_TogglePin, RegisterUpdate_PORT_A);
+	RUN_TEST_CASE(DIO_TogglePin, RegisterUpdate_PORT_B);
+	RUN_TEST_CASE(DIO_TogglePin, RegisterUpdate_PORT_C);
+	RUN_TEST_CASE(DIO_TogglePin, RegisterUpdate_PORT_D);
 }
 /*****************************************************************************************************/
 
@@ -586,12 +615,43 @@ TEST(DIO_ReadPin, INVALID_POINTER)
 	TEST_ASSERT_EQUAL_INT((u8_ErrorState),(ERROR_NOK));
 }
 
-TEST(DIO_ReadPin, ReadingOneBit)
+TEST(DIO_ReadPin, RegisterReading_PORT_A)
 {
-	PINB = 0b00100000;
-	uint8_t Expected = PINB>>PIN5;
+	uint8_t Expected = 0b00000000;
 	uint8_t PinData;
+	BIT_WRITE(PINA,BIT5,PIN_HIGH);
+	Expected = BIT_GET(PINA,BIT5);;
+	DIO_ReadPin(PORT_A,PIN5,&PinData);
+	TEST_ASSERT_EQUAL_INT((Expected),(PinData));
+}
+
+TEST(DIO_ReadPin, RegisterReading_PORT_B)
+{
+	uint8_t Expected = 0b00000000;
+	uint8_t PinData;
+	BIT_WRITE(PINB,BIT5,PIN_HIGH);
+	Expected = BIT_GET(PINB,BIT5);;
 	DIO_ReadPin(PORT_B,PIN5,&PinData);
+	TEST_ASSERT_EQUAL_INT((Expected),(PinData));
+}
+
+TEST(DIO_ReadPin, RegisterReading_PORT_C)
+{
+	uint8_t Expected = 0b00000000;
+	uint8_t PinData;
+	BIT_WRITE(PINC,BIT5,PIN_HIGH);
+	Expected = BIT_GET(PINC,BIT5);;
+	DIO_ReadPin(PORT_C,PIN5,&PinData);
+	TEST_ASSERT_EQUAL_INT((Expected),(PinData));
+}
+
+TEST(DIO_ReadPin, RegisterReading_PORT_D)
+{
+	uint8_t Expected = 0b00000000;
+	uint8_t PinData;
+	BIT_WRITE(PIND,BIT5,PIN_HIGH);
+	Expected = BIT_GET(PIND,BIT5);;
+	DIO_ReadPin(PORT_D,PIN5,&PinData);
 	TEST_ASSERT_EQUAL_INT((Expected),(PinData));
 }
 
@@ -612,7 +672,10 @@ TEST_GROUP_RUNNER(DIO_ReadPin)
 
 	RUN_TEST_CASE(DIO_ReadPin, INVALID_POINTER);
 
-	RUN_TEST_CASE(DIO_ReadPin, ReadingOneBit);	
+	RUN_TEST_CASE(DIO_ReadPin, RegisterReading_PORT_A);
+	RUN_TEST_CASE(DIO_ReadPin, RegisterReading_PORT_B);
+	RUN_TEST_CASE(DIO_ReadPin, RegisterReading_PORT_C);
+	RUN_TEST_CASE(DIO_ReadPin, RegisterReading_PORT_D);
 }
 /*****************************************************************************************************/
 
@@ -724,6 +787,38 @@ TEST(DIO_EnablePinPullup, EnablingPullupTwoBit)
 	TEST_ASSERT_EQUAL_INT((Expected),(PORTB));
 }
 
+TEST(DIO_EnablePinPullup, RegisterUpdate_PORT_A)
+{
+	uint8_t Expected = 0b00000000;
+	BIT_WRITE(Expected,BIT5,PIN_HIGH);
+	DIO_EnablePinPullup(PORT_A,PIN5);
+	TEST_ASSERT_EQUAL_INT((Expected),(PORTA));
+}
+
+TEST(DIO_EnablePinPullup, RegisterUpdate_PORT_B)
+{
+	uint8_t Expected = 0b00000000;
+	BIT_WRITE(Expected,BIT5,PIN_HIGH);
+	DIO_EnablePinPullup(PORT_B,PIN5);
+	TEST_ASSERT_EQUAL_INT((Expected),(PORTB));
+}
+
+TEST(DIO_EnablePinPullup, RegisterUpdate_PORT_C)
+{
+	uint8_t Expected = 0b00000000;
+	BIT_WRITE(Expected,BIT5,PIN_HIGH);
+	DIO_EnablePinPullup(PORT_C,PIN5);
+	TEST_ASSERT_EQUAL_INT((Expected),(PORTC));
+}
+
+TEST(DIO_EnablePinPullup, RegisterUpdate_PORT_D)
+{
+	uint8_t Expected = 0b00000000;
+	BIT_WRITE(Expected,BIT5,PIN_HIGH);
+	DIO_EnablePinPullup(PORT_D,PIN5);
+	TEST_ASSERT_EQUAL_INT((Expected),(PORTD));
+}
+
 TEST_GROUP_RUNNER(DIO_EnablePinPullup)
 {
 	RUN_TEST_CASE(DIO_EnablePinPullup, INVALID_PORD1);
@@ -739,7 +834,10 @@ TEST_GROUP_RUNNER(DIO_EnablePinPullup)
 	RUN_TEST_CASE(DIO_EnablePinPullup, PIN7);
 	RUN_TEST_CASE(DIO_EnablePinPullup, PIN5);
 	
-	RUN_TEST_CASE(DIO_EnablePinPullup, EnablingPullupOneBit);
-	RUN_TEST_CASE(DIO_EnablePinPullup, EnablingPullupTwoBit);
+	
+	RUN_TEST_CASE(DIO_EnablePinPullup, RegisterUpdate_PORT_A);
+	RUN_TEST_CASE(DIO_EnablePinPullup, RegisterUpdate_PORT_B);
+	RUN_TEST_CASE(DIO_EnablePinPullup, RegisterUpdate_PORT_C);
+	RUN_TEST_CASE(DIO_EnablePinPullup, RegisterUpdate_PORT_D);
 }
 /*****************************************************************************************************/
