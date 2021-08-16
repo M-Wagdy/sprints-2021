@@ -5,7 +5,7 @@
  * Description: C File for PWM peripheral....
  */ 
 
-#include "../../LIB/MC_REGISTERS.h"
+#include "MC_REGISTERS.h"
 #include "PWM.h"
 
 #define PWM0_PORT			PORT_B
