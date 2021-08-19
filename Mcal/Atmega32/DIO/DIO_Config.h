@@ -10,7 +10,7 @@
 #define __DIO_PBCFG_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
+#include "STD_types.h"
 
 /*- MACROS -------------------------------------------------*/
 #define  PINS_NUMBERS      (uint8_t)( 32 )
