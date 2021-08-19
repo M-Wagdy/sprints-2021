@@ -13,13 +13,17 @@
 
 /*- LOCAL MACROS
 ------------------------------------------*/
+/* Green Led Macros */
 #define GREEN_LED_PORT  PORTA
 #define GREEN_LED_PIN   PIN_0
+
+/* Red Led Macros */
 #define RED_LED_PORT    PORTA
 #define RED_LED_PIN     PIN_1
 
 /*- LOCAL FUNCTIONS PROTOTYPES
 ----------------------------*/
+/* Callback Functions to be installed in the ISR Handler. */
 void ToggleGreenLED(void);
 void ToggleRedLED(void);
 
@@ -27,35 +31,48 @@ void ToggleRedLED(void);
 ------------------------*/
 void ToggleGreenLED(void)
 {
+   /* Toggle Green Led */
    DIO_TogglePin(GREEN_LED_PORT, GREEN_LED_PIN);
+   /* Deinstall this Callback from ISR Vector Table. */
    Interrupt_Deinstall(TIMER2_OVF_VECTOR_NUMBER);
+   /* Install the other Callback to ISR Vector Table. */
    Interrupt_Install(TIMER2_OVF_VECTOR_NUMBER, ToggleRedLED);
-   TIM_Start(TIMER_2, 255);
+   /* Start a new Timer */
+   TIM_Start(TIMER_2, 0);
 }
 
 void ToggleRedLED(void)
 {
+   /* Toggle Red Led */
    DIO_TogglePin(RED_LED_PORT, RED_LED_PIN);
+   /* Deinstall this Callback from ISR Vector Table. */
    Interrupt_Deinstall(TIMER2_OVF_VECTOR_NUMBER);
+   /* Install the other Callback to ISR Vector Table. */
    Interrupt_Install(TIMER2_OVF_VECTOR_NUMBER, ToggleGreenLED);
+   /* Start a new Timer */
    TIM_Start(TIMER_2, 255);
 }
 
 int main(void)
 {
+   /* Initialize Led Pins */
    DIO_SetPinDirection(GREEN_LED_PORT, GREEN_LED_PIN, OUTPUT);
    DIO_SetPinDirection(RED_LED_PORT, RED_LED_PIN, OUTPUT);
    
+   /* Initialize Timer */
    TIM_Init(TIMER_2);
 
+   /* Install Green Led Toggle API in ISR Vector Table */
    Interrupt_Install(TIMER2_OVF_VECTOR_NUMBER, ToggleGreenLED);
+   /* Enable Globale Interrupt */
    INTERRUPTS_Enable();
    
-   TIM_Start(TIMER_2, 255);
+   /* Start a Timer */
+   TIM_Start(TIMER_2, 0);
 
-   /* Replace with your application code */
    while (1) 
    {
+      /* Do Nothing Wait For Interrupts. */
    }
 }
 

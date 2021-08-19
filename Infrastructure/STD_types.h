@@ -41,8 +41,8 @@ typedef uint8_t ERROR_STATE_t;
 /*----------------COMMON MACRROS----------------------*/
 #define ERROR_OK        (uint8_t)0
 #define ERROR_NOK       (uint8_t)1
-#define INIT     (uint8_t)1
-#define NOT_INIT (uint8_t)0
+#define INIT            (uint8_t)1
+#define NOT_INIT        (uint8_t)0
 
 #define NULL_PTR        ((void*)(0))
 #define NULL_TERMINATOR (uint8_t)('\0')

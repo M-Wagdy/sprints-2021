@@ -28,12 +28,15 @@ extern Ptr_VoidFuncVoid_t aptr_ISRAddress[TABLE_SIZE];
 */
 void Interrupt_Install(uint8_t Vector_No, Ptr_VoidFuncVoid_t Callback)
 {
+   /* Validate Before Changing ISR Vector Table */
 	if( 
       (NULL_PTR == aptr_OldVectors[Vector_No]) && (NULL_PTR != Callback) && 
       (Vector_No >= IRQ_MIN_VECTOR_NUMBER) &&  (Vector_No <= IRQ_MAX_VECTOR_NUMBER)
      )
 	{
+      /* Store The Current ISR in a History Table. */
 		aptr_OldVectors[Vector_No] = aptr_ISRAddress[Vector_No];
+      /* Set the new Callback in the ISR. */
       aptr_ISRAddress[Vector_No] = Callback;
 	}
 }
@@ -46,9 +49,12 @@ void Interrupt_Install(uint8_t Vector_No, Ptr_VoidFuncVoid_t Callback)
 */
 void Interrupt_Deinstall(uint8_t Vector_No)
 {
+   /* Validate Before Changing ISR Vector Table */
 	if( (Vector_No >= IRQ_MIN_VECTOR_NUMBER) &&  (Vector_No <= IRQ_MAX_VECTOR_NUMBER))
 	{
+      /* Revert Old ISR Callback to the ISR Vector Table. */
 		aptr_ISRAddress[Vector_No] = aptr_OldVectors[Vector_No];
+      /* Clear The Old ISR Callback from the History Table */
       aptr_OldVectors[Vector_No] = NULL_PTR;
 	}
 }

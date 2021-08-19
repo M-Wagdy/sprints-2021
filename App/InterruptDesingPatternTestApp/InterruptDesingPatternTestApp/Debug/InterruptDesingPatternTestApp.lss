@@ -15,11 +15,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 000001e8  00000000  00000000  00000a6c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000148b  00000000  00000000  00000c54  2**0
+  6 .debug_info   00001489  00000000  00000000  00000c54  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000009c2  00000000  00000000  000020df  2**0
+  7 .debug_abbrev 000009c2  00000000  00000000  000020dd  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000010e6  00000000  00000000  00002aa1  2**0
+  8 .debug_line   000010e6  00000000  00000000  00002a9f  2**0
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  0000091c  00000000  00000000  00003b88  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -93,10 +93,10 @@ Disassembly of section .text:
   8a:	0c 94 af 04 	jmp	0x95e	; 0x95e <_exit>
 
 0000008e <Interrupt_Install>:
-* @param [in]  Callback    -  New Callback Function of ISR.
 */
 void Interrupt_Install(uint8_t Vector_No, Ptr_VoidFuncVoid_t Callback)
 {
+   /* Validate Before Changing ISR Vector Table */
 	if( 
       (NULL_PTR == aptr_OldVectors[Vector_No]) && (NULL_PTR != Callback) && 
   8e:	28 2f       	mov	r18, r24
@@ -108,11 +108,11 @@ void Interrupt_Install(uint8_t Vector_No, Ptr_VoidFuncVoid_t Callback)
   9a:	ff 4f       	sbci	r31, 0xFF	; 255
   9c:	40 81       	ld	r20, Z
   9e:	51 81       	ldd	r21, Z+1	; 0x01
-* @param [in]  Vector_No   -  ISR Vector Number.
 * @param [in]  Callback    -  New Callback Function of ISR.
 */
 void Interrupt_Install(uint8_t Vector_No, Ptr_VoidFuncVoid_t Callback)
 {
+   /* Validate Before Changing ISR Vector Table */
 	if( 
   a0:	45 2b       	or	r20, r21
   a2:	99 f4       	brne	.+38     	; 0xca <Interrupt_Install+0x3c>
@@ -125,6 +125,7 @@ void Interrupt_Install(uint8_t Vector_No, Ptr_VoidFuncVoid_t Callback)
   ac:	70 f4       	brcc	.+28     	; 0xca <Interrupt_Install+0x3c>
      )
 	{
+      /* Store The Current ISR in a History Table. */
 		aptr_OldVectors[Vector_No] = aptr_ISRAddress[Vector_No];
   ae:	22 0f       	add	r18, r18
   b0:	33 1f       	adc	r19, r19
@@ -138,21 +139,23 @@ void Interrupt_Install(uint8_t Vector_No, Ptr_VoidFuncVoid_t Callback)
   c0:	bf 4f       	sbci	r27, 0xFF	; 255
   c2:	8d 93       	st	X+, r24
   c4:	9c 93       	st	X, r25
+      /* Set the new Callback in the ISR. */
       aptr_ISRAddress[Vector_No] = Callback;
   c6:	71 83       	std	Z+1, r23	; 0x01
   c8:	60 83       	st	Z, r22
   ca:	08 95       	ret
 
 000000cc <Interrupt_Deinstall>:
-*
 * @param [in]  Vector_No   -  ISR Vector Number.
 */
 void Interrupt_Deinstall(uint8_t Vector_No)
 {
+   /* Validate Before Changing ISR Vector Table */
 	if( (Vector_No >= IRQ_MIN_VECTOR_NUMBER) &&  (Vector_No <= IRQ_MAX_VECTOR_NUMBER))
   cc:	84 31       	cpi	r24, 0x14	; 20
   ce:	78 f4       	brcc	.+30     	; 0xee <Interrupt_Deinstall+0x22>
 	{
+      /* Revert Old ISR Callback to the ISR Vector Table. */
 		aptr_ISRAddress[Vector_No] = aptr_OldVectors[Vector_No];
   d0:	90 e0       	ldi	r25, 0x00	; 0
   d2:	88 0f       	add	r24, r24
@@ -167,6 +170,7 @@ void Interrupt_Deinstall(uint8_t Vector_No)
   e4:	bf 4f       	sbci	r27, 0xFF	; 255
   e6:	2d 93       	st	X+, r18
   e8:	3c 93       	st	X, r19
+      /* Clear The Old ISR Callback from the History Table */
       aptr_OldVectors[Vector_No] = NULL_PTR;
   ea:	11 82       	std	Z+1, r1	; 0x01
   ec:	10 82       	st	Z, r1
@@ -1622,25 +1626,28 @@ ERROR_STATE_t TIM_Init(TIM_CH_t TIM_channel)
  8e0:	08 95       	ret
 
 000008e2 <ToggleGreenLED>:
-
 /*- LOCAL FUNCTIONS IMPLEMENTATION
 ------------------------*/
 void ToggleGreenLED(void)
 {
+   /* Toggle Green Led */
    DIO_TogglePin(GREEN_LED_PORT, GREEN_LED_PIN);
  8e2:	60 e0       	ldi	r22, 0x00	; 0
  8e4:	80 e0       	ldi	r24, 0x00	; 0
  8e6:	0e 94 b0 00 	call	0x160	; 0x160 <DIO_TogglePin>
+   /* Deinstall this Callback from ISR Vector Table. */
    Interrupt_Deinstall(TIMER2_OVF_VECTOR_NUMBER);
  8ea:	84 e0       	ldi	r24, 0x04	; 4
  8ec:	0e 94 66 00 	call	0xcc	; 0xcc <Interrupt_Deinstall>
+   /* Install the other Callback to ISR Vector Table. */
    Interrupt_Install(TIMER2_OVF_VECTOR_NUMBER, ToggleRedLED);
  8f0:	63 e8       	ldi	r22, 0x83	; 131
  8f2:	74 e0       	ldi	r23, 0x04	; 4
  8f4:	84 e0       	ldi	r24, 0x04	; 4
  8f6:	0e 94 47 00 	call	0x8e	; 0x8e <Interrupt_Install>
-   TIM_Start(TIMER_2, 255);
- 8fa:	6f ef       	ldi	r22, 0xFF	; 255
+   /* Start a new Timer */
+   TIM_Start(TIMER_2, 0);
+ 8fa:	60 e0       	ldi	r22, 0x00	; 0
  8fc:	70 e0       	ldi	r23, 0x00	; 0
  8fe:	82 e0       	ldi	r24, 0x02	; 2
  900:	0e 94 4b 04 	call	0x896	; 0x896 <TIM_Start>
@@ -1651,18 +1658,22 @@ void ToggleGreenLED(void)
 
 void ToggleRedLED(void)
 {
+   /* Toggle Red Led */
    DIO_TogglePin(RED_LED_PORT, RED_LED_PIN);
  906:	61 e0       	ldi	r22, 0x01	; 1
  908:	80 e0       	ldi	r24, 0x00	; 0
  90a:	0e 94 b0 00 	call	0x160	; 0x160 <DIO_TogglePin>
+   /* Deinstall this Callback from ISR Vector Table. */
    Interrupt_Deinstall(TIMER2_OVF_VECTOR_NUMBER);
  90e:	84 e0       	ldi	r24, 0x04	; 4
  910:	0e 94 66 00 	call	0xcc	; 0xcc <Interrupt_Deinstall>
+   /* Install the other Callback to ISR Vector Table. */
    Interrupt_Install(TIMER2_OVF_VECTOR_NUMBER, ToggleGreenLED);
  914:	61 e7       	ldi	r22, 0x71	; 113
  916:	74 e0       	ldi	r23, 0x04	; 4
  918:	84 e0       	ldi	r24, 0x04	; 4
  91a:	0e 94 47 00 	call	0x8e	; 0x8e <Interrupt_Install>
+   /* Start a new Timer */
    TIM_Start(TIMER_2, 255);
  91e:	6f ef       	ldi	r22, 0xFF	; 255
  920:	70 e0       	ldi	r23, 0x00	; 0
@@ -1675,6 +1686,7 @@ void ToggleRedLED(void)
 
 int main(void)
 {
+   /* Initialize Led Pins */
    DIO_SetPinDirection(GREEN_LED_PORT, GREEN_LED_PIN, OUTPUT);
  92a:	41 e0       	ldi	r20, 0x01	; 1
  92c:	60 e0       	ldi	r22, 0x00	; 0
@@ -1686,20 +1698,24 @@ int main(void)
  938:	80 e0       	ldi	r24, 0x00	; 0
  93a:	0e 94 78 00 	call	0xf0	; 0xf0 <DIO_SetPinDirection>
    
+   /* Initialize Timer */
    TIM_Init(TIMER_2);
  93e:	82 e0       	ldi	r24, 0x02	; 2
  940:	0e 94 0d 04 	call	0x81a	; 0x81a <TIM_Init>
 
+   /* Install Green Led Toggle API in ISR Vector Table */
    Interrupt_Install(TIMER2_OVF_VECTOR_NUMBER, ToggleGreenLED);
  944:	61 e7       	ldi	r22, 0x71	; 113
  946:	74 e0       	ldi	r23, 0x04	; 4
  948:	84 e0       	ldi	r24, 0x04	; 4
  94a:	0e 94 47 00 	call	0x8e	; 0x8e <Interrupt_Install>
+   /* Enable Globale Interrupt */
    INTERRUPTS_Enable();
  94e:	0e 94 d5 00 	call	0x1aa	; 0x1aa <INTERRUPTS_Enable>
    
-   TIM_Start(TIMER_2, 255);
- 952:	6f ef       	ldi	r22, 0xFF	; 255
+   /* Start a Timer */
+   TIM_Start(TIMER_2, 0);
+ 952:	60 e0       	ldi	r22, 0x00	; 0
  954:	70 e0       	ldi	r23, 0x00	; 0
  956:	82 e0       	ldi	r24, 0x02	; 2
  958:	0e 94 4b 04 	call	0x896	; 0x896 <TIM_Start>

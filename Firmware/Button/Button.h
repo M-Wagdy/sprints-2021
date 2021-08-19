@@ -10,10 +10,10 @@
 #define __BUTTON_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "../../Mcal/Atmega32/DIO/DIO.h"
+#include "STD_types.h"
+#include "DIO.h"
 
 /*- FUNCTION DECLARATIONS ----------------------------------*/
-uint8_t BUTTON_get_state(void);
-
+ERROR_STATE_t BUTTON_getState(uint8_t * State);
 
 #endif /* __BUTTON_H__ */
