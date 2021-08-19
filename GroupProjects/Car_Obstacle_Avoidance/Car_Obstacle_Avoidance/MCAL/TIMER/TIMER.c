@@ -21,10 +21,10 @@
 #define  TIMER_2_INT_BITS           (uint8_t)( 6 )
 #define  FULL_8_BITS                (uint8_t)( 255 )
 
-#define  SECOND_TO_MICROSECOND      (uint8_t)( 1000000 )
-#define  MILLISECOND_TO_MICROSECOND (uint8_t)( 1000 )
+#define  SECOND_TO_MICROSECOND      (uint32_t)( 1000000 )
+#define  MILLISECOND_TO_MICROSECOND (uint32_t)( 1000 )
 
-#define  TIMER_OVERFLOW_FACTOR      (uint8_t)( 256 )
+#define  TIMER_OVERFLOW_FACTOR      (uint16_t)( 256 )
 
 /*- LOCAL FUNCTIONS PROTOTYPES
 ----------------------------*/
