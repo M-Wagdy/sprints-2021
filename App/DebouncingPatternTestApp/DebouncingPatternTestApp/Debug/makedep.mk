@@ -4,11 +4,13 @@
 
 ..\..\..\Firmware\ButtonClient\src\ButtonClient.c
 
-..\..\..\Firmware\Button\Button.c
+..\..\..\Firmware\Button\src\Button.c
 
 ..\..\..\Mcal\Atmega32\DIO\DIO.c
 
 ..\..\..\Mcal\Atmega32\TIMER\src\TIMER.c
+
+Firmware\Button\src\Button_Lcfg.c
 
 main.c
 

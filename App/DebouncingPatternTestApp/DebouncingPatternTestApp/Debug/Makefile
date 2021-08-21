@@ -54,9 +54,10 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../../../../Firmware/ButtonClient/src/ButtonClient.c \
-../../../../Firmware/Button/Button.c \
+../../../../Firmware/Button/src/Button.c \
 ../../../../Mcal/Atmega32/DIO/DIO.c \
 ../../../../Mcal/Atmega32/TIMER/src/TIMER.c \
+../Firmware/Button/src/Button_Lcfg.c \
 ../main.c \
 ../Mcal/TIMER/src/TIMER_Lcfg.c
 
@@ -72,6 +73,7 @@ Firmware/ButtonClient/src/ButtonClient.o \
 Firmware/Button/src/Button.o \
 Mcal/DIO/src/DIO.o \
 Mcal/TIMER/src/TIMER.o \
+Firmware/Button/src/Button_Lcfg.o \
 main.o \
 Mcal/TIMER/src/TIMER_Lcfg.o
 
@@ -80,6 +82,7 @@ Firmware/ButtonClient/src/ButtonClient.o \
 Firmware/Button/src/Button.o \
 Mcal/DIO/src/DIO.o \
 Mcal/TIMER/src/TIMER.o \
+Firmware/Button/src/Button_Lcfg.o \
 main.o \
 Mcal/TIMER/src/TIMER_Lcfg.o
 
@@ -88,6 +91,7 @@ Firmware/ButtonClient/src/ButtonClient.d \
 Firmware/Button/src/Button.d \
 Mcal/DIO/src/DIO.d \
 Mcal/TIMER/src/TIMER.d \
+Firmware/Button/src/Button_Lcfg.d \
 main.d \
 Mcal/TIMER/src/TIMER_Lcfg.d
 
@@ -96,6 +100,7 @@ Firmware/ButtonClient/src/ButtonClient.d \
 Firmware/Button/src/Button.d \
 Mcal/DIO/src/DIO.d \
 Mcal/TIMER/src/TIMER.d \
+Firmware/Button/src/Button_Lcfg.d \
 main.d \
 Mcal/TIMER/src/TIMER_Lcfg.d
 
@@ -116,42 +121,49 @@ LINKER_SCRIPT_DEP+=
 Firmware/ButtonClient/src/ButtonClient.o: ../../../../Firmware/ButtonClient/src/ButtonClient.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../Mcal/Atmega32/TIMER/inc" -I"../../../../Mcal/Atmega32/DIO" -I"../../../../Infrastructure" -I"../../../../Firmware/ButtonClient/inc" -I"../../../../Firmware/Button" -I"../../../../Mcal/Atmega32/Registers/inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../Mcal/Atmega32/TIMER/inc" -I"../../../../Mcal/Atmega32/DIO" -I"../../../../Infrastructure" -I"../../../../Firmware/ButtonClient/inc" -I"E:\Courses\Sprints\sprints-2021\Firmware\Button\inc" -I"../../../../Mcal/Atmega32/Registers/inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-Firmware/Button/src/Button.o: ../../../../Firmware/Button/Button.c
+Firmware/Button/src/Button.o: ../../../../Firmware/Button/src/Button.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../Mcal/Atmega32/TIMER/inc" -I"../../../../Mcal/Atmega32/DIO" -I"../../../../Infrastructure" -I"../../../../Firmware/ButtonClient/inc" -I"../../../../Firmware/Button" -I"../../../../Mcal/Atmega32/Registers/inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../Mcal/Atmega32/TIMER/inc" -I"../../../../Mcal/Atmega32/DIO" -I"../../../../Infrastructure" -I"../../../../Firmware/ButtonClient/inc" -I"E:\Courses\Sprints\sprints-2021\Firmware\Button\inc" -I"../../../../Mcal/Atmega32/Registers/inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Mcal/DIO/src/DIO.o: ../../../../Mcal/Atmega32/DIO/DIO.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../Mcal/Atmega32/TIMER/inc" -I"../../../../Mcal/Atmega32/DIO" -I"../../../../Infrastructure" -I"../../../../Firmware/ButtonClient/inc" -I"../../../../Firmware/Button" -I"../../../../Mcal/Atmega32/Registers/inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../Mcal/Atmega32/TIMER/inc" -I"../../../../Mcal/Atmega32/DIO" -I"../../../../Infrastructure" -I"../../../../Firmware/ButtonClient/inc" -I"E:\Courses\Sprints\sprints-2021\Firmware\Button\inc" -I"../../../../Mcal/Atmega32/Registers/inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Mcal/TIMER/src/TIMER.o: ../../../../Mcal/Atmega32/TIMER/src/TIMER.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../Mcal/Atmega32/TIMER/inc" -I"../../../../Mcal/Atmega32/DIO" -I"../../../../Infrastructure" -I"../../../../Firmware/ButtonClient/inc" -I"../../../../Firmware/Button" -I"../../../../Mcal/Atmega32/Registers/inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../Mcal/Atmega32/TIMER/inc" -I"../../../../Mcal/Atmega32/DIO" -I"../../../../Infrastructure" -I"../../../../Firmware/ButtonClient/inc" -I"E:\Courses\Sprints\sprints-2021\Firmware\Button\inc" -I"../../../../Mcal/Atmega32/Registers/inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Firmware/Button/src/Button_Lcfg.o: ../Firmware/Button/src/Button_Lcfg.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../Mcal/Atmega32/TIMER/inc" -I"../../../../Mcal/Atmega32/DIO" -I"../../../../Infrastructure" -I"../../../../Firmware/ButtonClient/inc" -I"E:\Courses\Sprints\sprints-2021\Firmware\Button\inc" -I"../../../../Mcal/Atmega32/Registers/inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./main.o: .././main.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../Mcal/Atmega32/TIMER/inc" -I"../../../../Mcal/Atmega32/DIO" -I"../../../../Infrastructure" -I"../../../../Firmware/ButtonClient/inc" -I"../../../../Firmware/Button" -I"../../../../Mcal/Atmega32/Registers/inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../Mcal/Atmega32/TIMER/inc" -I"../../../../Mcal/Atmega32/DIO" -I"../../../../Infrastructure" -I"../../../../Firmware/ButtonClient/inc" -I"E:\Courses\Sprints\sprints-2021\Firmware\Button\inc" -I"../../../../Mcal/Atmega32/Registers/inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Mcal/TIMER/src/TIMER_Lcfg.o: ../Mcal/TIMER/src/TIMER_Lcfg.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../Mcal/Atmega32/TIMER/inc" -I"../../../../Mcal/Atmega32/DIO" -I"../../../../Infrastructure" -I"../../../../Firmware/ButtonClient/inc" -I"../../../../Firmware/Button" -I"../../../../Mcal/Atmega32/Registers/inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../Mcal/Atmega32/TIMER/inc" -I"../../../../Mcal/Atmega32/DIO" -I"../../../../Infrastructure" -I"../../../../Firmware/ButtonClient/inc" -I"E:\Courses\Sprints\sprints-2021\Firmware\Button\inc" -I"../../../../Mcal/Atmega32/Registers/inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 

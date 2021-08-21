@@ -4,10 +4,13 @@ main.d main.o: .././main.c \
  ../../../../Mcal/Atmega32/TIMER/inc/TIMER.h \
  ../../../../Infrastructure/STD_TYPES.h \
  ../../../../Mcal/Atmega32/TIMER/inc/TIMER_Lcfg.h \
- ../../../../Firmware/Button/Button.h ../../../../Mcal/Atmega32/DIO/DIO.h \
+ E:\Courses\Sprints\sprints-2021\Firmware\Button\inc/Button.h \
+ ../../../../Mcal/Atmega32/DIO/DIO.h \
  e:\courses\sprints\sprints-2021\infrastructure\std_types.h \
  ../../../../Mcal/Atmega32/DIO/DIO_Registers.h \
  ../../../../Mcal/Atmega32/DIO/DIO_retval.h \
+ ../../../../Mcal/Atmega32/DIO/DIO_Config.h \
+ E:\Courses\Sprints\sprints-2021\Firmware\Button\inc/Button_Lcfg.h \
  ../../../../Mcal/Atmega32/DIO/DIO_Config.h
 
 ../../../../Firmware/ButtonClient/inc/ButtonClient.h:
@@ -20,7 +23,7 @@ main.d main.o: .././main.c \
 
 ../../../../Mcal/Atmega32/TIMER/inc/TIMER_Lcfg.h:
 
-../../../../Firmware/Button/Button.h:
+E:\Courses\Sprints\sprints-2021\Firmware\Button\inc/Button.h:
 
 ../../../../Mcal/Atmega32/DIO/DIO.h:
 
@@ -29,5 +32,9 @@ e:\courses\sprints\sprints-2021\infrastructure\std_types.h:
 ../../../../Mcal/Atmega32/DIO/DIO_Registers.h:
 
 ../../../../Mcal/Atmega32/DIO/DIO_retval.h:
+
+../../../../Mcal/Atmega32/DIO/DIO_Config.h:
+
+E:\Courses\Sprints\sprints-2021\Firmware\Button\inc/Button_Lcfg.h:
 
 ../../../../Mcal/Atmega32/DIO/DIO_Config.h:

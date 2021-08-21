@@ -16,42 +16,50 @@
 #define GREEN_LED_PIN      PIN_0
 
 /* Button Macros */
-#define BTN_PORT           PORTC
-#define BTN_PIN            PIN_0
 #define PRESSED            (uint8_t)(0)
+
+/*- LOCAL FUNCTIONS PROTOTYPES
+----------------------------*/
+void GreenLedMain(void);
+
+/*- GLOBAL STATIC VARIABLES
+-------------------------------*/
+static uint8_t OldButtonState;
+static STR_BTNClient_t GreenLed_BTNClient;
+
+/*- LOCAL FUNCTIONS IMPLEMENTATION
+------------------------*/
+void GreenLedMain(void)
+{
+   /* If Button is Pressed */
+   if(PRESSED == GreenLed_BTNClient.u8_ButtonState && OldButtonState != GreenLed_BTNClient.u8_ButtonState)
+   {
+      /* Toggle Pin */
+      DIO_TogglePin(GREEN_LED_PORT, GREEN_LED_PIN);
+   }
+   else{/* Do Nothing */}
+   OldButtonState = GreenLed_BTNClient.u8_ButtonState;
+}
 
 /*- APIs IMPLEMENTATION
 -----------------------------------*/
 int main(void)
 {
    /* Init Button Pins */
-   DIO_SetPinDirection(BTN_PORT, BTN_PIN, INPUT);
-   DIO_EnablePinPullup(BTN_PORT, BTN_PIN);
+   Button_Init(BTN_0);
    
    /* Init Led Pin */
    DIO_SetPinDirection(GREEN_LED_PORT, GREEN_LED_PIN, OUTPUT);
    
-   /* Variables to be used in super loop. */
-   uint8_t ButtonState;
-   ERROR_STATE_t ErrorState;
+   /* Init Button Client */
+   BUTTONClient_Init(&GreenLed_BTNClient);
+   BUTTONClient_SetBtn(&GreenLed_BTNClient, BTN_0);
+   BUTTONClient_SetTimer(&GreenLed_BTNClient, TIMER_2, 20);
+   BUTTONClient_SetEventCallback(&GreenLed_BTNClient, GreenLedMain);
    
    while (1) 
    {
-      ErrorState = BUTTONClient_EventReceive(&ButtonState);
-      {
-         /* If Button Client Finished */
-         if(ERROR_OK == ErrorState)
-         {
-            /* If Button is Pressed */
-            if(PRESSED == ButtonState)
-            {
-               /* Toggle Pin */
-               DIO_TogglePin(GREEN_LED_PORT, GREEN_LED_PIN);
-            }
-            else{/* Do Nothing */}
-         }
-         else{/* Do Nothing */}
-      }
+      BUTTONClient_EventReceive(&GreenLed_BTNClient);
    }
 }
 

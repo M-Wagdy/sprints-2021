@@ -13,6 +13,16 @@
 #include "TIMER.h"
 #include "Button.h"
 
+/*- STRUCTS AND UNIONS -------------------------------------*/
+typedef struct STR_BTNClient_t{
+   uint8_t u8_ButtonCh;
+   uint8_t u8_ButtonState;
+   uint8_t u8_OldButtonState;
+   uint8_t u8_TimerCh;
+   uint32_t u32_DebounceDelay;
+   Ptr_VoidFuncVoid_t EventCallback;
+} STR_BTNClient_t;
+
 /*- ENUMS --------------------------------------------------*/
 /* Enum for Get Button State State Machine */
 typedef enum
@@ -24,6 +34,10 @@ typedef enum
 
 
 /*- FUNCTION DECLARATIONS ----------------------------------*/
-ERROR_STATE_t BUTTONClient_EventReceive(uint8_t * State);
+ERROR_STATE_t BUTTONClient_Init(STR_BTNClient_t * const ClientData);
+ERROR_STATE_t BUTTONClient_SetBtn(STR_BTNClient_t * const ClientData, uint8_t BTN_CH);
+ERROR_STATE_t BUTTONClient_SetTimer(STR_BTNClient_t * const ClientData, uint8_t TIM_CH, uint32_t DelayMS);
+ERROR_STATE_t BUTTONClient_SetEventCallback(STR_BTNClient_t * const ClientData, Ptr_VoidFuncVoid_t Callback);
+ERROR_STATE_t BUTTONClient_EventReceive(STR_BTNClient_t * const ClientData);
 
 #endif /* __BUTTON_CLIENT_H__ */

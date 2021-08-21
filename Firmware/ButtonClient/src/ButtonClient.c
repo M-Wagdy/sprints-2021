@@ -9,21 +9,110 @@
 ----------------------------------------------*/
 #include "ButtonClient.h"
 
-/*- GLOBAL STATIC VARIABLES
--------------------------------*/
-static uint8_t gu8_OldState;
-
 /*- APIs IMPLEMENTATION
 -----------------------------------*/
+/**
+* @brief: This function Initialize Client Struct.
+*
+* @param [in]  ClientData  -  Struct containing Client Data.
+*
+* @return function error state.
+*/
+ERROR_STATE_t BUTTONClient_Init(STR_BTNClient_t * const ClientData)
+{
+   ClientData->u8_ButtonCh = BTN_INVALID_CH;
+   ClientData->u8_ButtonState = 0;
+   ClientData->u8_OldButtonState = 0;
+   ClientData->u8_TimerCh = INVALID_TIMER_CH;
+   ClientData->u32_DebounceDelay = 0;
+   ClientData->EventCallback = NULL_PTR;
+   return ERROR_OK;
+}
+
+/**
+* @brief: This function Sets Button Device.
+*
+* @param [in]  ClientData  -  Struct containing Client Data.
+* @param [in]  BTN_CH      -  Button Channel Number.
+*
+* @return function error state.
+*/
+ERROR_STATE_t BUTTONClient_SetBtn(STR_BTNClient_t * const ClientData, uint8_t BTN_CH)
+{
+   ERROR_STATE_t Client_ErrorState;
+   
+   if(BTN_CH >= BTN_INVALID_CH)
+   {
+      Client_ErrorState = ERROR_NOK;
+   }
+   else
+   {
+      ClientData->u8_ButtonCh = BTN_CH;
+   }
+   
+   return Client_ErrorState;
+}
+
+/**
+* @brief: This function Sets Debounce Delay for device.
+*
+* @param [in]  ClientData  -  Struct containing Client Data.
+* @param [in]  TIM_CH      -  Timer Channel Number.
+* @param [in]  DelayMS     -  Debounce Delay in milliseconds.
+*
+* @return function error state.
+*/
+ERROR_STATE_t BUTTONClient_SetTimer(STR_BTNClient_t * const ClientData, uint8_t TIM_CH, uint32_t DelayMS)
+{
+   ERROR_STATE_t Client_ErrorState;
+   
+   if(TIM_CH >= INVALID_TIMER_CH)
+   {
+      Client_ErrorState = ERROR_NOK;
+   }
+   else
+   {
+      ClientData->u8_TimerCh = TIM_CH;
+      ClientData->u32_DebounceDelay = DelayMS;
+      Client_ErrorState = ERROR_OK;
+   }
+   
+   return Client_ErrorState;
+}
+
+/**
+* @brief: This function Sets Callback Function.
+*
+* @param [in]  ClientData  -  Struct containing Client Data.
+* @param [in]  Callback    -  Pointer to the Callback Function.
+*
+* @return function error state.
+*/
+ERROR_STATE_t BUTTONClient_SetEventCallback(STR_BTNClient_t * const ClientData, Ptr_VoidFuncVoid_t Callback)
+{
+   ERROR_STATE_t Client_ErrorState;
+   
+   if(NULL_PTR == Callback)
+   {
+      Client_ErrorState = ERROR_NOK;
+   }
+   else
+   {
+      ClientData->EventCallback = Callback;
+      Client_ErrorState = ERROR_OK;
+   }
+   
+   return Client_ErrorState;
+}
 
 /**
 * @brief: This function gets Button State.
 *
-* @param [in]  State -  Button State.
+* @param [in]  ClientData -  Struct containing Client Data.
 *
 * @return function error state.
 */
-ERROR_STATE_t BUTTONClient_EventReceive(uint8_t * State)
+ERROR_STATE_t BUTTONClient_EventReceive(STR_BTNClient_t * const ClientData)
 {
    /* State Machine Variable */
    static Enu_ButtonClientStateMachine ENU_ClientState = ButtonClient_Ready;
@@ -34,20 +123,14 @@ ERROR_STATE_t BUTTONClient_EventReceive(uint8_t * State)
    /* Button Client Error State */
    ERROR_STATE_t ErrorState = ERROR_NOK;
    
-   /* Variable to store button state in it. */
-   uint8_t u8_state;
-   
    /* State Machine */
    switch(ENU_ClientState)
    {
       /* Get First Button Reading State */
       case ButtonClient_Ready:
-         RetErrorState = BUTTON_getState(&u8_state);
+         RetErrorState = BUTTON_getState(ClientData->u8_ButtonCh, &ClientData->u8_OldButtonState);
          if(ERROR_OK == RetErrorState)
-         {
-            /* Store State in Old State */
-            gu8_OldState = u8_state;
-            
+         {  
             /* Go to debounce Delay State. */
             ENU_ClientState = ButtonClient_Delay;
          }
@@ -59,12 +142,12 @@ ERROR_STATE_t BUTTONClient_EventReceive(uint8_t * State)
       /* Debounce Delay State */
       case ButtonClient_Delay:
          /* Call Delay Status. */
-         RetErrorState = TIM_DelayStatus(TIMER_2, BUTTONClient_EventReceive);
+         RetErrorState = TIM_DelayStatus(ClientData->u8_TimerCh, BUTTONClient_EventReceive);
          /* If Delay is not used by another API. */
          if(TIMER_E_DELAY_EMPTY == RetErrorState)
          {
             /* Start Delay with 20 Milliseconds. */
-            TIM_DelayMs(TIMER_2, 20, BUTTONClient_EventReceive);
+            TIM_DelayMs(ClientData->u8_TimerCh, ClientData->u32_DebounceDelay, BUTTONClient_EventReceive);
          }
          /* If Delay Finished */
          else if(ERROR_OK == RetErrorState)
@@ -79,14 +162,18 @@ ERROR_STATE_t BUTTONClient_EventReceive(uint8_t * State)
          break;
       /* Get Second Button Reading State. */
       case ButtonClient_StateReady:
-         ErrorState = BUTTON_getState(&u8_state);
+         ErrorState = BUTTON_getState(ClientData->u8_ButtonCh, &ClientData->u8_ButtonState);
          if(ERROR_OK == RetErrorState)
          {
             /* Compare the button old state with the new state. */
-            if(gu8_OldState == u8_state)
+            if(ClientData->u8_OldButtonState == ClientData->u8_ButtonState)
             {
-               /* Return the button value. */
-               *State = u8_state;
+               /* Make Sure Callback is not pointing to null. */
+               if(NULL_PTR != ClientData->EventCallback)
+               {
+                  /* Call The callback function. */
+                  ClientData->EventCallback();
+               }                 
                ErrorState = ERROR_OK;
             }
             else
