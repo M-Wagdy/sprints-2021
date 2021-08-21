@@ -1,0 +1,640 @@
+
+DIOHardwareProxyPatternTestApp.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000003e2  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000456  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000004  00800060  00800060  00000456  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000456  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000488  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000070  00000000  00000000  000004c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000c5c  00000000  00000000  00000534  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000006b5  00000000  00000000  00001190  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000543  00000000  00000000  00001845  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000011c  00000000  00000000  00001d88  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000494  00000000  00000000  00001ea4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000081a  00000000  00000000  00002338  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000050  00000000  00000000  00002b52  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a4 36       	cpi	r26, 0x64	; 100
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 91 01 	call	0x322	; 0x322 <main>
+  74:	0c 94 ef 01 	jmp	0x3de	; 0x3de <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <DIOProxy_Marshall>:
+   {
+      Proxy_ErrorState = ERROR_NOK;
+   }
+   
+   return Proxy_ErrorState;
+}
+  7c:	cf 93       	push	r28
+  7e:	df 93       	push	r29
+  80:	ec 01       	movw	r28, r24
+  82:	fb 01       	movw	r30, r22
+  84:	a8 81       	ld	r26, Y
+  86:	b9 81       	ldd	r27, Y+1	; 0x01
+  88:	10 97       	sbiw	r26, 0x00	; 0
+  8a:	09 f4       	brne	.+2      	; 0x8e <DIOProxy_Marshall+0x12>
+  8c:	56 c0       	rjmp	.+172    	; 0x13a <DIOProxy_Marshall+0xbe>
+  8e:	30 97       	sbiw	r30, 0x00	; 0
+  90:	09 f4       	brne	.+2      	; 0x94 <DIOProxy_Marshall+0x18>
+  92:	55 c0       	rjmp	.+170    	; 0x13e <DIOProxy_Marshall+0xc2>
+  94:	84 81       	ldd	r24, Z+4	; 0x04
+  96:	81 11       	cpse	r24, r1
+  98:	33 c0       	rjmp	.+102    	; 0x100 <DIOProxy_Marshall+0x84>
+  9a:	8e 91       	ld	r24, -X
+  9c:	60 81       	ld	r22, Z
+  9e:	41 e0       	ldi	r20, 0x01	; 1
+  a0:	50 e0       	ldi	r21, 0x00	; 0
+  a2:	06 2e       	mov	r0, r22
+  a4:	02 c0       	rjmp	.+4      	; 0xaa <DIOProxy_Marshall+0x2e>
+  a6:	44 0f       	add	r20, r20
+  a8:	55 1f       	adc	r21, r21
+  aa:	0a 94       	dec	r0
+  ac:	e2 f7       	brpl	.-8      	; 0xa6 <DIOProxy_Marshall+0x2a>
+  ae:	91 81       	ldd	r25, Z+1	; 0x01
+  b0:	29 2f       	mov	r18, r25
+  b2:	30 e0       	ldi	r19, 0x00	; 0
+  b4:	02 c0       	rjmp	.+4      	; 0xba <DIOProxy_Marshall+0x3e>
+  b6:	22 0f       	add	r18, r18
+  b8:	33 1f       	adc	r19, r19
+  ba:	6a 95       	dec	r22
+  bc:	e2 f7       	brpl	.-8      	; 0xb6 <DIOProxy_Marshall+0x3a>
+  be:	40 95       	com	r20
+  c0:	48 23       	and	r20, r24
+  c2:	24 2b       	or	r18, r20
+  c4:	2c 93       	st	X, r18
+  c6:	81 81       	ldd	r24, Z+1	; 0x01
+  c8:	81 11       	cpse	r24, r1
+  ca:	3b c0       	rjmp	.+118    	; 0x142 <DIOProxy_Marshall+0xc6>
+  cc:	a8 81       	ld	r26, Y
+  ce:	b9 81       	ldd	r27, Y+1	; 0x01
+  d0:	4c 91       	ld	r20, X
+  d2:	50 81       	ld	r21, Z
+  d4:	21 e0       	ldi	r18, 0x01	; 1
+  d6:	30 e0       	ldi	r19, 0x00	; 0
+  d8:	05 2e       	mov	r0, r21
+  da:	02 c0       	rjmp	.+4      	; 0xe0 <DIOProxy_Marshall+0x64>
+  dc:	22 0f       	add	r18, r18
+  de:	33 1f       	adc	r19, r19
+  e0:	0a 94       	dec	r0
+  e2:	e2 f7       	brpl	.-8      	; 0xdc <DIOProxy_Marshall+0x60>
+  e4:	93 81       	ldd	r25, Z+3	; 0x03
+  e6:	89 2f       	mov	r24, r25
+  e8:	90 e0       	ldi	r25, 0x00	; 0
+  ea:	02 c0       	rjmp	.+4      	; 0xf0 <DIOProxy_Marshall+0x74>
+  ec:	88 0f       	add	r24, r24
+  ee:	99 1f       	adc	r25, r25
+  f0:	5a 95       	dec	r21
+  f2:	e2 f7       	brpl	.-8      	; 0xec <DIOProxy_Marshall+0x70>
+  f4:	20 95       	com	r18
+  f6:	24 23       	and	r18, r20
+  f8:	82 2b       	or	r24, r18
+  fa:	8c 93       	st	X, r24
+  fc:	80 e0       	ldi	r24, 0x00	; 0
+  fe:	26 c0       	rjmp	.+76     	; 0x14c <DIOProxy_Marshall+0xd0>
+ 100:	81 30       	cpi	r24, 0x01	; 1
+ 102:	09 f5       	brne	.+66     	; 0x146 <DIOProxy_Marshall+0xca>
+ 104:	81 81       	ldd	r24, Z+1	; 0x01
+ 106:	81 30       	cpi	r24, 0x01	; 1
+ 108:	01 f5       	brne	.+64     	; 0x14a <DIOProxy_Marshall+0xce>
+ 10a:	4c 91       	ld	r20, X
+ 10c:	50 81       	ld	r21, Z
+ 10e:	21 e0       	ldi	r18, 0x01	; 1
+ 110:	30 e0       	ldi	r19, 0x00	; 0
+ 112:	05 2e       	mov	r0, r21
+ 114:	02 c0       	rjmp	.+4      	; 0x11a <DIOProxy_Marshall+0x9e>
+ 116:	22 0f       	add	r18, r18
+ 118:	33 1f       	adc	r19, r19
+ 11a:	0a 94       	dec	r0
+ 11c:	e2 f7       	brpl	.-8      	; 0x116 <DIOProxy_Marshall+0x9a>
+ 11e:	92 81       	ldd	r25, Z+2	; 0x02
+ 120:	89 2f       	mov	r24, r25
+ 122:	90 e0       	ldi	r25, 0x00	; 0
+ 124:	02 c0       	rjmp	.+4      	; 0x12a <DIOProxy_Marshall+0xae>
+ 126:	88 0f       	add	r24, r24
+ 128:	99 1f       	adc	r25, r25
+ 12a:	5a 95       	dec	r21
+ 12c:	e2 f7       	brpl	.-8      	; 0x126 <DIOProxy_Marshall+0xaa>
+ 12e:	20 95       	com	r18
+ 130:	24 23       	and	r18, r20
+ 132:	82 2b       	or	r24, r18
+ 134:	8c 93       	st	X, r24
+ 136:	80 e0       	ldi	r24, 0x00	; 0
+ 138:	09 c0       	rjmp	.+18     	; 0x14c <DIOProxy_Marshall+0xd0>
+ 13a:	81 e0       	ldi	r24, 0x01	; 1
+ 13c:	07 c0       	rjmp	.+14     	; 0x14c <DIOProxy_Marshall+0xd0>
+ 13e:	81 e0       	ldi	r24, 0x01	; 1
+ 140:	05 c0       	rjmp	.+10     	; 0x14c <DIOProxy_Marshall+0xd0>
+ 142:	80 e0       	ldi	r24, 0x00	; 0
+ 144:	03 c0       	rjmp	.+6      	; 0x14c <DIOProxy_Marshall+0xd0>
+ 146:	81 e0       	ldi	r24, 0x01	; 1
+ 148:	01 c0       	rjmp	.+2      	; 0x14c <DIOProxy_Marshall+0xd0>
+ 14a:	81 e0       	ldi	r24, 0x01	; 1
+ 14c:	df 91       	pop	r29
+ 14e:	cf 91       	pop	r28
+ 150:	08 95       	ret
+
+00000152 <DIOProxy_Unmarshall>:
+ 152:	cf 93       	push	r28
+ 154:	df 93       	push	r29
+ 156:	fb 01       	movw	r30, r22
+ 158:	dc 01       	movw	r26, r24
+ 15a:	2d 91       	ld	r18, X+
+ 15c:	3c 91       	ld	r19, X
+ 15e:	21 15       	cp	r18, r1
+ 160:	31 05       	cpc	r19, r1
+ 162:	e1 f1       	breq	.+120    	; 0x1dc <DIOProxy_Unmarshall+0x8a>
+ 164:	30 97       	sbiw	r30, 0x00	; 0
+ 166:	e1 f1       	breq	.+120    	; 0x1e0 <DIOProxy_Unmarshall+0x8e>
+ 168:	d9 01       	movw	r26, r18
+ 16a:	11 97       	sbiw	r26, 0x01	; 1
+ 16c:	2c 91       	ld	r18, X
+ 16e:	40 81       	ld	r20, Z
+ 170:	30 e0       	ldi	r19, 0x00	; 0
+ 172:	04 2e       	mov	r0, r20
+ 174:	02 c0       	rjmp	.+4      	; 0x17a <DIOProxy_Unmarshall+0x28>
+ 176:	35 95       	asr	r19
+ 178:	27 95       	ror	r18
+ 17a:	0a 94       	dec	r0
+ 17c:	e2 f7       	brpl	.-8      	; 0x176 <DIOProxy_Unmarshall+0x24>
+ 17e:	21 70       	andi	r18, 0x01	; 1
+ 180:	21 83       	std	Z+1, r18	; 0x01
+ 182:	21 30       	cpi	r18, 0x01	; 1
+ 184:	71 f4       	brne	.+28     	; 0x1a2 <DIOProxy_Unmarshall+0x50>
+ 186:	ec 01       	movw	r28, r24
+ 188:	a8 81       	ld	r26, Y
+ 18a:	b9 81       	ldd	r27, Y+1	; 0x01
+ 18c:	8c 91       	ld	r24, X
+ 18e:	90 e0       	ldi	r25, 0x00	; 0
+ 190:	02 c0       	rjmp	.+4      	; 0x196 <DIOProxy_Unmarshall+0x44>
+ 192:	95 95       	asr	r25
+ 194:	87 95       	ror	r24
+ 196:	4a 95       	dec	r20
+ 198:	e2 f7       	brpl	.-8      	; 0x192 <DIOProxy_Unmarshall+0x40>
+ 19a:	81 70       	andi	r24, 0x01	; 1
+ 19c:	82 83       	std	Z+2, r24	; 0x02
+ 19e:	80 e0       	ldi	r24, 0x00	; 0
+ 1a0:	22 c0       	rjmp	.+68     	; 0x1e6 <DIOProxy_Unmarshall+0x94>
+ 1a2:	21 11       	cpse	r18, r1
+ 1a4:	1f c0       	rjmp	.+62     	; 0x1e4 <DIOProxy_Unmarshall+0x92>
+ 1a6:	ec 01       	movw	r28, r24
+ 1a8:	a8 81       	ld	r26, Y
+ 1aa:	b9 81       	ldd	r27, Y+1	; 0x01
+ 1ac:	2c 91       	ld	r18, X
+ 1ae:	30 e0       	ldi	r19, 0x00	; 0
+ 1b0:	04 2e       	mov	r0, r20
+ 1b2:	02 c0       	rjmp	.+4      	; 0x1b8 <DIOProxy_Unmarshall+0x66>
+ 1b4:	35 95       	asr	r19
+ 1b6:	27 95       	ror	r18
+ 1b8:	0a 94       	dec	r0
+ 1ba:	e2 f7       	brpl	.-8      	; 0x1b4 <DIOProxy_Unmarshall+0x62>
+ 1bc:	21 70       	andi	r18, 0x01	; 1
+ 1be:	23 83       	std	Z+3, r18	; 0x03
+ 1c0:	a8 81       	ld	r26, Y
+ 1c2:	b9 81       	ldd	r27, Y+1	; 0x01
+ 1c4:	12 97       	sbiw	r26, 0x02	; 2
+ 1c6:	8c 91       	ld	r24, X
+ 1c8:	90 e0       	ldi	r25, 0x00	; 0
+ 1ca:	02 c0       	rjmp	.+4      	; 0x1d0 <DIOProxy_Unmarshall+0x7e>
+ 1cc:	95 95       	asr	r25
+ 1ce:	87 95       	ror	r24
+ 1d0:	4a 95       	dec	r20
+ 1d2:	e2 f7       	brpl	.-8      	; 0x1cc <DIOProxy_Unmarshall+0x7a>
+ 1d4:	81 70       	andi	r24, 0x01	; 1
+ 1d6:	82 83       	std	Z+2, r24	; 0x02
+ 1d8:	80 e0       	ldi	r24, 0x00	; 0
+ 1da:	05 c0       	rjmp	.+10     	; 0x1e6 <DIOProxy_Unmarshall+0x94>
+ 1dc:	81 e0       	ldi	r24, 0x01	; 1
+ 1de:	03 c0       	rjmp	.+6      	; 0x1e6 <DIOProxy_Unmarshall+0x94>
+ 1e0:	81 e0       	ldi	r24, 0x01	; 1
+ 1e2:	01 c0       	rjmp	.+2      	; 0x1e6 <DIOProxy_Unmarshall+0x94>
+ 1e4:	81 e0       	ldi	r24, 0x01	; 1
+ 1e6:	df 91       	pop	r29
+ 1e8:	cf 91       	pop	r28
+ 1ea:	08 95       	ret
+
+000001ec <DIOProxy_Init>:
+ 1ec:	61 15       	cp	r22, r1
+ 1ee:	71 05       	cpc	r23, r1
+ 1f0:	39 f0       	breq	.+14     	; 0x200 <DIOProxy_Init+0x14>
+ 1f2:	00 97       	sbiw	r24, 0x00	; 0
+ 1f4:	39 f0       	breq	.+14     	; 0x204 <DIOProxy_Init+0x18>
+ 1f6:	fc 01       	movw	r30, r24
+ 1f8:	71 83       	std	Z+1, r23	; 0x01
+ 1fa:	60 83       	st	Z, r22
+ 1fc:	80 e0       	ldi	r24, 0x00	; 0
+ 1fe:	08 95       	ret
+ 200:	81 e0       	ldi	r24, 0x01	; 1
+ 202:	08 95       	ret
+ 204:	81 e0       	ldi	r24, 0x01	; 1
+ 206:	08 95       	ret
+
+00000208 <DIOProxy_Configure>:
+ 208:	cf 93       	push	r28
+ 20a:	df 93       	push	r29
+ 20c:	00 d0       	rcall	.+0      	; 0x20e <DIOProxy_Configure+0x6>
+ 20e:	00 d0       	rcall	.+0      	; 0x210 <DIOProxy_Configure+0x8>
+ 210:	1f 92       	push	r1
+ 212:	cd b7       	in	r28, 0x3d	; 61
+ 214:	de b7       	in	r29, 0x3e	; 62
+ 216:	dc 01       	movw	r26, r24
+ 218:	ed 91       	ld	r30, X+
+ 21a:	fc 91       	ld	r31, X
+ 21c:	ef 2b       	or	r30, r31
+ 21e:	61 f0       	breq	.+24     	; 0x238 <DIOProxy_Configure+0x30>
+ 220:	68 30       	cpi	r22, 0x08	; 8
+ 222:	60 f4       	brcc	.+24     	; 0x23c <DIOProxy_Configure+0x34>
+ 224:	69 83       	std	Y+1, r22	; 0x01
+ 226:	4a 83       	std	Y+2, r20	; 0x02
+ 228:	2c 83       	std	Y+4, r18	; 0x04
+ 22a:	1d 82       	std	Y+5, r1	; 0x05
+ 22c:	be 01       	movw	r22, r28
+ 22e:	6f 5f       	subi	r22, 0xFF	; 255
+ 230:	7f 4f       	sbci	r23, 0xFF	; 255
+ 232:	0e 94 3e 00 	call	0x7c	; 0x7c <DIOProxy_Marshall>
+ 236:	03 c0       	rjmp	.+6      	; 0x23e <DIOProxy_Configure+0x36>
+ 238:	81 e0       	ldi	r24, 0x01	; 1
+ 23a:	01 c0       	rjmp	.+2      	; 0x23e <DIOProxy_Configure+0x36>
+ 23c:	81 e0       	ldi	r24, 0x01	; 1
+ 23e:	0f 90       	pop	r0
+ 240:	0f 90       	pop	r0
+ 242:	0f 90       	pop	r0
+ 244:	0f 90       	pop	r0
+ 246:	0f 90       	pop	r0
+ 248:	df 91       	pop	r29
+ 24a:	cf 91       	pop	r28
+ 24c:	08 95       	ret
+
+0000024e <DIOProxy_AccessPin>:
+
+ERROR_STATE_t DIOProxy_AccessPin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, uint8_t * PinData)
+{
+ 24e:	0f 93       	push	r16
+ 250:	1f 93       	push	r17
+ 252:	cf 93       	push	r28
+ 254:	df 93       	push	r29
+ 256:	00 d0       	rcall	.+0      	; 0x258 <DIOProxy_AccessPin+0xa>
+ 258:	00 d0       	rcall	.+0      	; 0x25a <DIOProxy_AccessPin+0xc>
+ 25a:	1f 92       	push	r1
+ 25c:	cd b7       	in	r28, 0x3d	; 61
+ 25e:	de b7       	in	r29, 0x3e	; 62
+   ERROR_STATE_t Proxy_ErrorState;
+   
+   if(NULL_PTR != ProxyData->u8_Addr && NULL_PTR != PinData && Pin < PIN_INVALID)
+ 260:	fc 01       	movw	r30, r24
+ 262:	20 81       	ld	r18, Z
+ 264:	31 81       	ldd	r19, Z+1	; 0x01
+ 266:	23 2b       	or	r18, r19
+ 268:	a1 f0       	breq	.+40     	; 0x292 <DIOProxy_AccessPin+0x44>
+ 26a:	41 15       	cp	r20, r1
+ 26c:	51 05       	cpc	r21, r1
+ 26e:	99 f0       	breq	.+38     	; 0x296 <DIOProxy_AccessPin+0x48>
+ 270:	68 30       	cpi	r22, 0x08	; 8
+ 272:	98 f4       	brcc	.+38     	; 0x29a <DIOProxy_AccessPin+0x4c>
+ 274:	8a 01       	movw	r16, r20
+   {
+      STR_DIOData_t Data;
+      Data.u8_Pin = Pin;
+ 276:	69 83       	std	Y+1, r22	; 0x01
+      Proxy_ErrorState = DIOProxy_Unmarshall(ProxyData, &Data);
+ 278:	be 01       	movw	r22, r28
+ 27a:	6f 5f       	subi	r22, 0xFF	; 255
+ 27c:	7f 4f       	sbci	r23, 0xFF	; 255
+ 27e:	0e 94 a9 00 	call	0x152	; 0x152 <DIOProxy_Unmarshall>
+      if(ERROR_OK == Proxy_ErrorState)
+ 282:	81 11       	cpse	r24, r1
+ 284:	04 c0       	rjmp	.+8      	; 0x28e <DIOProxy_AccessPin+0x40>
+      {
+         *PinData = Data.u8_PinData;
+ 286:	9b 81       	ldd	r25, Y+3	; 0x03
+ 288:	f8 01       	movw	r30, r16
+ 28a:	90 83       	st	Z, r25
+ 28c:	07 c0       	rjmp	.+14     	; 0x29c <DIOProxy_AccessPin+0x4e>
+         Proxy_ErrorState = ERROR_OK;
+      }
+      else
+      {
+         Proxy_ErrorState = ERROR_NOK;
+ 28e:	81 e0       	ldi	r24, 0x01	; 1
+ERROR_STATE_t DIOProxy_AccessPin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, uint8_t * PinData)
+{
+   ERROR_STATE_t Proxy_ErrorState;
+   
+   if(NULL_PTR != ProxyData->u8_Addr && NULL_PTR != PinData && Pin < PIN_INVALID)
+   {
+ 290:	05 c0       	rjmp	.+10     	; 0x29c <DIOProxy_AccessPin+0x4e>
+         Proxy_ErrorState = ERROR_NOK;
+      }
+   }
+   else
+   {
+      Proxy_ErrorState = ERROR_NOK;
+ 292:	81 e0       	ldi	r24, 0x01	; 1
+ 294:	03 c0       	rjmp	.+6      	; 0x29c <DIOProxy_AccessPin+0x4e>
+ 296:	81 e0       	ldi	r24, 0x01	; 1
+ 298:	01 c0       	rjmp	.+2      	; 0x29c <DIOProxy_AccessPin+0x4e>
+ 29a:	81 e0       	ldi	r24, 0x01	; 1
+   }
+   return Proxy_ErrorState;
+}
+ 29c:	0f 90       	pop	r0
+ 29e:	0f 90       	pop	r0
+ 2a0:	0f 90       	pop	r0
+ 2a2:	0f 90       	pop	r0
+ 2a4:	0f 90       	pop	r0
+ 2a6:	df 91       	pop	r29
+ 2a8:	cf 91       	pop	r28
+ 2aa:	1f 91       	pop	r17
+ 2ac:	0f 91       	pop	r16
+ 2ae:	08 95       	ret
+
+000002b0 <DIOProxy_MutatePin>:
+
+
+ERROR_STATE_t DIOProxy_MutatePin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, uint8_t PinData)
+{
+ 2b0:	ff 92       	push	r15
+ 2b2:	0f 93       	push	r16
+ 2b4:	1f 93       	push	r17
+ 2b6:	cf 93       	push	r28
+ 2b8:	df 93       	push	r29
+ 2ba:	00 d0       	rcall	.+0      	; 0x2bc <DIOProxy_MutatePin+0xc>
+ 2bc:	00 d0       	rcall	.+0      	; 0x2be <DIOProxy_MutatePin+0xe>
+ 2be:	1f 92       	push	r1
+ 2c0:	cd b7       	in	r28, 0x3d	; 61
+ 2c2:	de b7       	in	r29, 0x3e	; 62
+   ERROR_STATE_t Proxy_ErrorState;
+   
+   if(NULL_PTR != ProxyData->u8_Addr && Pin < PIN_INVALID)
+ 2c4:	fc 01       	movw	r30, r24
+ 2c6:	20 81       	ld	r18, Z
+ 2c8:	31 81       	ldd	r19, Z+1	; 0x01
+ 2ca:	23 2b       	or	r18, r19
+ 2cc:	e1 f0       	breq	.+56     	; 0x306 <DIOProxy_MutatePin+0x56>
+ 2ce:	68 30       	cpi	r22, 0x08	; 8
+ 2d0:	e0 f4       	brcc	.+56     	; 0x30a <DIOProxy_MutatePin+0x5a>
+ 2d2:	f4 2e       	mov	r15, r20
+ 2d4:	8c 01       	movw	r16, r24
+   {
+      STR_DIOData_t Data;
+      Data.u8_Pin = Pin;
+ 2d6:	69 83       	std	Y+1, r22	; 0x01
+      Proxy_ErrorState = DIOProxy_Unmarshall(ProxyData, &Data);
+ 2d8:	be 01       	movw	r22, r28
+ 2da:	6f 5f       	subi	r22, 0xFF	; 255
+ 2dc:	7f 4f       	sbci	r23, 0xFF	; 255
+ 2de:	0e 94 a9 00 	call	0x152	; 0x152 <DIOProxy_Unmarshall>
+      if(ERROR_OK == Proxy_ErrorState)
+ 2e2:	81 11       	cpse	r24, r1
+ 2e4:	0c c0       	rjmp	.+24     	; 0x2fe <DIOProxy_MutatePin+0x4e>
+      {
+         if(PIN_OUTPUT == Data.u8_PinDirection)
+ 2e6:	8a 81       	ldd	r24, Y+2	; 0x02
+ 2e8:	81 30       	cpi	r24, 0x01	; 1
+ 2ea:	59 f4       	brne	.+22     	; 0x302 <DIOProxy_MutatePin+0x52>
+         {
+            Data.u8_PinData = PinData;
+ 2ec:	fb 82       	std	Y+3, r15	; 0x03
+            Data.u8_CMD = PIN_CMD_MUTATE;
+ 2ee:	8d 83       	std	Y+5, r24	; 0x05
+            Proxy_ErrorState = DIOProxy_Marshall(ProxyData, &Data);
+ 2f0:	be 01       	movw	r22, r28
+ 2f2:	6f 5f       	subi	r22, 0xFF	; 255
+ 2f4:	7f 4f       	sbci	r23, 0xFF	; 255
+ 2f6:	c8 01       	movw	r24, r16
+ 2f8:	0e 94 3e 00 	call	0x7c	; 0x7c <DIOProxy_Marshall>
+ 2fc:	07 c0       	rjmp	.+14     	; 0x30c <DIOProxy_MutatePin+0x5c>
+            Proxy_ErrorState = ERROR_NOK;
+         }
+      }
+      else
+      {
+         Proxy_ErrorState = ERROR_NOK;
+ 2fe:	81 e0       	ldi	r24, 0x01	; 1
+ 300:	05 c0       	rjmp	.+10     	; 0x30c <DIOProxy_MutatePin+0x5c>
+            Data.u8_CMD = PIN_CMD_MUTATE;
+            Proxy_ErrorState = DIOProxy_Marshall(ProxyData, &Data);
+         }
+         else
+         {
+            Proxy_ErrorState = ERROR_NOK;
+ 302:	81 e0       	ldi	r24, 0x01	; 1
+ERROR_STATE_t DIOProxy_MutatePin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, uint8_t PinData)
+{
+   ERROR_STATE_t Proxy_ErrorState;
+   
+   if(NULL_PTR != ProxyData->u8_Addr && Pin < PIN_INVALID)
+   {
+ 304:	03 c0       	rjmp	.+6      	; 0x30c <DIOProxy_MutatePin+0x5c>
+         Proxy_ErrorState = ERROR_NOK;
+      }
+   }
+   else
+   {
+      Proxy_ErrorState = ERROR_NOK;
+ 306:	81 e0       	ldi	r24, 0x01	; 1
+ 308:	01 c0       	rjmp	.+2      	; 0x30c <DIOProxy_MutatePin+0x5c>
+ 30a:	81 e0       	ldi	r24, 0x01	; 1
+   }
+   return Proxy_ErrorState;
+ 30c:	0f 90       	pop	r0
+ 30e:	0f 90       	pop	r0
+ 310:	0f 90       	pop	r0
+ 312:	0f 90       	pop	r0
+ 314:	0f 90       	pop	r0
+ 316:	df 91       	pop	r29
+ 318:	cf 91       	pop	r28
+ 31a:	1f 91       	pop	r17
+ 31c:	0f 91       	pop	r16
+ 31e:	ff 90       	pop	r15
+ 320:	08 95       	ret
+
+00000322 <main>:
+
+static STR_DIOProxy_t PortA_Proxy;
+static STR_DIOProxy_t PortB_Proxy;
+
+int main(void)
+{
+ 322:	cf 93       	push	r28
+ 324:	df 93       	push	r29
+ 326:	00 d0       	rcall	.+0      	; 0x328 <main+0x6>
+ 328:	cd b7       	in	r28, 0x3d	; 61
+ 32a:	de b7       	in	r29, 0x3e	; 62
+   
+    DIOProxy_Init(&PortA_Proxy, &PORT_A_ADDR);
+ 32c:	6b e3       	ldi	r22, 0x3B	; 59
+ 32e:	70 e0       	ldi	r23, 0x00	; 0
+ 330:	82 e6       	ldi	r24, 0x62	; 98
+ 332:	90 e0       	ldi	r25, 0x00	; 0
+ 334:	0e 94 f6 00 	call	0x1ec	; 0x1ec <DIOProxy_Init>
+    DIOProxy_Init(&PortB_Proxy, &PORT_B_ADDR);
+ 338:	68 e3       	ldi	r22, 0x38	; 56
+ 33a:	70 e0       	ldi	r23, 0x00	; 0
+ 33c:	80 e6       	ldi	r24, 0x60	; 96
+ 33e:	90 e0       	ldi	r25, 0x00	; 0
+ 340:	0e 94 f6 00 	call	0x1ec	; 0x1ec <DIOProxy_Init>
+    
+    DIOProxy_Configure(&PortA_Proxy, PIN_0, PIN_OUTPUT, PIN_NO_RES);
+ 344:	20 e0       	ldi	r18, 0x00	; 0
+ 346:	41 e0       	ldi	r20, 0x01	; 1
+ 348:	60 e0       	ldi	r22, 0x00	; 0
+ 34a:	82 e6       	ldi	r24, 0x62	; 98
+ 34c:	90 e0       	ldi	r25, 0x00	; 0
+ 34e:	0e 94 04 01 	call	0x208	; 0x208 <DIOProxy_Configure>
+    DIOProxy_Configure(&PortA_Proxy, PIN_1, PIN_INPUT, PIN_PULLUP);
+ 352:	21 e0       	ldi	r18, 0x01	; 1
+ 354:	40 e0       	ldi	r20, 0x00	; 0
+ 356:	61 e0       	ldi	r22, 0x01	; 1
+ 358:	82 e6       	ldi	r24, 0x62	; 98
+ 35a:	90 e0       	ldi	r25, 0x00	; 0
+ 35c:	0e 94 04 01 	call	0x208	; 0x208 <DIOProxy_Configure>
+    DIOProxy_Configure(&PortB_Proxy, PIN_0, PIN_OUTPUT, PIN_NO_RES);
+ 360:	20 e0       	ldi	r18, 0x00	; 0
+ 362:	41 e0       	ldi	r20, 0x01	; 1
+ 364:	60 e0       	ldi	r22, 0x00	; 0
+ 366:	80 e6       	ldi	r24, 0x60	; 96
+ 368:	90 e0       	ldi	r25, 0x00	; 0
+ 36a:	0e 94 04 01 	call	0x208	; 0x208 <DIOProxy_Configure>
+    DIOProxy_Configure(&PortB_Proxy, PIN_1, PIN_INPUT, PIN_PULLUP);
+ 36e:	21 e0       	ldi	r18, 0x01	; 1
+ 370:	40 e0       	ldi	r20, 0x00	; 0
+ 372:	61 e0       	ldi	r22, 0x01	; 1
+ 374:	80 e6       	ldi	r24, 0x60	; 96
+ 376:	90 e0       	ldi	r25, 0x00	; 0
+ 378:	0e 94 04 01 	call	0x208	; 0x208 <DIOProxy_Configure>
+    uint8_t Pin_A1_Data;
+    uint8_t Pin_B1_Data;
+    
+    while (1) 
+    {
+       DIOProxy_AccessPin(&PortA_Proxy, PIN_1, &Pin_A1_Data);
+ 37c:	ae 01       	movw	r20, r28
+ 37e:	4f 5f       	subi	r20, 0xFF	; 255
+ 380:	5f 4f       	sbci	r21, 0xFF	; 255
+ 382:	61 e0       	ldi	r22, 0x01	; 1
+ 384:	82 e6       	ldi	r24, 0x62	; 98
+ 386:	90 e0       	ldi	r25, 0x00	; 0
+ 388:	0e 94 27 01 	call	0x24e	; 0x24e <DIOProxy_AccessPin>
+       if(PIN_LOW == Pin_A1_Data)
+ 38c:	89 81       	ldd	r24, Y+1	; 0x01
+ 38e:	81 11       	cpse	r24, r1
+ 390:	07 c0       	rjmp	.+14     	; 0x3a0 <main+0x7e>
+       {
+          DIOProxy_MutatePin(&PortA_Proxy, PIN_0, PIN_HIGH);
+ 392:	41 e0       	ldi	r20, 0x01	; 1
+ 394:	60 e0       	ldi	r22, 0x00	; 0
+ 396:	82 e6       	ldi	r24, 0x62	; 98
+ 398:	90 e0       	ldi	r25, 0x00	; 0
+ 39a:	0e 94 58 01 	call	0x2b0	; 0x2b0 <DIOProxy_MutatePin>
+ 39e:	06 c0       	rjmp	.+12     	; 0x3ac <main+0x8a>
+       }
+       else
+       {
+          DIOProxy_MutatePin(&PortA_Proxy, PIN_0, PIN_LOW);
+ 3a0:	40 e0       	ldi	r20, 0x00	; 0
+ 3a2:	60 e0       	ldi	r22, 0x00	; 0
+ 3a4:	82 e6       	ldi	r24, 0x62	; 98
+ 3a6:	90 e0       	ldi	r25, 0x00	; 0
+ 3a8:	0e 94 58 01 	call	0x2b0	; 0x2b0 <DIOProxy_MutatePin>
+       }
+       
+       DIOProxy_AccessPin(&PortB_Proxy, PIN_1, &Pin_B1_Data);
+ 3ac:	ae 01       	movw	r20, r28
+ 3ae:	4e 5f       	subi	r20, 0xFE	; 254
+ 3b0:	5f 4f       	sbci	r21, 0xFF	; 255
+ 3b2:	61 e0       	ldi	r22, 0x01	; 1
+ 3b4:	80 e6       	ldi	r24, 0x60	; 96
+ 3b6:	90 e0       	ldi	r25, 0x00	; 0
+ 3b8:	0e 94 27 01 	call	0x24e	; 0x24e <DIOProxy_AccessPin>
+       if(PIN_LOW == Pin_B1_Data)
+ 3bc:	8a 81       	ldd	r24, Y+2	; 0x02
+ 3be:	81 11       	cpse	r24, r1
+ 3c0:	07 c0       	rjmp	.+14     	; 0x3d0 <main+0xae>
+       {
+          DIOProxy_MutatePin(&PortB_Proxy, PIN_0, PIN_HIGH);
+ 3c2:	41 e0       	ldi	r20, 0x01	; 1
+ 3c4:	60 e0       	ldi	r22, 0x00	; 0
+ 3c6:	80 e6       	ldi	r24, 0x60	; 96
+ 3c8:	90 e0       	ldi	r25, 0x00	; 0
+ 3ca:	0e 94 58 01 	call	0x2b0	; 0x2b0 <DIOProxy_MutatePin>
+ 3ce:	d6 cf       	rjmp	.-84     	; 0x37c <main+0x5a>
+       }
+       else
+       {
+          DIOProxy_MutatePin(&PortB_Proxy, PIN_0, PIN_LOW);
+ 3d0:	40 e0       	ldi	r20, 0x00	; 0
+ 3d2:	60 e0       	ldi	r22, 0x00	; 0
+ 3d4:	80 e6       	ldi	r24, 0x60	; 96
+ 3d6:	90 e0       	ldi	r25, 0x00	; 0
+ 3d8:	0e 94 58 01 	call	0x2b0	; 0x2b0 <DIOProxy_MutatePin>
+ 3dc:	cf cf       	rjmp	.-98     	; 0x37c <main+0x5a>
+
+000003de <_exit>:
+ 3de:	f8 94       	cli
+
+000003e0 <__stop_program>:
+ 3e0:	ff cf       	rjmp	.-2      	; 0x3e0 <__stop_program>
