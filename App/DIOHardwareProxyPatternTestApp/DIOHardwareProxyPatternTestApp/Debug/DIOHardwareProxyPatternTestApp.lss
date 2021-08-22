@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 00000070  00000000  00000000  000004c4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000c5c  00000000  00000000  00000534  2**0
+  6 .debug_info   00000c68  00000000  00000000  00000534  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000006b5  00000000  00000000  00001190  2**0
+  7 .debug_abbrev 0000070d  00000000  00000000  0000119c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000543  00000000  00000000  00001845  2**0
+  8 .debug_line   00000543  00000000  00000000  000018a9  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000011c  00000000  00000000  00001d88  2**2
+  9 .debug_frame  0000011c  00000000  00000000  00001dec  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000494  00000000  00000000  00001ea4  2**0
+ 10 .debug_str    00000494  00000000  00000000  00001f08  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000081a  00000000  00000000  00002338  2**0
+ 11 .debug_loc    0000081a  00000000  00000000  0000239c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000050  00000000  00000000  00002b52  2**0
+ 12 .debug_ranges 00000050  00000000  00000000  00002bb6  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -83,10 +83,10 @@ Disassembly of section .text:
   78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 0000007c <DIOProxy_Marshall>:
-   {
       Proxy_ErrorState = ERROR_NOK;
    }
    
+   /* Return function error state. */
    return Proxy_ErrorState;
 }
   7c:	cf 93       	push	r28
@@ -329,7 +329,10 @@ Disassembly of section .text:
  24c:	08 95       	ret
 
 0000024e <DIOProxy_AccessPin>:
-
+* @param [out] PinData     -  Pin Value.
+*
+* @return function error state.
+*/
 ERROR_STATE_t DIOProxy_AccessPin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, uint8_t * PinData)
 {
  24e:	0f 93       	push	r16
@@ -341,8 +344,10 @@ ERROR_STATE_t DIOProxy_AccessPin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, 
  25a:	1f 92       	push	r1
  25c:	cd b7       	in	r28, 0x3d	; 61
  25e:	de b7       	in	r29, 0x3e	; 62
+   /* Variable to store function error state. */
    ERROR_STATE_t Proxy_ErrorState;
    
+   /* Validate that Valid Parameters are passed. */
    if(NULL_PTR != ProxyData->u8_Addr && NULL_PTR != PinData && Pin < PIN_INVALID)
  260:	fc 01       	movw	r30, r24
  262:	20 81       	ld	r18, Z
@@ -356,9 +361,11 @@ ERROR_STATE_t DIOProxy_AccessPin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, 
  272:	98 f4       	brcc	.+38     	; 0x29a <DIOProxy_AccessPin+0x4c>
  274:	8a 01       	movw	r16, r20
    {
+      /* Set The Pin Number */
       STR_DIOData_t Data;
       Data.u8_Pin = Pin;
  276:	69 83       	std	Y+1, r22	; 0x01
+      /* Unmarshall Data from Hardware. */
       Proxy_ErrorState = DIOProxy_Unmarshall(ProxyData, &Data);
  278:	be 01       	movw	r22, r28
  27a:	6f 5f       	subi	r22, 0xFF	; 255
@@ -368,6 +375,7 @@ ERROR_STATE_t DIOProxy_AccessPin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, 
  282:	81 11       	cpse	r24, r1
  284:	04 c0       	rjmp	.+8      	; 0x28e <DIOProxy_AccessPin+0x40>
       {
+         /* Put Pin Value In the output Variable. */
          *PinData = Data.u8_PinData;
  286:	9b 81       	ldd	r25, Y+3	; 0x03
  288:	f8 01       	movw	r30, r16
@@ -377,20 +385,21 @@ ERROR_STATE_t DIOProxy_AccessPin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, 
       }
       else
       {
+         /* Set Function Error State to OK */
          Proxy_ErrorState = ERROR_NOK;
  28e:	81 e0       	ldi	r24, 0x01	; 1
-ERROR_STATE_t DIOProxy_AccessPin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, uint8_t * PinData)
-{
+   /* Variable to store function error state. */
    ERROR_STATE_t Proxy_ErrorState;
    
+   /* Validate that Valid Parameters are passed. */
    if(NULL_PTR != ProxyData->u8_Addr && NULL_PTR != PinData && Pin < PIN_INVALID)
    {
  290:	05 c0       	rjmp	.+10     	; 0x29c <DIOProxy_AccessPin+0x4e>
-         Proxy_ErrorState = ERROR_NOK;
       }
    }
    else
    {
+      /* Set Function Error State to OK */
       Proxy_ErrorState = ERROR_NOK;
  292:	81 e0       	ldi	r24, 0x01	; 1
  294:	03 c0       	rjmp	.+6      	; 0x29c <DIOProxy_AccessPin+0x4e>
@@ -398,6 +407,8 @@ ERROR_STATE_t DIOProxy_AccessPin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, 
  298:	01 c0       	rjmp	.+2      	; 0x29c <DIOProxy_AccessPin+0x4e>
  29a:	81 e0       	ldi	r24, 0x01	; 1
    }
+   
+   /* Return function error state. */
    return Proxy_ErrorState;
 }
  29c:	0f 90       	pop	r0
@@ -412,8 +423,10 @@ ERROR_STATE_t DIOProxy_AccessPin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, 
  2ae:	08 95       	ret
 
 000002b0 <DIOProxy_MutatePin>:
-
-
+* @param [in]  PinData     -  Pin Value in Hardware [HIGH/LOW].
+*
+* @return function error state.
+*/
 ERROR_STATE_t DIOProxy_MutatePin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, uint8_t PinData)
 {
  2b0:	ff 92       	push	r15
@@ -426,8 +439,10 @@ ERROR_STATE_t DIOProxy_MutatePin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, 
  2be:	1f 92       	push	r1
  2c0:	cd b7       	in	r28, 0x3d	; 61
  2c2:	de b7       	in	r29, 0x3e	; 62
+   /* Variable to store function error state. */
    ERROR_STATE_t Proxy_ErrorState;
    
+   /* Validate that Valid Parameters are passed. */
    if(NULL_PTR != ProxyData->u8_Addr && Pin < PIN_INVALID)
  2c4:	fc 01       	movw	r30, r24
  2c6:	20 81       	ld	r18, Z
@@ -439,9 +454,11 @@ ERROR_STATE_t DIOProxy_MutatePin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, 
  2d2:	f4 2e       	mov	r15, r20
  2d4:	8c 01       	movw	r16, r24
    {
+      /* Set The Pin Number */
       STR_DIOData_t Data;
       Data.u8_Pin = Pin;
  2d6:	69 83       	std	Y+1, r22	; 0x01
+      /* Unmarshall Data from Hardware. */
       Proxy_ErrorState = DIOProxy_Unmarshall(ProxyData, &Data);
  2d8:	be 01       	movw	r22, r28
  2da:	6f 5f       	subi	r22, 0xFF	; 255
@@ -456,10 +473,13 @@ ERROR_STATE_t DIOProxy_MutatePin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, 
  2e8:	81 30       	cpi	r24, 0x01	; 1
  2ea:	59 f4       	brne	.+22     	; 0x302 <DIOProxy_MutatePin+0x52>
          {
+            /* Set New Pin Value. */
             Data.u8_PinData = PinData;
  2ec:	fb 82       	std	Y+3, r15	; 0x03
+            /* Set Mutation Command. */
             Data.u8_CMD = PIN_CMD_MUTATE;
  2ee:	8d 83       	std	Y+5, r24	; 0x05
+            /* Marshall Data to Hardware. */
             Proxy_ErrorState = DIOProxy_Marshall(ProxyData, &Data);
  2f0:	be 01       	movw	r22, r28
  2f2:	6f 5f       	subi	r22, 0xFF	; 255
@@ -467,38 +487,40 @@ ERROR_STATE_t DIOProxy_MutatePin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, 
  2f6:	c8 01       	movw	r24, r16
  2f8:	0e 94 3e 00 	call	0x7c	; 0x7c <DIOProxy_Marshall>
  2fc:	07 c0       	rjmp	.+14     	; 0x30c <DIOProxy_MutatePin+0x5c>
-            Proxy_ErrorState = ERROR_NOK;
          }
       }
       else
       {
+         /* Set Function Error State to OK */
          Proxy_ErrorState = ERROR_NOK;
  2fe:	81 e0       	ldi	r24, 0x01	; 1
  300:	05 c0       	rjmp	.+10     	; 0x30c <DIOProxy_MutatePin+0x5c>
-            Data.u8_CMD = PIN_CMD_MUTATE;
             Proxy_ErrorState = DIOProxy_Marshall(ProxyData, &Data);
          }
          else
          {
+            /* Set Function Error State to OK */
             Proxy_ErrorState = ERROR_NOK;
  302:	81 e0       	ldi	r24, 0x01	; 1
-ERROR_STATE_t DIOProxy_MutatePin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, uint8_t PinData)
-{
+   /* Variable to store function error state. */
    ERROR_STATE_t Proxy_ErrorState;
    
+   /* Validate that Valid Parameters are passed. */
    if(NULL_PTR != ProxyData->u8_Addr && Pin < PIN_INVALID)
    {
  304:	03 c0       	rjmp	.+6      	; 0x30c <DIOProxy_MutatePin+0x5c>
-         Proxy_ErrorState = ERROR_NOK;
       }
    }
    else
    {
+      /* Set Function Error State to OK */
       Proxy_ErrorState = ERROR_NOK;
  306:	81 e0       	ldi	r24, 0x01	; 1
  308:	01 c0       	rjmp	.+2      	; 0x30c <DIOProxy_MutatePin+0x5c>
  30a:	81 e0       	ldi	r24, 0x01	; 1
    }
+   
+   /* Return function error state. */
    return Proxy_ErrorState;
  30c:	0f 90       	pop	r0
  30e:	0f 90       	pop	r0
@@ -513,10 +535,10 @@ ERROR_STATE_t DIOProxy_MutatePin(STR_DIOProxy_t * const ProxyData, uint8_t Pin, 
  320:	08 95       	ret
 
 00000322 <main>:
-
-static STR_DIOProxy_t PortA_Proxy;
 static STR_DIOProxy_t PortB_Proxy;
 
+/*- APIs IMPLEMENTATION
+-----------------------------------*/
 int main(void)
 {
  322:	cf 93       	push	r28
@@ -524,54 +546,55 @@ int main(void)
  326:	00 d0       	rcall	.+0      	; 0x328 <main+0x6>
  328:	cd b7       	in	r28, 0x3d	; 61
  32a:	de b7       	in	r29, 0x3e	; 62
-   
-    DIOProxy_Init(&PortA_Proxy, &PORT_A_ADDR);
+   /* Initialize Ports Hardware Proxy. */
+   DIOProxy_Init(&PortA_Proxy, &PORT_A_ADDR);
  32c:	6b e3       	ldi	r22, 0x3B	; 59
  32e:	70 e0       	ldi	r23, 0x00	; 0
  330:	82 e6       	ldi	r24, 0x62	; 98
  332:	90 e0       	ldi	r25, 0x00	; 0
  334:	0e 94 f6 00 	call	0x1ec	; 0x1ec <DIOProxy_Init>
-    DIOProxy_Init(&PortB_Proxy, &PORT_B_ADDR);
+   DIOProxy_Init(&PortB_Proxy, &PORT_B_ADDR);
  338:	68 e3       	ldi	r22, 0x38	; 56
  33a:	70 e0       	ldi	r23, 0x00	; 0
  33c:	80 e6       	ldi	r24, 0x60	; 96
  33e:	90 e0       	ldi	r25, 0x00	; 0
  340:	0e 94 f6 00 	call	0x1ec	; 0x1ec <DIOProxy_Init>
-    
-    DIOProxy_Configure(&PortA_Proxy, PIN_0, PIN_OUTPUT, PIN_NO_RES);
+   
+   /* Configure Pins */
+   DIOProxy_Configure(&PortA_Proxy, PIN_0, PIN_OUTPUT, PIN_NO_RES);
  344:	20 e0       	ldi	r18, 0x00	; 0
  346:	41 e0       	ldi	r20, 0x01	; 1
  348:	60 e0       	ldi	r22, 0x00	; 0
  34a:	82 e6       	ldi	r24, 0x62	; 98
  34c:	90 e0       	ldi	r25, 0x00	; 0
  34e:	0e 94 04 01 	call	0x208	; 0x208 <DIOProxy_Configure>
-    DIOProxy_Configure(&PortA_Proxy, PIN_1, PIN_INPUT, PIN_PULLUP);
+   DIOProxy_Configure(&PortA_Proxy, PIN_1, PIN_INPUT, PIN_PULLUP);
  352:	21 e0       	ldi	r18, 0x01	; 1
  354:	40 e0       	ldi	r20, 0x00	; 0
  356:	61 e0       	ldi	r22, 0x01	; 1
  358:	82 e6       	ldi	r24, 0x62	; 98
  35a:	90 e0       	ldi	r25, 0x00	; 0
  35c:	0e 94 04 01 	call	0x208	; 0x208 <DIOProxy_Configure>
-    DIOProxy_Configure(&PortB_Proxy, PIN_0, PIN_OUTPUT, PIN_NO_RES);
+   DIOProxy_Configure(&PortB_Proxy, PIN_0, PIN_OUTPUT, PIN_NO_RES);
  360:	20 e0       	ldi	r18, 0x00	; 0
  362:	41 e0       	ldi	r20, 0x01	; 1
  364:	60 e0       	ldi	r22, 0x00	; 0
  366:	80 e6       	ldi	r24, 0x60	; 96
  368:	90 e0       	ldi	r25, 0x00	; 0
  36a:	0e 94 04 01 	call	0x208	; 0x208 <DIOProxy_Configure>
-    DIOProxy_Configure(&PortB_Proxy, PIN_1, PIN_INPUT, PIN_PULLUP);
+   DIOProxy_Configure(&PortB_Proxy, PIN_1, PIN_INPUT, PIN_PULLUP);
  36e:	21 e0       	ldi	r18, 0x01	; 1
  370:	40 e0       	ldi	r20, 0x00	; 0
  372:	61 e0       	ldi	r22, 0x01	; 1
  374:	80 e6       	ldi	r24, 0x60	; 96
  376:	90 e0       	ldi	r25, 0x00	; 0
  378:	0e 94 04 01 	call	0x208	; 0x208 <DIOProxy_Configure>
-    uint8_t Pin_A1_Data;
-    uint8_t Pin_B1_Data;
+   uint8_t Pin_B1_Data;
     
-    while (1) 
-    {
-       DIOProxy_AccessPin(&PortA_Proxy, PIN_1, &Pin_A1_Data);
+   while (1) 
+   {
+      /* Get PortA Pin1 Value  */
+      DIOProxy_AccessPin(&PortA_Proxy, PIN_1, &Pin_A1_Data);
  37c:	ae 01       	movw	r20, r28
  37e:	4f 5f       	subi	r20, 0xFF	; 255
  380:	5f 4f       	sbci	r21, 0xFF	; 255
@@ -579,30 +602,34 @@ int main(void)
  384:	82 e6       	ldi	r24, 0x62	; 98
  386:	90 e0       	ldi	r25, 0x00	; 0
  388:	0e 94 27 01 	call	0x24e	; 0x24e <DIOProxy_AccessPin>
-       if(PIN_LOW == Pin_A1_Data)
+      /* If Pressed. */
+      if(PIN_LOW == Pin_A1_Data)
  38c:	89 81       	ldd	r24, Y+1	; 0x01
  38e:	81 11       	cpse	r24, r1
  390:	07 c0       	rjmp	.+14     	; 0x3a0 <main+0x7e>
-       {
-          DIOProxy_MutatePin(&PortA_Proxy, PIN_0, PIN_HIGH);
+      {
+         /* Set PortA Pin0 To High. */
+         DIOProxy_MutatePin(&PortA_Proxy, PIN_0, PIN_HIGH);
  392:	41 e0       	ldi	r20, 0x01	; 1
  394:	60 e0       	ldi	r22, 0x00	; 0
  396:	82 e6       	ldi	r24, 0x62	; 98
  398:	90 e0       	ldi	r25, 0x00	; 0
  39a:	0e 94 58 01 	call	0x2b0	; 0x2b0 <DIOProxy_MutatePin>
  39e:	06 c0       	rjmp	.+12     	; 0x3ac <main+0x8a>
-       }
-       else
-       {
-          DIOProxy_MutatePin(&PortA_Proxy, PIN_0, PIN_LOW);
+      }
+      else
+      {
+         /* Set PortA Pin0 To Low. */
+         DIOProxy_MutatePin(&PortA_Proxy, PIN_0, PIN_LOW);
  3a0:	40 e0       	ldi	r20, 0x00	; 0
  3a2:	60 e0       	ldi	r22, 0x00	; 0
  3a4:	82 e6       	ldi	r24, 0x62	; 98
  3a6:	90 e0       	ldi	r25, 0x00	; 0
  3a8:	0e 94 58 01 	call	0x2b0	; 0x2b0 <DIOProxy_MutatePin>
-       }
+      }
        
-       DIOProxy_AccessPin(&PortB_Proxy, PIN_1, &Pin_B1_Data);
+      /* Get PortB Pin1 Value  */
+      DIOProxy_AccessPin(&PortB_Proxy, PIN_1, &Pin_B1_Data);
  3ac:	ae 01       	movw	r20, r28
  3ae:	4e 5f       	subi	r20, 0xFE	; 254
  3b0:	5f 4f       	sbci	r21, 0xFF	; 255
@@ -610,22 +637,24 @@ int main(void)
  3b4:	80 e6       	ldi	r24, 0x60	; 96
  3b6:	90 e0       	ldi	r25, 0x00	; 0
  3b8:	0e 94 27 01 	call	0x24e	; 0x24e <DIOProxy_AccessPin>
-       if(PIN_LOW == Pin_B1_Data)
+      if(PIN_LOW == Pin_B1_Data)
  3bc:	8a 81       	ldd	r24, Y+2	; 0x02
  3be:	81 11       	cpse	r24, r1
  3c0:	07 c0       	rjmp	.+14     	; 0x3d0 <main+0xae>
-       {
-          DIOProxy_MutatePin(&PortB_Proxy, PIN_0, PIN_HIGH);
+      {
+         /* Set PortB Pin0 To High. */
+         DIOProxy_MutatePin(&PortB_Proxy, PIN_0, PIN_HIGH);
  3c2:	41 e0       	ldi	r20, 0x01	; 1
  3c4:	60 e0       	ldi	r22, 0x00	; 0
  3c6:	80 e6       	ldi	r24, 0x60	; 96
  3c8:	90 e0       	ldi	r25, 0x00	; 0
  3ca:	0e 94 58 01 	call	0x2b0	; 0x2b0 <DIOProxy_MutatePin>
  3ce:	d6 cf       	rjmp	.-84     	; 0x37c <main+0x5a>
-       }
-       else
-       {
-          DIOProxy_MutatePin(&PortB_Proxy, PIN_0, PIN_LOW);
+      }
+      else
+      {
+         /* Set PortB Pin0 To Low. */
+         DIOProxy_MutatePin(&PortB_Proxy, PIN_0, PIN_LOW);
  3d0:	40 e0       	ldi	r20, 0x00	; 0
  3d2:	60 e0       	ldi	r22, 0x00	; 0
  3d4:	80 e6       	ldi	r24, 0x60	; 96
