@@ -9,6 +9,8 @@
 #define __UTILS__
 
 /*- FUNCTION DECLARATIONS ----------------------------------*/
+/*- INCLUDES -----------------------------------------------*/
+#include "STD_types.h"
 
 /* dummy delay for nearly 50ms */
 void dummy_delay(void);

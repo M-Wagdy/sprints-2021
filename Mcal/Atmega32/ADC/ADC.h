@@ -10,7 +10,7 @@
 #define __ADC_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
+#include "STD_types.h"
 #include "ADC_Registers.h"
 #include "ADC_retval.h"
 #include "ADC_Config.h"
