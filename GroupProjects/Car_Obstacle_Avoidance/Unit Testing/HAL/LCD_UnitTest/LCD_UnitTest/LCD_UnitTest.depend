@@ -1,0 +1,50 @@
+# depslib dependency file v1.0
+1628870471 source:c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"HAL/LCD/LCD.h"
+
+1628860903 c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\hal\lcd\lcd.h
+	"../../LIB/LIB.h"
+	"../../MCAL/DIO/DIO.h"
+	"../../MCAL/TIMER/TIMER.h"
+	"LCD_Lcfg.h"
+
+1628718123 c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\lib\lib.h
+	"STD_TYPES.h"
+	"BIT_MATH.h"
+	"UTILS.h"
+
+1628758286 c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\lib\std_types.h
+
+1628717797 c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\lib\bit_math.h
+
+1628718216 c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\lib\utils.h
+
+1628769419 c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\mcal\dio\dio.h
+	"../../LIB/STD_TYPES.h"
+	"../../LIB/BIT_MATH.h"
+	"DIO_Cfg.h"
+
+1628718510 c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\mcal\dio\dio_cfg.h
+
+1628775878 c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\hal\lcd\lcd_lcfg.h
+
+1628870481 source:c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\hal\lcd\lcd.c
+	"LCD.h"
+
+1628775891 source:c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\hal\lcd\lcd_lcfg.c
+	"../../MCAL/DIO/DIO.h"
+	"LCD_Lcfg.h"
+
+1628718311 source:c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\lib\utils.c
+	"LIB.h"
+
+1628769450 source:c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\mcal\dio\dio.c
+	"../../LIB/MC_REGISTERS.h"
+	"DIO.h"
+
+1628839252 c:\users\zoldeyck\downloads\carobstacleavoidance\unit testing\hal\lcd_unittest\lcd_unittest\lib\mc_registers.h
+	"STD_TYPES.h"
+

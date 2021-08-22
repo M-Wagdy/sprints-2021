@@ -1,0 +1,64 @@
+# depslib dependency file v1.0
+1628561543 source:a:\testing\usonic_unittest\firmware\usonic\usonic.c
+	"usonic.h"
+
+1628560306 a:\testing\usonic_unittest\firmware\usonic\usonic.h
+	"usonicConig.h"
+	"usonicRetVal.h"
+	"../../Mcal/DIO/DIO.h"
+	"../../Mcal/Timer/Timer.h"
+	"../../Mcal/ICU/icu.h"
+	"../../Infrastructure/infrastructure.h"
+
+1628556403 a:\testing\usonic_unittest\firmware\usonic\usonicconig.h
+
+1628556455 a:\testing\usonic_unittest\firmware\usonic\usonicretval.h
+	"../../Infrastructure/TypeDef.h"
+
+1628442485 a:\testing\usonic_unittest\infrastructure\typedef.h
+
+1628554697 a:\testing\usonic_unittest\mcal\dio\dio.h
+	"../../Infrastructure/STD_types.h"
+	"DIO_Config.h"
+
+1628554172 a:\testing\usonic_unittest\infrastructure\std_types.h
+
+1626711464 a:\testing\usonic_unittest\mcal\dio\dio_config.h
+
+1628554772 a:\testing\usonic_unittest\mcal\timer\timer.h
+	"../../Infrastructure/STD_TYPES.h"
+	"Timer_retval.h"
+
+1628554753 a:\testing\usonic_unittest\mcal\timer\timer_retval.h
+	"../../Infrastructure/STD_TYPES.h"
+
+1628551513 a:\testing\usonic_unittest\mcal\icu\icu.h
+	"../../Infrastructure/infrastructure.h"
+
+1628550555 a:\testing\usonic_unittest\infrastructure\infrastructure.h
+	"STD_TYPES.h"
+	"BIT_MATH.h"
+	"MC_REGISTERS.h"
+	"utils.h"
+
+1628550546 a:\testing\usonic_unittest\infrastructure\bit_math.h
+
+1628550529 a:\testing\usonic_unittest\infrastructure\mc_registers.h
+	"STD_TYPES.h"
+
+1628550461 a:\testing\usonic_unittest\infrastructure\utils.h
+
+1628561522 source:a:\testing\usonic_unittest\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Firmware/USONIC/usonic.h"
+
+1628556121 source:a:\testing\usonic_unittest\mcal\dio\dio.c
+	"DIO.h"
+
+1628561369 source:a:\testing\usonic_unittest\mcal\icu\icu.c
+	"icu.h"
+
+1628554456 source:a:\testing\usonic_unittest\mcal\timer\timer.c
+	"Timer.h"
+

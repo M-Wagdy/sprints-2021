@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="USONIC_UnitTest" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin/Release/USONIC_UnitTest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="Firmware/USONIC/usonic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Firmware/USONIC/usonic.h" />
+		<Unit filename="Firmware/USONIC/usonicConig.h" />
+		<Unit filename="Firmware/USONIC/usonicRetVal.h" />
+		<Unit filename="Mcal/DIO/DIO.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Mcal/DIO/DIO.h" />
+		<Unit filename="Mcal/DIO/DIO_Config.h" />
+		<Unit filename="Mcal/DIO/DIO_retval.h" />
+		<Unit filename="Mcal/ICU/icu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Mcal/ICU/icu.h" />
+		<Unit filename="Mcal/Timer/Timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Mcal/Timer/Timer.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
