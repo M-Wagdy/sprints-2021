@@ -9,8 +9,8 @@
 #ifndef __SPI_H__
 #define __SPI_H__
 /*- INCLUDES -----------------------------------------------*/
-#include "../../../Infrastructure/STD_types.h"
-#include "../DIO/DIO.h"
+#include "STD_types.h"
+#include "DIO.h"
 #include "SPI_Registers.h"
 #include "SPI_retval.h"
 #include "SPI_Config.h"
@@ -40,5 +40,11 @@ SPI_ERROR_state_t SPI_DisableInterrupt(uint8_t SpiNumber);
 
 /* set callback function */
 SPI_ERROR_state_t SPI_SetCallback(uint8_t SpiNumber, Ptr_VoidFuncVoid_t Callback);
+
+/* Function that set data in the SPI data register */
+SPI_ERROR_state_t SPI_SetData(uint8_t SpiNumber,uint8_t TxChar);
+
+/* Function that get data from the SPI data register */
+SPI_ERROR_state_t SPI_GetData(uint8_t SpiNumber,uint8_t * RxData);
 
 #endif /* __SPI_H__ */

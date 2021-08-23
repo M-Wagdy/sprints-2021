@@ -10,7 +10,7 @@
 #define __DIO_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "../../../Infrastructure/STD_types.h"
+#include "STD_types.h"
 #include "DIO_Registers.h"
 #include "DIO_retval.h"
 #include "DIO_Config.h"

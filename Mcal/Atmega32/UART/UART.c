@@ -10,9 +10,6 @@
 
 /*- LOCAL MACROS
 ------------------------------------------*/
-#define NOT_INIT                          (uint8_t)(0)
-#define INIT                              (uint8_t)(1)
-
 #define EMPTY_BUFFER_BIT                  (uint8_t)(0x20)
 #define RECEIVE_COMPLETE_BIT              (uint8_t)(0x80)
 

@@ -10,7 +10,7 @@
 #define __DIO_RETVAL_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "../../../Infrastructure/STD_types.h"
+#include "STD_types.h"
 
 /*- PRIMITIVE TYPES ----------------------------------------*/
 typedef uint8_t DIO_ERROR_state_t;
