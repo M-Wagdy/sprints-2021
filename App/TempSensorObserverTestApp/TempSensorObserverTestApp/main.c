@@ -23,8 +23,8 @@
 
 /*- LOCAL FUNCTIONS PROTOTYPES
 ----------------------------*/
-ERROR_STATE_t MOTORLogic_Accept(uint8_t Temp);
-ERROR_STATE_t LCDLogic_Accept(uint8_t Temp);
+ERROR_STATE_t MOTORLogic_Accept(uint8_t * Temp);
+ERROR_STATE_t LCDLogic_Accept(uint8_t * Temp);
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
@@ -41,9 +41,9 @@ static STR_TEMPSensor_t gstr_TempSensorObserver;
 *
 * @return function error state.
 */
-ERROR_STATE_t MOTORLogic_Accept(uint8_t Temp)
+ERROR_STATE_t MOTORLogic_Accept(uint8_t * Temp)
 {
-   if(Temp <= MOTOR_REQUIRED_TEMP)
+   if(*Temp <= MOTOR_REQUIRED_TEMP)
    {
       MOTOR_Start(MOTOR_CH_0);
    }
@@ -60,16 +60,16 @@ ERROR_STATE_t MOTORLogic_Accept(uint8_t Temp)
 *
 * @return function error state.
 */
-ERROR_STATE_t LCDLogic_Accept(uint8_t Temp)
+ERROR_STATE_t LCDLogic_Accept(uint8_t * Temp)
 {
    uint8_t u8_CurrentTempDigit1;
    uint8_t u8_CurrentTempDigit2;
    uint8_t u8_CurrentTempDigit3;
    
    /* get each number of current temp in single character */
-   u8_CurrentTempDigit1 = (Temp/100);
-   u8_CurrentTempDigit2 = ((Temp - (u8_CurrentTempDigit1*100)) / 10);
-   u8_CurrentTempDigit3 = (Temp - (u8_CurrentTempDigit1*100+u8_CurrentTempDigit2*10));
+   u8_CurrentTempDigit1 = (*Temp/100);
+   u8_CurrentTempDigit2 = ((*Temp - (u8_CurrentTempDigit1*100)) / 10);
+   u8_CurrentTempDigit3 = (*Temp - (u8_CurrentTempDigit1*100+u8_CurrentTempDigit2*10));
    
    /* print current temp on LCD */
    LCD_SetToRowCol(LCD_CH_0, ROW_0, NUMBER_START_COL);

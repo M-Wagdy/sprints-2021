@@ -38,7 +38,7 @@ ERROR_STATE_t TEMPObserver_Notify(STR_TEMPSensor_t * const ObserverData)
          if(NULL_PTR != ObserverData->NotificationHandler[u8_Counter])
          {
             /* Send To the Acceptor function the new temp data. */
-            ObserverData->NotificationHandler[u8_Counter](ObserverData->TempData);
+            ObserverData->NotificationHandler[u8_Counter](&ObserverData->TempData);
          }
          else
          {
