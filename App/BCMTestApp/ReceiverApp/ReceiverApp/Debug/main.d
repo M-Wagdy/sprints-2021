@@ -12,6 +12,10 @@ main.d main.o: .././main.c ../../../../../Mcal/Atmega32/UART/UART.h \
  ../../../../../Mcal/Atmega32/SPI/SPI_retval.h \
  ../../../../../Mcal/Atmega32/SPI/SPI_Config.h \
  ../../../../../Mcal/Atmega32/DIO/DIO_Config.h \
+ ../../../../../Mcal/Atmega32/I2C/I2C.h \
+ ../../../../../Mcal/Atmega32/I2C/I2C_Registers.h \
+ ../../../../../Mcal/Atmega32/I2C/I2C_retval.h \
+ ../../../../../Mcal/Atmega32/I2C/I2C_Config.h \
  ../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc/Interrupt_Design_Pattern.h \
  ../../../../../Mcal/Atmega32/Interrupts/inc/Interrupts.h \
  ../../../../../Mcal/Atmega32/Interrupts/inc/Interrupts_Lcfg.h \
@@ -44,6 +48,14 @@ main.d main.o: .././main.c ../../../../../Mcal/Atmega32/UART/UART.h \
 ../../../../../Mcal/Atmega32/SPI/SPI_Config.h:
 
 ../../../../../Mcal/Atmega32/DIO/DIO_Config.h:
+
+../../../../../Mcal/Atmega32/I2C/I2C.h:
+
+../../../../../Mcal/Atmega32/I2C/I2C_Registers.h:
+
+../../../../../Mcal/Atmega32/I2C/I2C_retval.h:
+
+../../../../../Mcal/Atmega32/I2C/I2C_Config.h:
 
 ../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc/Interrupt_Design_Pattern.h:
 

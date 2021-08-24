@@ -119,15 +119,7 @@ I2C_ERROR_state_t I2C_Start(uint8_t I2C_CH)
    }
    
    /* clear interrupt flag and set start condition */
-   *ptr_I2CControlR = (I2C_INTERRUPT_FLAG| I2C_START_BIT | I2C_EN);
-
-   /* loop until interrupt flag is raised */
-   while (!(*ptr_I2CControlR & I2C_INTERRUPT_FLAG))
-   {
-      #if TEST
-      *ptr_I2CControlR |= I2C_INTERRUPT_FLAG;
-      #endif
-   }
+   *ptr_I2CControlR |= (I2C_INTERRUPT_FLAG| I2C_START_BIT | I2C_EN);
    
    /* return success message */
    return E_I2C_SUCCESS;
@@ -158,13 +150,6 @@ I2C_ERROR_state_t I2C_RepeatedStart(uint8_t I2C_CH)
    
    /* clear interrupt flag and set start condition */
    *ptr_I2CControlR |= (I2C_INTERRUPT_FLAG | I2C_START_BIT);
-   /* loop until interrupt flag is raised */
-   while (!(*ptr_I2CControlR & I2C_INTERRUPT_FLAG))
-   {
-      #if TEST
-      *ptr_I2CControlR |= I2C_INTERRUPT_FLAG;
-      #endif
-   }
    
    /* return success message */
    return E_I2C_SUCCESS;
@@ -199,14 +184,7 @@ I2C_ERROR_state_t I2C_Write(uint8_t I2C_CH, uint8_t Data)
    /* store data in the data register */
    *ptr_I2CDataR = Data;
    /* start sending the data bits */
-   *ptr_I2CControlR = (I2C_INTERRUPT_FLAG | I2C_EN);
-   /* loop until interrupt flag is raised */
-   while (!(*ptr_I2CControlR & I2C_INTERRUPT_FLAG))
-   {
-      #if TEST
-      *ptr_I2CControlR |= I2C_INTERRUPT_FLAG;
-      #endif
-   }
+   *ptr_I2CControlR |= (I2C_INTERRUPT_FLAG | I2C_EN);
    
    /* return success message */
    return E_I2C_SUCCESS;
@@ -246,13 +224,7 @@ I2C_ERROR_state_t I2C_ReadAck(uint8_t I2C_CH, uint8_t * Data)
    
    /* start receiving and send ack at end. */
    *ptr_I2CControlR |= (I2C_INTERRUPT_FLAG | I2C_ACK_EN);
-   /* loop until interrupt flag is raised */
-   while (!(*ptr_I2CControlR & I2C_INTERRUPT_FLAG))
-   {
-      #if TEST
-      *ptr_I2CControlR |= I2C_INTERRUPT_FLAG;
-      #endif
-   }
+
    /* return data received */
    *Data = *ptr_I2CDataR;
    
@@ -296,13 +268,7 @@ I2C_ERROR_state_t I2C_ReadNoAck(uint8_t I2C_CH, uint8_t * Data)
    
    /* start receiving and don't send ack at end. */
    *ptr_I2CControlR |= (I2C_INTERRUPT_FLAG);
-   /* loop until interrupt flag is raised */
-   while (!(*ptr_I2CControlR & I2C_INTERRUPT_FLAG))
-   {
-      #if TEST
-      *ptr_I2CControlR |= I2C_INTERRUPT_FLAG;
-      #endif
-   }
+
    /* return data received */
    *Data = *ptr_I2CDataR;
    
@@ -338,9 +304,6 @@ I2C_ERROR_state_t I2C_Stop(uint8_t I2C_CH)
    
    while (*ptr_I2CControlR & I2C_STOP_BIT)
    {
-      #if TEST
-      *ptr_I2CControlR &= ~(I2C_STOP_BIT);
-      #endif
    }
    /* return success message */
    return E_I2C_SUCCESS;
@@ -482,3 +445,34 @@ I2C_ERROR_state_t I2C_SetCallback(uint8_t I2C_CH, Ptr_VoidFuncVoid_t Callback)
    /* return success status */
    return E_I2C_SUCCESS;
 }
+
+/**
+* @brief: This function clears interrupt flag.
+*
+* @param [in]  I2C_CH      -  I2C channel number.
+*
+* @return function error state.
+*/
+I2C_ERROR_state_t I2C_ClearIntFlag(uint8_t I2C_CH)
+{
+   /* variable to store the addresses of the required channel */
+   volatile uint8_t * ptr_I2CControlR;
+   
+   /* get the required I2C data */
+   switch(I2C_CH)
+   {
+      #ifdef I2C_CH_0
+      case I2C_CH_0:
+         ptr_I2CControlR = &I2C_CONTROL_R;
+         break;
+      #endif
+      default:
+         return E_I2C_INVALID_CH;
+   }
+   
+   /* clear interrupt flag */
+   *ptr_I2CControlR |= I2C_INTERRUPT_FLAG;
+   
+   /* return success message */
+   return E_I2C_SUCCESS;
+}   

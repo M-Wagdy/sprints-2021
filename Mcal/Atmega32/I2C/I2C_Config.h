@@ -10,7 +10,7 @@
 #define __I2C_CONFIG_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
+#include "STD_types.h"
 
 /*- MACROS -------------------------------------------------*/
 #define I2C_INTERRUPT_EN            (uint8_t)(0X01)
@@ -28,13 +28,21 @@
 #define I2C_PRESCALAR_16            (uint8_t)(0X02)
 #define I2C_PRESCALAR_64            (uint8_t)(0X03)
 
-#define I2C_8_MHZ_115200_RATE_1_PRESCALAR       (uint8_t)(0X07)      
+#define I2C_8_MHZ_115200_RATE_1_PRESCALAR       (uint8_t)(0X1B)     
+#define I2C_16_MHZ_500K_Rate_1_PRESCALAR        (uint8_t)(0x08) 
 
 #define I2C_STATUS_START            (uint8_t)(0x08)
 #define I2C_STATUS_T_ACK_ADDR       (uint8_t)(0x18)
 #define I2C_STATUS_T_ACK_DATA       (uint8_t)(0x28)
+#define I2C_STATUS_T_NACK_DATA      (uint8_t)(0x30)
+#define I2C_STATUS_T_ARB_LOST       (uint8_t)(0x38)
 #define I2C_STATUS_R_ACK_ADDR       (uint8_t)(0x60)
+#define I2C_STATUS_R_GENERAL_ADDR   (uint8_t)(0x70)
 #define I2C_STATUS_R_ACK_DATA       (uint8_t)(0x80)
+#define I2C_STATUS_R_NACK_DATA      (uint8_t)(0x88)
+#define I2C_STATUS_R_GACK_DATA      (uint8_t)(0x90)
+#define I2C_STATUS_R_GNACK_DATA     (uint8_t)(0x98)
+#define I2C_STATUS_R_STOP           (uint8_t)(0xA0)
 
 #define I2C_NUMBERS                 (uint8_t)(1)
 

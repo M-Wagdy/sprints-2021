@@ -44,10 +44,13 @@ SUBDIRS :=  \
 ../Mcal \
 ../Mcal/DIO/inc \
 ../Mcal/DIO/src \
+../Mcal/I2C/inc \
+../Mcal/I2C/src \
 ../Mcal/Interrupts \
 ../Mcal/Interrupts/inc \
 ../Mcal/Interrupts/src \
 ../Mcal/DIO \
+../Mcal/I2C \
 ../Mcal/SPI \
 ../Mcal/SPI/inc \
 ../Mcal/SPI/src \
@@ -61,10 +64,12 @@ C_SRCS +=  \
 ../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/src/Interrupt_Design_Pattern.c \
 ../../../../../Infrastructure/LIB/src/UTILS.c \
 ../../../../../Mcal/Atmega32/DIO/DIO.c \
+../../../../../Mcal/Atmega32/I2C/I2C.c \
 ../../../../../Mcal/Atmega32/Interrupts/src/Interrupts.c \
 ../../../../../Mcal/Atmega32/SPI/SPI.c \
 ../../../../../Mcal/Atmega32/UART/UART.c \
 ../main.c \
+../Mcal/I2C/src/I2C_Config.c \
 ../Mcal/Interrupts/src/Interrupts_Lcfg.c \
 ../Mcal/SPI/src/SPI_Config.c \
 ../Mcal/UART/src/UART_Config.c
@@ -80,10 +85,12 @@ OBJS +=  \
 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o \
 Infrastructure/LIB/src/UTILS.o \
 Mcal/DIO/src/DIO.o \
+Mcal/I2C/src/I2C.o \
 Mcal/Interrupts/src/Interrupts.o \
 Mcal/SPI/src/SPI.o \
 Mcal/UART/src/UART.o \
 main.o \
+Mcal/I2C/src/I2C_Config.o \
 Mcal/Interrupts/src/Interrupts_Lcfg.o \
 Mcal/SPI/src/SPI_Config.o \
 Mcal/UART/src/UART_Config.o
@@ -92,10 +99,12 @@ OBJS_AS_ARGS +=  \
 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o \
 Infrastructure/LIB/src/UTILS.o \
 Mcal/DIO/src/DIO.o \
+Mcal/I2C/src/I2C.o \
 Mcal/Interrupts/src/Interrupts.o \
 Mcal/SPI/src/SPI.o \
 Mcal/UART/src/UART.o \
 main.o \
+Mcal/I2C/src/I2C_Config.o \
 Mcal/Interrupts/src/Interrupts_Lcfg.o \
 Mcal/SPI/src/SPI_Config.o \
 Mcal/UART/src/UART_Config.o
@@ -104,10 +113,12 @@ C_DEPS +=  \
 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.d \
 Infrastructure/LIB/src/UTILS.d \
 Mcal/DIO/src/DIO.d \
+Mcal/I2C/src/I2C.d \
 Mcal/Interrupts/src/Interrupts.d \
 Mcal/SPI/src/SPI.d \
 Mcal/UART/src/UART.d \
 main.d \
+Mcal/I2C/src/I2C_Config.d \
 Mcal/Interrupts/src/Interrupts_Lcfg.d \
 Mcal/SPI/src/SPI_Config.d \
 Mcal/UART/src/UART_Config.d
@@ -116,10 +127,12 @@ C_DEPS_AS_ARGS +=  \
 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.d \
 Infrastructure/LIB/src/UTILS.d \
 Mcal/DIO/src/DIO.d \
+Mcal/I2C/src/I2C.d \
 Mcal/Interrupts/src/Interrupts.d \
 Mcal/SPI/src/SPI.d \
 Mcal/UART/src/UART.d \
 main.d \
+Mcal/I2C/src/I2C_Config.d \
 Mcal/Interrupts/src/Interrupts_Lcfg.d \
 Mcal/SPI/src/SPI_Config.d \
 Mcal/UART/src/UART_Config.d
@@ -141,70 +154,84 @@ LINKER_SCRIPT_DEP+=
 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o: ../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/src/Interrupt_Design_Pattern.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO" -I"../../../../../Mcal/Atmega32/I2C"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Infrastructure/LIB/src/UTILS.o: ../../../../../Infrastructure/LIB/src/UTILS.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO" -I"../../../../../Mcal/Atmega32/I2C"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Mcal/DIO/src/DIO.o: ../../../../../Mcal/Atmega32/DIO/DIO.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO" -I"../../../../../Mcal/Atmega32/I2C"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Mcal/I2C/src/I2C.o: ../../../../../Mcal/Atmega32/I2C/I2C.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO" -I"../../../../../Mcal/Atmega32/I2C"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Mcal/Interrupts/src/Interrupts.o: ../../../../../Mcal/Atmega32/Interrupts/src/Interrupts.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO" -I"../../../../../Mcal/Atmega32/I2C"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Mcal/SPI/src/SPI.o: ../../../../../Mcal/Atmega32/SPI/SPI.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO" -I"../../../../../Mcal/Atmega32/I2C"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Mcal/UART/src/UART.o: ../../../../../Mcal/Atmega32/UART/UART.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO" -I"../../../../../Mcal/Atmega32/I2C"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./main.o: .././main.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO" -I"../../../../../Mcal/Atmega32/I2C"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Mcal/I2C/src/I2C_Config.o: ../Mcal/I2C/src/I2C_Config.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO" -I"../../../../../Mcal/Atmega32/I2C"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Mcal/Interrupts/src/Interrupts_Lcfg.o: ../Mcal/Interrupts/src/Interrupts_Lcfg.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO" -I"../../../../../Mcal/Atmega32/I2C"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Mcal/SPI/src/SPI_Config.o: ../Mcal/SPI/src/SPI_Config.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO" -I"../../../../../Mcal/Atmega32/I2C"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Mcal/UART/src/UART_Config.o: ../Mcal/UART/src/UART_Config.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc" -I"../../../../../Infrastructure/LIB/inc" -I"../../../../../Mcal/Atmega32/UART" -I"../../../../../Mcal/Atmega32/Interrupts/inc" -I"../../../../../Mcal/Atmega32/SPI" -I"../../../../../Mcal/Atmega32/DIO" -I"../../../../../Mcal/Atmega32/I2C"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 

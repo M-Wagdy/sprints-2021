@@ -8,6 +8,8 @@
 
 ..\..\..\..\Mcal\Atmega32\DIO\DIO.c
 
+..\..\..\..\Mcal\Atmega32\I2C\I2C.c
+
 ..\..\..\..\Mcal\Atmega32\Interrupts\src\Interrupts.c
 
 ..\..\..\..\Mcal\Atmega32\SPI\SPI.c
@@ -15,6 +17,8 @@
 ..\..\..\..\Mcal\Atmega32\UART\UART.c
 
 main.c
+
+Mcal\I2C\src\I2C_Config.c
 
 Mcal\Interrupts\src\Interrupts_Lcfg.c
 

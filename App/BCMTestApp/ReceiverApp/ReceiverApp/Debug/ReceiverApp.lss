@@ -3,1351 +3,1478 @@ ReceiverApp.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000007ec  00000000  00000000  00000094  2**1
+  0 .text         000008f6  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000006  00800060  000007ec  00000880  2**0
+  1 .data         00000004  00800060  000008f6  0000098a  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000050  00800066  00800066  00000886  2**0
+  2 .bss          00000051  00800064  00800064  0000098e  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000886  2**0
+  3 .comment      00000030  00000000  00000000  0000098e  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000008b8  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000009c0  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000001c0  00000000  00000000  000008f4  2**0
+  5 .debug_aranges 000001d8  00000000  00000000  000009fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001089  00000000  00000000  00000ab4  2**0
+  6 .debug_info   000011a6  00000000  00000000  00000bd4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 0000087f  00000000  00000000  00001b3d  2**0
+  7 .debug_abbrev 00000881  00000000  00000000  00001d7a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000c13  00000000  00000000  000023bc  2**0
+  8 .debug_line   00000bf8  00000000  00000000  000025fb  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000860  00000000  00000000  00002fd0  2**2
+  9 .debug_frame  00000890  00000000  00000000  000031f4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000780  00000000  00000000  00003830  2**0
+ 10 .debug_str    00000756  00000000  00000000  00003a84  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00001563  00000000  00000000  00003fb0  2**0
+ 11 .debug_loc    00001508  00000000  00000000  000041da  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000150  00000000  00000000  00005513  2**0
+ 12 .debug_ranges 00000168  00000000  00000000  000056e2  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
-   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
-   4:	0c 94 6a 00 	jmp	0xd4	; 0xd4 <__vector_1>
-   8:	0c 94 93 00 	jmp	0x126	; 0x126 <__vector_2>
-   c:	0c 94 bc 00 	jmp	0x178	; 0x178 <__vector_3>
-  10:	0c 94 e5 00 	jmp	0x1ca	; 0x1ca <__vector_4>
-  14:	0c 94 0e 01 	jmp	0x21c	; 0x21c <__vector_5>
-  18:	0c 94 37 01 	jmp	0x26e	; 0x26e <__vector_6>
-  1c:	0c 94 60 01 	jmp	0x2c0	; 0x2c0 <__vector_7>
-  20:	0c 94 89 01 	jmp	0x312	; 0x312 <__vector_8>
-  24:	0c 94 b2 01 	jmp	0x364	; 0x364 <__vector_9>
-  28:	0c 94 db 01 	jmp	0x3b6	; 0x3b6 <__vector_10>
-  2c:	0c 94 04 02 	jmp	0x408	; 0x408 <__vector_11>
-  30:	0c 94 2d 02 	jmp	0x45a	; 0x45a <__vector_12>
-  34:	0c 94 56 02 	jmp	0x4ac	; 0x4ac <__vector_13>
-  38:	0c 94 7f 02 	jmp	0x4fe	; 0x4fe <__vector_14>
-  3c:	0c 94 a8 02 	jmp	0x550	; 0x550 <__vector_15>
-  40:	0c 94 d1 02 	jmp	0x5a2	; 0x5a2 <__vector_16>
-  44:	0c 94 fa 02 	jmp	0x5f4	; 0x5f4 <__vector_17>
-  48:	0c 94 23 03 	jmp	0x646	; 0x646 <__vector_18>
-  4c:	0c 94 4c 03 	jmp	0x698	; 0x698 <__vector_19>
-  50:	0c 94 75 03 	jmp	0x6ea	; 0x6ea <__vector_20>
+   0:	0c 94 6b 00 	jmp	0xd6	; 0xd6 <__ctors_end>
+   4:	0c 94 06 01 	jmp	0x20c	; 0x20c <__vector_1>
+   8:	0c 94 2f 01 	jmp	0x25e	; 0x25e <__vector_2>
+   c:	0c 94 58 01 	jmp	0x2b0	; 0x2b0 <__vector_3>
+  10:	0c 94 81 01 	jmp	0x302	; 0x302 <__vector_4>
+  14:	0c 94 aa 01 	jmp	0x354	; 0x354 <__vector_5>
+  18:	0c 94 d3 01 	jmp	0x3a6	; 0x3a6 <__vector_6>
+  1c:	0c 94 fc 01 	jmp	0x3f8	; 0x3f8 <__vector_7>
+  20:	0c 94 25 02 	jmp	0x44a	; 0x44a <__vector_8>
+  24:	0c 94 4e 02 	jmp	0x49c	; 0x49c <__vector_9>
+  28:	0c 94 77 02 	jmp	0x4ee	; 0x4ee <__vector_10>
+  2c:	0c 94 a0 02 	jmp	0x540	; 0x540 <__vector_11>
+  30:	0c 94 c9 02 	jmp	0x592	; 0x592 <__vector_12>
+  34:	0c 94 f2 02 	jmp	0x5e4	; 0x5e4 <__vector_13>
+  38:	0c 94 1b 03 	jmp	0x636	; 0x636 <__vector_14>
+  3c:	0c 94 44 03 	jmp	0x688	; 0x688 <__vector_15>
+  40:	0c 94 6d 03 	jmp	0x6da	; 0x6da <__vector_16>
+  44:	0c 94 96 03 	jmp	0x72c	; 0x72c <__vector_17>
+  48:	0c 94 bf 03 	jmp	0x77e	; 0x77e <__vector_18>
+  4c:	0c 94 e8 03 	jmp	0x7d0	; 0x7d0 <__vector_19>
+  50:	0c 94 11 04 	jmp	0x822	; 0x822 <__vector_20>
+  54:	4d 04       	cpc	r4, r13
+  56:	60 04       	cpc	r6, r0
+  58:	60 04       	cpc	r6, r0
+  5a:	60 04       	cpc	r6, r0
+  5c:	60 04       	cpc	r6, r0
+  5e:	60 04       	cpc	r6, r0
+  60:	60 04       	cpc	r6, r0
+  62:	60 04       	cpc	r6, r0
+  64:	60 04       	cpc	r6, r0
+  66:	60 04       	cpc	r6, r0
+  68:	60 04       	cpc	r6, r0
+  6a:	60 04       	cpc	r6, r0
+  6c:	60 04       	cpc	r6, r0
+  6e:	60 04       	cpc	r6, r0
+  70:	60 04       	cpc	r6, r0
+  72:	60 04       	cpc	r6, r0
+  74:	4d 04       	cpc	r4, r13
+  76:	60 04       	cpc	r6, r0
+  78:	60 04       	cpc	r6, r0
+  7a:	60 04       	cpc	r6, r0
+  7c:	60 04       	cpc	r6, r0
+  7e:	60 04       	cpc	r6, r0
+  80:	60 04       	cpc	r6, r0
+  82:	60 04       	cpc	r6, r0
+  84:	60 04       	cpc	r6, r0
+  86:	60 04       	cpc	r6, r0
+  88:	60 04       	cpc	r6, r0
+  8a:	60 04       	cpc	r6, r0
+  8c:	60 04       	cpc	r6, r0
+  8e:	60 04       	cpc	r6, r0
+  90:	60 04       	cpc	r6, r0
+  92:	60 04       	cpc	r6, r0
+  94:	51 04       	cpc	r5, r1
+  96:	60 04       	cpc	r6, r0
+  98:	60 04       	cpc	r6, r0
+  9a:	60 04       	cpc	r6, r0
+  9c:	60 04       	cpc	r6, r0
+  9e:	60 04       	cpc	r6, r0
+  a0:	60 04       	cpc	r6, r0
+  a2:	60 04       	cpc	r6, r0
+  a4:	57 04       	cpc	r5, r7
+  a6:	60 04       	cpc	r6, r0
+  a8:	60 04       	cpc	r6, r0
+  aa:	60 04       	cpc	r6, r0
+  ac:	60 04       	cpc	r6, r0
+  ae:	60 04       	cpc	r6, r0
+  b0:	60 04       	cpc	r6, r0
+  b2:	60 04       	cpc	r6, r0
+  b4:	51 04       	cpc	r5, r1
+  b6:	60 04       	cpc	r6, r0
+  b8:	60 04       	cpc	r6, r0
+  ba:	60 04       	cpc	r6, r0
+  bc:	60 04       	cpc	r6, r0
+  be:	60 04       	cpc	r6, r0
+  c0:	60 04       	cpc	r6, r0
+  c2:	60 04       	cpc	r6, r0
+  c4:	57 04       	cpc	r5, r7
+  c6:	60 04       	cpc	r6, r0
+  c8:	60 04       	cpc	r6, r0
+  ca:	60 04       	cpc	r6, r0
+  cc:	60 04       	cpc	r6, r0
+  ce:	60 04       	cpc	r6, r0
+  d0:	60 04       	cpc	r6, r0
+  d2:	60 04       	cpc	r6, r0
+  d4:	5d 04       	cpc	r5, r13
 
-00000054 <__ctors_end>:
-  54:	11 24       	eor	r1, r1
-  56:	1f be       	out	0x3f, r1	; 63
-  58:	cf e5       	ldi	r28, 0x5F	; 95
-  5a:	d8 e0       	ldi	r29, 0x08	; 8
-  5c:	de bf       	out	0x3e, r29	; 62
-  5e:	cd bf       	out	0x3d, r28	; 61
+000000d6 <__ctors_end>:
+  d6:	11 24       	eor	r1, r1
+  d8:	1f be       	out	0x3f, r1	; 63
+  da:	cf e5       	ldi	r28, 0x5F	; 95
+  dc:	d8 e0       	ldi	r29, 0x08	; 8
+  de:	de bf       	out	0x3e, r29	; 62
+  e0:	cd bf       	out	0x3d, r28	; 61
 
-00000060 <__do_copy_data>:
-  60:	10 e0       	ldi	r17, 0x00	; 0
-  62:	a0 e6       	ldi	r26, 0x60	; 96
-  64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	ec ee       	ldi	r30, 0xEC	; 236
-  68:	f7 e0       	ldi	r31, 0x07	; 7
-  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
-  6c:	05 90       	lpm	r0, Z+
-  6e:	0d 92       	st	X+, r0
-  70:	a6 36       	cpi	r26, 0x66	; 102
-  72:	b1 07       	cpc	r27, r17
-  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+000000e2 <__do_copy_data>:
+  e2:	10 e0       	ldi	r17, 0x00	; 0
+  e4:	a0 e6       	ldi	r26, 0x60	; 96
+  e6:	b0 e0       	ldi	r27, 0x00	; 0
+  e8:	e6 ef       	ldi	r30, 0xF6	; 246
+  ea:	f8 e0       	ldi	r31, 0x08	; 8
+  ec:	02 c0       	rjmp	.+4      	; 0xf2 <__do_copy_data+0x10>
+  ee:	05 90       	lpm	r0, Z+
+  f0:	0d 92       	st	X+, r0
+  f2:	a4 36       	cpi	r26, 0x64	; 100
+  f4:	b1 07       	cpc	r27, r17
+  f6:	d9 f7       	brne	.-10     	; 0xee <__do_copy_data+0xc>
 
-00000076 <__do_clear_bss>:
-  76:	20 e0       	ldi	r18, 0x00	; 0
-  78:	a6 e6       	ldi	r26, 0x66	; 102
-  7a:	b0 e0       	ldi	r27, 0x00	; 0
-  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+000000f8 <__do_clear_bss>:
+  f8:	20 e0       	ldi	r18, 0x00	; 0
+  fa:	a4 e6       	ldi	r26, 0x64	; 100
+  fc:	b0 e0       	ldi	r27, 0x00	; 0
+  fe:	01 c0       	rjmp	.+2      	; 0x102 <.do_clear_bss_start>
 
-0000007e <.do_clear_bss_loop>:
-  7e:	1d 92       	st	X+, r1
+00000100 <.do_clear_bss_loop>:
+ 100:	1d 92       	st	X+, r1
 
-00000080 <.do_clear_bss_start>:
-  80:	a6 3b       	cpi	r26, 0xB6	; 182
-  82:	b2 07       	cpc	r27, r18
-  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
-  86:	0e 94 e5 03 	call	0x7ca	; 0x7ca <main>
-  8a:	0c 94 f4 03 	jmp	0x7e8	; 0x7e8 <_exit>
+00000102 <.do_clear_bss_start>:
+ 102:	a5 3b       	cpi	r26, 0xB5	; 181
+ 104:	b2 07       	cpc	r27, r18
+ 106:	e1 f7       	brne	.-8      	; 0x100 <.do_clear_bss_loop>
+ 108:	0e 94 61 04 	call	0x8c2	; 0x8c2 <main>
+ 10c:	0c 94 79 04 	jmp	0x8f2	; 0x8f2 <_exit>
 
-0000008e <Interrupt_Install>:
+00000110 <Interrupt_Install>:
 */
 void Interrupt_Install(uint8_t Vector_No, Ptr_VoidFuncVoid_t Callback)
 {
    /* Validate Before Changing ISR Vector Table */
 	if( 
       (NULL_PTR == aptr_OldVectors[Vector_No]) && (NULL_PTR != Callback) && 
-  8e:	28 2f       	mov	r18, r24
-  90:	30 e0       	ldi	r19, 0x00	; 0
-  92:	f9 01       	movw	r30, r18
-  94:	ee 0f       	add	r30, r30
-  96:	ff 1f       	adc	r31, r31
-  98:	ea 59       	subi	r30, 0x9A	; 154
-  9a:	ff 4f       	sbci	r31, 0xFF	; 255
-  9c:	40 81       	ld	r20, Z
-  9e:	51 81       	ldd	r21, Z+1	; 0x01
+ 110:	28 2f       	mov	r18, r24
+ 112:	30 e0       	ldi	r19, 0x00	; 0
+ 114:	f9 01       	movw	r30, r18
+ 116:	ee 0f       	add	r30, r30
+ 118:	ff 1f       	adc	r31, r31
+ 11a:	ec 59       	subi	r30, 0x9C	; 156
+ 11c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 11e:	40 81       	ld	r20, Z
+ 120:	51 81       	ldd	r21, Z+1	; 0x01
 * @param [in]  Callback    -  New Callback Function of ISR.
 */
 void Interrupt_Install(uint8_t Vector_No, Ptr_VoidFuncVoid_t Callback)
 {
    /* Validate Before Changing ISR Vector Table */
 	if( 
-  a0:	45 2b       	or	r20, r21
-  a2:	99 f4       	brne	.+38     	; 0xca <Interrupt_Install+0x3c>
+ 122:	45 2b       	or	r20, r21
+ 124:	99 f4       	brne	.+38     	; 0x14c <Interrupt_Install+0x3c>
       (NULL_PTR == aptr_OldVectors[Vector_No]) && (NULL_PTR != Callback) && 
-  a4:	61 15       	cp	r22, r1
-  a6:	71 05       	cpc	r23, r1
-  a8:	81 f0       	breq	.+32     	; 0xca <Interrupt_Install+0x3c>
+ 126:	61 15       	cp	r22, r1
+ 128:	71 05       	cpc	r23, r1
+ 12a:	81 f0       	breq	.+32     	; 0x14c <Interrupt_Install+0x3c>
       (Vector_No >= IRQ_MIN_VECTOR_NUMBER) &&  (Vector_No <= IRQ_MAX_VECTOR_NUMBER)
-  aa:	84 31       	cpi	r24, 0x14	; 20
-  ac:	70 f4       	brcc	.+28     	; 0xca <Interrupt_Install+0x3c>
+ 12c:	84 31       	cpi	r24, 0x14	; 20
+ 12e:	70 f4       	brcc	.+28     	; 0x14c <Interrupt_Install+0x3c>
      )
 	{
       /* Store The Current ISR in a History Table. */
 		aptr_OldVectors[Vector_No] = aptr_ISRAddress[Vector_No];
-  ae:	22 0f       	add	r18, r18
-  b0:	33 1f       	adc	r19, r19
-  b2:	f9 01       	movw	r30, r18
-  b4:	e2 57       	subi	r30, 0x72	; 114
-  b6:	ff 4f       	sbci	r31, 0xFF	; 255
-  b8:	80 81       	ld	r24, Z
-  ba:	91 81       	ldd	r25, Z+1	; 0x01
-  bc:	d9 01       	movw	r26, r18
-  be:	aa 59       	subi	r26, 0x9A	; 154
-  c0:	bf 4f       	sbci	r27, 0xFF	; 255
-  c2:	8d 93       	st	X+, r24
-  c4:	9c 93       	st	X, r25
+ 130:	22 0f       	add	r18, r18
+ 132:	33 1f       	adc	r19, r19
+ 134:	f9 01       	movw	r30, r18
+ 136:	e3 57       	subi	r30, 0x73	; 115
+ 138:	ff 4f       	sbci	r31, 0xFF	; 255
+ 13a:	80 81       	ld	r24, Z
+ 13c:	91 81       	ldd	r25, Z+1	; 0x01
+ 13e:	d9 01       	movw	r26, r18
+ 140:	ac 59       	subi	r26, 0x9C	; 156
+ 142:	bf 4f       	sbci	r27, 0xFF	; 255
+ 144:	8d 93       	st	X+, r24
+ 146:	9c 93       	st	X, r25
       /* Set the new Callback in the ISR. */
       aptr_ISRAddress[Vector_No] = Callback;
-  c6:	71 83       	std	Z+1, r23	; 0x01
-  c8:	60 83       	st	Z, r22
-  ca:	08 95       	ret
+ 148:	71 83       	std	Z+1, r23	; 0x01
+ 14a:	60 83       	st	Z, r22
+ 14c:	08 95       	ret
 
-000000cc <INTERRUPTS_Enable>:
+0000014e <I2C_Init>:
+   /* set callback function to the required channel */
+   g_Callback[u8_I2CIndex] = Callback;
+   
+   /* return success status */
+   return E_I2C_SUCCESS;
+}
+ 14e:	81 11       	cpse	r24, r1
+ 150:	0b c0       	rjmp	.+22     	; 0x168 <I2C_Init+0x1a>
+ 152:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <I2C_CH_0_PRESCALER>
+ 156:	81 b9       	out	0x01, r24	; 1
+ 158:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <I2C_CH_0_BIT_RATE>
+ 15c:	80 b9       	out	0x00, r24	; 0
+ 15e:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <I2C_CH_0_CONTROL_MASK>
+ 162:	86 bf       	out	0x36, r24	; 54
+ 164:	80 e0       	ldi	r24, 0x00	; 0
+ 166:	08 95       	ret
+ 168:	82 e0       	ldi	r24, 0x02	; 2
+ 16a:	08 95       	ret
+
+0000016c <I2C_SetSlaveAddress>:
+ 16c:	81 11       	cpse	r24, r1
+ 16e:	02 c0       	rjmp	.+4      	; 0x174 <I2C_SetSlaveAddress+0x8>
+ 170:	62 b9       	out	0x02, r22	; 2
+ 172:	08 95       	ret
+ 174:	82 e0       	ldi	r24, 0x02	; 2
+ 176:	08 95       	ret
+
+00000178 <I2C_ReadAck>:
+ 178:	61 15       	cp	r22, r1
+ 17a:	71 05       	cpc	r23, r1
+ 17c:	51 f0       	breq	.+20     	; 0x192 <I2C_ReadAck+0x1a>
+ 17e:	81 11       	cpse	r24, r1
+ 180:	0a c0       	rjmp	.+20     	; 0x196 <I2C_ReadAck+0x1e>
+ 182:	86 b7       	in	r24, 0x36	; 54
+ 184:	80 6c       	ori	r24, 0xC0	; 192
+ 186:	86 bf       	out	0x36, r24	; 54
+ 188:	83 b1       	in	r24, 0x03	; 3
+ 18a:	fb 01       	movw	r30, r22
+ 18c:	80 83       	st	Z, r24
+ 18e:	80 e0       	ldi	r24, 0x00	; 0
+ 190:	08 95       	ret
+ 192:	81 e0       	ldi	r24, 0x01	; 1
+ 194:	08 95       	ret
+ 196:	82 e0       	ldi	r24, 0x02	; 2
+ 198:	08 95       	ret
+
+0000019a <I2C_ReadNoAck>:
+ 19a:	61 15       	cp	r22, r1
+ 19c:	71 05       	cpc	r23, r1
+ 19e:	69 f0       	breq	.+26     	; 0x1ba <I2C_ReadNoAck+0x20>
+ 1a0:	81 11       	cpse	r24, r1
+ 1a2:	0d c0       	rjmp	.+26     	; 0x1be <I2C_ReadNoAck+0x24>
+ 1a4:	86 b7       	in	r24, 0x36	; 54
+ 1a6:	8f 7b       	andi	r24, 0xBF	; 191
+ 1a8:	86 bf       	out	0x36, r24	; 54
+ 1aa:	86 b7       	in	r24, 0x36	; 54
+ 1ac:	80 68       	ori	r24, 0x80	; 128
+ 1ae:	86 bf       	out	0x36, r24	; 54
+ 1b0:	83 b1       	in	r24, 0x03	; 3
+ 1b2:	fb 01       	movw	r30, r22
+ 1b4:	80 83       	st	Z, r24
+ 1b6:	80 e0       	ldi	r24, 0x00	; 0
+ 1b8:	08 95       	ret
+ 1ba:	81 e0       	ldi	r24, 0x01	; 1
+ 1bc:	08 95       	ret
+ 1be:	82 e0       	ldi	r24, 0x02	; 2
+ 1c0:	08 95       	ret
+
+000001c2 <I2C_Status>:
+ 1c2:	61 15       	cp	r22, r1
+ 1c4:	71 05       	cpc	r23, r1
+ 1c6:	41 f0       	breq	.+16     	; 0x1d8 <I2C_Status+0x16>
+ 1c8:	81 11       	cpse	r24, r1
+ 1ca:	08 c0       	rjmp	.+16     	; 0x1dc <I2C_Status+0x1a>
+ 1cc:	81 b1       	in	r24, 0x01	; 1
+ 1ce:	88 7f       	andi	r24, 0xF8	; 248
+ 1d0:	fb 01       	movw	r30, r22
+ 1d2:	80 83       	st	Z, r24
+ 1d4:	80 e0       	ldi	r24, 0x00	; 0
+ 1d6:	08 95       	ret
+ 1d8:	81 e0       	ldi	r24, 0x01	; 1
+ 1da:	08 95       	ret
+ 1dc:	82 e0       	ldi	r24, 0x02	; 2
+ 1de:	08 95       	ret
+
+000001e0 <I2C_EnableInterrupt>:
+ 1e0:	81 11       	cpse	r24, r1
+ 1e2:	05 c0       	rjmp	.+10     	; 0x1ee <I2C_EnableInterrupt+0xe>
+ 1e4:	86 b7       	in	r24, 0x36	; 54
+ 1e6:	81 60       	ori	r24, 0x01	; 1
+ 1e8:	86 bf       	out	0x36, r24	; 54
+ 1ea:	80 e0       	ldi	r24, 0x00	; 0
+ 1ec:	08 95       	ret
+ 1ee:	82 e0       	ldi	r24, 0x02	; 2
+ 1f0:	08 95       	ret
+
+000001f2 <I2C_ClearIntFlag>:
+{
+   /* variable to store the addresses of the required channel */
+   volatile uint8_t * ptr_I2CControlR;
+   
+   /* get the required I2C data */
+   switch(I2C_CH)
+ 1f2:	81 11       	cpse	r24, r1
+ 1f4:	05 c0       	rjmp	.+10     	; 0x200 <I2C_ClearIntFlag+0xe>
+      default:
+         return E_I2C_INVALID_CH;
+   }
+   
+   /* clear interrupt flag */
+   *ptr_I2CControlR |= I2C_INTERRUPT_FLAG;
+ 1f6:	86 b7       	in	r24, 0x36	; 54
+ 1f8:	80 68       	ori	r24, 0x80	; 128
+ 1fa:	86 bf       	out	0x36, r24	; 54
+   
+   /* return success message */
+   return E_I2C_SUCCESS;
+ 1fc:	80 e0       	ldi	r24, 0x00	; 0
+ 1fe:	08 95       	ret
+      case I2C_CH_0:
+         ptr_I2CControlR = &I2C_CONTROL_R;
+         break;
+      #endif
+      default:
+         return E_I2C_INVALID_CH;
+ 200:	82 e0       	ldi	r24, 0x02	; 2
+   /* clear interrupt flag */
+   *ptr_I2CControlR |= I2C_INTERRUPT_FLAG;
+   
+   /* return success message */
+   return E_I2C_SUCCESS;
+ 202:	08 95       	ret
+
+00000204 <INTERRUPTS_Enable>:
 /**
 * @brief: This function disables global interrupts.
 */
 void INTERRUPTS_Disable(void)
 {
    CLEAR_BIT(SREG, BIT7);
-  cc:	8f b7       	in	r24, 0x3f	; 63
-  ce:	80 68       	ori	r24, 0x80	; 128
-  d0:	8f bf       	out	0x3f, r24	; 63
-  d2:	08 95       	ret
+ 204:	8f b7       	in	r24, 0x3f	; 63
+ 206:	80 68       	ori	r24, 0x80	; 128
+ 208:	8f bf       	out	0x3f, r24	; 63
+ 20a:	08 95       	ret
 
-000000d4 <__vector_1>:
+0000020c <__vector_1>:
 
 /**
 * @brief: INT0 ISR.
 */
 ISR(INT0_IRQ)
 {
-  d4:	1f 92       	push	r1
-  d6:	0f 92       	push	r0
-  d8:	0f b6       	in	r0, 0x3f	; 63
-  da:	0f 92       	push	r0
-  dc:	11 24       	eor	r1, r1
-  de:	2f 93       	push	r18
-  e0:	3f 93       	push	r19
-  e2:	4f 93       	push	r20
-  e4:	5f 93       	push	r21
-  e6:	6f 93       	push	r22
-  e8:	7f 93       	push	r23
-  ea:	8f 93       	push	r24
-  ec:	9f 93       	push	r25
-  ee:	af 93       	push	r26
-  f0:	bf 93       	push	r27
-  f2:	ef 93       	push	r30
-  f4:	ff 93       	push	r31
+ 20c:	1f 92       	push	r1
+ 20e:	0f 92       	push	r0
+ 210:	0f b6       	in	r0, 0x3f	; 63
+ 212:	0f 92       	push	r0
+ 214:	11 24       	eor	r1, r1
+ 216:	2f 93       	push	r18
+ 218:	3f 93       	push	r19
+ 21a:	4f 93       	push	r20
+ 21c:	5f 93       	push	r21
+ 21e:	6f 93       	push	r22
+ 220:	7f 93       	push	r23
+ 222:	8f 93       	push	r24
+ 224:	9f 93       	push	r25
+ 226:	af 93       	push	r26
+ 228:	bf 93       	push	r27
+ 22a:	ef 93       	push	r30
+ 22c:	ff 93       	push	r31
    if(aptr_ISRAddress[INT0_VECTOR_NUMBER] != NULL_PTR)
-  f6:	e0 91 8e 00 	lds	r30, 0x008E	; 0x80008e <aptr_ISRAddress>
-  fa:	f0 91 8f 00 	lds	r31, 0x008F	; 0x80008f <aptr_ISRAddress+0x1>
-  fe:	30 97       	sbiw	r30, 0x00	; 0
- 100:	09 f0       	breq	.+2      	; 0x104 <__vector_1+0x30>
+ 22e:	e0 91 8d 00 	lds	r30, 0x008D	; 0x80008d <aptr_ISRAddress>
+ 232:	f0 91 8e 00 	lds	r31, 0x008E	; 0x80008e <aptr_ISRAddress+0x1>
+ 236:	30 97       	sbiw	r30, 0x00	; 0
+ 238:	09 f0       	breq	.+2      	; 0x23c <__vector_1+0x30>
    {
       aptr_ISRAddress[INT0_VECTOR_NUMBER]();
- 102:	09 95       	icall
+ 23a:	09 95       	icall
    }
 }
- 104:	ff 91       	pop	r31
- 106:	ef 91       	pop	r30
- 108:	bf 91       	pop	r27
- 10a:	af 91       	pop	r26
- 10c:	9f 91       	pop	r25
- 10e:	8f 91       	pop	r24
- 110:	7f 91       	pop	r23
- 112:	6f 91       	pop	r22
- 114:	5f 91       	pop	r21
- 116:	4f 91       	pop	r20
- 118:	3f 91       	pop	r19
- 11a:	2f 91       	pop	r18
- 11c:	0f 90       	pop	r0
- 11e:	0f be       	out	0x3f, r0	; 63
- 120:	0f 90       	pop	r0
- 122:	1f 90       	pop	r1
- 124:	18 95       	reti
+ 23c:	ff 91       	pop	r31
+ 23e:	ef 91       	pop	r30
+ 240:	bf 91       	pop	r27
+ 242:	af 91       	pop	r26
+ 244:	9f 91       	pop	r25
+ 246:	8f 91       	pop	r24
+ 248:	7f 91       	pop	r23
+ 24a:	6f 91       	pop	r22
+ 24c:	5f 91       	pop	r21
+ 24e:	4f 91       	pop	r20
+ 250:	3f 91       	pop	r19
+ 252:	2f 91       	pop	r18
+ 254:	0f 90       	pop	r0
+ 256:	0f be       	out	0x3f, r0	; 63
+ 258:	0f 90       	pop	r0
+ 25a:	1f 90       	pop	r1
+ 25c:	18 95       	reti
 
-00000126 <__vector_2>:
+0000025e <__vector_2>:
 
 /**
 * @brief: INT1 ISR.
 */
 ISR(INT1_IRQ)
 {
- 126:	1f 92       	push	r1
- 128:	0f 92       	push	r0
- 12a:	0f b6       	in	r0, 0x3f	; 63
- 12c:	0f 92       	push	r0
- 12e:	11 24       	eor	r1, r1
- 130:	2f 93       	push	r18
- 132:	3f 93       	push	r19
- 134:	4f 93       	push	r20
- 136:	5f 93       	push	r21
- 138:	6f 93       	push	r22
- 13a:	7f 93       	push	r23
- 13c:	8f 93       	push	r24
- 13e:	9f 93       	push	r25
- 140:	af 93       	push	r26
- 142:	bf 93       	push	r27
- 144:	ef 93       	push	r30
- 146:	ff 93       	push	r31
+ 25e:	1f 92       	push	r1
+ 260:	0f 92       	push	r0
+ 262:	0f b6       	in	r0, 0x3f	; 63
+ 264:	0f 92       	push	r0
+ 266:	11 24       	eor	r1, r1
+ 268:	2f 93       	push	r18
+ 26a:	3f 93       	push	r19
+ 26c:	4f 93       	push	r20
+ 26e:	5f 93       	push	r21
+ 270:	6f 93       	push	r22
+ 272:	7f 93       	push	r23
+ 274:	8f 93       	push	r24
+ 276:	9f 93       	push	r25
+ 278:	af 93       	push	r26
+ 27a:	bf 93       	push	r27
+ 27c:	ef 93       	push	r30
+ 27e:	ff 93       	push	r31
    if(aptr_ISRAddress[INT1_VECTOR_NUMBER] != NULL_PTR)
- 148:	e0 91 90 00 	lds	r30, 0x0090	; 0x800090 <aptr_ISRAddress+0x2>
- 14c:	f0 91 91 00 	lds	r31, 0x0091	; 0x800091 <aptr_ISRAddress+0x3>
- 150:	30 97       	sbiw	r30, 0x00	; 0
- 152:	09 f0       	breq	.+2      	; 0x156 <__vector_2+0x30>
+ 280:	e0 91 8f 00 	lds	r30, 0x008F	; 0x80008f <aptr_ISRAddress+0x2>
+ 284:	f0 91 90 00 	lds	r31, 0x0090	; 0x800090 <aptr_ISRAddress+0x3>
+ 288:	30 97       	sbiw	r30, 0x00	; 0
+ 28a:	09 f0       	breq	.+2      	; 0x28e <__vector_2+0x30>
    {
       aptr_ISRAddress[INT1_VECTOR_NUMBER]();
- 154:	09 95       	icall
+ 28c:	09 95       	icall
    }
 }
- 156:	ff 91       	pop	r31
- 158:	ef 91       	pop	r30
- 15a:	bf 91       	pop	r27
- 15c:	af 91       	pop	r26
- 15e:	9f 91       	pop	r25
- 160:	8f 91       	pop	r24
- 162:	7f 91       	pop	r23
- 164:	6f 91       	pop	r22
- 166:	5f 91       	pop	r21
- 168:	4f 91       	pop	r20
- 16a:	3f 91       	pop	r19
- 16c:	2f 91       	pop	r18
- 16e:	0f 90       	pop	r0
- 170:	0f be       	out	0x3f, r0	; 63
- 172:	0f 90       	pop	r0
- 174:	1f 90       	pop	r1
- 176:	18 95       	reti
+ 28e:	ff 91       	pop	r31
+ 290:	ef 91       	pop	r30
+ 292:	bf 91       	pop	r27
+ 294:	af 91       	pop	r26
+ 296:	9f 91       	pop	r25
+ 298:	8f 91       	pop	r24
+ 29a:	7f 91       	pop	r23
+ 29c:	6f 91       	pop	r22
+ 29e:	5f 91       	pop	r21
+ 2a0:	4f 91       	pop	r20
+ 2a2:	3f 91       	pop	r19
+ 2a4:	2f 91       	pop	r18
+ 2a6:	0f 90       	pop	r0
+ 2a8:	0f be       	out	0x3f, r0	; 63
+ 2aa:	0f 90       	pop	r0
+ 2ac:	1f 90       	pop	r1
+ 2ae:	18 95       	reti
 
-00000178 <__vector_3>:
+000002b0 <__vector_3>:
 
 /**
 * @brief: INT2 ISR.
 */
 ISR(INT2_IRQ)
 {
- 178:	1f 92       	push	r1
- 17a:	0f 92       	push	r0
- 17c:	0f b6       	in	r0, 0x3f	; 63
- 17e:	0f 92       	push	r0
- 180:	11 24       	eor	r1, r1
- 182:	2f 93       	push	r18
- 184:	3f 93       	push	r19
- 186:	4f 93       	push	r20
- 188:	5f 93       	push	r21
- 18a:	6f 93       	push	r22
- 18c:	7f 93       	push	r23
- 18e:	8f 93       	push	r24
- 190:	9f 93       	push	r25
- 192:	af 93       	push	r26
- 194:	bf 93       	push	r27
- 196:	ef 93       	push	r30
- 198:	ff 93       	push	r31
+ 2b0:	1f 92       	push	r1
+ 2b2:	0f 92       	push	r0
+ 2b4:	0f b6       	in	r0, 0x3f	; 63
+ 2b6:	0f 92       	push	r0
+ 2b8:	11 24       	eor	r1, r1
+ 2ba:	2f 93       	push	r18
+ 2bc:	3f 93       	push	r19
+ 2be:	4f 93       	push	r20
+ 2c0:	5f 93       	push	r21
+ 2c2:	6f 93       	push	r22
+ 2c4:	7f 93       	push	r23
+ 2c6:	8f 93       	push	r24
+ 2c8:	9f 93       	push	r25
+ 2ca:	af 93       	push	r26
+ 2cc:	bf 93       	push	r27
+ 2ce:	ef 93       	push	r30
+ 2d0:	ff 93       	push	r31
    if(aptr_ISRAddress[INT2_VECTOR_NUMBER] != NULL_PTR)
- 19a:	e0 91 92 00 	lds	r30, 0x0092	; 0x800092 <aptr_ISRAddress+0x4>
- 19e:	f0 91 93 00 	lds	r31, 0x0093	; 0x800093 <aptr_ISRAddress+0x5>
- 1a2:	30 97       	sbiw	r30, 0x00	; 0
- 1a4:	09 f0       	breq	.+2      	; 0x1a8 <__vector_3+0x30>
+ 2d2:	e0 91 91 00 	lds	r30, 0x0091	; 0x800091 <aptr_ISRAddress+0x4>
+ 2d6:	f0 91 92 00 	lds	r31, 0x0092	; 0x800092 <aptr_ISRAddress+0x5>
+ 2da:	30 97       	sbiw	r30, 0x00	; 0
+ 2dc:	09 f0       	breq	.+2      	; 0x2e0 <__vector_3+0x30>
    {
       aptr_ISRAddress[INT2_VECTOR_NUMBER]();
- 1a6:	09 95       	icall
+ 2de:	09 95       	icall
    }
 }
- 1a8:	ff 91       	pop	r31
- 1aa:	ef 91       	pop	r30
- 1ac:	bf 91       	pop	r27
- 1ae:	af 91       	pop	r26
- 1b0:	9f 91       	pop	r25
- 1b2:	8f 91       	pop	r24
- 1b4:	7f 91       	pop	r23
- 1b6:	6f 91       	pop	r22
- 1b8:	5f 91       	pop	r21
- 1ba:	4f 91       	pop	r20
- 1bc:	3f 91       	pop	r19
- 1be:	2f 91       	pop	r18
- 1c0:	0f 90       	pop	r0
- 1c2:	0f be       	out	0x3f, r0	; 63
- 1c4:	0f 90       	pop	r0
- 1c6:	1f 90       	pop	r1
- 1c8:	18 95       	reti
+ 2e0:	ff 91       	pop	r31
+ 2e2:	ef 91       	pop	r30
+ 2e4:	bf 91       	pop	r27
+ 2e6:	af 91       	pop	r26
+ 2e8:	9f 91       	pop	r25
+ 2ea:	8f 91       	pop	r24
+ 2ec:	7f 91       	pop	r23
+ 2ee:	6f 91       	pop	r22
+ 2f0:	5f 91       	pop	r21
+ 2f2:	4f 91       	pop	r20
+ 2f4:	3f 91       	pop	r19
+ 2f6:	2f 91       	pop	r18
+ 2f8:	0f 90       	pop	r0
+ 2fa:	0f be       	out	0x3f, r0	; 63
+ 2fc:	0f 90       	pop	r0
+ 2fe:	1f 90       	pop	r1
+ 300:	18 95       	reti
 
-000001ca <__vector_4>:
+00000302 <__vector_4>:
 
 /**
 * @brief: TIMER2_COMP ISR.
 */
 ISR(TIMER2_COMP_IRQ)
 {
- 1ca:	1f 92       	push	r1
- 1cc:	0f 92       	push	r0
- 1ce:	0f b6       	in	r0, 0x3f	; 63
- 1d0:	0f 92       	push	r0
- 1d2:	11 24       	eor	r1, r1
- 1d4:	2f 93       	push	r18
- 1d6:	3f 93       	push	r19
- 1d8:	4f 93       	push	r20
- 1da:	5f 93       	push	r21
- 1dc:	6f 93       	push	r22
- 1de:	7f 93       	push	r23
- 1e0:	8f 93       	push	r24
- 1e2:	9f 93       	push	r25
- 1e4:	af 93       	push	r26
- 1e6:	bf 93       	push	r27
- 1e8:	ef 93       	push	r30
- 1ea:	ff 93       	push	r31
+ 302:	1f 92       	push	r1
+ 304:	0f 92       	push	r0
+ 306:	0f b6       	in	r0, 0x3f	; 63
+ 308:	0f 92       	push	r0
+ 30a:	11 24       	eor	r1, r1
+ 30c:	2f 93       	push	r18
+ 30e:	3f 93       	push	r19
+ 310:	4f 93       	push	r20
+ 312:	5f 93       	push	r21
+ 314:	6f 93       	push	r22
+ 316:	7f 93       	push	r23
+ 318:	8f 93       	push	r24
+ 31a:	9f 93       	push	r25
+ 31c:	af 93       	push	r26
+ 31e:	bf 93       	push	r27
+ 320:	ef 93       	push	r30
+ 322:	ff 93       	push	r31
    if(aptr_ISRAddress[TIMER2_COMP_VECTOR_NUMBER] != NULL_PTR)
- 1ec:	e0 91 94 00 	lds	r30, 0x0094	; 0x800094 <aptr_ISRAddress+0x6>
- 1f0:	f0 91 95 00 	lds	r31, 0x0095	; 0x800095 <aptr_ISRAddress+0x7>
- 1f4:	30 97       	sbiw	r30, 0x00	; 0
- 1f6:	09 f0       	breq	.+2      	; 0x1fa <__vector_4+0x30>
+ 324:	e0 91 93 00 	lds	r30, 0x0093	; 0x800093 <aptr_ISRAddress+0x6>
+ 328:	f0 91 94 00 	lds	r31, 0x0094	; 0x800094 <aptr_ISRAddress+0x7>
+ 32c:	30 97       	sbiw	r30, 0x00	; 0
+ 32e:	09 f0       	breq	.+2      	; 0x332 <__vector_4+0x30>
    {
       aptr_ISRAddress[TIMER2_COMP_VECTOR_NUMBER]();
- 1f8:	09 95       	icall
+ 330:	09 95       	icall
    }
 }
- 1fa:	ff 91       	pop	r31
- 1fc:	ef 91       	pop	r30
- 1fe:	bf 91       	pop	r27
- 200:	af 91       	pop	r26
- 202:	9f 91       	pop	r25
- 204:	8f 91       	pop	r24
- 206:	7f 91       	pop	r23
- 208:	6f 91       	pop	r22
- 20a:	5f 91       	pop	r21
- 20c:	4f 91       	pop	r20
- 20e:	3f 91       	pop	r19
- 210:	2f 91       	pop	r18
- 212:	0f 90       	pop	r0
- 214:	0f be       	out	0x3f, r0	; 63
- 216:	0f 90       	pop	r0
- 218:	1f 90       	pop	r1
- 21a:	18 95       	reti
+ 332:	ff 91       	pop	r31
+ 334:	ef 91       	pop	r30
+ 336:	bf 91       	pop	r27
+ 338:	af 91       	pop	r26
+ 33a:	9f 91       	pop	r25
+ 33c:	8f 91       	pop	r24
+ 33e:	7f 91       	pop	r23
+ 340:	6f 91       	pop	r22
+ 342:	5f 91       	pop	r21
+ 344:	4f 91       	pop	r20
+ 346:	3f 91       	pop	r19
+ 348:	2f 91       	pop	r18
+ 34a:	0f 90       	pop	r0
+ 34c:	0f be       	out	0x3f, r0	; 63
+ 34e:	0f 90       	pop	r0
+ 350:	1f 90       	pop	r1
+ 352:	18 95       	reti
 
-0000021c <__vector_5>:
+00000354 <__vector_5>:
 
 /**
 * @brief: TIMER2_OVF ISR.
 */
 ISR(TIMER2_OVF_IRQ)
 {
- 21c:	1f 92       	push	r1
- 21e:	0f 92       	push	r0
- 220:	0f b6       	in	r0, 0x3f	; 63
- 222:	0f 92       	push	r0
- 224:	11 24       	eor	r1, r1
- 226:	2f 93       	push	r18
- 228:	3f 93       	push	r19
- 22a:	4f 93       	push	r20
- 22c:	5f 93       	push	r21
- 22e:	6f 93       	push	r22
- 230:	7f 93       	push	r23
- 232:	8f 93       	push	r24
- 234:	9f 93       	push	r25
- 236:	af 93       	push	r26
- 238:	bf 93       	push	r27
- 23a:	ef 93       	push	r30
- 23c:	ff 93       	push	r31
+ 354:	1f 92       	push	r1
+ 356:	0f 92       	push	r0
+ 358:	0f b6       	in	r0, 0x3f	; 63
+ 35a:	0f 92       	push	r0
+ 35c:	11 24       	eor	r1, r1
+ 35e:	2f 93       	push	r18
+ 360:	3f 93       	push	r19
+ 362:	4f 93       	push	r20
+ 364:	5f 93       	push	r21
+ 366:	6f 93       	push	r22
+ 368:	7f 93       	push	r23
+ 36a:	8f 93       	push	r24
+ 36c:	9f 93       	push	r25
+ 36e:	af 93       	push	r26
+ 370:	bf 93       	push	r27
+ 372:	ef 93       	push	r30
+ 374:	ff 93       	push	r31
    if(aptr_ISRAddress[TIMER2_OVF_VECTOR_NUMBER] != NULL_PTR)
- 23e:	e0 91 96 00 	lds	r30, 0x0096	; 0x800096 <aptr_ISRAddress+0x8>
- 242:	f0 91 97 00 	lds	r31, 0x0097	; 0x800097 <aptr_ISRAddress+0x9>
- 246:	30 97       	sbiw	r30, 0x00	; 0
- 248:	09 f0       	breq	.+2      	; 0x24c <__vector_5+0x30>
+ 376:	e0 91 95 00 	lds	r30, 0x0095	; 0x800095 <aptr_ISRAddress+0x8>
+ 37a:	f0 91 96 00 	lds	r31, 0x0096	; 0x800096 <aptr_ISRAddress+0x9>
+ 37e:	30 97       	sbiw	r30, 0x00	; 0
+ 380:	09 f0       	breq	.+2      	; 0x384 <__vector_5+0x30>
    {
       aptr_ISRAddress[TIMER2_OVF_VECTOR_NUMBER]();
- 24a:	09 95       	icall
+ 382:	09 95       	icall
    }
 }
- 24c:	ff 91       	pop	r31
- 24e:	ef 91       	pop	r30
- 250:	bf 91       	pop	r27
- 252:	af 91       	pop	r26
- 254:	9f 91       	pop	r25
- 256:	8f 91       	pop	r24
- 258:	7f 91       	pop	r23
- 25a:	6f 91       	pop	r22
- 25c:	5f 91       	pop	r21
- 25e:	4f 91       	pop	r20
- 260:	3f 91       	pop	r19
- 262:	2f 91       	pop	r18
- 264:	0f 90       	pop	r0
- 266:	0f be       	out	0x3f, r0	; 63
- 268:	0f 90       	pop	r0
- 26a:	1f 90       	pop	r1
- 26c:	18 95       	reti
+ 384:	ff 91       	pop	r31
+ 386:	ef 91       	pop	r30
+ 388:	bf 91       	pop	r27
+ 38a:	af 91       	pop	r26
+ 38c:	9f 91       	pop	r25
+ 38e:	8f 91       	pop	r24
+ 390:	7f 91       	pop	r23
+ 392:	6f 91       	pop	r22
+ 394:	5f 91       	pop	r21
+ 396:	4f 91       	pop	r20
+ 398:	3f 91       	pop	r19
+ 39a:	2f 91       	pop	r18
+ 39c:	0f 90       	pop	r0
+ 39e:	0f be       	out	0x3f, r0	; 63
+ 3a0:	0f 90       	pop	r0
+ 3a2:	1f 90       	pop	r1
+ 3a4:	18 95       	reti
 
-0000026e <__vector_6>:
+000003a6 <__vector_6>:
 
 /**
 * @brief: TIMER1_CAPT ISR.
 */
 ISR(TIMER1_CAPT_IRQ)
 {
- 26e:	1f 92       	push	r1
- 270:	0f 92       	push	r0
- 272:	0f b6       	in	r0, 0x3f	; 63
- 274:	0f 92       	push	r0
- 276:	11 24       	eor	r1, r1
- 278:	2f 93       	push	r18
- 27a:	3f 93       	push	r19
- 27c:	4f 93       	push	r20
- 27e:	5f 93       	push	r21
- 280:	6f 93       	push	r22
- 282:	7f 93       	push	r23
- 284:	8f 93       	push	r24
- 286:	9f 93       	push	r25
- 288:	af 93       	push	r26
- 28a:	bf 93       	push	r27
- 28c:	ef 93       	push	r30
- 28e:	ff 93       	push	r31
+ 3a6:	1f 92       	push	r1
+ 3a8:	0f 92       	push	r0
+ 3aa:	0f b6       	in	r0, 0x3f	; 63
+ 3ac:	0f 92       	push	r0
+ 3ae:	11 24       	eor	r1, r1
+ 3b0:	2f 93       	push	r18
+ 3b2:	3f 93       	push	r19
+ 3b4:	4f 93       	push	r20
+ 3b6:	5f 93       	push	r21
+ 3b8:	6f 93       	push	r22
+ 3ba:	7f 93       	push	r23
+ 3bc:	8f 93       	push	r24
+ 3be:	9f 93       	push	r25
+ 3c0:	af 93       	push	r26
+ 3c2:	bf 93       	push	r27
+ 3c4:	ef 93       	push	r30
+ 3c6:	ff 93       	push	r31
    if(aptr_ISRAddress[TIMER1_CAPT_VECTOR_NUMBER] != NULL_PTR)
- 290:	e0 91 98 00 	lds	r30, 0x0098	; 0x800098 <aptr_ISRAddress+0xa>
- 294:	f0 91 99 00 	lds	r31, 0x0099	; 0x800099 <aptr_ISRAddress+0xb>
- 298:	30 97       	sbiw	r30, 0x00	; 0
- 29a:	09 f0       	breq	.+2      	; 0x29e <__vector_6+0x30>
+ 3c8:	e0 91 97 00 	lds	r30, 0x0097	; 0x800097 <aptr_ISRAddress+0xa>
+ 3cc:	f0 91 98 00 	lds	r31, 0x0098	; 0x800098 <aptr_ISRAddress+0xb>
+ 3d0:	30 97       	sbiw	r30, 0x00	; 0
+ 3d2:	09 f0       	breq	.+2      	; 0x3d6 <__vector_6+0x30>
    {
       aptr_ISRAddress[TIMER1_CAPT_VECTOR_NUMBER]();
- 29c:	09 95       	icall
+ 3d4:	09 95       	icall
    }
 }
- 29e:	ff 91       	pop	r31
- 2a0:	ef 91       	pop	r30
- 2a2:	bf 91       	pop	r27
- 2a4:	af 91       	pop	r26
- 2a6:	9f 91       	pop	r25
- 2a8:	8f 91       	pop	r24
- 2aa:	7f 91       	pop	r23
- 2ac:	6f 91       	pop	r22
- 2ae:	5f 91       	pop	r21
- 2b0:	4f 91       	pop	r20
- 2b2:	3f 91       	pop	r19
- 2b4:	2f 91       	pop	r18
- 2b6:	0f 90       	pop	r0
- 2b8:	0f be       	out	0x3f, r0	; 63
- 2ba:	0f 90       	pop	r0
- 2bc:	1f 90       	pop	r1
- 2be:	18 95       	reti
+ 3d6:	ff 91       	pop	r31
+ 3d8:	ef 91       	pop	r30
+ 3da:	bf 91       	pop	r27
+ 3dc:	af 91       	pop	r26
+ 3de:	9f 91       	pop	r25
+ 3e0:	8f 91       	pop	r24
+ 3e2:	7f 91       	pop	r23
+ 3e4:	6f 91       	pop	r22
+ 3e6:	5f 91       	pop	r21
+ 3e8:	4f 91       	pop	r20
+ 3ea:	3f 91       	pop	r19
+ 3ec:	2f 91       	pop	r18
+ 3ee:	0f 90       	pop	r0
+ 3f0:	0f be       	out	0x3f, r0	; 63
+ 3f2:	0f 90       	pop	r0
+ 3f4:	1f 90       	pop	r1
+ 3f6:	18 95       	reti
 
-000002c0 <__vector_7>:
+000003f8 <__vector_7>:
 
 /**
 * @brief: TIMER1_COMPA ISR.
 */
 ISR(TIMER1_COMPA_IRQ)
 {
- 2c0:	1f 92       	push	r1
- 2c2:	0f 92       	push	r0
- 2c4:	0f b6       	in	r0, 0x3f	; 63
- 2c6:	0f 92       	push	r0
- 2c8:	11 24       	eor	r1, r1
- 2ca:	2f 93       	push	r18
- 2cc:	3f 93       	push	r19
- 2ce:	4f 93       	push	r20
- 2d0:	5f 93       	push	r21
- 2d2:	6f 93       	push	r22
- 2d4:	7f 93       	push	r23
- 2d6:	8f 93       	push	r24
- 2d8:	9f 93       	push	r25
- 2da:	af 93       	push	r26
- 2dc:	bf 93       	push	r27
- 2de:	ef 93       	push	r30
- 2e0:	ff 93       	push	r31
+ 3f8:	1f 92       	push	r1
+ 3fa:	0f 92       	push	r0
+ 3fc:	0f b6       	in	r0, 0x3f	; 63
+ 3fe:	0f 92       	push	r0
+ 400:	11 24       	eor	r1, r1
+ 402:	2f 93       	push	r18
+ 404:	3f 93       	push	r19
+ 406:	4f 93       	push	r20
+ 408:	5f 93       	push	r21
+ 40a:	6f 93       	push	r22
+ 40c:	7f 93       	push	r23
+ 40e:	8f 93       	push	r24
+ 410:	9f 93       	push	r25
+ 412:	af 93       	push	r26
+ 414:	bf 93       	push	r27
+ 416:	ef 93       	push	r30
+ 418:	ff 93       	push	r31
    if(aptr_ISRAddress[TIMER1_COMPA_VECTOR_NUMBER] != NULL_PTR)
- 2e2:	e0 91 9a 00 	lds	r30, 0x009A	; 0x80009a <aptr_ISRAddress+0xc>
- 2e6:	f0 91 9b 00 	lds	r31, 0x009B	; 0x80009b <aptr_ISRAddress+0xd>
- 2ea:	30 97       	sbiw	r30, 0x00	; 0
- 2ec:	09 f0       	breq	.+2      	; 0x2f0 <__vector_7+0x30>
+ 41a:	e0 91 99 00 	lds	r30, 0x0099	; 0x800099 <aptr_ISRAddress+0xc>
+ 41e:	f0 91 9a 00 	lds	r31, 0x009A	; 0x80009a <aptr_ISRAddress+0xd>
+ 422:	30 97       	sbiw	r30, 0x00	; 0
+ 424:	09 f0       	breq	.+2      	; 0x428 <__EEPROM_REGION_LENGTH__+0x28>
    {
       aptr_ISRAddress[TIMER1_COMPA_VECTOR_NUMBER]();
- 2ee:	09 95       	icall
+ 426:	09 95       	icall
    }
 }
- 2f0:	ff 91       	pop	r31
- 2f2:	ef 91       	pop	r30
- 2f4:	bf 91       	pop	r27
- 2f6:	af 91       	pop	r26
- 2f8:	9f 91       	pop	r25
- 2fa:	8f 91       	pop	r24
- 2fc:	7f 91       	pop	r23
- 2fe:	6f 91       	pop	r22
- 300:	5f 91       	pop	r21
- 302:	4f 91       	pop	r20
- 304:	3f 91       	pop	r19
- 306:	2f 91       	pop	r18
- 308:	0f 90       	pop	r0
- 30a:	0f be       	out	0x3f, r0	; 63
- 30c:	0f 90       	pop	r0
- 30e:	1f 90       	pop	r1
- 310:	18 95       	reti
+ 428:	ff 91       	pop	r31
+ 42a:	ef 91       	pop	r30
+ 42c:	bf 91       	pop	r27
+ 42e:	af 91       	pop	r26
+ 430:	9f 91       	pop	r25
+ 432:	8f 91       	pop	r24
+ 434:	7f 91       	pop	r23
+ 436:	6f 91       	pop	r22
+ 438:	5f 91       	pop	r21
+ 43a:	4f 91       	pop	r20
+ 43c:	3f 91       	pop	r19
+ 43e:	2f 91       	pop	r18
+ 440:	0f 90       	pop	r0
+ 442:	0f be       	out	0x3f, r0	; 63
+ 444:	0f 90       	pop	r0
+ 446:	1f 90       	pop	r1
+ 448:	18 95       	reti
 
-00000312 <__vector_8>:
+0000044a <__vector_8>:
 
 /**
 * @brief: TIMER1_COMPB ISR.
 */
 ISR(TIMER1_COMPB_IRQ)
 {
- 312:	1f 92       	push	r1
- 314:	0f 92       	push	r0
- 316:	0f b6       	in	r0, 0x3f	; 63
- 318:	0f 92       	push	r0
- 31a:	11 24       	eor	r1, r1
- 31c:	2f 93       	push	r18
- 31e:	3f 93       	push	r19
- 320:	4f 93       	push	r20
- 322:	5f 93       	push	r21
- 324:	6f 93       	push	r22
- 326:	7f 93       	push	r23
- 328:	8f 93       	push	r24
- 32a:	9f 93       	push	r25
- 32c:	af 93       	push	r26
- 32e:	bf 93       	push	r27
- 330:	ef 93       	push	r30
- 332:	ff 93       	push	r31
+ 44a:	1f 92       	push	r1
+ 44c:	0f 92       	push	r0
+ 44e:	0f b6       	in	r0, 0x3f	; 63
+ 450:	0f 92       	push	r0
+ 452:	11 24       	eor	r1, r1
+ 454:	2f 93       	push	r18
+ 456:	3f 93       	push	r19
+ 458:	4f 93       	push	r20
+ 45a:	5f 93       	push	r21
+ 45c:	6f 93       	push	r22
+ 45e:	7f 93       	push	r23
+ 460:	8f 93       	push	r24
+ 462:	9f 93       	push	r25
+ 464:	af 93       	push	r26
+ 466:	bf 93       	push	r27
+ 468:	ef 93       	push	r30
+ 46a:	ff 93       	push	r31
    if(aptr_ISRAddress[TIMER1_COMPB_VECTOR_NUMBER] != NULL_PTR)
- 334:	e0 91 9c 00 	lds	r30, 0x009C	; 0x80009c <aptr_ISRAddress+0xe>
- 338:	f0 91 9d 00 	lds	r31, 0x009D	; 0x80009d <aptr_ISRAddress+0xf>
- 33c:	30 97       	sbiw	r30, 0x00	; 0
- 33e:	09 f0       	breq	.+2      	; 0x342 <__vector_8+0x30>
+ 46c:	e0 91 9b 00 	lds	r30, 0x009B	; 0x80009b <aptr_ISRAddress+0xe>
+ 470:	f0 91 9c 00 	lds	r31, 0x009C	; 0x80009c <aptr_ISRAddress+0xf>
+ 474:	30 97       	sbiw	r30, 0x00	; 0
+ 476:	09 f0       	breq	.+2      	; 0x47a <__vector_8+0x30>
    {
       aptr_ISRAddress[TIMER1_COMPB_VECTOR_NUMBER]();
- 340:	09 95       	icall
+ 478:	09 95       	icall
    }
 }
- 342:	ff 91       	pop	r31
- 344:	ef 91       	pop	r30
- 346:	bf 91       	pop	r27
- 348:	af 91       	pop	r26
- 34a:	9f 91       	pop	r25
- 34c:	8f 91       	pop	r24
- 34e:	7f 91       	pop	r23
- 350:	6f 91       	pop	r22
- 352:	5f 91       	pop	r21
- 354:	4f 91       	pop	r20
- 356:	3f 91       	pop	r19
- 358:	2f 91       	pop	r18
- 35a:	0f 90       	pop	r0
- 35c:	0f be       	out	0x3f, r0	; 63
- 35e:	0f 90       	pop	r0
- 360:	1f 90       	pop	r1
- 362:	18 95       	reti
+ 47a:	ff 91       	pop	r31
+ 47c:	ef 91       	pop	r30
+ 47e:	bf 91       	pop	r27
+ 480:	af 91       	pop	r26
+ 482:	9f 91       	pop	r25
+ 484:	8f 91       	pop	r24
+ 486:	7f 91       	pop	r23
+ 488:	6f 91       	pop	r22
+ 48a:	5f 91       	pop	r21
+ 48c:	4f 91       	pop	r20
+ 48e:	3f 91       	pop	r19
+ 490:	2f 91       	pop	r18
+ 492:	0f 90       	pop	r0
+ 494:	0f be       	out	0x3f, r0	; 63
+ 496:	0f 90       	pop	r0
+ 498:	1f 90       	pop	r1
+ 49a:	18 95       	reti
 
-00000364 <__vector_9>:
+0000049c <__vector_9>:
 
 /**
 * @brief: TIMER1_OVF ISR.
 */
 ISR(TIMER1_OVF_IRQ)
 {
- 364:	1f 92       	push	r1
- 366:	0f 92       	push	r0
- 368:	0f b6       	in	r0, 0x3f	; 63
- 36a:	0f 92       	push	r0
- 36c:	11 24       	eor	r1, r1
- 36e:	2f 93       	push	r18
- 370:	3f 93       	push	r19
- 372:	4f 93       	push	r20
- 374:	5f 93       	push	r21
- 376:	6f 93       	push	r22
- 378:	7f 93       	push	r23
- 37a:	8f 93       	push	r24
- 37c:	9f 93       	push	r25
- 37e:	af 93       	push	r26
- 380:	bf 93       	push	r27
- 382:	ef 93       	push	r30
- 384:	ff 93       	push	r31
+ 49c:	1f 92       	push	r1
+ 49e:	0f 92       	push	r0
+ 4a0:	0f b6       	in	r0, 0x3f	; 63
+ 4a2:	0f 92       	push	r0
+ 4a4:	11 24       	eor	r1, r1
+ 4a6:	2f 93       	push	r18
+ 4a8:	3f 93       	push	r19
+ 4aa:	4f 93       	push	r20
+ 4ac:	5f 93       	push	r21
+ 4ae:	6f 93       	push	r22
+ 4b0:	7f 93       	push	r23
+ 4b2:	8f 93       	push	r24
+ 4b4:	9f 93       	push	r25
+ 4b6:	af 93       	push	r26
+ 4b8:	bf 93       	push	r27
+ 4ba:	ef 93       	push	r30
+ 4bc:	ff 93       	push	r31
    if(aptr_ISRAddress[TIMER1_OVF_VECTOR_NUMBER] != NULL_PTR)
- 386:	e0 91 9e 00 	lds	r30, 0x009E	; 0x80009e <aptr_ISRAddress+0x10>
- 38a:	f0 91 9f 00 	lds	r31, 0x009F	; 0x80009f <aptr_ISRAddress+0x11>
- 38e:	30 97       	sbiw	r30, 0x00	; 0
- 390:	09 f0       	breq	.+2      	; 0x394 <__vector_9+0x30>
+ 4be:	e0 91 9d 00 	lds	r30, 0x009D	; 0x80009d <aptr_ISRAddress+0x10>
+ 4c2:	f0 91 9e 00 	lds	r31, 0x009E	; 0x80009e <aptr_ISRAddress+0x11>
+ 4c6:	30 97       	sbiw	r30, 0x00	; 0
+ 4c8:	09 f0       	breq	.+2      	; 0x4cc <__vector_9+0x30>
    {
       aptr_ISRAddress[TIMER1_OVF_VECTOR_NUMBER]();
- 392:	09 95       	icall
+ 4ca:	09 95       	icall
    }
 }
- 394:	ff 91       	pop	r31
- 396:	ef 91       	pop	r30
- 398:	bf 91       	pop	r27
- 39a:	af 91       	pop	r26
- 39c:	9f 91       	pop	r25
- 39e:	8f 91       	pop	r24
- 3a0:	7f 91       	pop	r23
- 3a2:	6f 91       	pop	r22
- 3a4:	5f 91       	pop	r21
- 3a6:	4f 91       	pop	r20
- 3a8:	3f 91       	pop	r19
- 3aa:	2f 91       	pop	r18
- 3ac:	0f 90       	pop	r0
- 3ae:	0f be       	out	0x3f, r0	; 63
- 3b0:	0f 90       	pop	r0
- 3b2:	1f 90       	pop	r1
- 3b4:	18 95       	reti
+ 4cc:	ff 91       	pop	r31
+ 4ce:	ef 91       	pop	r30
+ 4d0:	bf 91       	pop	r27
+ 4d2:	af 91       	pop	r26
+ 4d4:	9f 91       	pop	r25
+ 4d6:	8f 91       	pop	r24
+ 4d8:	7f 91       	pop	r23
+ 4da:	6f 91       	pop	r22
+ 4dc:	5f 91       	pop	r21
+ 4de:	4f 91       	pop	r20
+ 4e0:	3f 91       	pop	r19
+ 4e2:	2f 91       	pop	r18
+ 4e4:	0f 90       	pop	r0
+ 4e6:	0f be       	out	0x3f, r0	; 63
+ 4e8:	0f 90       	pop	r0
+ 4ea:	1f 90       	pop	r1
+ 4ec:	18 95       	reti
 
-000003b6 <__vector_10>:
+000004ee <__vector_10>:
 
 /**
 * @brief: TIMER0_COMP ISR.
 */
 ISR(TIMER0_COMP_IRQ)
 {
- 3b6:	1f 92       	push	r1
- 3b8:	0f 92       	push	r0
- 3ba:	0f b6       	in	r0, 0x3f	; 63
- 3bc:	0f 92       	push	r0
- 3be:	11 24       	eor	r1, r1
- 3c0:	2f 93       	push	r18
- 3c2:	3f 93       	push	r19
- 3c4:	4f 93       	push	r20
- 3c6:	5f 93       	push	r21
- 3c8:	6f 93       	push	r22
- 3ca:	7f 93       	push	r23
- 3cc:	8f 93       	push	r24
- 3ce:	9f 93       	push	r25
- 3d0:	af 93       	push	r26
- 3d2:	bf 93       	push	r27
- 3d4:	ef 93       	push	r30
- 3d6:	ff 93       	push	r31
+ 4ee:	1f 92       	push	r1
+ 4f0:	0f 92       	push	r0
+ 4f2:	0f b6       	in	r0, 0x3f	; 63
+ 4f4:	0f 92       	push	r0
+ 4f6:	11 24       	eor	r1, r1
+ 4f8:	2f 93       	push	r18
+ 4fa:	3f 93       	push	r19
+ 4fc:	4f 93       	push	r20
+ 4fe:	5f 93       	push	r21
+ 500:	6f 93       	push	r22
+ 502:	7f 93       	push	r23
+ 504:	8f 93       	push	r24
+ 506:	9f 93       	push	r25
+ 508:	af 93       	push	r26
+ 50a:	bf 93       	push	r27
+ 50c:	ef 93       	push	r30
+ 50e:	ff 93       	push	r31
    if(aptr_ISRAddress[TIMER0_COMP_VECTOR_NUMBER] != NULL_PTR)
- 3d8:	e0 91 a0 00 	lds	r30, 0x00A0	; 0x8000a0 <aptr_ISRAddress+0x12>
- 3dc:	f0 91 a1 00 	lds	r31, 0x00A1	; 0x8000a1 <aptr_ISRAddress+0x13>
- 3e0:	30 97       	sbiw	r30, 0x00	; 0
- 3e2:	09 f0       	breq	.+2      	; 0x3e6 <__vector_10+0x30>
+ 510:	e0 91 9f 00 	lds	r30, 0x009F	; 0x80009f <aptr_ISRAddress+0x12>
+ 514:	f0 91 a0 00 	lds	r31, 0x00A0	; 0x8000a0 <aptr_ISRAddress+0x13>
+ 518:	30 97       	sbiw	r30, 0x00	; 0
+ 51a:	09 f0       	breq	.+2      	; 0x51e <__vector_10+0x30>
    {
       aptr_ISRAddress[TIMER0_COMP_VECTOR_NUMBER]();
- 3e4:	09 95       	icall
+ 51c:	09 95       	icall
    }
 }
- 3e6:	ff 91       	pop	r31
- 3e8:	ef 91       	pop	r30
- 3ea:	bf 91       	pop	r27
- 3ec:	af 91       	pop	r26
- 3ee:	9f 91       	pop	r25
- 3f0:	8f 91       	pop	r24
- 3f2:	7f 91       	pop	r23
- 3f4:	6f 91       	pop	r22
- 3f6:	5f 91       	pop	r21
- 3f8:	4f 91       	pop	r20
- 3fa:	3f 91       	pop	r19
- 3fc:	2f 91       	pop	r18
- 3fe:	0f 90       	pop	r0
- 400:	0f be       	out	0x3f, r0	; 63
- 402:	0f 90       	pop	r0
- 404:	1f 90       	pop	r1
- 406:	18 95       	reti
+ 51e:	ff 91       	pop	r31
+ 520:	ef 91       	pop	r30
+ 522:	bf 91       	pop	r27
+ 524:	af 91       	pop	r26
+ 526:	9f 91       	pop	r25
+ 528:	8f 91       	pop	r24
+ 52a:	7f 91       	pop	r23
+ 52c:	6f 91       	pop	r22
+ 52e:	5f 91       	pop	r21
+ 530:	4f 91       	pop	r20
+ 532:	3f 91       	pop	r19
+ 534:	2f 91       	pop	r18
+ 536:	0f 90       	pop	r0
+ 538:	0f be       	out	0x3f, r0	; 63
+ 53a:	0f 90       	pop	r0
+ 53c:	1f 90       	pop	r1
+ 53e:	18 95       	reti
 
-00000408 <__vector_11>:
+00000540 <__vector_11>:
 
 /**
 * @brief: TIMER0_OVF ISR.
 */
 ISR(TIMER0_OVF_IRQ)
 {
- 408:	1f 92       	push	r1
- 40a:	0f 92       	push	r0
- 40c:	0f b6       	in	r0, 0x3f	; 63
- 40e:	0f 92       	push	r0
- 410:	11 24       	eor	r1, r1
- 412:	2f 93       	push	r18
- 414:	3f 93       	push	r19
- 416:	4f 93       	push	r20
- 418:	5f 93       	push	r21
- 41a:	6f 93       	push	r22
- 41c:	7f 93       	push	r23
- 41e:	8f 93       	push	r24
- 420:	9f 93       	push	r25
- 422:	af 93       	push	r26
- 424:	bf 93       	push	r27
- 426:	ef 93       	push	r30
- 428:	ff 93       	push	r31
+ 540:	1f 92       	push	r1
+ 542:	0f 92       	push	r0
+ 544:	0f b6       	in	r0, 0x3f	; 63
+ 546:	0f 92       	push	r0
+ 548:	11 24       	eor	r1, r1
+ 54a:	2f 93       	push	r18
+ 54c:	3f 93       	push	r19
+ 54e:	4f 93       	push	r20
+ 550:	5f 93       	push	r21
+ 552:	6f 93       	push	r22
+ 554:	7f 93       	push	r23
+ 556:	8f 93       	push	r24
+ 558:	9f 93       	push	r25
+ 55a:	af 93       	push	r26
+ 55c:	bf 93       	push	r27
+ 55e:	ef 93       	push	r30
+ 560:	ff 93       	push	r31
    if(aptr_ISRAddress[TIMER0_OVF_VECTOR_NUMBER] != NULL_PTR)
- 42a:	e0 91 a2 00 	lds	r30, 0x00A2	; 0x8000a2 <aptr_ISRAddress+0x14>
- 42e:	f0 91 a3 00 	lds	r31, 0x00A3	; 0x8000a3 <aptr_ISRAddress+0x15>
- 432:	30 97       	sbiw	r30, 0x00	; 0
- 434:	09 f0       	breq	.+2      	; 0x438 <__vector_11+0x30>
+ 562:	e0 91 a1 00 	lds	r30, 0x00A1	; 0x8000a1 <aptr_ISRAddress+0x14>
+ 566:	f0 91 a2 00 	lds	r31, 0x00A2	; 0x8000a2 <aptr_ISRAddress+0x15>
+ 56a:	30 97       	sbiw	r30, 0x00	; 0
+ 56c:	09 f0       	breq	.+2      	; 0x570 <__vector_11+0x30>
    {
       aptr_ISRAddress[TIMER0_OVF_VECTOR_NUMBER]();
- 436:	09 95       	icall
+ 56e:	09 95       	icall
    }
 }
- 438:	ff 91       	pop	r31
- 43a:	ef 91       	pop	r30
- 43c:	bf 91       	pop	r27
- 43e:	af 91       	pop	r26
- 440:	9f 91       	pop	r25
- 442:	8f 91       	pop	r24
- 444:	7f 91       	pop	r23
- 446:	6f 91       	pop	r22
- 448:	5f 91       	pop	r21
- 44a:	4f 91       	pop	r20
- 44c:	3f 91       	pop	r19
- 44e:	2f 91       	pop	r18
- 450:	0f 90       	pop	r0
- 452:	0f be       	out	0x3f, r0	; 63
- 454:	0f 90       	pop	r0
- 456:	1f 90       	pop	r1
- 458:	18 95       	reti
+ 570:	ff 91       	pop	r31
+ 572:	ef 91       	pop	r30
+ 574:	bf 91       	pop	r27
+ 576:	af 91       	pop	r26
+ 578:	9f 91       	pop	r25
+ 57a:	8f 91       	pop	r24
+ 57c:	7f 91       	pop	r23
+ 57e:	6f 91       	pop	r22
+ 580:	5f 91       	pop	r21
+ 582:	4f 91       	pop	r20
+ 584:	3f 91       	pop	r19
+ 586:	2f 91       	pop	r18
+ 588:	0f 90       	pop	r0
+ 58a:	0f be       	out	0x3f, r0	; 63
+ 58c:	0f 90       	pop	r0
+ 58e:	1f 90       	pop	r1
+ 590:	18 95       	reti
 
-0000045a <__vector_12>:
+00000592 <__vector_12>:
 
 /**
 * @brief: SPI_STC ISR.
 */
 ISR(SPI_STC_IRQ)
 {
- 45a:	1f 92       	push	r1
- 45c:	0f 92       	push	r0
- 45e:	0f b6       	in	r0, 0x3f	; 63
- 460:	0f 92       	push	r0
- 462:	11 24       	eor	r1, r1
- 464:	2f 93       	push	r18
- 466:	3f 93       	push	r19
- 468:	4f 93       	push	r20
- 46a:	5f 93       	push	r21
- 46c:	6f 93       	push	r22
- 46e:	7f 93       	push	r23
- 470:	8f 93       	push	r24
- 472:	9f 93       	push	r25
- 474:	af 93       	push	r26
- 476:	bf 93       	push	r27
- 478:	ef 93       	push	r30
- 47a:	ff 93       	push	r31
+ 592:	1f 92       	push	r1
+ 594:	0f 92       	push	r0
+ 596:	0f b6       	in	r0, 0x3f	; 63
+ 598:	0f 92       	push	r0
+ 59a:	11 24       	eor	r1, r1
+ 59c:	2f 93       	push	r18
+ 59e:	3f 93       	push	r19
+ 5a0:	4f 93       	push	r20
+ 5a2:	5f 93       	push	r21
+ 5a4:	6f 93       	push	r22
+ 5a6:	7f 93       	push	r23
+ 5a8:	8f 93       	push	r24
+ 5aa:	9f 93       	push	r25
+ 5ac:	af 93       	push	r26
+ 5ae:	bf 93       	push	r27
+ 5b0:	ef 93       	push	r30
+ 5b2:	ff 93       	push	r31
    if(aptr_ISRAddress[SPI_STC_VECTOR_NUMBER] != NULL_PTR)
- 47c:	e0 91 a4 00 	lds	r30, 0x00A4	; 0x8000a4 <aptr_ISRAddress+0x16>
- 480:	f0 91 a5 00 	lds	r31, 0x00A5	; 0x8000a5 <aptr_ISRAddress+0x17>
- 484:	30 97       	sbiw	r30, 0x00	; 0
- 486:	09 f0       	breq	.+2      	; 0x48a <__vector_12+0x30>
+ 5b4:	e0 91 a3 00 	lds	r30, 0x00A3	; 0x8000a3 <aptr_ISRAddress+0x16>
+ 5b8:	f0 91 a4 00 	lds	r31, 0x00A4	; 0x8000a4 <aptr_ISRAddress+0x17>
+ 5bc:	30 97       	sbiw	r30, 0x00	; 0
+ 5be:	09 f0       	breq	.+2      	; 0x5c2 <__vector_12+0x30>
    {
       aptr_ISRAddress[SPI_STC_VECTOR_NUMBER]();
- 488:	09 95       	icall
+ 5c0:	09 95       	icall
    }
 }
- 48a:	ff 91       	pop	r31
- 48c:	ef 91       	pop	r30
- 48e:	bf 91       	pop	r27
- 490:	af 91       	pop	r26
- 492:	9f 91       	pop	r25
- 494:	8f 91       	pop	r24
- 496:	7f 91       	pop	r23
- 498:	6f 91       	pop	r22
- 49a:	5f 91       	pop	r21
- 49c:	4f 91       	pop	r20
- 49e:	3f 91       	pop	r19
- 4a0:	2f 91       	pop	r18
- 4a2:	0f 90       	pop	r0
- 4a4:	0f be       	out	0x3f, r0	; 63
- 4a6:	0f 90       	pop	r0
- 4a8:	1f 90       	pop	r1
- 4aa:	18 95       	reti
+ 5c2:	ff 91       	pop	r31
+ 5c4:	ef 91       	pop	r30
+ 5c6:	bf 91       	pop	r27
+ 5c8:	af 91       	pop	r26
+ 5ca:	9f 91       	pop	r25
+ 5cc:	8f 91       	pop	r24
+ 5ce:	7f 91       	pop	r23
+ 5d0:	6f 91       	pop	r22
+ 5d2:	5f 91       	pop	r21
+ 5d4:	4f 91       	pop	r20
+ 5d6:	3f 91       	pop	r19
+ 5d8:	2f 91       	pop	r18
+ 5da:	0f 90       	pop	r0
+ 5dc:	0f be       	out	0x3f, r0	; 63
+ 5de:	0f 90       	pop	r0
+ 5e0:	1f 90       	pop	r1
+ 5e2:	18 95       	reti
 
-000004ac <__vector_13>:
+000005e4 <__vector_13>:
 
 /**
 * @brief: USART_RXC ISR.
 */
 ISR(USART_RXC_IRQ)
 {
- 4ac:	1f 92       	push	r1
- 4ae:	0f 92       	push	r0
- 4b0:	0f b6       	in	r0, 0x3f	; 63
- 4b2:	0f 92       	push	r0
- 4b4:	11 24       	eor	r1, r1
- 4b6:	2f 93       	push	r18
- 4b8:	3f 93       	push	r19
- 4ba:	4f 93       	push	r20
- 4bc:	5f 93       	push	r21
- 4be:	6f 93       	push	r22
- 4c0:	7f 93       	push	r23
- 4c2:	8f 93       	push	r24
- 4c4:	9f 93       	push	r25
- 4c6:	af 93       	push	r26
- 4c8:	bf 93       	push	r27
- 4ca:	ef 93       	push	r30
- 4cc:	ff 93       	push	r31
+ 5e4:	1f 92       	push	r1
+ 5e6:	0f 92       	push	r0
+ 5e8:	0f b6       	in	r0, 0x3f	; 63
+ 5ea:	0f 92       	push	r0
+ 5ec:	11 24       	eor	r1, r1
+ 5ee:	2f 93       	push	r18
+ 5f0:	3f 93       	push	r19
+ 5f2:	4f 93       	push	r20
+ 5f4:	5f 93       	push	r21
+ 5f6:	6f 93       	push	r22
+ 5f8:	7f 93       	push	r23
+ 5fa:	8f 93       	push	r24
+ 5fc:	9f 93       	push	r25
+ 5fe:	af 93       	push	r26
+ 600:	bf 93       	push	r27
+ 602:	ef 93       	push	r30
+ 604:	ff 93       	push	r31
    if(aptr_ISRAddress[USART_RXC_VECTOR_NUMBER] != NULL_PTR)
- 4ce:	e0 91 a6 00 	lds	r30, 0x00A6	; 0x8000a6 <aptr_ISRAddress+0x18>
- 4d2:	f0 91 a7 00 	lds	r31, 0x00A7	; 0x8000a7 <aptr_ISRAddress+0x19>
- 4d6:	30 97       	sbiw	r30, 0x00	; 0
- 4d8:	09 f0       	breq	.+2      	; 0x4dc <__vector_13+0x30>
+ 606:	e0 91 a5 00 	lds	r30, 0x00A5	; 0x8000a5 <aptr_ISRAddress+0x18>
+ 60a:	f0 91 a6 00 	lds	r31, 0x00A6	; 0x8000a6 <aptr_ISRAddress+0x19>
+ 60e:	30 97       	sbiw	r30, 0x00	; 0
+ 610:	09 f0       	breq	.+2      	; 0x614 <__vector_13+0x30>
    {
       aptr_ISRAddress[USART_RXC_VECTOR_NUMBER]();
- 4da:	09 95       	icall
+ 612:	09 95       	icall
    }
 }
- 4dc:	ff 91       	pop	r31
- 4de:	ef 91       	pop	r30
- 4e0:	bf 91       	pop	r27
- 4e2:	af 91       	pop	r26
- 4e4:	9f 91       	pop	r25
- 4e6:	8f 91       	pop	r24
- 4e8:	7f 91       	pop	r23
- 4ea:	6f 91       	pop	r22
- 4ec:	5f 91       	pop	r21
- 4ee:	4f 91       	pop	r20
- 4f0:	3f 91       	pop	r19
- 4f2:	2f 91       	pop	r18
- 4f4:	0f 90       	pop	r0
- 4f6:	0f be       	out	0x3f, r0	; 63
- 4f8:	0f 90       	pop	r0
- 4fa:	1f 90       	pop	r1
- 4fc:	18 95       	reti
+ 614:	ff 91       	pop	r31
+ 616:	ef 91       	pop	r30
+ 618:	bf 91       	pop	r27
+ 61a:	af 91       	pop	r26
+ 61c:	9f 91       	pop	r25
+ 61e:	8f 91       	pop	r24
+ 620:	7f 91       	pop	r23
+ 622:	6f 91       	pop	r22
+ 624:	5f 91       	pop	r21
+ 626:	4f 91       	pop	r20
+ 628:	3f 91       	pop	r19
+ 62a:	2f 91       	pop	r18
+ 62c:	0f 90       	pop	r0
+ 62e:	0f be       	out	0x3f, r0	; 63
+ 630:	0f 90       	pop	r0
+ 632:	1f 90       	pop	r1
+ 634:	18 95       	reti
 
-000004fe <__vector_14>:
+00000636 <__vector_14>:
 
 /**
 * @brief: USART_UDRE ISR.
 */
 ISR(USART_UDRE_IRQ)
 {
- 4fe:	1f 92       	push	r1
- 500:	0f 92       	push	r0
- 502:	0f b6       	in	r0, 0x3f	; 63
- 504:	0f 92       	push	r0
- 506:	11 24       	eor	r1, r1
- 508:	2f 93       	push	r18
- 50a:	3f 93       	push	r19
- 50c:	4f 93       	push	r20
- 50e:	5f 93       	push	r21
- 510:	6f 93       	push	r22
- 512:	7f 93       	push	r23
- 514:	8f 93       	push	r24
- 516:	9f 93       	push	r25
- 518:	af 93       	push	r26
- 51a:	bf 93       	push	r27
- 51c:	ef 93       	push	r30
- 51e:	ff 93       	push	r31
+ 636:	1f 92       	push	r1
+ 638:	0f 92       	push	r0
+ 63a:	0f b6       	in	r0, 0x3f	; 63
+ 63c:	0f 92       	push	r0
+ 63e:	11 24       	eor	r1, r1
+ 640:	2f 93       	push	r18
+ 642:	3f 93       	push	r19
+ 644:	4f 93       	push	r20
+ 646:	5f 93       	push	r21
+ 648:	6f 93       	push	r22
+ 64a:	7f 93       	push	r23
+ 64c:	8f 93       	push	r24
+ 64e:	9f 93       	push	r25
+ 650:	af 93       	push	r26
+ 652:	bf 93       	push	r27
+ 654:	ef 93       	push	r30
+ 656:	ff 93       	push	r31
    if(aptr_ISRAddress[USART_UDRE_VECTOR_NUMBER] != NULL_PTR)
- 520:	e0 91 a8 00 	lds	r30, 0x00A8	; 0x8000a8 <aptr_ISRAddress+0x1a>
- 524:	f0 91 a9 00 	lds	r31, 0x00A9	; 0x8000a9 <aptr_ISRAddress+0x1b>
- 528:	30 97       	sbiw	r30, 0x00	; 0
- 52a:	09 f0       	breq	.+2      	; 0x52e <__vector_14+0x30>
+ 658:	e0 91 a7 00 	lds	r30, 0x00A7	; 0x8000a7 <aptr_ISRAddress+0x1a>
+ 65c:	f0 91 a8 00 	lds	r31, 0x00A8	; 0x8000a8 <aptr_ISRAddress+0x1b>
+ 660:	30 97       	sbiw	r30, 0x00	; 0
+ 662:	09 f0       	breq	.+2      	; 0x666 <__vector_14+0x30>
    {
       aptr_ISRAddress[USART_UDRE_VECTOR_NUMBER]();
- 52c:	09 95       	icall
+ 664:	09 95       	icall
    }
 }
- 52e:	ff 91       	pop	r31
- 530:	ef 91       	pop	r30
- 532:	bf 91       	pop	r27
- 534:	af 91       	pop	r26
- 536:	9f 91       	pop	r25
- 538:	8f 91       	pop	r24
- 53a:	7f 91       	pop	r23
- 53c:	6f 91       	pop	r22
- 53e:	5f 91       	pop	r21
- 540:	4f 91       	pop	r20
- 542:	3f 91       	pop	r19
- 544:	2f 91       	pop	r18
- 546:	0f 90       	pop	r0
- 548:	0f be       	out	0x3f, r0	; 63
- 54a:	0f 90       	pop	r0
- 54c:	1f 90       	pop	r1
- 54e:	18 95       	reti
+ 666:	ff 91       	pop	r31
+ 668:	ef 91       	pop	r30
+ 66a:	bf 91       	pop	r27
+ 66c:	af 91       	pop	r26
+ 66e:	9f 91       	pop	r25
+ 670:	8f 91       	pop	r24
+ 672:	7f 91       	pop	r23
+ 674:	6f 91       	pop	r22
+ 676:	5f 91       	pop	r21
+ 678:	4f 91       	pop	r20
+ 67a:	3f 91       	pop	r19
+ 67c:	2f 91       	pop	r18
+ 67e:	0f 90       	pop	r0
+ 680:	0f be       	out	0x3f, r0	; 63
+ 682:	0f 90       	pop	r0
+ 684:	1f 90       	pop	r1
+ 686:	18 95       	reti
 
-00000550 <__vector_15>:
+00000688 <__vector_15>:
 
 /**
 * @brief: USART_TXC ISR.
 */
 ISR(USART_TXC_IRQ)
 {
- 550:	1f 92       	push	r1
- 552:	0f 92       	push	r0
- 554:	0f b6       	in	r0, 0x3f	; 63
- 556:	0f 92       	push	r0
- 558:	11 24       	eor	r1, r1
- 55a:	2f 93       	push	r18
- 55c:	3f 93       	push	r19
- 55e:	4f 93       	push	r20
- 560:	5f 93       	push	r21
- 562:	6f 93       	push	r22
- 564:	7f 93       	push	r23
- 566:	8f 93       	push	r24
- 568:	9f 93       	push	r25
- 56a:	af 93       	push	r26
- 56c:	bf 93       	push	r27
- 56e:	ef 93       	push	r30
- 570:	ff 93       	push	r31
+ 688:	1f 92       	push	r1
+ 68a:	0f 92       	push	r0
+ 68c:	0f b6       	in	r0, 0x3f	; 63
+ 68e:	0f 92       	push	r0
+ 690:	11 24       	eor	r1, r1
+ 692:	2f 93       	push	r18
+ 694:	3f 93       	push	r19
+ 696:	4f 93       	push	r20
+ 698:	5f 93       	push	r21
+ 69a:	6f 93       	push	r22
+ 69c:	7f 93       	push	r23
+ 69e:	8f 93       	push	r24
+ 6a0:	9f 93       	push	r25
+ 6a2:	af 93       	push	r26
+ 6a4:	bf 93       	push	r27
+ 6a6:	ef 93       	push	r30
+ 6a8:	ff 93       	push	r31
    if(aptr_ISRAddress[USART_TXC_VECTOR_NUMBER] != NULL_PTR)
- 572:	e0 91 aa 00 	lds	r30, 0x00AA	; 0x8000aa <aptr_ISRAddress+0x1c>
- 576:	f0 91 ab 00 	lds	r31, 0x00AB	; 0x8000ab <aptr_ISRAddress+0x1d>
- 57a:	30 97       	sbiw	r30, 0x00	; 0
- 57c:	09 f0       	breq	.+2      	; 0x580 <__vector_15+0x30>
+ 6aa:	e0 91 a9 00 	lds	r30, 0x00A9	; 0x8000a9 <aptr_ISRAddress+0x1c>
+ 6ae:	f0 91 aa 00 	lds	r31, 0x00AA	; 0x8000aa <aptr_ISRAddress+0x1d>
+ 6b2:	30 97       	sbiw	r30, 0x00	; 0
+ 6b4:	09 f0       	breq	.+2      	; 0x6b8 <__vector_15+0x30>
    {
       aptr_ISRAddress[USART_TXC_VECTOR_NUMBER]();
- 57e:	09 95       	icall
+ 6b6:	09 95       	icall
    }
 }
- 580:	ff 91       	pop	r31
- 582:	ef 91       	pop	r30
- 584:	bf 91       	pop	r27
- 586:	af 91       	pop	r26
- 588:	9f 91       	pop	r25
- 58a:	8f 91       	pop	r24
- 58c:	7f 91       	pop	r23
- 58e:	6f 91       	pop	r22
- 590:	5f 91       	pop	r21
- 592:	4f 91       	pop	r20
- 594:	3f 91       	pop	r19
- 596:	2f 91       	pop	r18
- 598:	0f 90       	pop	r0
- 59a:	0f be       	out	0x3f, r0	; 63
- 59c:	0f 90       	pop	r0
- 59e:	1f 90       	pop	r1
- 5a0:	18 95       	reti
+ 6b8:	ff 91       	pop	r31
+ 6ba:	ef 91       	pop	r30
+ 6bc:	bf 91       	pop	r27
+ 6be:	af 91       	pop	r26
+ 6c0:	9f 91       	pop	r25
+ 6c2:	8f 91       	pop	r24
+ 6c4:	7f 91       	pop	r23
+ 6c6:	6f 91       	pop	r22
+ 6c8:	5f 91       	pop	r21
+ 6ca:	4f 91       	pop	r20
+ 6cc:	3f 91       	pop	r19
+ 6ce:	2f 91       	pop	r18
+ 6d0:	0f 90       	pop	r0
+ 6d2:	0f be       	out	0x3f, r0	; 63
+ 6d4:	0f 90       	pop	r0
+ 6d6:	1f 90       	pop	r1
+ 6d8:	18 95       	reti
 
-000005a2 <__vector_16>:
+000006da <__vector_16>:
 
 /**
 * @brief: ADC ISR.
 */
 ISR(ADC_IRQ)
 {
- 5a2:	1f 92       	push	r1
- 5a4:	0f 92       	push	r0
- 5a6:	0f b6       	in	r0, 0x3f	; 63
- 5a8:	0f 92       	push	r0
- 5aa:	11 24       	eor	r1, r1
- 5ac:	2f 93       	push	r18
- 5ae:	3f 93       	push	r19
- 5b0:	4f 93       	push	r20
- 5b2:	5f 93       	push	r21
- 5b4:	6f 93       	push	r22
- 5b6:	7f 93       	push	r23
- 5b8:	8f 93       	push	r24
- 5ba:	9f 93       	push	r25
- 5bc:	af 93       	push	r26
- 5be:	bf 93       	push	r27
- 5c0:	ef 93       	push	r30
- 5c2:	ff 93       	push	r31
+ 6da:	1f 92       	push	r1
+ 6dc:	0f 92       	push	r0
+ 6de:	0f b6       	in	r0, 0x3f	; 63
+ 6e0:	0f 92       	push	r0
+ 6e2:	11 24       	eor	r1, r1
+ 6e4:	2f 93       	push	r18
+ 6e6:	3f 93       	push	r19
+ 6e8:	4f 93       	push	r20
+ 6ea:	5f 93       	push	r21
+ 6ec:	6f 93       	push	r22
+ 6ee:	7f 93       	push	r23
+ 6f0:	8f 93       	push	r24
+ 6f2:	9f 93       	push	r25
+ 6f4:	af 93       	push	r26
+ 6f6:	bf 93       	push	r27
+ 6f8:	ef 93       	push	r30
+ 6fa:	ff 93       	push	r31
    if(aptr_ISRAddress[ADC_VECTOR_NUMBER] != NULL_PTR)
- 5c4:	e0 91 ac 00 	lds	r30, 0x00AC	; 0x8000ac <aptr_ISRAddress+0x1e>
- 5c8:	f0 91 ad 00 	lds	r31, 0x00AD	; 0x8000ad <aptr_ISRAddress+0x1f>
- 5cc:	30 97       	sbiw	r30, 0x00	; 0
- 5ce:	09 f0       	breq	.+2      	; 0x5d2 <__vector_16+0x30>
+ 6fc:	e0 91 ab 00 	lds	r30, 0x00AB	; 0x8000ab <aptr_ISRAddress+0x1e>
+ 700:	f0 91 ac 00 	lds	r31, 0x00AC	; 0x8000ac <aptr_ISRAddress+0x1f>
+ 704:	30 97       	sbiw	r30, 0x00	; 0
+ 706:	09 f0       	breq	.+2      	; 0x70a <__vector_16+0x30>
    {
       aptr_ISRAddress[ADC_VECTOR_NUMBER]();
- 5d0:	09 95       	icall
+ 708:	09 95       	icall
    }
 }
- 5d2:	ff 91       	pop	r31
- 5d4:	ef 91       	pop	r30
- 5d6:	bf 91       	pop	r27
- 5d8:	af 91       	pop	r26
- 5da:	9f 91       	pop	r25
- 5dc:	8f 91       	pop	r24
- 5de:	7f 91       	pop	r23
- 5e0:	6f 91       	pop	r22
- 5e2:	5f 91       	pop	r21
- 5e4:	4f 91       	pop	r20
- 5e6:	3f 91       	pop	r19
- 5e8:	2f 91       	pop	r18
- 5ea:	0f 90       	pop	r0
- 5ec:	0f be       	out	0x3f, r0	; 63
- 5ee:	0f 90       	pop	r0
- 5f0:	1f 90       	pop	r1
- 5f2:	18 95       	reti
+ 70a:	ff 91       	pop	r31
+ 70c:	ef 91       	pop	r30
+ 70e:	bf 91       	pop	r27
+ 710:	af 91       	pop	r26
+ 712:	9f 91       	pop	r25
+ 714:	8f 91       	pop	r24
+ 716:	7f 91       	pop	r23
+ 718:	6f 91       	pop	r22
+ 71a:	5f 91       	pop	r21
+ 71c:	4f 91       	pop	r20
+ 71e:	3f 91       	pop	r19
+ 720:	2f 91       	pop	r18
+ 722:	0f 90       	pop	r0
+ 724:	0f be       	out	0x3f, r0	; 63
+ 726:	0f 90       	pop	r0
+ 728:	1f 90       	pop	r1
+ 72a:	18 95       	reti
 
-000005f4 <__vector_17>:
+0000072c <__vector_17>:
 
 /**
 * @brief: EE_RDY ISR.
 */
 ISR(EE_RDY_IRQ)
 {
- 5f4:	1f 92       	push	r1
- 5f6:	0f 92       	push	r0
- 5f8:	0f b6       	in	r0, 0x3f	; 63
- 5fa:	0f 92       	push	r0
- 5fc:	11 24       	eor	r1, r1
- 5fe:	2f 93       	push	r18
- 600:	3f 93       	push	r19
- 602:	4f 93       	push	r20
- 604:	5f 93       	push	r21
- 606:	6f 93       	push	r22
- 608:	7f 93       	push	r23
- 60a:	8f 93       	push	r24
- 60c:	9f 93       	push	r25
- 60e:	af 93       	push	r26
- 610:	bf 93       	push	r27
- 612:	ef 93       	push	r30
- 614:	ff 93       	push	r31
+ 72c:	1f 92       	push	r1
+ 72e:	0f 92       	push	r0
+ 730:	0f b6       	in	r0, 0x3f	; 63
+ 732:	0f 92       	push	r0
+ 734:	11 24       	eor	r1, r1
+ 736:	2f 93       	push	r18
+ 738:	3f 93       	push	r19
+ 73a:	4f 93       	push	r20
+ 73c:	5f 93       	push	r21
+ 73e:	6f 93       	push	r22
+ 740:	7f 93       	push	r23
+ 742:	8f 93       	push	r24
+ 744:	9f 93       	push	r25
+ 746:	af 93       	push	r26
+ 748:	bf 93       	push	r27
+ 74a:	ef 93       	push	r30
+ 74c:	ff 93       	push	r31
    if(aptr_ISRAddress[EE_RDY_VECTOR_NUMBER] != NULL_PTR)
- 616:	e0 91 ae 00 	lds	r30, 0x00AE	; 0x8000ae <aptr_ISRAddress+0x20>
- 61a:	f0 91 af 00 	lds	r31, 0x00AF	; 0x8000af <aptr_ISRAddress+0x21>
- 61e:	30 97       	sbiw	r30, 0x00	; 0
- 620:	09 f0       	breq	.+2      	; 0x624 <__vector_17+0x30>
+ 74e:	e0 91 ad 00 	lds	r30, 0x00AD	; 0x8000ad <aptr_ISRAddress+0x20>
+ 752:	f0 91 ae 00 	lds	r31, 0x00AE	; 0x8000ae <aptr_ISRAddress+0x21>
+ 756:	30 97       	sbiw	r30, 0x00	; 0
+ 758:	09 f0       	breq	.+2      	; 0x75c <__vector_17+0x30>
    {
       aptr_ISRAddress[EE_RDY_VECTOR_NUMBER]();
- 622:	09 95       	icall
+ 75a:	09 95       	icall
    }
 }
- 624:	ff 91       	pop	r31
- 626:	ef 91       	pop	r30
- 628:	bf 91       	pop	r27
- 62a:	af 91       	pop	r26
- 62c:	9f 91       	pop	r25
- 62e:	8f 91       	pop	r24
- 630:	7f 91       	pop	r23
- 632:	6f 91       	pop	r22
- 634:	5f 91       	pop	r21
- 636:	4f 91       	pop	r20
- 638:	3f 91       	pop	r19
- 63a:	2f 91       	pop	r18
- 63c:	0f 90       	pop	r0
- 63e:	0f be       	out	0x3f, r0	; 63
- 640:	0f 90       	pop	r0
- 642:	1f 90       	pop	r1
- 644:	18 95       	reti
+ 75c:	ff 91       	pop	r31
+ 75e:	ef 91       	pop	r30
+ 760:	bf 91       	pop	r27
+ 762:	af 91       	pop	r26
+ 764:	9f 91       	pop	r25
+ 766:	8f 91       	pop	r24
+ 768:	7f 91       	pop	r23
+ 76a:	6f 91       	pop	r22
+ 76c:	5f 91       	pop	r21
+ 76e:	4f 91       	pop	r20
+ 770:	3f 91       	pop	r19
+ 772:	2f 91       	pop	r18
+ 774:	0f 90       	pop	r0
+ 776:	0f be       	out	0x3f, r0	; 63
+ 778:	0f 90       	pop	r0
+ 77a:	1f 90       	pop	r1
+ 77c:	18 95       	reti
 
-00000646 <__vector_18>:
+0000077e <__vector_18>:
 
 /**
 * @brief: ANA_COMP ISR.
 */
 ISR(ANA_COMP_IRQ)
 {
- 646:	1f 92       	push	r1
- 648:	0f 92       	push	r0
- 64a:	0f b6       	in	r0, 0x3f	; 63
- 64c:	0f 92       	push	r0
- 64e:	11 24       	eor	r1, r1
- 650:	2f 93       	push	r18
- 652:	3f 93       	push	r19
- 654:	4f 93       	push	r20
- 656:	5f 93       	push	r21
- 658:	6f 93       	push	r22
- 65a:	7f 93       	push	r23
- 65c:	8f 93       	push	r24
- 65e:	9f 93       	push	r25
- 660:	af 93       	push	r26
- 662:	bf 93       	push	r27
- 664:	ef 93       	push	r30
- 666:	ff 93       	push	r31
+ 77e:	1f 92       	push	r1
+ 780:	0f 92       	push	r0
+ 782:	0f b6       	in	r0, 0x3f	; 63
+ 784:	0f 92       	push	r0
+ 786:	11 24       	eor	r1, r1
+ 788:	2f 93       	push	r18
+ 78a:	3f 93       	push	r19
+ 78c:	4f 93       	push	r20
+ 78e:	5f 93       	push	r21
+ 790:	6f 93       	push	r22
+ 792:	7f 93       	push	r23
+ 794:	8f 93       	push	r24
+ 796:	9f 93       	push	r25
+ 798:	af 93       	push	r26
+ 79a:	bf 93       	push	r27
+ 79c:	ef 93       	push	r30
+ 79e:	ff 93       	push	r31
    if(aptr_ISRAddress[ANA_COMP_VECTOR_NUMBER] != NULL_PTR)
- 668:	e0 91 b0 00 	lds	r30, 0x00B0	; 0x8000b0 <aptr_ISRAddress+0x22>
- 66c:	f0 91 b1 00 	lds	r31, 0x00B1	; 0x8000b1 <aptr_ISRAddress+0x23>
- 670:	30 97       	sbiw	r30, 0x00	; 0
- 672:	09 f0       	breq	.+2      	; 0x676 <__vector_18+0x30>
+ 7a0:	e0 91 af 00 	lds	r30, 0x00AF	; 0x8000af <aptr_ISRAddress+0x22>
+ 7a4:	f0 91 b0 00 	lds	r31, 0x00B0	; 0x8000b0 <aptr_ISRAddress+0x23>
+ 7a8:	30 97       	sbiw	r30, 0x00	; 0
+ 7aa:	09 f0       	breq	.+2      	; 0x7ae <__vector_18+0x30>
    {
       aptr_ISRAddress[ANA_COMP_VECTOR_NUMBER]();
- 674:	09 95       	icall
+ 7ac:	09 95       	icall
    }
 }
- 676:	ff 91       	pop	r31
- 678:	ef 91       	pop	r30
- 67a:	bf 91       	pop	r27
- 67c:	af 91       	pop	r26
- 67e:	9f 91       	pop	r25
- 680:	8f 91       	pop	r24
- 682:	7f 91       	pop	r23
- 684:	6f 91       	pop	r22
- 686:	5f 91       	pop	r21
- 688:	4f 91       	pop	r20
- 68a:	3f 91       	pop	r19
- 68c:	2f 91       	pop	r18
- 68e:	0f 90       	pop	r0
- 690:	0f be       	out	0x3f, r0	; 63
- 692:	0f 90       	pop	r0
- 694:	1f 90       	pop	r1
- 696:	18 95       	reti
+ 7ae:	ff 91       	pop	r31
+ 7b0:	ef 91       	pop	r30
+ 7b2:	bf 91       	pop	r27
+ 7b4:	af 91       	pop	r26
+ 7b6:	9f 91       	pop	r25
+ 7b8:	8f 91       	pop	r24
+ 7ba:	7f 91       	pop	r23
+ 7bc:	6f 91       	pop	r22
+ 7be:	5f 91       	pop	r21
+ 7c0:	4f 91       	pop	r20
+ 7c2:	3f 91       	pop	r19
+ 7c4:	2f 91       	pop	r18
+ 7c6:	0f 90       	pop	r0
+ 7c8:	0f be       	out	0x3f, r0	; 63
+ 7ca:	0f 90       	pop	r0
+ 7cc:	1f 90       	pop	r1
+ 7ce:	18 95       	reti
 
-00000698 <__vector_19>:
+000007d0 <__vector_19>:
 
 /**
 * @brief: TWI ISR.
 */
 ISR(TWI_IRQ)
 {
- 698:	1f 92       	push	r1
- 69a:	0f 92       	push	r0
- 69c:	0f b6       	in	r0, 0x3f	; 63
- 69e:	0f 92       	push	r0
- 6a0:	11 24       	eor	r1, r1
- 6a2:	2f 93       	push	r18
- 6a4:	3f 93       	push	r19
- 6a6:	4f 93       	push	r20
- 6a8:	5f 93       	push	r21
- 6aa:	6f 93       	push	r22
- 6ac:	7f 93       	push	r23
- 6ae:	8f 93       	push	r24
- 6b0:	9f 93       	push	r25
- 6b2:	af 93       	push	r26
- 6b4:	bf 93       	push	r27
- 6b6:	ef 93       	push	r30
- 6b8:	ff 93       	push	r31
+ 7d0:	1f 92       	push	r1
+ 7d2:	0f 92       	push	r0
+ 7d4:	0f b6       	in	r0, 0x3f	; 63
+ 7d6:	0f 92       	push	r0
+ 7d8:	11 24       	eor	r1, r1
+ 7da:	2f 93       	push	r18
+ 7dc:	3f 93       	push	r19
+ 7de:	4f 93       	push	r20
+ 7e0:	5f 93       	push	r21
+ 7e2:	6f 93       	push	r22
+ 7e4:	7f 93       	push	r23
+ 7e6:	8f 93       	push	r24
+ 7e8:	9f 93       	push	r25
+ 7ea:	af 93       	push	r26
+ 7ec:	bf 93       	push	r27
+ 7ee:	ef 93       	push	r30
+ 7f0:	ff 93       	push	r31
    if(aptr_ISRAddress[TWI_VECTOR_NUMBER] != NULL_PTR)
- 6ba:	e0 91 b2 00 	lds	r30, 0x00B2	; 0x8000b2 <aptr_ISRAddress+0x24>
- 6be:	f0 91 b3 00 	lds	r31, 0x00B3	; 0x8000b3 <aptr_ISRAddress+0x25>
- 6c2:	30 97       	sbiw	r30, 0x00	; 0
- 6c4:	09 f0       	breq	.+2      	; 0x6c8 <__vector_19+0x30>
+ 7f2:	e0 91 b1 00 	lds	r30, 0x00B1	; 0x8000b1 <aptr_ISRAddress+0x24>
+ 7f6:	f0 91 b2 00 	lds	r31, 0x00B2	; 0x8000b2 <aptr_ISRAddress+0x25>
+ 7fa:	30 97       	sbiw	r30, 0x00	; 0
+ 7fc:	09 f0       	breq	.+2      	; 0x800 <__DATA_REGION_LENGTH__>
    {
       aptr_ISRAddress[TWI_VECTOR_NUMBER]();
- 6c6:	09 95       	icall
+ 7fe:	09 95       	icall
    }
 }
- 6c8:	ff 91       	pop	r31
- 6ca:	ef 91       	pop	r30
- 6cc:	bf 91       	pop	r27
- 6ce:	af 91       	pop	r26
- 6d0:	9f 91       	pop	r25
- 6d2:	8f 91       	pop	r24
- 6d4:	7f 91       	pop	r23
- 6d6:	6f 91       	pop	r22
- 6d8:	5f 91       	pop	r21
- 6da:	4f 91       	pop	r20
- 6dc:	3f 91       	pop	r19
- 6de:	2f 91       	pop	r18
- 6e0:	0f 90       	pop	r0
- 6e2:	0f be       	out	0x3f, r0	; 63
- 6e4:	0f 90       	pop	r0
- 6e6:	1f 90       	pop	r1
- 6e8:	18 95       	reti
+ 800:	ff 91       	pop	r31
+ 802:	ef 91       	pop	r30
+ 804:	bf 91       	pop	r27
+ 806:	af 91       	pop	r26
+ 808:	9f 91       	pop	r25
+ 80a:	8f 91       	pop	r24
+ 80c:	7f 91       	pop	r23
+ 80e:	6f 91       	pop	r22
+ 810:	5f 91       	pop	r21
+ 812:	4f 91       	pop	r20
+ 814:	3f 91       	pop	r19
+ 816:	2f 91       	pop	r18
+ 818:	0f 90       	pop	r0
+ 81a:	0f be       	out	0x3f, r0	; 63
+ 81c:	0f 90       	pop	r0
+ 81e:	1f 90       	pop	r1
+ 820:	18 95       	reti
 
-000006ea <__vector_20>:
+00000822 <__vector_20>:
 
 /**
 * @brief: SPM_RDY ISR.
 */
 ISR(SPM_RDY_IRQ)
 {
- 6ea:	1f 92       	push	r1
- 6ec:	0f 92       	push	r0
- 6ee:	0f b6       	in	r0, 0x3f	; 63
- 6f0:	0f 92       	push	r0
- 6f2:	11 24       	eor	r1, r1
- 6f4:	2f 93       	push	r18
- 6f6:	3f 93       	push	r19
- 6f8:	4f 93       	push	r20
- 6fa:	5f 93       	push	r21
- 6fc:	6f 93       	push	r22
- 6fe:	7f 93       	push	r23
- 700:	8f 93       	push	r24
- 702:	9f 93       	push	r25
- 704:	af 93       	push	r26
- 706:	bf 93       	push	r27
- 708:	ef 93       	push	r30
- 70a:	ff 93       	push	r31
+ 822:	1f 92       	push	r1
+ 824:	0f 92       	push	r0
+ 826:	0f b6       	in	r0, 0x3f	; 63
+ 828:	0f 92       	push	r0
+ 82a:	11 24       	eor	r1, r1
+ 82c:	2f 93       	push	r18
+ 82e:	3f 93       	push	r19
+ 830:	4f 93       	push	r20
+ 832:	5f 93       	push	r21
+ 834:	6f 93       	push	r22
+ 836:	7f 93       	push	r23
+ 838:	8f 93       	push	r24
+ 83a:	9f 93       	push	r25
+ 83c:	af 93       	push	r26
+ 83e:	bf 93       	push	r27
+ 840:	ef 93       	push	r30
+ 842:	ff 93       	push	r31
    if(aptr_ISRAddress[SPM_RDY_VECTOR_NUMBER] != NULL_PTR)
- 70c:	e0 91 b4 00 	lds	r30, 0x00B4	; 0x8000b4 <aptr_ISRAddress+0x26>
- 710:	f0 91 b5 00 	lds	r31, 0x00B5	; 0x8000b5 <aptr_ISRAddress+0x27>
- 714:	30 97       	sbiw	r30, 0x00	; 0
- 716:	09 f0       	breq	.+2      	; 0x71a <__vector_20+0x30>
+ 844:	e0 91 b3 00 	lds	r30, 0x00B3	; 0x8000b3 <aptr_ISRAddress+0x26>
+ 848:	f0 91 b4 00 	lds	r31, 0x00B4	; 0x8000b4 <aptr_ISRAddress+0x27>
+ 84c:	30 97       	sbiw	r30, 0x00	; 0
+ 84e:	09 f0       	breq	.+2      	; 0x852 <__vector_20+0x30>
    {
       aptr_ISRAddress[SPM_RDY_VECTOR_NUMBER]();
- 718:	09 95       	icall
+ 850:	09 95       	icall
    }
- 71a:	ff 91       	pop	r31
- 71c:	ef 91       	pop	r30
- 71e:	bf 91       	pop	r27
- 720:	af 91       	pop	r26
- 722:	9f 91       	pop	r25
- 724:	8f 91       	pop	r24
- 726:	7f 91       	pop	r23
- 728:	6f 91       	pop	r22
- 72a:	5f 91       	pop	r21
- 72c:	4f 91       	pop	r20
- 72e:	3f 91       	pop	r19
- 730:	2f 91       	pop	r18
- 732:	0f 90       	pop	r0
- 734:	0f be       	out	0x3f, r0	; 63
- 736:	0f 90       	pop	r0
- 738:	1f 90       	pop	r1
- 73a:	18 95       	reti
+ 852:	ff 91       	pop	r31
+ 854:	ef 91       	pop	r30
+ 856:	bf 91       	pop	r27
+ 858:	af 91       	pop	r26
+ 85a:	9f 91       	pop	r25
+ 85c:	8f 91       	pop	r24
+ 85e:	7f 91       	pop	r23
+ 860:	6f 91       	pop	r22
+ 862:	5f 91       	pop	r21
+ 864:	4f 91       	pop	r20
+ 866:	3f 91       	pop	r19
+ 868:	2f 91       	pop	r18
+ 86a:	0f 90       	pop	r0
+ 86c:	0f be       	out	0x3f, r0	; 63
+ 86e:	0f 90       	pop	r0
+ 870:	1f 90       	pop	r1
+ 872:	18 95       	reti
 
-0000073c <UART_Init>:
-   /* Put data into buffer, sends the data */
-   *ptru8_UARTDataR = TxChar;
-   
-   /* return success status */
-   return E_UART_SUCCESS;
-}
- 73c:	81 11       	cpse	r24, r1
- 73e:	1c c0       	rjmp	.+56     	; 0x778 <UART_Init+0x3c>
- 740:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <UART_CH_0_BaudRate>
- 744:	90 91 62 00 	lds	r25, 0x0062	; 0x800062 <UART_CH_0_BaudRate+0x1>
- 748:	8f 3f       	cpi	r24, 0xFF	; 255
- 74a:	91 05       	cpc	r25, r1
- 74c:	09 f0       	breq	.+2      	; 0x750 <UART_Init+0x14>
- 74e:	b0 f4       	brcc	.+44     	; 0x77c <UART_Init+0x40>
- 750:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <UART_CH_0_CONTROL>
- 754:	8a b9       	out	0x0a, r24	; 10
- 756:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <UART_CH_0_CONTROL_2>
- 75a:	80 bd       	out	0x20, r24	; 32
- 75c:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <UART_CH_0_BaudRate>
- 760:	89 b9       	out	0x09, r24	; 9
- 762:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <UART_CH_0_BaudRate>
- 766:	90 91 62 00 	lds	r25, 0x0062	; 0x800062 <UART_CH_0_BaudRate+0x1>
- 76a:	8f 3f       	cpi	r24, 0xFF	; 255
- 76c:	91 05       	cpc	r25, r1
- 76e:	41 f0       	breq	.+16     	; 0x780 <UART_Init+0x44>
- 770:	38 f0       	brcs	.+14     	; 0x780 <UART_Init+0x44>
- 772:	90 bd       	out	0x20, r25	; 32
- 774:	80 e0       	ldi	r24, 0x00	; 0
- 776:	08 95       	ret
- 778:	86 e0       	ldi	r24, 0x06	; 6
- 77a:	08 95       	ret
- 77c:	85 e0       	ldi	r24, 0x05	; 5
- 77e:	08 95       	ret
- 780:	80 e0       	ldi	r24, 0x00	; 0
- 782:	08 95       	ret
-
-00000784 <UART_EnableInterrupt>:
- 784:	60 38       	cpi	r22, 0x80	; 128
- 786:	11 f0       	breq	.+4      	; 0x78c <UART_EnableInterrupt+0x8>
- 788:	60 34       	cpi	r22, 0x40	; 64
- 78a:	39 f4       	brne	.+14     	; 0x79a <UART_EnableInterrupt+0x16>
- 78c:	81 11       	cpse	r24, r1
- 78e:	07 c0       	rjmp	.+14     	; 0x79e <UART_EnableInterrupt+0x1a>
- 790:	8a b1       	in	r24, 0x0a	; 10
- 792:	68 2b       	or	r22, r24
- 794:	6a b9       	out	0x0a, r22	; 10
- 796:	80 e0       	ldi	r24, 0x00	; 0
- 798:	08 95       	ret
- 79a:	87 e0       	ldi	r24, 0x07	; 7
- 79c:	08 95       	ret
- 79e:	86 e0       	ldi	r24, 0x06	; 6
- 7a0:	08 95       	ret
-
-000007a2 <UART_GetData>:
-* @return function error state.
-*/
-UART_ERROR_state_t UART_GetData(uint8_t UartNumber,uint8_t * RxChar)
-{
-   /* making sure an initialized pointer is sent to the function */
-   if(NULL_PTR == RxChar)
- 7a2:	61 15       	cp	r22, r1
- 7a4:	71 05       	cpc	r23, r1
- 7a6:	39 f0       	breq	.+14     	; 0x7b6 <UART_GetData+0x14>
-      /* do nothing */
-   }
-   
-   volatile uint8_t * ptru8_UARTDataR;
-   
-   switch(UartNumber)
- 7a8:	81 11       	cpse	r24, r1
- 7aa:	07 c0       	rjmp	.+14     	; 0x7ba <UART_GetData+0x18>
-      default:
-         return E_UART_INVALID_CH;
-   }
-   
-   /* Get and return received data from buffer */
-   *RxChar = *ptru8_UARTDataR;
- 7ac:	8c b1       	in	r24, 0x0c	; 12
- 7ae:	fb 01       	movw	r30, r22
- 7b0:	80 83       	st	Z, r24
-   
-   /* return success status */
-   return E_UART_SUCCESS;
- 7b2:	80 e0       	ldi	r24, 0x00	; 0
- 7b4:	08 95       	ret
-UART_ERROR_state_t UART_GetData(uint8_t UartNumber,uint8_t * RxChar)
-{
-   /* making sure an initialized pointer is sent to the function */
-   if(NULL_PTR == RxChar)
-   {
-      return E_UART_NULL_PTR;
- 7b6:	84 e0       	ldi	r24, 0x04	; 4
- 7b8:	08 95       	ret
-   {
-      case UART_CH_0:
-         ptru8_UARTDataR = &UART_DATA_R;
-         break;
-      default:
-         return E_UART_INVALID_CH;
- 7ba:	86 e0       	ldi	r24, 0x06	; 6
-   /* Get and return received data from buffer */
-   *RxChar = *ptru8_UARTDataR;
-   
-   /* return success status */
-   return E_UART_SUCCESS;
- 7bc:	08 95       	ret
-
-000007be <GetRxUART>:
+00000874 <GetRxI2C>:
    UART_GetData(UART_CH_0, &x);
 }
 
 void GetRxSPI(void)
 {
    SPI_GetData(UART_CH_0, &x);
- 7be:	60 e6       	ldi	r22, 0x60	; 96
- 7c0:	70 e0       	ldi	r23, 0x00	; 0
- 7c2:	80 e0       	ldi	r24, 0x00	; 0
- 7c4:	0e 94 d1 03 	call	0x7a2	; 0x7a2 <UART_GetData>
- 7c8:	08 95       	ret
+ 874:	6c e8       	ldi	r22, 0x8C	; 140
+ 876:	70 e0       	ldi	r23, 0x00	; 0
+ 878:	80 e0       	ldi	r24, 0x00	; 0
+ 87a:	0e 94 e1 00 	call	0x1c2	; 0x1c2 <I2C_Status>
+ 87e:	e0 91 8c 00 	lds	r30, 0x008C	; 0x80008c <status>
+ 882:	8e 2f       	mov	r24, r30
+ 884:	90 e0       	ldi	r25, 0x00	; 0
+ 886:	fc 01       	movw	r30, r24
+ 888:	e0 56       	subi	r30, 0x60	; 96
+ 88a:	f1 09       	sbc	r31, r1
+ 88c:	e1 34       	cpi	r30, 0x41	; 65
+ 88e:	f1 05       	cpc	r31, r1
+ 890:	b8 f4       	brcc	.+46     	; 0x8c0 <GetRxI2C+0x4c>
+ 892:	e6 5d       	subi	r30, 0xD6	; 214
+ 894:	ff 4f       	sbci	r31, 0xFF	; 255
+ 896:	0c 94 73 04 	jmp	0x8e6	; 0x8e6 <__tablejump2__>
+ 89a:	80 e0       	ldi	r24, 0x00	; 0
+ 89c:	0e 94 f9 00 	call	0x1f2	; 0x1f2 <I2C_ClearIntFlag>
+ 8a0:	08 95       	ret
+ 8a2:	60 e6       	ldi	r22, 0x60	; 96
+ 8a4:	70 e0       	ldi	r23, 0x00	; 0
+ 8a6:	80 e0       	ldi	r24, 0x00	; 0
+ 8a8:	0e 94 bc 00 	call	0x178	; 0x178 <I2C_ReadAck>
+ 8ac:	08 95       	ret
+ 8ae:	60 e6       	ldi	r22, 0x60	; 96
+ 8b0:	70 e0       	ldi	r23, 0x00	; 0
+ 8b2:	80 e0       	ldi	r24, 0x00	; 0
+ 8b4:	0e 94 cd 00 	call	0x19a	; 0x19a <I2C_ReadNoAck>
+ 8b8:	08 95       	ret
+ 8ba:	80 e0       	ldi	r24, 0x00	; 0
+ 8bc:	0e 94 f9 00 	call	0x1f2	; 0x1f2 <I2C_ClearIntFlag>
+ 8c0:	08 95       	ret
 
-000007ca <main>:
-}
-
-
-int main(void)
-{
-   UART_Init(UART_CH_0);
- 7ca:	80 e0       	ldi	r24, 0x00	; 0
- 7cc:	0e 94 9e 03 	call	0x73c	; 0x73c <UART_Init>
+000008c2 <main>:
    
-   UART_EnableInterrupt(UART_CH_0, RX_INT);
- 7d0:	60 e8       	ldi	r22, 0x80	; 128
- 7d2:	80 e0       	ldi	r24, 0x00	; 0
- 7d4:	0e 94 c2 03 	call	0x784	; 0x784 <UART_EnableInterrupt>
-
-   Interrupt_Install(USART_RXC_VECTOR_NUMBER, GetRxUART);
- 7d8:	6f ed       	ldi	r22, 0xDF	; 223
- 7da:	73 e0       	ldi	r23, 0x03	; 3
- 7dc:	8c e0       	ldi	r24, 0x0C	; 12
- 7de:	0e 94 47 00 	call	0x8e	; 0x8e <Interrupt_Install>
    SPI_EnableInterrupt(SPI_CH_0);
    
    Interrupt_Install(SPI_STC_VECTOR_NUMBER, GetRxSPI);*/
    
+   I2C_Init(I2C_CH_0);
+ 8c2:	80 e0       	ldi	r24, 0x00	; 0
+ 8c4:	0e 94 a7 00 	call	0x14e	; 0x14e <I2C_Init>
+   
+   I2C_SetSlaveAddress(I2C_CH_0, I2C_SLAVE_ADDR);
+ 8c8:	60 ea       	ldi	r22, 0xA0	; 160
+ 8ca:	80 e0       	ldi	r24, 0x00	; 0
+ 8cc:	0e 94 b6 00 	call	0x16c	; 0x16c <I2C_SetSlaveAddress>
+   
+   I2C_EnableInterrupt(I2C_CH_0);
+ 8d0:	80 e0       	ldi	r24, 0x00	; 0
+ 8d2:	0e 94 f0 00 	call	0x1e0	; 0x1e0 <I2C_EnableInterrupt>
+   
+   Interrupt_Install(TWI_VECTOR_NUMBER, GetRxI2C);
+ 8d6:	6a e3       	ldi	r22, 0x3A	; 58
+ 8d8:	74 e0       	ldi	r23, 0x04	; 4
+ 8da:	82 e1       	ldi	r24, 0x12	; 18
+ 8dc:	0e 94 88 00 	call	0x110	; 0x110 <Interrupt_Install>
+   
    /* Enable Globale Interrupt */
    INTERRUPTS_Enable();
- 7e2:	0e 94 66 00 	call	0xcc	; 0xcc <INTERRUPTS_Enable>
- 7e6:	ff cf       	rjmp	.-2      	; 0x7e6 <main+0x1c>
+ 8e0:	0e 94 02 01 	call	0x204	; 0x204 <INTERRUPTS_Enable>
+ 8e4:	ff cf       	rjmp	.-2      	; 0x8e4 <main+0x22>
 
-000007e8 <_exit>:
- 7e8:	f8 94       	cli
+000008e6 <__tablejump2__>:
+ 8e6:	ee 0f       	add	r30, r30
+ 8e8:	ff 1f       	adc	r31, r31
+ 8ea:	05 90       	lpm	r0, Z+
+ 8ec:	f4 91       	lpm	r31, Z
+ 8ee:	e0 2d       	mov	r30, r0
+ 8f0:	09 94       	ijmp
 
-000007ea <__stop_program>:
- 7ea:	ff cf       	rjmp	.-2      	; 0x7ea <__stop_program>
+000008f2 <_exit>:
+ 8f2:	f8 94       	cli
+
+000008f4 <__stop_program>:
+ 8f4:	ff cf       	rjmp	.-2      	; 0x8f4 <__stop_program>
