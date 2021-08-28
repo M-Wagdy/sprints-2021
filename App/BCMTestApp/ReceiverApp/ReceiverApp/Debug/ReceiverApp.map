@@ -4,23 +4,39 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
                               Infrastructure/LIB/src/UTILS.o (__udivmodsi4)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o (exit)
-c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                              main.o (__tablejump2__)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
-                              main.o (__do_copy_data)
+                              Firmware/BCM/src/BCM.o (__do_copy_data)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
-                              Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o (__do_clear_bss)
+                              Firmware/BCM/src/BCM.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+DataI2C             0x1e              main.o
+test                0xa               main.o
+DataSPI             0x1e              main.o
 
 Discarded input sections
 
  .text          0x00000000        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .text          0x00000000        0x0 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
- .data          0x00000000        0x0 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
- .bss           0x00000000        0x0 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
+ .text          0x00000000        0x0 Firmware/BCM/src/BCM.o
+ .data          0x00000000        0x0 Firmware/BCM/src/BCM.o
+ .bss           0x00000000        0x0 Firmware/BCM/src/BCM.o
+ .text          0x00000000        0x0 Firmware/BCM/src/BCM_Interface.o
+ .data          0x00000000        0x0 Firmware/BCM/src/BCM_Interface.o
+ .bss           0x00000000        0x0 Firmware/BCM/src/BCM_Interface.o
+ .text.BCM_SetState
+                0x00000000       0x22 Firmware/BCM/src/BCM_Interface.o
+ .text          0x00000000        0x0 Firmware/COMMProxy/src/COMMProxy.o
+ .data          0x00000000        0x0 Firmware/COMMProxy/src/COMMProxy.o
+ .bss           0x00000000        0x0 Firmware/COMMProxy/src/COMMProxy.o
+ .text          0x00000000        0x0 Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
+ .data          0x00000000        0x0 Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
+ .bss           0x00000000        0x0 Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
  .text.Interrupt_Deinstall
-                0x00000000       0x24 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
+                0x00000000       0x24 Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
  .text          0x00000000        0x0 Infrastructure/LIB/src/UTILS.o
  .data          0x00000000        0x0 Infrastructure/LIB/src/UTILS.o
  .bss           0x00000000        0x0 Infrastructure/LIB/src/UTILS.o
@@ -48,44 +64,26 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x60 Infrastructure/LIB/src/UTILS.o
  .debug_ranges  0x00000000       0x50 Infrastructure/LIB/src/UTILS.o
- .debug_line    0x00000000      0x351 Infrastructure/LIB/src/UTILS.o
- .debug_str     0x00000000      0x2e6 Infrastructure/LIB/src/UTILS.o
+ .debug_line    0x00000000      0x345 Infrastructure/LIB/src/UTILS.o
+ .debug_str     0x00000000      0x2e0 Infrastructure/LIB/src/UTILS.o
  .comment       0x00000000       0x31 Infrastructure/LIB/src/UTILS.o
  .debug_frame   0x00000000      0x10c Infrastructure/LIB/src/UTILS.o
  .text          0x00000000        0x0 Mcal/Atmega32/DIO/src/DIO.o
  .data          0x00000000        0x0 Mcal/Atmega32/DIO/src/DIO.o
  .bss           0x00000000        0x0 Mcal/Atmega32/DIO/src/DIO.o
- .text.DIO_SetPinDirection
-                0x00000000       0x70 Mcal/Atmega32/DIO/src/DIO.o
  .text.DIO_EnablePinPullup
                 0x00000000       0x4a Mcal/Atmega32/DIO/src/DIO.o
- .text.DIO_WritePin
-                0x00000000       0x70 Mcal/Atmega32/DIO/src/DIO.o
  .text.DIO_ReadPin
                 0x00000000       0x60 Mcal/Atmega32/DIO/src/DIO.o
  .text.DIO_TogglePin
                 0x00000000       0x4a Mcal/Atmega32/DIO/src/DIO.o
- .debug_info    0x00000000      0x232 Mcal/Atmega32/DIO/src/DIO.o
- .debug_abbrev  0x00000000       0xbf Mcal/Atmega32/DIO/src/DIO.o
- .debug_loc     0x00000000      0x3fa Mcal/Atmega32/DIO/src/DIO.o
- .debug_aranges
-                0x00000000       0x40 Mcal/Atmega32/DIO/src/DIO.o
- .debug_ranges  0x00000000       0x30 Mcal/Atmega32/DIO/src/DIO.o
- .debug_line    0x00000000      0x2bd Mcal/Atmega32/DIO/src/DIO.o
- .debug_str     0x00000000      0x249 Mcal/Atmega32/DIO/src/DIO.o
- .comment       0x00000000       0x31 Mcal/Atmega32/DIO/src/DIO.o
- .debug_frame   0x00000000       0x64 Mcal/Atmega32/DIO/src/DIO.o
  .text          0x00000000        0x0 Mcal/Atmega32/I2C/src/I2C.o
  .data          0x00000000        0x0 Mcal/Atmega32/I2C/src/I2C.o
  .bss           0x00000000        0x0 Mcal/Atmega32/I2C/src/I2C.o
- .text.I2C_Start
-                0x00000000       0x12 Mcal/Atmega32/I2C/src/I2C.o
  .text.I2C_RepeatedStart
                 0x00000000       0x12 Mcal/Atmega32/I2C/src/I2C.o
- .text.I2C_Write
-                0x00000000       0x14 Mcal/Atmega32/I2C/src/I2C.o
- .text.I2C_Stop
-                0x00000000       0x18 Mcal/Atmega32/I2C/src/I2C.o
+ .text.I2C_ReadNoAck
+                0x00000000       0x28 Mcal/Atmega32/I2C/src/I2C.o
  .text.I2C_DisableInterrupt
                 0x00000000       0x12 Mcal/Atmega32/I2C/src/I2C.o
  .text.I2C_SetCallback
@@ -98,8 +96,6 @@ Discarded input sections
  .text          0x00000000        0x0 Mcal/Atmega32/SPI/src/SPI.o
  .data          0x00000000        0x0 Mcal/Atmega32/SPI/src/SPI.o
  .bss           0x00000000        0x0 Mcal/Atmega32/SPI/src/SPI.o
- .text.SPI_Init
-                0x00000000       0x7e Mcal/Atmega32/SPI/src/SPI.o
  .text.SPI_TransmitChar
                 0x00000000       0x66 Mcal/Atmega32/SPI/src/SPI.o
  .text.SPI_ReceiveChar
@@ -108,31 +104,13 @@ Discarded input sections
                 0x00000000       0x86 Mcal/Atmega32/SPI/src/SPI.o
  .text.SPI_ReceiveString
                 0x00000000       0xb4 Mcal/Atmega32/SPI/src/SPI.o
- .text.SPI_EnableInterrupt
-                0x00000000       0x12 Mcal/Atmega32/SPI/src/SPI.o
  .text.SPI_DisableInterrupt
                 0x00000000       0x12 Mcal/Atmega32/SPI/src/SPI.o
  .text.SPI_SetCallback
                 0x00000000       0x28 Mcal/Atmega32/SPI/src/SPI.o
- .text.SPI_SetData
-                0x00000000        0xc Mcal/Atmega32/SPI/src/SPI.o
- .text.SPI_GetData
-                0x00000000       0x1c Mcal/Atmega32/SPI/src/SPI.o
- .debug_info    0x00000000      0x6b4 Mcal/Atmega32/SPI/src/SPI.o
- .debug_abbrev  0x00000000      0x160 Mcal/Atmega32/SPI/src/SPI.o
- .debug_loc     0x00000000      0xa6c Mcal/Atmega32/SPI/src/SPI.o
- .debug_aranges
-                0x00000000       0x68 Mcal/Atmega32/SPI/src/SPI.o
- .debug_ranges  0x00000000       0x58 Mcal/Atmega32/SPI/src/SPI.o
- .debug_line    0x00000000      0x455 Mcal/Atmega32/SPI/src/SPI.o
- .debug_str     0x00000000      0x3f8 Mcal/Atmega32/SPI/src/SPI.o
- .comment       0x00000000       0x31 Mcal/Atmega32/SPI/src/SPI.o
- .debug_frame   0x00000000      0x140 Mcal/Atmega32/SPI/src/SPI.o
  .text          0x00000000        0x0 Mcal/Atmega32/UART/src/UART.o
  .data          0x00000000        0x0 Mcal/Atmega32/UART/src/UART.o
  .bss           0x00000000        0x0 Mcal/Atmega32/UART/src/UART.o
- .text.UART_Init
-                0x00000000       0x48 Mcal/Atmega32/UART/src/UART.o
  .text.UART_TransmitChar
                 0x00000000       0x12 Mcal/Atmega32/UART/src/UART.o
  .text.UART_ReceiveChar
@@ -141,35 +119,25 @@ Discarded input sections
                 0x00000000       0x2e Mcal/Atmega32/UART/src/UART.o
  .text.UART_ReceiveString
                 0x00000000       0x5e Mcal/Atmega32/UART/src/UART.o
- .text.UART_EnableInterrupt
-                0x00000000       0x1e Mcal/Atmega32/UART/src/UART.o
  .text.UART_DisableInterrupt
                 0x00000000       0x20 Mcal/Atmega32/UART/src/UART.o
  .text.UART_SetCallback
                 0x00000000       0x46 Mcal/Atmega32/UART/src/UART.o
  .text.UART_FlushReceiveBuffer
                 0x00000000       0x14 Mcal/Atmega32/UART/src/UART.o
- .text.UART_SetData
-                0x00000000        0xc Mcal/Atmega32/UART/src/UART.o
- .text.UART_GetData
-                0x00000000       0x1c Mcal/Atmega32/UART/src/UART.o
- .debug_info    0x00000000      0x4a9 Mcal/Atmega32/UART/src/UART.o
- .debug_abbrev  0x00000000      0x146 Mcal/Atmega32/UART/src/UART.o
- .debug_loc     0x00000000      0x545 Mcal/Atmega32/UART/src/UART.o
- .debug_aranges
-                0x00000000       0x70 Mcal/Atmega32/UART/src/UART.o
- .debug_ranges  0x00000000       0x60 Mcal/Atmega32/UART/src/UART.o
- .debug_line    0x00000000      0x3d8 Mcal/Atmega32/UART/src/UART.o
- .debug_str     0x00000000      0x393 Mcal/Atmega32/UART/src/UART.o
- .comment       0x00000000       0x31 Mcal/Atmega32/UART/src/UART.o
- .debug_frame   0x00000000       0xd4 Mcal/Atmega32/UART/src/UART.o
+ .text          0x00000000        0x0 Firmware/BCM/src/BCM_Lcfg.o
+ .data          0x00000000        0x0 Firmware/BCM/src/BCM_Lcfg.o
+ .bss           0x00000000        0x0 Firmware/BCM/src/BCM_Lcfg.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .text.GetRxUART
-                0x00000000        0xc main.o
  .text.GetRxSPI
-                0x00000000        0xc main.o
+                0x00000000        0x8 main.o
+ .data.test2    0x00000000        0x5 main.o
+ .bss.u8_FlagI2C
+                0x00000000        0x1 main.o
+ .bss.u8_FlagSPI
+                0x00000000        0x1 main.o
  .text          0x00000000        0x0 Mcal/Atmega32/I2C/src/I2C_Config.o
  .data          0x00000000        0x0 Mcal/Atmega32/I2C/src/I2C_Config.o
  .bss           0x00000000        0x0 Mcal/Atmega32/I2C/src/I2C_Config.o
@@ -179,49 +147,9 @@ Discarded input sections
  .text          0x00000000        0x0 Mcal/Atmega32/SPI/src/SPI_Config.o
  .data          0x00000000        0x0 Mcal/Atmega32/SPI/src/SPI_Config.o
  .bss           0x00000000        0x0 Mcal/Atmega32/SPI/src/SPI_Config.o
- .rodata.SPI_CH_0_SS_CH_0_PIN
-                0x00000000        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
- .rodata.SPI_CH_0_SS_CH_0_PORT
-                0x00000000        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
- .rodata.SPI_CH_0_SCK_PIN
-                0x00000000        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
- .rodata.SPI_CH_0_SCK_PORT
-                0x00000000        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
- .rodata.SPI_CH_0_MISO_PIN
-                0x00000000        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
- .rodata.SPI_CH_0_MISO_PORT
-                0x00000000        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
- .rodata.SPI_CH_0_MOSI_PIN
-                0x00000000        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
- .rodata.SPI_CH_0_MOSI_PORT
-                0x00000000        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
- .rodata.SPI_CH_0_DOUBLE_SPEED
-                0x00000000        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
- .rodata.SPI_CH_0_CONTROL_MASK
-                0x00000000        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
- .debug_info    0x00000000      0x128 Mcal/Atmega32/SPI/src/SPI_Config.o
- .debug_abbrev  0x00000000       0x40 Mcal/Atmega32/SPI/src/SPI_Config.o
- .debug_aranges
-                0x00000000       0x18 Mcal/Atmega32/SPI/src/SPI_Config.o
- .debug_line    0x00000000       0x78 Mcal/Atmega32/SPI/src/SPI_Config.o
- .debug_str     0x00000000      0x26e Mcal/Atmega32/SPI/src/SPI_Config.o
- .comment       0x00000000       0x31 Mcal/Atmega32/SPI/src/SPI_Config.o
  .text          0x00000000        0x0 Mcal/Atmega32/UART/src/UART_Config.o
  .data          0x00000000        0x0 Mcal/Atmega32/UART/src/UART_Config.o
  .bss           0x00000000        0x0 Mcal/Atmega32/UART/src/UART_Config.o
- .rodata.UART_CH_0_BaudRate
-                0x00000000        0x2 Mcal/Atmega32/UART/src/UART_Config.o
- .rodata.UART_CH_0_CONTROL_2
-                0x00000000        0x1 Mcal/Atmega32/UART/src/UART_Config.o
- .rodata.UART_CH_0_CONTROL
-                0x00000000        0x1 Mcal/Atmega32/UART/src/UART_Config.o
- .debug_info    0x00000000       0xba Mcal/Atmega32/UART/src/UART_Config.o
- .debug_abbrev  0x00000000       0x40 Mcal/Atmega32/UART/src/UART_Config.o
- .debug_aranges
-                0x00000000       0x18 Mcal/Atmega32/UART/src/UART_Config.o
- .debug_line    0x00000000       0x7a Mcal/Atmega32/UART/src/UART_Config.o
- .debug_str     0x00000000      0x1ee Mcal/Atmega32/UART/src/UART_Config.o
- .comment       0x00000000       0x31 Mcal/Atmega32/UART/src/UART_Config.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
@@ -254,21 +182,6 @@ Discarded input sections
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
- .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
- .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
- .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
- .text.libgcc.mul
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
- .text.libgcc.div
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
- .text.libgcc.prologue
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
- .text.libgcc.builtins
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
- .text.libgcc.fmul
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
- .text.libgcc.fixed
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
@@ -317,13 +230,17 @@ user_signatures  0x00850000         0x00000400         rw !x
 Linker script and memory map
 
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
-LOAD Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
+LOAD Firmware/BCM/src/BCM.o
+LOAD Firmware/BCM/src/BCM_Interface.o
+LOAD Firmware/COMMProxy/src/COMMProxy.o
+LOAD Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
 LOAD Infrastructure/LIB/src/UTILS.o
 LOAD Mcal/Atmega32/DIO/src/DIO.o
 LOAD Mcal/Atmega32/I2C/src/I2C.o
 LOAD Mcal/Atmega32/Interrupts/src/Interrupts.o
 LOAD Mcal/Atmega32/SPI/src/SPI.o
 LOAD Mcal/Atmega32/UART/src/UART.o
+LOAD Firmware/BCM/src/BCM_Lcfg.o
 LOAD main.o
 LOAD Mcal/Atmega32/I2C/src/I2C_Config.o
 LOAD Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
@@ -438,53 +355,51 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x8f6
+.text           0x00000000     0x1524
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
                 0x00000000                __vector_default
                 0x00000000                __vectors
  *(.vectors)
  *(.progmem.gcc*)
- .progmem.gcc_sw_table.GetRxI2C
-                0x00000054       0x82 main.o
-                0x000000d6                . = ALIGN (0x2)
-                0x000000d6                __trampolines_start = .
+                0x00000054                . = ALIGN (0x2)
+                0x00000054                __trampolines_start = .
  *(.trampolines)
- .trampolines   0x000000d6        0x0 linker stubs
+ .trampolines   0x00000054        0x0 linker stubs
  *(.trampolines*)
-                0x000000d6                __trampolines_end = .
+                0x00000054                __trampolines_end = .
  *libprintf_flt.a:*(.progmem.data)
  *libc.a:*(.progmem.data)
  *(.progmem*)
-                0x000000d6                . = ALIGN (0x2)
+                0x00000054                . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x000000d6                __ctors_start = .
+                0x00000054                __ctors_start = .
  *(.ctors)
-                0x000000d6                __ctors_end = .
-                0x000000d6                __dtors_start = .
+                0x00000054                __ctors_end = .
+                0x00000054                __dtors_start = .
  *(.dtors)
-                0x000000d6                __dtors_end = .
+                0x00000054                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x000000d6        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
-                0x000000d6                __init
+ .init0         0x00000054        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+                0x00000054                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x000000d6        0xc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+ .init2         0x00000054        0xc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x000000e2       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
-                0x000000e2                __do_copy_data
- .init4         0x000000f8       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
-                0x000000f8                __do_clear_bss
+ .init4         0x00000060       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+                0x00000060                __do_copy_data
+ .init4         0x00000076       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000076                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -495,110 +410,201 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x00000108        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
+ .init9         0x00000086        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
  *(.init9)
  *(.text)
-                0x00000110                . = ALIGN (0x2)
+                0x0000008e                . = ALIGN (0x2)
  *(.text.*)
+ .text.BCM_UART_TXCBF
+                0x0000008e        0xe Firmware/BCM/src/BCM.o
+ .text.BCM_SPI_TXCBF
+                0x0000009c        0xe Firmware/BCM/src/BCM.o
+ .text.BCM_I2C_TXCBF
+                0x000000aa        0xe Firmware/BCM/src/BCM.o
+ .text.BCM_UART_RXCBF
+                0x000000b8       0xea Firmware/BCM/src/BCM.o
+ .text.BCM_SPI_RXCBF
+                0x000001a2       0xf0 Firmware/BCM/src/BCM.o
+ .text.BCM_I2C_RXCBF
+                0x00000292      0x12a Firmware/BCM/src/BCM.o
+ .text.BCM_InitPacket
+                0x000003bc       0xb4 Firmware/BCM/src/BCM.o
+ .text.BCM_Init
+                0x00000470       0x9c Firmware/BCM/src/BCM.o
+ .text.BCM_TxMainFunction
+                0x0000050c      0x16c Firmware/BCM/src/BCM.o
+                0x0000050c                BCM_TxMainFunction
+ .text.BCM_RxMainFunction
+                0x00000678       0xfa Firmware/BCM/src/BCM.o
+                0x00000678                BCM_RxMainFunction
+ .text.BCM_Send
+                0x00000772       0xb0 Firmware/BCM/src/BCM_Interface.o
+                0x00000772                BCM_Send
+ .text.BCM_Receive
+                0x00000822       0x74 Firmware/BCM/src/BCM_Interface.o
+                0x00000822                BCM_Receive
+ .text.BCM_Get  0x00000896       0x28 Firmware/BCM/src/BCM_Interface.o
+                0x00000896                BCM_Get
+ .text.UART_TX_ISR
+                0x000008be       0x10 Firmware/COMMProxy/src/COMMProxy.o
+ .text.I2C_ISR  0x000008ce       0x92 Firmware/COMMProxy/src/COMMProxy.o
+ .text.SPI_ISR  0x00000960       0x44 Firmware/COMMProxy/src/COMMProxy.o
+ .text.UART_RX_ISR
+                0x000009a4       0x1e Firmware/COMMProxy/src/COMMProxy.o
+ .text.COMMProxy_Init
+                0x000009c2       0xaa Firmware/COMMProxy/src/COMMProxy.o
+                0x000009c2                COMMProxy_Init
+ .text.COMMProxy_Send
+                0x00000a6c       0x62 Firmware/COMMProxy/src/COMMProxy.o
+                0x00000a6c                COMMProxy_Send
+ .text.COMMProxy_SetTxCallback
+                0x00000ace       0x26 Firmware/COMMProxy/src/COMMProxy.o
+                0x00000ace                COMMProxy_SetTxCallback
+ .text.COMMProxy_SetRxCallback
+                0x00000af4       0x26 Firmware/COMMProxy/src/COMMProxy.o
+                0x00000af4                COMMProxy_SetRxCallback
  .text.Interrupt_Install
-                0x00000110       0x3e Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
-                0x00000110                Interrupt_Install
+                0x00000b1a       0x3e Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
+                0x00000b1a                Interrupt_Install
+ .text.DIO_SetPinDirection
+                0x00000b58       0x70 Mcal/Atmega32/DIO/src/DIO.o
+                0x00000b58                DIO_SetPinDirection
+ .text.DIO_WritePin
+                0x00000bc8       0x70 Mcal/Atmega32/DIO/src/DIO.o
+                0x00000bc8                DIO_WritePin
  .text.I2C_Init
-                0x0000014e       0x1e Mcal/Atmega32/I2C/src/I2C.o
-                0x0000014e                I2C_Init
+                0x00000c38       0x1e Mcal/Atmega32/I2C/src/I2C.o
+                0x00000c38                I2C_Init
  .text.I2C_SetSlaveAddress
-                0x0000016c        0xc Mcal/Atmega32/I2C/src/I2C.o
-                0x0000016c                I2C_SetSlaveAddress
+                0x00000c56        0xc Mcal/Atmega32/I2C/src/I2C.o
+                0x00000c56                I2C_SetSlaveAddress
+ .text.I2C_Start
+                0x00000c62       0x14 Mcal/Atmega32/I2C/src/I2C.o
+                0x00000c62                I2C_Start
+ .text.I2C_Write
+                0x00000c76       0x16 Mcal/Atmega32/I2C/src/I2C.o
+                0x00000c76                I2C_Write
  .text.I2C_ReadAck
-                0x00000178       0x22 Mcal/Atmega32/I2C/src/I2C.o
-                0x00000178                I2C_ReadAck
- .text.I2C_ReadNoAck
-                0x0000019a       0x28 Mcal/Atmega32/I2C/src/I2C.o
-                0x0000019a                I2C_ReadNoAck
+                0x00000c8c       0x22 Mcal/Atmega32/I2C/src/I2C.o
+                0x00000c8c                I2C_ReadAck
+ .text.I2C_Stop
+                0x00000cae       0x1c Mcal/Atmega32/I2C/src/I2C.o
+                0x00000cae                I2C_Stop
  .text.I2C_Status
-                0x000001c2       0x1e Mcal/Atmega32/I2C/src/I2C.o
-                0x000001c2                I2C_Status
+                0x00000cca       0x1e Mcal/Atmega32/I2C/src/I2C.o
+                0x00000cca                I2C_Status
  .text.I2C_EnableInterrupt
-                0x000001e0       0x12 Mcal/Atmega32/I2C/src/I2C.o
-                0x000001e0                I2C_EnableInterrupt
+                0x00000ce8       0x12 Mcal/Atmega32/I2C/src/I2C.o
+                0x00000ce8                I2C_EnableInterrupt
  .text.I2C_ClearIntFlag
-                0x000001f2       0x12 Mcal/Atmega32/I2C/src/I2C.o
-                0x000001f2                I2C_ClearIntFlag
+                0x00000cfa       0x12 Mcal/Atmega32/I2C/src/I2C.o
+                0x00000cfa                I2C_ClearIntFlag
  .text.INTERRUPTS_Enable
-                0x00000204        0x8 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x00000204                INTERRUPTS_Enable
+                0x00000d0c        0x8 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00000d0c                INTERRUPTS_Enable
  .text.__vector_1
-                0x0000020c       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x0000020c                __vector_1
+                0x00000d14       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00000d14                __vector_1
  .text.__vector_2
-                0x0000025e       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x0000025e                __vector_2
+                0x00000d66       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00000d66                __vector_2
  .text.__vector_3
-                0x000002b0       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x000002b0                __vector_3
+                0x00000db8       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00000db8                __vector_3
  .text.__vector_4
-                0x00000302       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x00000302                __vector_4
+                0x00000e0a       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00000e0a                __vector_4
  .text.__vector_5
-                0x00000354       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x00000354                __vector_5
+                0x00000e5c       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00000e5c                __vector_5
  .text.__vector_6
-                0x000003a6       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x000003a6                __vector_6
+                0x00000eae       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00000eae                __vector_6
  .text.__vector_7
-                0x000003f8       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x000003f8                __vector_7
+                0x00000f00       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00000f00                __vector_7
  .text.__vector_8
-                0x0000044a       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x0000044a                __vector_8
+                0x00000f52       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00000f52                __vector_8
  .text.__vector_9
-                0x0000049c       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x0000049c                __vector_9
+                0x00000fa4       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00000fa4                __vector_9
  .text.__vector_10
-                0x000004ee       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x000004ee                __vector_10
+                0x00000ff6       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00000ff6                __vector_10
  .text.__vector_11
-                0x00000540       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x00000540                __vector_11
+                0x00001048       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00001048                __vector_11
  .text.__vector_12
-                0x00000592       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x00000592                __vector_12
+                0x0000109a       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x0000109a                __vector_12
  .text.__vector_13
-                0x000005e4       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x000005e4                __vector_13
+                0x000010ec       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x000010ec                __vector_13
  .text.__vector_14
-                0x00000636       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x00000636                __vector_14
+                0x0000113e       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x0000113e                __vector_14
  .text.__vector_15
-                0x00000688       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x00000688                __vector_15
+                0x00001190       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00001190                __vector_15
  .text.__vector_16
-                0x000006da       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x000006da                __vector_16
+                0x000011e2       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x000011e2                __vector_16
  .text.__vector_17
-                0x0000072c       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x0000072c                __vector_17
+                0x00001234       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00001234                __vector_17
  .text.__vector_18
-                0x0000077e       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x0000077e                __vector_18
+                0x00001286       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x00001286                __vector_18
  .text.__vector_19
-                0x000007d0       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x000007d0                __vector_19
+                0x000012d8       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x000012d8                __vector_19
  .text.__vector_20
-                0x00000822       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                0x00000822                __vector_20
+                0x0000132a       0x52 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x0000132a                __vector_20
+ .text.SPI_Init
+                0x0000137c       0x7e Mcal/Atmega32/SPI/src/SPI.o
+                0x0000137c                SPI_Init
+ .text.SPI_EnableInterrupt
+                0x000013fa       0x12 Mcal/Atmega32/SPI/src/SPI.o
+                0x000013fa                SPI_EnableInterrupt
+ .text.SPI_SetData
+                0x0000140c        0xc Mcal/Atmega32/SPI/src/SPI.o
+                0x0000140c                SPI_SetData
+ .text.SPI_GetData
+                0x00001418       0x1c Mcal/Atmega32/SPI/src/SPI.o
+                0x00001418                SPI_GetData
+ .text.UART_Init
+                0x00001434       0x48 Mcal/Atmega32/UART/src/UART.o
+                0x00001434                UART_Init
+ .text.UART_EnableInterrupt
+                0x0000147c       0x1e Mcal/Atmega32/UART/src/UART.o
+                0x0000147c                UART_EnableInterrupt
+ .text.UART_SetData
+                0x0000149a        0xc Mcal/Atmega32/UART/src/UART.o
+                0x0000149a                UART_SetData
+ .text.UART_GetData
+                0x000014a6       0x1c Mcal/Atmega32/UART/src/UART.o
+                0x000014a6                UART_GetData
+ .text.VoidFunc
+                0x000014c2        0x2 main.o
+                0x000014c2                VoidFunc
+ .text.send_SPI
+                0x000014c4        0x2 main.o
+                0x000014c4                send_SPI
+ .text.text_CBF
+                0x000014c6       0x14 main.o
+                0x000014c6                text_CBF
  .text.GetRxI2C
-                0x00000874       0x4e main.o
-                0x00000874                GetRxI2C
- .text.main     0x000008c2       0x24 main.o
-                0x000008c2                main
- .text.libgcc   0x000008e6        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x000008e6                __tablejump2__
-                0x000008f2                . = ALIGN (0x2)
+                0x000014da       0x14 main.o
+                0x000014da                GetRxI2C
+ .text.main     0x000014ee       0x32 main.o
+                0x000014ee                main
+                0x00001520                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000008f2        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000008f2                _exit
-                0x000008f2                exit
+ .fini9         0x00001520        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00001520                _exit
+                0x00001520                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -617,52 +623,132 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000008f2        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001520        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000008f6                _etext = .
+                0x00001524                _etext = .
 
-.data           0x00800060        0x4 load address 0x000008f6
+.data           0x00800060       0x56 load address 0x00001524
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.x        0x00800060        0x1 main.o
+ .data.au16_Packet_sizes
+                0x00800060       0x18 Firmware/BCM/src/BCM.o
+ .data.gastr_BCM_Task
+                0x00800078       0x27 Firmware/BCM/src/BCM_Interface.o
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
+ .rodata.u8_BCM_ID
+                0x0080009f        0x1 Firmware/BCM/src/BCM_Lcfg.o
+                0x0080009f                u8_BCM_ID
+ .rodata.au8_BCM_UsedCH
+                0x008000a0        0x3 Firmware/BCM/src/BCM_Lcfg.o
+                0x008000a0                au8_BCM_UsedCH
+ .rodata.I2C_CH_0_SLAVE_ADDR
+                0x008000a3        0x1 Mcal/Atmega32/I2C/src/I2C_Config.o
+                0x008000a3                I2C_CH_0_SLAVE_ADDR
  .rodata.I2C_CH_0_BIT_RATE
-                0x00800061        0x1 Mcal/Atmega32/I2C/src/I2C_Config.o
-                0x00800061                I2C_CH_0_BIT_RATE
+                0x008000a4        0x1 Mcal/Atmega32/I2C/src/I2C_Config.o
+                0x008000a4                I2C_CH_0_BIT_RATE
  .rodata.I2C_CH_0_CONTROL_MASK
-                0x00800062        0x1 Mcal/Atmega32/I2C/src/I2C_Config.o
-                0x00800062                I2C_CH_0_CONTROL_MASK
+                0x008000a5        0x1 Mcal/Atmega32/I2C/src/I2C_Config.o
+                0x008000a5                I2C_CH_0_CONTROL_MASK
  .rodata.I2C_CH_0_PRESCALER
-                0x00800063        0x1 Mcal/Atmega32/I2C/src/I2C_Config.o
-                0x00800063                I2C_CH_0_PRESCALER
+                0x008000a6        0x1 Mcal/Atmega32/I2C/src/I2C_Config.o
+                0x008000a6                I2C_CH_0_PRESCALER
+ .rodata.SPI_CH_0_SS_CH_0_PIN
+                0x008000a7        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
+                0x008000a7                SPI_CH_0_SS_CH_0_PIN
+ .rodata.SPI_CH_0_SS_CH_0_PORT
+                0x008000a8        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
+                0x008000a8                SPI_CH_0_SS_CH_0_PORT
+ .rodata.SPI_CH_0_SCK_PIN
+                0x008000a9        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
+                0x008000a9                SPI_CH_0_SCK_PIN
+ .rodata.SPI_CH_0_SCK_PORT
+                0x008000aa        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
+                0x008000aa                SPI_CH_0_SCK_PORT
+ .rodata.SPI_CH_0_MISO_PIN
+                0x008000ab        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
+                0x008000ab                SPI_CH_0_MISO_PIN
+ .rodata.SPI_CH_0_MISO_PORT
+                0x008000ac        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
+                0x008000ac                SPI_CH_0_MISO_PORT
+ .rodata.SPI_CH_0_MOSI_PIN
+                0x008000ad        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
+                0x008000ad                SPI_CH_0_MOSI_PIN
+ .rodata.SPI_CH_0_MOSI_PORT
+                0x008000ae        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
+                0x008000ae                SPI_CH_0_MOSI_PORT
+ .rodata.SPI_CH_0_DOUBLE_SPEED
+                0x008000af        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
+                0x008000af                SPI_CH_0_DOUBLE_SPEED
+ .rodata.SPI_CH_0_CONTROL_MASK
+                0x008000b0        0x1 Mcal/Atmega32/SPI/src/SPI_Config.o
+                0x008000b0                SPI_CH_0_CONTROL_MASK
+ .rodata.UART_CH_0_BaudRate
+                0x008000b1        0x2 Mcal/Atmega32/UART/src/UART_Config.o
+                0x008000b1                UART_CH_0_BaudRate
+ .rodata.UART_CH_0_CONTROL_2
+                0x008000b3        0x1 Mcal/Atmega32/UART/src/UART_Config.o
+                0x008000b3                UART_CH_0_CONTROL_2
+ .rodata.UART_CH_0_CONTROL
+                0x008000b4        0x1 Mcal/Atmega32/UART/src/UART_Config.o
+                0x008000b4                UART_CH_0_CONTROL
  *(.gnu.linkonce.r*)
-                0x00800064                . = ALIGN (0x2)
-                0x00800064                _edata = .
-                0x00800064                PROVIDE (__data_end, .)
+                0x008000b6                . = ALIGN (0x2)
+ *fill*         0x008000b5        0x1 
+                0x008000b6                _edata = .
+                0x008000b6                PROVIDE (__data_end, .)
 
-.bss            0x00800064       0x51
-                0x00800064                PROVIDE (__bss_start, .)
+.bss            0x008000b6       0xce
+                0x008000b6                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
+ .bss.aptr_Task
+                0x008000b6        0x6 Firmware/BCM/src/BCM.o
+ .bss.au8_InitPacketFlag
+                0x008000bc        0x3 Firmware/BCM/src/BCM.o
+ .bss.aptr_Packet
+                0x008000bf       0x18 Firmware/BCM/src/BCM.o
+ .bss.IsInit    0x008000d7        0x1 Firmware/BCM/src/BCM.o
+ .bss.gu8_CSTemp
+                0x008000d8        0x1 Firmware/BCM/src/BCM.o
+ .bss.gu16_CSCounter
+                0x008000d9        0x2 Firmware/BCM/src/BCM.o
+ .bss.gu8_I2CData
+                0x008000db        0x1 Firmware/COMMProxy/src/COMMProxy.o
+ .bss.gu8_I2CStatus
+                0x008000dc        0x1 Firmware/COMMProxy/src/COMMProxy.o
+ .bss.gu8_SPIData
+                0x008000dd        0x1 Firmware/COMMProxy/src/COMMProxy.o
+ .bss.gu8_UARTData
+                0x008000de        0x1 Firmware/COMMProxy/src/COMMProxy.o
+ .bss.gptr_RxCallback
+                0x008000df        0x6 Firmware/COMMProxy/src/COMMProxy.o
+ .bss.gptr_TxCallback
+                0x008000e5        0x6 Firmware/COMMProxy/src/COMMProxy.o
+ .bss.gu8_COMMInitCh
+                0x008000eb        0x3 Firmware/COMMProxy/src/COMMProxy.o
  .bss.aptr_OldVectors
-                0x00800064       0x28 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
- .bss.status    0x0080008c        0x1 main.o
+                0x008000ee       0x28 Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
  .bss.aptr_ISRAddress
-                0x0080008d       0x28 Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
-                0x0080008d                aptr_ISRAddress
+                0x00800116       0x28 Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
+                0x00800116                aptr_ISRAddress
  *(COMMON)
-                0x008000b5                PROVIDE (__bss_end, .)
-                0x000008f6                __data_load_start = LOADADDR (.data)
-                0x000008fa                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080013e       0x46 main.o
+                0x0080013e                DataI2C
+                0x0080015c                test
+                0x00800166                DataSPI
+                0x00800184                PROVIDE (__bss_end, .)
+                0x00001524                __data_load_start = LOADADDR (.data)
+                0x0000157a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008000b5        0x0
+.noinit         0x00800184        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008000b5                _end = .
+                0x00800184                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -704,13 +790,22 @@ END GROUP
 
 .comment        0x00000000       0x30
  *(.comment)
- .comment       0x00000000       0x30 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
+ .comment       0x00000000       0x30 Firmware/BCM/src/BCM.o
                                  0x31 (size before relaxing)
+ .comment       0x00000030       0x31 Firmware/BCM/src/BCM_Interface.o
+ .comment       0x00000030       0x31 Firmware/COMMProxy/src/COMMProxy.o
+ .comment       0x00000030       0x31 Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
+ .comment       0x00000030       0x31 Mcal/Atmega32/DIO/src/DIO.o
  .comment       0x00000030       0x31 Mcal/Atmega32/I2C/src/I2C.o
  .comment       0x00000030       0x31 Mcal/Atmega32/Interrupts/src/Interrupts.o
+ .comment       0x00000030       0x31 Mcal/Atmega32/SPI/src/SPI.o
+ .comment       0x00000030       0x31 Mcal/Atmega32/UART/src/UART.o
+ .comment       0x00000030       0x31 Firmware/BCM/src/BCM_Lcfg.o
  .comment       0x00000030       0x31 main.o
  .comment       0x00000030       0x31 Mcal/Atmega32/I2C/src/I2C_Config.o
  .comment       0x00000030       0x31 Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
+ .comment       0x00000030       0x31 Mcal/Atmega32/SPI/src/SPI_Config.o
+ .comment       0x00000030       0x31 Mcal/Atmega32/UART/src/UART_Config.o
 
 .note.gnu.avr.deviceinfo
                 0x00000000       0x3c
@@ -732,82 +827,157 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x1d8
+.debug_aranges  0x00000000      0x440
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x28 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
+                0x00000000       0x68 Firmware/BCM/src/BCM.o
  .debug_aranges
-                0x00000028       0x80 Mcal/Atmega32/I2C/src/I2C.o
+                0x00000068       0x38 Firmware/BCM/src/BCM_Interface.o
  .debug_aranges
-                0x000000a8       0xc8 Mcal/Atmega32/Interrupts/src/Interrupts.o
+                0x000000a0       0x58 Firmware/COMMProxy/src/COMMProxy.o
  .debug_aranges
-                0x00000170       0x38 main.o
+                0x000000f8       0x28 Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
  .debug_aranges
-                0x000001a8       0x18 Mcal/Atmega32/I2C/src/I2C_Config.o
+                0x00000120       0x40 Mcal/Atmega32/DIO/src/DIO.o
  .debug_aranges
-                0x000001c0       0x18 Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
+                0x00000160       0x80 Mcal/Atmega32/I2C/src/I2C.o
+ .debug_aranges
+                0x000001e0       0xc8 Mcal/Atmega32/Interrupts/src/Interrupts.o
+ .debug_aranges
+                0x000002a8       0x68 Mcal/Atmega32/SPI/src/SPI.o
+ .debug_aranges
+                0x00000310       0x70 Mcal/Atmega32/UART/src/UART.o
+ .debug_aranges
+                0x00000380       0x18 Firmware/BCM/src/BCM_Lcfg.o
+ .debug_aranges
+                0x00000398       0x48 main.o
+ .debug_aranges
+                0x000003e0       0x18 Mcal/Atmega32/I2C/src/I2C_Config.o
+ .debug_aranges
+                0x000003f8       0x18 Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
+ .debug_aranges
+                0x00000410       0x18 Mcal/Atmega32/SPI/src/SPI_Config.o
+ .debug_aranges
+                0x00000428       0x18 Mcal/Atmega32/UART/src/UART_Config.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x11a6
+.debug_info     0x00000000     0x313e
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_info    0x000004e6      0x129 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
- .debug_info    0x0000060f      0x4d1 Mcal/Atmega32/I2C/src/I2C.o
- .debug_info    0x00000ae0      0x2a7 Mcal/Atmega32/Interrupts/src/Interrupts.o
- .debug_info    0x00000d87      0x2ca main.o
- .debug_info    0x00001051       0xaa Mcal/Atmega32/I2C/src/I2C_Config.o
- .debug_info    0x000010fb       0xab Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
+ .debug_info    0x000004e6      0x593 Firmware/BCM/src/BCM.o
+ .debug_info    0x00000a79      0x31f Firmware/BCM/src/BCM_Interface.o
+ .debug_info    0x00000d98      0x684 Firmware/COMMProxy/src/COMMProxy.o
+ .debug_info    0x0000141c      0x129 Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
+ .debug_info    0x00001545      0x232 Mcal/Atmega32/DIO/src/DIO.o
+ .debug_info    0x00001777      0x4d1 Mcal/Atmega32/I2C/src/I2C.o
+ .debug_info    0x00001c48      0x2a7 Mcal/Atmega32/Interrupts/src/Interrupts.o
+ .debug_info    0x00001eef      0x6b4 Mcal/Atmega32/SPI/src/SPI.o
+ .debug_info    0x000025a3      0x4a9 Mcal/Atmega32/UART/src/UART.o
+ .debug_info    0x00002a4c       0xb4 Firmware/BCM/src/BCM_Lcfg.o
+ .debug_info    0x00002b00      0x2f5 main.o
+ .debug_info    0x00002df5       0xbc Mcal/Atmega32/I2C/src/I2C_Config.o
+ .debug_info    0x00002eb1       0xab Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
+ .debug_info    0x00002f5c      0x128 Mcal/Atmega32/SPI/src/SPI_Config.o
+ .debug_info    0x00003084       0xba Mcal/Atmega32/UART/src/UART_Config.o
 
-.debug_abbrev   0x00000000      0x881
+.debug_abbrev   0x00000000     0x10c4
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_abbrev  0x000004a3       0xa8 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
- .debug_abbrev  0x0000054b      0x139 Mcal/Atmega32/I2C/src/I2C.o
- .debug_abbrev  0x00000684       0x91 Mcal/Atmega32/Interrupts/src/Interrupts.o
- .debug_abbrev  0x00000715       0xd1 main.o
- .debug_abbrev  0x000007e6       0x40 Mcal/Atmega32/I2C/src/I2C_Config.o
- .debug_abbrev  0x00000826       0x5b Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
+ .debug_abbrev  0x000004a3      0x19d Firmware/BCM/src/BCM.o
+ .debug_abbrev  0x00000640       0xd7 Firmware/BCM/src/BCM_Interface.o
+ .debug_abbrev  0x00000717      0x17b Firmware/COMMProxy/src/COMMProxy.o
+ .debug_abbrev  0x00000892       0xa8 Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
+ .debug_abbrev  0x0000093a       0xbf Mcal/Atmega32/DIO/src/DIO.o
+ .debug_abbrev  0x000009f9      0x139 Mcal/Atmega32/I2C/src/I2C.o
+ .debug_abbrev  0x00000b32       0x91 Mcal/Atmega32/Interrupts/src/Interrupts.o
+ .debug_abbrev  0x00000bc3      0x160 Mcal/Atmega32/SPI/src/SPI.o
+ .debug_abbrev  0x00000d23      0x146 Mcal/Atmega32/UART/src/UART.o
+ .debug_abbrev  0x00000e69       0x52 Firmware/BCM/src/BCM_Lcfg.o
+ .debug_abbrev  0x00000ebb       0xee main.o
+ .debug_abbrev  0x00000fa9       0x40 Mcal/Atmega32/I2C/src/I2C_Config.o
+ .debug_abbrev  0x00000fe9       0x5b Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
+ .debug_abbrev  0x00001044       0x40 Mcal/Atmega32/SPI/src/SPI_Config.o
+ .debug_abbrev  0x00001084       0x40 Mcal/Atmega32/UART/src/UART_Config.o
 
-.debug_line     0x00000000      0xbf8
+.debug_line     0x00000000     0x22aa
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_line    0x00000116      0x10c Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
- .debug_line    0x00000222      0x349 Mcal/Atmega32/I2C/src/I2C.o
- .debug_line    0x0000056b      0x370 Mcal/Atmega32/Interrupts/src/Interrupts.o
- .debug_line    0x000008db      0x221 main.o
- .debug_line    0x00000afc       0x78 Mcal/Atmega32/I2C/src/I2C_Config.o
- .debug_line    0x00000b74       0x84 Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
+ .debug_line    0x00000116      0x4c4 Firmware/BCM/src/BCM.o
+ .debug_line    0x000005da      0x255 Firmware/BCM/src/BCM_Interface.o
+ .debug_line    0x0000082f      0x3fc Firmware/COMMProxy/src/COMMProxy.o
+ .debug_line    0x00000c2b       0xf0 Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
+ .debug_line    0x00000d1b      0x2d4 Mcal/Atmega32/DIO/src/DIO.o
+ .debug_line    0x00000fef      0x360 Mcal/Atmega32/I2C/src/I2C.o
+ .debug_line    0x0000134f      0x364 Mcal/Atmega32/Interrupts/src/Interrupts.o
+ .debug_line    0x000016b3      0x46a Mcal/Atmega32/SPI/src/SPI.o
+ .debug_line    0x00001b1d      0x3f0 Mcal/Atmega32/UART/src/UART.o
+ .debug_line    0x00001f0d       0x6b Firmware/BCM/src/BCM_Lcfg.o
+ .debug_line    0x00001f78      0x15c main.o
+ .debug_line    0x000020d4       0x72 Mcal/Atmega32/I2C/src/I2C_Config.o
+ .debug_line    0x00002146       0x7e Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
+ .debug_line    0x000021c4       0x72 Mcal/Atmega32/SPI/src/SPI_Config.o
+ .debug_line    0x00002236       0x74 Mcal/Atmega32/UART/src/UART_Config.o
 
-.debug_frame    0x00000000      0x890
+.debug_frame    0x00000000      0xd0c
  *(.debug_frame)
- .debug_frame   0x00000000       0x34 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
- .debug_frame   0x00000034       0xf4 Mcal/Atmega32/I2C/src/I2C.o
- .debug_frame   0x00000128      0x714 Mcal/Atmega32/Interrupts/src/Interrupts.o
- .debug_frame   0x0000083c       0x54 main.o
+ .debug_frame   0x00000000       0xf8 Firmware/BCM/src/BCM.o
+ .debug_frame   0x000000f8       0x54 Firmware/BCM/src/BCM_Interface.o
+ .debug_frame   0x0000014c       0x9c Firmware/COMMProxy/src/COMMProxy.o
+ .debug_frame   0x000001e8       0x34 Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
+ .debug_frame   0x0000021c       0x64 Mcal/Atmega32/DIO/src/DIO.o
+ .debug_frame   0x00000280       0xf4 Mcal/Atmega32/I2C/src/I2C.o
+ .debug_frame   0x00000374      0x714 Mcal/Atmega32/Interrupts/src/Interrupts.o
+ .debug_frame   0x00000a88      0x13c Mcal/Atmega32/SPI/src/SPI.o
+ .debug_frame   0x00000bc4       0xd4 Mcal/Atmega32/UART/src/UART.o
+ .debug_frame   0x00000c98       0x74 main.o
 
-.debug_str      0x00000000      0x756
+.debug_str      0x00000000     0x10ac
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_str     0x00000196      0x225 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
-                                0x25d (size before relaxing)
- .debug_str     0x000003bb      0x1a5 Mcal/Atmega32/I2C/src/I2C.o
-                                0x35a (size before relaxing)
- .debug_str     0x00000560      0x151 Mcal/Atmega32/Interrupts/src/Interrupts.o
-                                0x301 (size before relaxing)
- .debug_str     0x000006b1       0x4d main.o
-                                0x25c (size before relaxing)
- .debug_str     0x000006fe       0x26 Mcal/Atmega32/I2C/src/I2C_Config.o
-                                0x1e5 (size before relaxing)
- .debug_str     0x00000724       0x32 Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
+ .debug_str     0x00000196      0x3e1 Firmware/BCM/src/BCM.o
+                                0x423 (size before relaxing)
+ .debug_str     0x00000577       0xa0 Firmware/BCM/src/BCM_Interface.o
+                                0x320 (size before relaxing)
+ .debug_str     0x00000617      0x238 Firmware/COMMProxy/src/COMMProxy.o
+                                0x442 (size before relaxing)
+ .debug_str     0x0000084f       0x8c Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
+                                0x247 (size before relaxing)
+ .debug_str     0x000008db       0xb1 Mcal/Atmega32/DIO/src/DIO.o
+                                0x247 (size before relaxing)
+ .debug_str     0x0000098c      0x12d Mcal/Atmega32/I2C/src/I2C.o
+                                0x358 (size before relaxing)
+ .debug_str     0x00000ab9      0x13f Mcal/Atmega32/Interrupts/src/Interrupts.o
+                                0x2fb (size before relaxing)
+ .debug_str     0x00000bf8      0x1ab Mcal/Atmega32/SPI/src/SPI.o
+                                0x3f6 (size before relaxing)
+ .debug_str     0x00000da3      0x185 Mcal/Atmega32/UART/src/UART.o
+                                0x391 (size before relaxing)
+ .debug_str     0x00000f28       0x6f Firmware/BCM/src/BCM_Lcfg.o
+                                0x1c8 (size before relaxing)
+ .debug_str     0x00000f97       0x6f main.o
+                                0x249 (size before relaxing)
+ .debug_str     0x00001006       0x26 Mcal/Atmega32/I2C/src/I2C_Config.o
+                                0x1f9 (size before relaxing)
+ .debug_str     0x0000102c       0x32 Mcal/Atmega32/Interrupts/src/Interrupts_Lcfg.o
                                 0x1e2 (size before relaxing)
+ .debug_str     0x0000105e       0x26 Mcal/Atmega32/SPI/src/SPI_Config.o
+                                0x26e (size before relaxing)
+ .debug_str     0x00001084       0x28 Mcal/Atmega32/UART/src/UART_Config.o
+                                0x1ee (size before relaxing)
 
-.debug_loc      0x00000000     0x1508
+.debug_loc      0x00000000     0x3216
  *(.debug_loc)
- .debug_loc     0x00000000       0x42 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
- .debug_loc     0x00000042      0x4ea Mcal/Atmega32/I2C/src/I2C.o
- .debug_loc     0x0000052c      0xfdc Mcal/Atmega32/Interrupts/src/Interrupts.o
+ .debug_loc     0x00000000      0x38c Firmware/BCM/src/BCM.o
+ .debug_loc     0x0000038c      0x358 Firmware/BCM/src/BCM_Interface.o
+ .debug_loc     0x000006e4      0x2a5 Firmware/COMMProxy/src/COMMProxy.o
+ .debug_loc     0x00000989       0x42 Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
+ .debug_loc     0x000009cb      0x3fa Mcal/Atmega32/DIO/src/DIO.o
+ .debug_loc     0x00000dc5      0x4ea Mcal/Atmega32/I2C/src/I2C.o
+ .debug_loc     0x000012af      0xfdc Mcal/Atmega32/Interrupts/src/Interrupts.o
+ .debug_loc     0x0000228b      0xa46 Mcal/Atmega32/SPI/src/SPI.o
+ .debug_loc     0x00002cd1      0x545 Mcal/Atmega32/UART/src/UART.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -827,12 +997,18 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x168
+.debug_ranges   0x00000000      0x340
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x18 Infrastructure/Design_Patterns/Interrupt_Handler/src/Interrupt_Design_Pattern.o
- .debug_ranges  0x00000018       0x70 Mcal/Atmega32/I2C/src/I2C.o
- .debug_ranges  0x00000088       0xb8 Mcal/Atmega32/Interrupts/src/Interrupts.o
- .debug_ranges  0x00000140       0x28 main.o
+ .debug_ranges  0x00000000       0x70 Firmware/BCM/src/BCM.o
+ .debug_ranges  0x00000070       0x28 Firmware/BCM/src/BCM_Interface.o
+ .debug_ranges  0x00000098       0x48 Firmware/COMMProxy/src/COMMProxy.o
+ .debug_ranges  0x000000e0       0x18 Infrastructure/InterruptDesignPattern/src/Interrupt_Design_Pattern.o
+ .debug_ranges  0x000000f8       0x30 Mcal/Atmega32/DIO/src/DIO.o
+ .debug_ranges  0x00000128       0x70 Mcal/Atmega32/I2C/src/I2C.o
+ .debug_ranges  0x00000198       0xb8 Mcal/Atmega32/Interrupts/src/Interrupts.o
+ .debug_ranges  0x00000250       0x58 Mcal/Atmega32/SPI/src/SPI.o
+ .debug_ranges  0x000002a8       0x60 Mcal/Atmega32/UART/src/UART.o
+ .debug_ranges  0x00000308       0x38 main.o
 
 .debug_macro
  *(.debug_macro)

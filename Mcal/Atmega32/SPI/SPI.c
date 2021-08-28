@@ -536,7 +536,7 @@ SPI_ERROR_state_t SPI_SetCallback(uint8_t SpiNumber, Ptr_VoidFuncVoid_t Callback
 *
 * @return function error state.
 */
-SPI_ERROR_state_t SPI_SetData(uint8_t SpiNumber,uint8_t TxChar)
+SPI_ERROR_state_t SPI_SetData(uint8_t SpiNumber, uint8_t TxChar)
 {
    volatile uint8_t * ptr_SPIDataR;
    
@@ -551,7 +551,7 @@ SPI_ERROR_state_t SPI_SetData(uint8_t SpiNumber,uint8_t TxChar)
       default:
          return E_SPI_INVALID_CH;
    }
-   
+         
    /* sets character in the SPI register */
    *ptr_SPIDataR = TxChar;
    

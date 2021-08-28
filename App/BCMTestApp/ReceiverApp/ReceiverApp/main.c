@@ -5,80 +5,72 @@
  * Author : Mohamed Wagdy
  */ 
 
-#include "UART.h"
-#include "SPI.h"
-#include "I2C.h"
+#include "BCM.h"
 #include "Interrupt_Design_Pattern.h"
 
-#define I2C_SLAVE_ADDR (uint8_t)(0xA0)
-
-static uint8_t x = 'A';
-static uint8_t status;
+uint8_t DataSPI[30];
+uint8_t DataI2C[30];
+uint8_t u8_FlagSPI = 0;
+uint8_t u8_FlagI2C = 0;
+uint8_t test[10];
+uint8_t test2[5] = "ABCDE";
 
 /*- LOCAL FUNCTIONS IMPLEMENTATION
 ------------------------*/
-void GetRxUART(void)
+void VoidFunc(void)
 {
-   UART_GetData(UART_CH_0, &x);
+   
+}
+
+void send_SPI(void)
+{
+   //BCM_Send(COMM_UART_CH, 5, test2, VoidFunc);
+}
+
+void text_CBF(void)
+{
+   BCM_Send(COMM_SPI_CH, 10, test, send_SPI);
 }
 
 void GetRxSPI(void)
 {
-   SPI_GetData(UART_CH_0, &x);
+   u8_FlagSPI = 1;
 }
 
 void GetRxI2C(void)
 {
-   I2C_Status(I2C_CH_0, &status);
+   BCM_Send(COMM_UART_CH, 10, DataI2C, VoidFunc);
    
-   switch(status)
-   {
-      case I2C_STATUS_R_ACK_ADDR:
-      case I2C_STATUS_R_GENERAL_ADDR:
-         I2C_ClearIntFlag(I2C_CH_0);
-         break;
-      case I2C_STATUS_R_ACK_DATA:
-      case I2C_STATUS_R_GACK_DATA:
-         I2C_ReadAck(I2C_CH_0, &x);
-         break;
-      case I2C_STATUS_R_NACK_DATA:
-      case I2C_STATUS_R_GNACK_DATA:
-         I2C_ReadNoAck(I2C_CH_0, &x);
-         break;
-      case I2C_STATUS_R_STOP:
-         I2C_ClearIntFlag(I2C_CH_0);
-         break;
-   }
+   //u8_FlagI2C = 1;
 }
 
 int main(void)
 {
-   /*UART_Init(UART_CH_0);
-   
-   UART_EnableInterrupt(UART_CH_0, RX_INT);
-
-   Interrupt_Install(USART_RXC_VECTOR_NUMBER, GetRxUART);*/
-   
-   /*SPI_Init(SPI_CH_0);
-   
-   SPI_EnableInterrupt(SPI_CH_0);
-   
-   Interrupt_Install(SPI_STC_VECTOR_NUMBER, GetRxSPI);*/
-   
-   I2C_Init(I2C_CH_0);
-   
-   I2C_SetSlaveAddress(I2C_CH_0, I2C_SLAVE_ADDR);
-   
-   I2C_EnableInterrupt(I2C_CH_0);
-   
-   Interrupt_Install(TWI_VECTOR_NUMBER, GetRxI2C);
-   
    /* Enable Globale Interrupt */
+ 
    INTERRUPTS_Enable();
    
+   //BCM_Receive(COMM_SPI_CH, 30, DataSPI, GetRxSPI);
+   BCM_Receive(COMM_I2C_CH, 10, DataI2C, GetRxI2C);
+   BCM_Receive(COMM_UART_CH, 10, test, text_CBF);
    /* Replace with your application code */
    while (1)
    {
-      
+      /*if(1 == u8_FlagSPI)
+      {
+         if(ERROR_OK == BCM_Send(COMM_UART_CH, 30, DataSPI, text_CBF))
+         {
+            u8_FlagSPI = 0;
+         }
+      }
+      if(1 == u8_FlagI2C)
+      {
+         if(ERROR_OK == BCM_Send(COMM_UART_CH, 30, DataI2C, text_CBF))
+         {
+            u8_FlagI2C = 0;
+         }
+      }*/
+      BCM_RxMainFunction();
+      BCM_TxMainFunction();
    }
 }

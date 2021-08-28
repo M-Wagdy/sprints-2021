@@ -20,10 +20,10 @@
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress />
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue />
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
     <BootSegment>2</BootSegment>
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>0</eraseonlaunchrule>
@@ -40,6 +40,19 @@
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
+    <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
+    <avrtoolserialnumber />
+    <avrdeviceexpectedsignature>0x1E9502</avrdeviceexpectedsignature>
+    <com_atmel_avrdbg_tool_simulator>
+      <ToolOptions xmlns="">
+        <InterfaceProperties>
+        </InterfaceProperties>
+      </ToolOptions>
+      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
+      <ToolNumber xmlns="">
+      </ToolNumber>
+      <ToolName xmlns="">Simulator</ToolName>
+    </com_atmel_avrdbg_tool_simulator>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -82,174 +95,203 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
       <AvrGcc>
-  <avrgcc.common.Device>-mmcu=atmega32a -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a"</avrgcc.common.Device>
-  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
-  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
-  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
-  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
-  <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
-  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
-  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
-  <avrgcc.compiler.symbols.DefSymbols>
-    <ListValues>
-      <Value>DEBUG</Value>
-    </ListValues>
-  </avrgcc.compiler.symbols.DefSymbols>
-  <avrgcc.compiler.directories.IncludePaths>
-    <ListValues>
-      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
-      <Value>../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc</Value>
-      <Value>../../../../../Infrastructure/LIB/inc</Value>
-      <Value>../../../../../Mcal/Atmega32/UART</Value>
-      <Value>../../../../../Mcal/Atmega32/Interrupts/inc</Value>
-      <Value>../../../../../Mcal/Atmega32/SPI</Value>
-      <Value>../../../../../Mcal/Atmega32/DIO</Value>
-      <Value>../../../../../Mcal/Atmega32/I2C</Value>
-    </ListValues>
-  </avrgcc.compiler.directories.IncludePaths>
-  <avrgcc.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcc.compiler.optimization.level>
-  <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
-  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
-  <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
-  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
-  <avrgcc.linker.libraries.Libraries>
-    <ListValues>
-      <Value>libm</Value>
-    </ListValues>
-  </avrgcc.linker.libraries.Libraries>
-  <avrgcc.assembler.general.IncludePaths>
-    <ListValues>
-      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
-    </ListValues>
-  </avrgcc.assembler.general.IncludePaths>
-  <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>
-</AvrGcc>
+        <avrgcc.common.Device>-mmcu=atmega32a -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32a"</avrgcc.common.Device>
+        <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+        <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+        <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+        <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+        <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+        <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+        <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+        <avrgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>DEBUG</Value>
+          </ListValues>
+        </avrgcc.compiler.symbols.DefSymbols>
+        <avrgcc.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
+            <Value>../../../Infrastructure/InterruptDesignPattern/inc</Value>
+            <Value>../../../Infrastructure/LIB/inc</Value>
+            <Value>../../../Mcal/Atmega32/UART/inc</Value>
+            <Value>../../../Mcal/Atmega32/Interrupts/inc</Value>
+            <Value>../../../Mcal/Atmega32/SPI/inc</Value>
+            <Value>../../../Mcal/Atmega32/DIO/inc</Value>
+            <Value>../../../Mcal/Atmega32/I2C/inc</Value>
+            <Value>../../../Firmware/COMMProxy/inc</Value>
+            <Value>../../../Firmware/BCM/inc</Value>
+          </ListValues>
+        </avrgcc.compiler.directories.IncludePaths>
+        <avrgcc.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcc.compiler.optimization.level>
+        <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+        <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+        <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
+        <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+        <avrgcc.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libm</Value>
+          </ListValues>
+        </avrgcc.linker.libraries.Libraries>
+        <avrgcc.assembler.general.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
+          </ListValues>
+        </avrgcc.assembler.general.IncludePaths>
+        <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>
+      </AvrGcc>
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\..\Infrastructure\Design_Patterns\InterruptDesignPattern\inc\Interrupt_Design_Pattern.h">
+    <Compile Include="..\..\Firmware\BCM\inc\BCM.h">
       <SubType>compile</SubType>
-      <Link>Infrastructure\Design_Patterns\Interrupt_Handler\inc\Interrupt_Design_Pattern.h</Link>
+      <Link>Firmware\BCM\inc\BCM.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Infrastructure\Design_Patterns\InterruptDesignPattern\src\Interrupt_Design_Pattern.c">
+    <Compile Include="..\..\Firmware\BCM\inc\BCM_Interface.h">
       <SubType>compile</SubType>
-      <Link>Infrastructure\Design_Patterns\Interrupt_Handler\src\Interrupt_Design_Pattern.c</Link>
+      <Link>Firmware\BCM\inc\BCM_Interface.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Infrastructure\LIB\inc\BIT_MATH.h">
+    <Compile Include="..\..\Firmware\BCM\src\BCM.c">
       <SubType>compile</SubType>
-      <Link>Infrastructure\LIB\inc\BIT_MATH.h</Link>
+      <Link>Firmware\BCM\src\BCM.c</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Infrastructure\LIB\inc\LIB.h">
+    <Compile Include="..\..\Firmware\BCM\src\BCM_Interface.c">
       <SubType>compile</SubType>
-      <Link>Infrastructure\LIB\inc\LIB.h</Link>
+      <Link>Firmware\BCM\src\BCM_Interface.c</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Infrastructure\LIB\inc\MC_REGISTERS.h">
+    <Compile Include="..\..\Firmware\COMMProxy\inc\COMMProxy.h">
       <SubType>compile</SubType>
-      <Link>Infrastructure\LIB\inc\MC_REGISTERS.h</Link>
+      <Link>Firmware\COMMProxy\inc\COMMProxy.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Infrastructure\LIB\inc\STD_TYPES.h">
+    <Compile Include="..\..\Firmware\COMMProxy\src\COMMProxy.c">
       <SubType>compile</SubType>
-      <Link>Infrastructure\LIB\inc\STD_TYPES.h</Link>
+      <Link>Firmware\COMMProxy\src\COMMProxy.c</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Infrastructure\LIB\inc\UTILS.h">
-      <SubType>compile</SubType>
-      <Link>Infrastructure\LIB\inc\UTILS.h</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\Infrastructure\LIB\src\UTILS.c">
-      <SubType>compile</SubType>
-      <Link>Infrastructure\LIB\src\UTILS.c</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\DIO\DIO.c">
-      <SubType>compile</SubType>
-      <Link>Mcal\DIO\src\DIO.c</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\DIO\DIO.h">
+    <Compile Include="..\..\Mcal\Atmega32\DIO\inc\DIO.h">
       <SubType>compile</SubType>
       <Link>Mcal\DIO\inc\DIO.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\DIO\DIO_Config.h">
+    <Compile Include="..\..\Mcal\Atmega32\DIO\inc\DIO_Config.h">
       <SubType>compile</SubType>
       <Link>Mcal\DIO\inc\DIO_Config.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\DIO\DIO_Registers.h">
+    <Compile Include="..\..\Mcal\Atmega32\DIO\inc\DIO_Registers.h">
       <SubType>compile</SubType>
       <Link>Mcal\DIO\inc\DIO_Registers.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\DIO\DIO_retval.h">
+    <Compile Include="..\..\Mcal\Atmega32\DIO\inc\DIO_retval.h">
       <SubType>compile</SubType>
       <Link>Mcal\DIO\inc\DIO_retval.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\I2C\I2C.c">
+    <Compile Include="..\..\Mcal\Atmega32\DIO\src\DIO.c">
       <SubType>compile</SubType>
-      <Link>Mcal\I2C\src\I2C.c</Link>
+      <Link>Mcal\DIO\src\DIO.c</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\I2C\I2C.h">
+    <Compile Include="..\..\Mcal\Atmega32\I2C\inc\I2C.h">
       <SubType>compile</SubType>
       <Link>Mcal\I2C\inc\I2C.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\I2C\I2C_Config.h">
+    <Compile Include="..\..\Mcal\Atmega32\I2C\inc\I2C_Config.h">
       <SubType>compile</SubType>
       <Link>Mcal\I2C\inc\I2C_Config.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\I2C\I2C_Registers.h">
+    <Compile Include="..\..\Mcal\Atmega32\I2C\inc\I2C_Registers.h">
       <SubType>compile</SubType>
       <Link>Mcal\I2C\inc\I2C_Registers.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\I2C\I2C_retval.h">
+    <Compile Include="..\..\Mcal\Atmega32\I2C\inc\I2C_retval.h">
       <SubType>compile</SubType>
       <Link>Mcal\I2C\inc\I2C_retval.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\Interrupts\inc\Interrupts.h">
+    <Compile Include="..\..\Mcal\Atmega32\I2C\src\I2C.c">
+      <SubType>compile</SubType>
+      <Link>Mcal\I2C\src\I2C.c</Link>
+    </Compile>
+    <Compile Include="..\..\Mcal\Atmega32\Interrupts\inc\Interrupts.h">
       <SubType>compile</SubType>
       <Link>Mcal\Interrupts\inc\Interrupts.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\Interrupts\inc\Interrupts_Lcfg.h">
+    <Compile Include="..\..\Mcal\Atmega32\Interrupts\inc\Interrupts_Lcfg.h">
       <SubType>compile</SubType>
       <Link>Mcal\Interrupts\inc\Interrupts_Lcfg.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\Interrupts\src\Interrupts.c">
+    <Compile Include="..\..\Mcal\Atmega32\Interrupts\src\Interrupts.c">
       <SubType>compile</SubType>
       <Link>Mcal\Interrupts\src\Interrupts.c</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\SPI\SPI.c">
-      <SubType>compile</SubType>
-      <Link>Mcal\SPI\src\SPI.c</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\SPI\SPI.h">
+    <Compile Include="..\..\Mcal\Atmega32\SPI\inc\SPI.h">
       <SubType>compile</SubType>
       <Link>Mcal\SPI\inc\SPI.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\SPI\SPI_Config.h">
+    <Compile Include="..\..\Mcal\Atmega32\SPI\inc\SPI_Config.h">
       <SubType>compile</SubType>
       <Link>Mcal\SPI\inc\SPI_Config.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\SPI\SPI_Registers.h">
+    <Compile Include="..\..\Mcal\Atmega32\SPI\inc\SPI_Registers.h">
       <SubType>compile</SubType>
       <Link>Mcal\SPI\inc\SPI_Registers.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\SPI\SPI_retval.h">
+    <Compile Include="..\..\Mcal\Atmega32\SPI\inc\SPI_retval.h">
       <SubType>compile</SubType>
       <Link>Mcal\SPI\inc\SPI_retval.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\UART\UART.c">
+    <Compile Include="..\..\Mcal\Atmega32\SPI\src\SPI.c">
       <SubType>compile</SubType>
-      <Link>Mcal\UART\src\UART.c</Link>
+      <Link>Mcal\SPI\src\SPI.c</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\UART\UART.h">
+    <Compile Include="..\..\Mcal\Atmega32\UART\inc\UART.h">
       <SubType>compile</SubType>
       <Link>Mcal\UART\inc\UART.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\UART\UART_Config.h">
+    <Compile Include="..\..\Mcal\Atmega32\UART\inc\UART_Config.h">
       <SubType>compile</SubType>
       <Link>Mcal\UART\inc\UART_Config.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\UART\UART_Registers.h">
+    <Compile Include="..\..\Mcal\Atmega32\UART\inc\UART_Registers.h">
       <SubType>compile</SubType>
       <Link>Mcal\UART\inc\UART_Registers.h</Link>
     </Compile>
-    <Compile Include="..\..\..\..\Mcal\Atmega32\UART\UART_retval.h">
+    <Compile Include="..\..\Mcal\Atmega32\UART\inc\UART_retval.h">
       <SubType>compile</SubType>
       <Link>Mcal\UART\inc\UART_retval.h</Link>
+    </Compile>
+    <Compile Include="..\..\Mcal\Atmega32\UART\src\UART.c">
+      <SubType>compile</SubType>
+      <Link>Mcal\UART\src\UART.c</Link>
+    </Compile>
+    <Compile Include="..\..\Infrastructure\InterruptDesignPattern\inc\Interrupt_Design_Pattern.h">
+      <SubType>compile</SubType>
+      <Link>Infrastructure\InterruptDesignPattern\inc\Interrupt_Design_Pattern.h</Link>
+    </Compile>
+    <Compile Include="..\..\Infrastructure\InterruptDesignPattern\src\Interrupt_Design_Pattern.c">
+      <SubType>compile</SubType>
+      <Link>Infrastructure\InterruptDesignPattern\src\Interrupt_Design_Pattern.c</Link>
+    </Compile>
+    <Compile Include="..\..\Infrastructure\LIB\inc\BIT_MATH.h">
+      <SubType>compile</SubType>
+      <Link>Infrastructure\LIB\inc\BIT_MATH.h</Link>
+    </Compile>
+    <Compile Include="..\..\Infrastructure\LIB\inc\LIB.h">
+      <SubType>compile</SubType>
+      <Link>Infrastructure\LIB\inc\LIB.h</Link>
+    </Compile>
+    <Compile Include="..\..\Infrastructure\LIB\inc\MC_REGISTERS.h">
+      <SubType>compile</SubType>
+      <Link>Infrastructure\LIB\inc\MC_REGISTERS.h</Link>
+    </Compile>
+    <Compile Include="..\..\Infrastructure\LIB\inc\STD_TYPES.h">
+      <SubType>compile</SubType>
+      <Link>Infrastructure\LIB\inc\STD_TYPES.h</Link>
+    </Compile>
+    <Compile Include="..\..\Infrastructure\LIB\inc\UTILS.h">
+      <SubType>compile</SubType>
+      <Link>Infrastructure\LIB\inc\UTILS.h</Link>
+    </Compile>
+    <Compile Include="..\..\Infrastructure\LIB\src\UTILS.c">
+      <SubType>compile</SubType>
+      <Link>Infrastructure\LIB\src\UTILS.c</Link>
+    </Compile>
+    <Compile Include="Firmware\BCM\src\BCM_Lcfg.c">
+      <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
@@ -268,14 +310,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Firmware\BCM\inc" />
+    <Folder Include="Firmware\BCM\src" />
+    <Folder Include="Firmware\COMMProxy" />
+    <Folder Include="Firmware\COMMProxy\inc" />
+    <Folder Include="Firmware\COMMProxy\src" />
+    <Folder Include="Firmware\BCM" />
     <Folder Include="Infrastructure" />
-    <Folder Include="Infrastructure\Design_Patterns\Interrupt_Handler" />
-    <Folder Include="Infrastructure\Design_Patterns\Interrupt_Handler\inc" />
-    <Folder Include="Infrastructure\Design_Patterns\Interrupt_Handler\src" />
+    <Folder Include="Infrastructure\InterruptDesignPattern\inc" />
+    <Folder Include="Infrastructure\InterruptDesignPattern\src" />
     <Folder Include="Infrastructure\LIB" />
-    <Folder Include="Infrastructure\Design_Patterns" />
     <Folder Include="Infrastructure\LIB\inc" />
     <Folder Include="Infrastructure\LIB\src" />
+    <Folder Include="Infrastructure\InterruptDesignPattern" />
     <Folder Include="Mcal" />
     <Folder Include="Mcal\DIO\inc" />
     <Folder Include="Mcal\DIO\src" />
@@ -292,6 +339,7 @@
     <Folder Include="Mcal\UART" />
     <Folder Include="Mcal\UART\inc" />
     <Folder Include="Mcal\UART\src" />
+    <Folder Include="Firmware" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

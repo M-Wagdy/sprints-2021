@@ -2,19 +2,27 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-..\..\..\..\Infrastructure\Design_Patterns\InterruptDesignPattern\src\Interrupt_Design_Pattern.c
+..\..\Firmware\BCM\src\BCM.c
 
-..\..\..\..\Infrastructure\LIB\src\UTILS.c
+..\..\Firmware\BCM\src\BCM_Interface.c
 
-..\..\..\..\Mcal\Atmega32\DIO\DIO.c
+..\..\Firmware\COMMProxy\src\COMMProxy.c
 
-..\..\..\..\Mcal\Atmega32\I2C\I2C.c
+..\..\Mcal\Atmega32\DIO\src\DIO.c
 
-..\..\..\..\Mcal\Atmega32\Interrupts\src\Interrupts.c
+..\..\Mcal\Atmega32\I2C\src\I2C.c
 
-..\..\..\..\Mcal\Atmega32\SPI\SPI.c
+..\..\Mcal\Atmega32\Interrupts\src\Interrupts.c
 
-..\..\..\..\Mcal\Atmega32\UART\UART.c
+..\..\Mcal\Atmega32\SPI\src\SPI.c
+
+..\..\Mcal\Atmega32\UART\src\UART.c
+
+..\..\Infrastructure\InterruptDesignPattern\src\Interrupt_Design_Pattern.c
+
+..\..\Infrastructure\LIB\src\UTILS.c
+
+Firmware\BCM\src\BCM_Lcfg.c
 
 main.c
 

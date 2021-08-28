@@ -1,66 +1,31 @@
-main.d main.o: .././main.c ../../../../../Mcal/Atmega32/UART/UART.h \
- ../../../../../Infrastructure/LIB/inc/STD_types.h \
- ../../../../../Mcal/Atmega32/UART/UART_Registers.h \
- ../../../../../Mcal/Atmega32/UART/UART_Config.h \
- ../../../../../Mcal/Atmega32/UART/UART_retval.h \
- ../../../../../Mcal/Atmega32/SPI/SPI.h \
- ../../../../../Mcal/Atmega32/DIO/DIO.h \
- ../../../../../Mcal/Atmega32/DIO/DIO_Registers.h \
- ../../../../../Mcal/Atmega32/DIO/DIO_retval.h \
- ../../../../../Mcal/Atmega32/DIO/DIO_Config.h \
- ../../../../../Mcal/Atmega32/SPI/SPI_Registers.h \
- ../../../../../Mcal/Atmega32/SPI/SPI_retval.h \
- ../../../../../Mcal/Atmega32/SPI/SPI_Config.h \
- ../../../../../Mcal/Atmega32/DIO/DIO_Config.h \
- ../../../../../Mcal/Atmega32/I2C/I2C.h \
- ../../../../../Mcal/Atmega32/I2C/I2C_Registers.h \
- ../../../../../Mcal/Atmega32/I2C/I2C_retval.h \
- ../../../../../Mcal/Atmega32/I2C/I2C_Config.h \
- ../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc/Interrupt_Design_Pattern.h \
- ../../../../../Mcal/Atmega32/Interrupts/inc/Interrupts.h \
- ../../../../../Mcal/Atmega32/Interrupts/inc/Interrupts_Lcfg.h \
- ../../../../../Infrastructure/LIB/inc/STD_TYPES.h
+main.d main.o: .././main.c \
+ ../../../Mcal/Atmega32/Interrupts/inc/Interrupts.h \
+ ../../../Mcal/Atmega32/Interrupts/inc/Interrupts_Lcfg.h \
+ ../../../Infrastructure/LIB/inc/STD_TYPES.h \
+ ../../../Firmware/BCM/inc/BCM.h \
+ ../../../Firmware/COMMProxy/inc/COMMProxy.h \
+ ../../../Infrastructure/LIB/inc/STD_types.h \
+ ../../../Firmware/BCM/inc/BCM_Interface.h \
+ ../../../Infrastructure/LIB/inc/BIT_MATH.h \
+ ../../../Infrastructure/LIB/inc/MC_REGISTERS.h \
+ ../../../Infrastructure/LIB/inc/STD_TYPES.h
 
-../../../../../Mcal/Atmega32/UART/UART.h:
+../../../Mcal/Atmega32/Interrupts/inc/Interrupts.h:
 
-../../../../../Infrastructure/LIB/inc/STD_types.h:
+../../../Mcal/Atmega32/Interrupts/inc/Interrupts_Lcfg.h:
 
-../../../../../Mcal/Atmega32/UART/UART_Registers.h:
+../../../Infrastructure/LIB/inc/STD_TYPES.h:
 
-../../../../../Mcal/Atmega32/UART/UART_Config.h:
+../../../Firmware/BCM/inc/BCM.h:
 
-../../../../../Mcal/Atmega32/UART/UART_retval.h:
+../../../Firmware/COMMProxy/inc/COMMProxy.h:
 
-../../../../../Mcal/Atmega32/SPI/SPI.h:
+../../../Infrastructure/LIB/inc/STD_types.h:
 
-../../../../../Mcal/Atmega32/DIO/DIO.h:
+../../../Firmware/BCM/inc/BCM_Interface.h:
 
-../../../../../Mcal/Atmega32/DIO/DIO_Registers.h:
+../../../Infrastructure/LIB/inc/BIT_MATH.h:
 
-../../../../../Mcal/Atmega32/DIO/DIO_retval.h:
+../../../Infrastructure/LIB/inc/MC_REGISTERS.h:
 
-../../../../../Mcal/Atmega32/DIO/DIO_Config.h:
-
-../../../../../Mcal/Atmega32/SPI/SPI_Registers.h:
-
-../../../../../Mcal/Atmega32/SPI/SPI_retval.h:
-
-../../../../../Mcal/Atmega32/SPI/SPI_Config.h:
-
-../../../../../Mcal/Atmega32/DIO/DIO_Config.h:
-
-../../../../../Mcal/Atmega32/I2C/I2C.h:
-
-../../../../../Mcal/Atmega32/I2C/I2C_Registers.h:
-
-../../../../../Mcal/Atmega32/I2C/I2C_retval.h:
-
-../../../../../Mcal/Atmega32/I2C/I2C_Config.h:
-
-../../../../../Infrastructure/Design_Patterns/InterruptDesignPattern/inc/Interrupt_Design_Pattern.h:
-
-../../../../../Mcal/Atmega32/Interrupts/inc/Interrupts.h:
-
-../../../../../Mcal/Atmega32/Interrupts/inc/Interrupts_Lcfg.h:
-
-../../../../../Infrastructure/LIB/inc/STD_TYPES.h:
+../../../Infrastructure/LIB/inc/STD_TYPES.h:
