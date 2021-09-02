@@ -1,0 +1,36 @@
+APP/MONITORING/src/MONITORING.d APP/MONITORING/src/MONITORING.o: \
+ ../APP/MONITORING/src/MONITORING.c ../HAL/LCD/inc/LCD.h ../LIB/LIB.h \
+ ../LIB/STD_TYPES.h ../LIB/BIT_MATH.h ../LIB/UTILS.h \
+ ../MCAL/DIO/inc/DIO.h ../LIB/STD_TYPES.h ../LIB/BIT_MATH.h \
+ ../MCAL/TIMER/inc/TIMER.h ../MCAL/TIMER/inc/TIMER_Lcfg.h \
+ ../HAL/LCD/inc/LCD_Lcfg.h ../APP/SENSING/inc/SENSING_Interface.h \
+ ../APP/MONITORING/inc/MONITORING_Interface.h \
+ ../APP/MONITORING/inc/MONITORING.h
+
+../HAL/LCD/inc/LCD.h:
+
+../LIB/LIB.h:
+
+../LIB/STD_TYPES.h:
+
+../LIB/BIT_MATH.h:
+
+../LIB/UTILS.h:
+
+../MCAL/DIO/inc/DIO.h:
+
+../LIB/STD_TYPES.h:
+
+../LIB/BIT_MATH.h:
+
+../MCAL/TIMER/inc/TIMER.h:
+
+../MCAL/TIMER/inc/TIMER_Lcfg.h:
+
+../HAL/LCD/inc/LCD_Lcfg.h:
+
+../APP/SENSING/inc/SENSING_Interface.h:
+
+../APP/MONITORING/inc/MONITORING_Interface.h:
+
+../APP/MONITORING/inc/MONITORING.h:
