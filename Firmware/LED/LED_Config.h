@@ -9,8 +9,8 @@
 #define __LED_CONFIG_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
-#include "Mcal/Atmega32/DIO/DIO_Config.h"
+#include "STD_types.h"
+#include "DIO_Config.h"
 
 /*- MACROS -------------------------------------------------*/
 #define LED_CH_1              (uint8_t)(1)

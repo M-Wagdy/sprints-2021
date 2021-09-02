@@ -1,0 +1,20 @@
+/*
+ * REALTIMEMONITORING.h
+ *
+ * Created: 9/1/2021 1:51:56 PM
+ *  Author: vetmo
+ */ 
+
+
+#ifndef REALTIMEMONITORING_H_
+#define REALTIMEMONITORING_H_
+
+#define WINDOWTIMEINMICROSEC	(uint32_t)(250)
+#define NUMBEROFITERATIONSFORAVERAGE 80000UL
+
+#define CALCULATION			0 
+#define OperationStarted	255
+
+void REALTIMEMONITORING_MainFunction(void);
+
+#endif /* REALTIMEMONITORING_H_ */

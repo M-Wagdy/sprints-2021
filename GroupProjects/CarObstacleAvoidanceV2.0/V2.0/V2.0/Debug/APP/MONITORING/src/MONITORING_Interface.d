@@ -1,0 +1,15 @@
+APP/MONITORING/src/MONITORING_Interface.d \
+ APP/MONITORING/src/MONITORING_Interface.o: \
+ ../APP/MONITORING/src/MONITORING_Interface.c \
+ ../APP/MONITORING/inc/MONITORING_Interface.h ../LIB/LIB.h \
+ ../LIB/STD_TYPES.h ../LIB/BIT_MATH.h ../LIB/UTILS.h
+
+../APP/MONITORING/inc/MONITORING_Interface.h:
+
+../LIB/LIB.h:
+
+../LIB/STD_TYPES.h:
+
+../LIB/BIT_MATH.h:
+
+../LIB/UTILS.h:

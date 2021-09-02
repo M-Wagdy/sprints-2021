@@ -13,8 +13,6 @@
 ------------------------------------------*/
 #define HIGH               (uint8_t)(1)
 #define LOW                (uint8_t)(0)
-#define NOT_INIT           (uint8_t)(0)
-#define INIT               (uint8_t)(1)
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/

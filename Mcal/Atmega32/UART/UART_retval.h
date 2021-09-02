@@ -9,7 +9,7 @@
 #define __UART_RETVAL_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "../../../Infrastructure/STD_types.h"
+#include "STD_types.h"
 
 /*- PRIMITIVE TYPES ----------------------------------------*/
 typedef uint8_t UART_ERROR_state_t;
