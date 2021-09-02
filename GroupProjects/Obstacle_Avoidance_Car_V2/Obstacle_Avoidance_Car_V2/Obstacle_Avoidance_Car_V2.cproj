@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>6.0</ProjectVersion>
+    <ToolchainName>com.Atmel.AVRGCC8</ToolchainName>
+    <ProjectGuid>{6003308f-0640-4aba-9048-4991d555a0cc}</ProjectGuid>
+    <avrdevice>ATmega32</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <AssemblyName>Obstacle_Avoidance_Car_V2</AssemblyName>
+    <Name>Obstacle_Avoidance_Car_V2</Name>
+    <RootNamespace>Obstacle_Avoidance_Car_V2</RootNamespace>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <OverrideVtorValue />
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <AsfVersion>3.1.3</AsfVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <AvrGcc>
+  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>m</Value>
+    </ListValues>
+  </avrgcc.linker.libraries.Libraries>
+</AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <AvrGcc>
+  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <avrgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>../APP/CRASH/inc</Value>
+      <Value>../APP/MONITORING/inc</Value>
+      <Value>../APP/SENSING/inc</Value>
+      <Value>../APP/STEERING/inc</Value>
+      <Value>../HAL/LCD/inc</Value>
+      <Value>../HAL/MOTOR/inc</Value>
+      <Value>../HAL/USONIC/inc</Value>
+      <Value>../LIB</Value>
+      <Value>../MCAL/DIO/inc</Value>
+      <Value>../MCAL/GLOBAL_Interrupt/inc</Value>
+      <Value>../MCAL/ICU/inc</Value>
+      <Value>../MCAL/PWM/inc</Value>
+      <Value>../MCAL/TIMER/inc</Value>
+    </ListValues>
+  </avrgcc.compiler.directories.IncludePaths>
+  <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+  <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
+  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>m</Value>
+    </ListValues>
+  </avrgcc.linker.libraries.Libraries>
+  <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>
+</AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="APP\" />
+    <Folder Include="APP\CRASH\" />
+    <Folder Include="APP\CRASH\inc\" />
+    <Folder Include="APP\CRASH\src\" />
+    <Folder Include="APP\MONITORING\" />
+    <Folder Include="APP\MONITORING\inc\" />
+    <Folder Include="APP\MONITORING\src\" />
+    <Folder Include="APP\SENSING\" />
+    <Folder Include="APP\SENSING\inc\" />
+    <Folder Include="APP\SENSING\src\" />
+    <Folder Include="APP\STEERING\" />
+    <Folder Include="APP\STEERING\inc\" />
+    <Folder Include="APP\STEERING\src\" />
+    <Folder Include="HAL\" />
+    <Folder Include="HAL\LCD\" />
+    <Folder Include="HAL\LCD\inc\" />
+    <Folder Include="HAL\LCD\src\" />
+    <Folder Include="HAL\MOTOR\" />
+    <Folder Include="HAL\MOTOR\inc\" />
+    <Folder Include="HAL\MOTOR\src\" />
+    <Folder Include="HAL\USONIC\" />
+    <Folder Include="HAL\USONIC\inc\" />
+    <Folder Include="HAL\USONIC\src\" />
+    <Folder Include="LIB\" />
+    <Folder Include="MCAL\" />
+    <Folder Include="MCAL\DIO\" />
+    <Folder Include="MCAL\DIO\inc\" />
+    <Folder Include="MCAL\DIO\src\" />
+    <Folder Include="MCAL\GLOBAL_Interrupt\" />
+    <Folder Include="MCAL\GLOBAL_Interrupt\inc\" />
+    <Folder Include="MCAL\GLOBAL_Interrupt\src\" />
+    <Folder Include="MCAL\ICU\" />
+    <Folder Include="MCAL\ICU\inc\" />
+    <Folder Include="MCAL\ICU\src\" />
+    <Folder Include="MCAL\PWM\" />
+    <Folder Include="MCAL\PWM\inc\" />
+    <Folder Include="MCAL\PWM\src\" />
+    <Folder Include="MCAL\TIMER\" />
+    <Folder Include="MCAL\TIMER\inc\" />
+    <Folder Include="MCAL\TIMER\src\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APP\CRASH\inc\CRASH.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\CRASH\inc\CRASH_Interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\CRASH\inc\CRASH_Lcfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\CRASH\src\CRASH.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\CRASH\src\CRASH_Interface.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\CRASH\src\CRASH_Lcfg.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\MONITORING\inc\MONITORING.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\MONITORING\inc\MONITORING_Interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\MONITORING\src\MONITORING.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\MONITORING\src\MONITORING_Interface.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\SENSING\inc\SENSING.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\SENSING\inc\SENSING_Interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\SENSING\src\SENSING.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\SENSING\src\SENSING_Interface.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\STEERING\inc\STEERING.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\STEERING\inc\STEERING_Interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\STEERING\src\STEERING.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\STEERING\src\STEERING_Interface.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\LCD\inc\LCD.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\LCD\inc\LCD_Lcfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\LCD\src\LCD.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\LCD\src\LCD_Lcfg.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\MOTOR\inc\MOTOR.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\MOTOR\inc\MOTOR_Lcfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\MOTOR\src\MOTOR.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\MOTOR\src\MOTOR_Lcfg.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\USONIC\inc\USONIC.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\USONIC\inc\USONIC_Lcfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\USONIC\src\USONIC.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\USONIC\src\USONIC_Lcfg.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LIB\BIT_MATH.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LIB\LIB.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LIB\MC_REGISTERS.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LIB\STD_TYPES.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LIB\UTILS.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LIB\UTILS.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\DIO\inc\DIO.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\DIO\src\DIO.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\GLOBAL_Interrupt\inc\GLOBAL_Interrupt.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\GLOBAL_Interrupt\src\GLOBAL_Interrupt.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ICU\inc\ICU.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ICU\inc\ICU_Cfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ICU\inc\ICU_Lcfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ICU\src\ICU.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ICU\src\ICU_Lcfg.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\PWM\inc\PWM.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\PWM\inc\PWM_Cfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\PWM\inc\PWM_Lcfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\PWM\src\PWM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\PWM\src\PWM_Lcfg.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TIMER\inc\TIMER.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TIMER\inc\TIMER_Lcfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TIMER\src\TIMER.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TIMER\src\TIMER_Lcfg.c">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+</Project>
