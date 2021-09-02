@@ -10,7 +10,7 @@
 #define __I2C_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
+#include "STD_types.h"
 #include "I2C_Registers.h"
 #include "I2C_retval.h"
 #include "I2C_Config.h"
@@ -52,5 +52,8 @@ I2C_ERROR_state_t I2C_DisableInterrupt(uint8_t I2C_CH);
 
 /* set callback function */
 I2C_ERROR_state_t I2C_SetCallback(uint8_t I2C_CH, Ptr_VoidFuncVoid_t Callback);
+
+/* Clear Interrupt Flag */
+I2C_ERROR_state_t I2C_ClearIntFlag(uint8_t I2C_CH);
 
 #endif /* __I2C_H__ */

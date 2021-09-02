@@ -10,7 +10,7 @@
 #define __UART_CONFIG_H__
 /*- INCLUDES
 ----------------------------------------------*/
-#include "../../../Infrastructure/STD_types.h"
+#include "STD_types.h"
 
 /*--Configuration Macros------------------------------*/
 #define ENABLE_RX                         (uint8_t)(0x10)
@@ -38,6 +38,7 @@
 #define BAUD_HIGH_BITS_SHIFT              (uint8_t)(8)
 
 #define CLK_8_MHZ_9600_BAUD               (uint16_t)(51)
+#define CLK_16_MHZ_500k_BAUD               (uint16_t)(1)
 
 #define UART_CH_NUMBER                    (uint8_t)(1)
 

@@ -29,6 +29,7 @@ Ptr_VoidFuncVoid_t g_Callback[SPI_NUMBERS];
 /*- GLOBAL EXTERN VARIABLES
 -------------------------------*/
 extern const uint8_t SPI_CH_0_CONTROL_MASK;
+extern const uint8_t SPI_CH_0_DOUBLE_SPEED;
 extern const uint8_t SPI_CH_0_MOSI_PORT;
 extern const uint8_t SPI_CH_0_MOSI_PIN;
 extern const uint8_t SPI_CH_0_MISO_PORT;
@@ -66,6 +67,7 @@ SPI_ERROR_state_t SPI_Init(uint8_t SpiNumber)
             DIO_SetPinDirection(SPI_CH_0_SCK_PORT, SPI_CH_0_SCK_PIN, OUTPUT);
             /* sets SPI control register */
             SPI_CONTROL_R = SPI_CH_0_CONTROL_MASK;
+            SPI_STATUS_R |= SPI_CH_0_DOUBLE_SPEED;
          }
          /* initialize slave node */
          else
@@ -523,5 +525,74 @@ SPI_ERROR_state_t SPI_SetCallback(uint8_t SpiNumber, Ptr_VoidFuncVoid_t Callback
    g_Callback[u8_SPIIndex] = Callback;
       
    /* return success status */
+   return E_SPI_SUCCESS;
+}
+
+/**
+* @brief: This function puts data in SPI transmit buffer.
+*
+* @param [in] SpiNumber    -  SPI channel number.
+* @param [in] TxChar       -  data to be put in the buffer.
+*
+* @return function error state.
+*/
+SPI_ERROR_state_t SPI_SetData(uint8_t SpiNumber, uint8_t TxChar)
+{
+   volatile uint8_t * ptr_SPIDataR;
+   
+   /* get the required spi data */
+   switch(SpiNumber)
+   {
+      #ifdef SPI_CH_0
+      case SPI_CH_0:
+         ptr_SPIDataR = &SPI_DATA_R;
+         break;
+      #endif
+      default:
+         return E_SPI_INVALID_CH;
+   }
+         
+   /* sets character in the SPI register */
+   *ptr_SPIDataR = TxChar;
+   
+   /* return success message */
+   return E_SPI_SUCCESS;
+}
+
+/**
+* @brief: This function puts data in UART transmit buffer.
+*
+* @param [in]  SpiNumber    -  SPI channel number.
+* @param [out] RxChar       -  pointer to where put the data in
+*                             a SPI receive buffer.
+*
+* @return function error state.
+*/
+SPI_ERROR_state_t SPI_GetData(uint8_t SpiNumber,uint8_t * RxData)
+{
+   /* make sure a null pointer isn't passed to the function */
+   if(NULL_PTR == RxData)
+   {
+      return E_SPI_NULL_PTR;
+   }
+   
+   volatile uint8_t * ptr_SPIDataR;
+   
+   /* get the required spi data */
+   switch(SpiNumber)
+   {
+      #ifdef SPI_CH_0
+      case SPI_CH_0:
+         ptr_SPIDataR = &SPI_DATA_R;
+         break;
+      #endif
+      default:
+         return E_SPI_INVALID_CH;
+   }
+   
+   /* get data */
+   *RxData = *ptr_SPIDataR;
+   
+   /* return success message */
    return E_SPI_SUCCESS;
 }
