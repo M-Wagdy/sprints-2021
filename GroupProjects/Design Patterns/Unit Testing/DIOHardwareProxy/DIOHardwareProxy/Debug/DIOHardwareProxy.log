@@ -1,0 +1,4 @@
+﻿  TestCases.c
+E:\Courses\Sprints\sprints-2021\GroupProjects\Design Patterns\Unit Testing\DIOHardwareProxy\DIOHardwareProxy\TestCases.c(111,74): warning C4047: 'function': 'uint8_t *' differs in levels of indirection from 'int'
+E:\Courses\Sprints\sprints-2021\GroupProjects\Design Patterns\Unit Testing\DIOHardwareProxy\DIOHardwareProxy\TestCases.c(111,70): warning C4024: 'DIOProxy_Init': different types for formal and actual parameter 2
+  DIOHardwareProxy.vcxproj -> E:\Courses\Sprints\sprints-2021\GroupProjects\Design Patterns\Unit Testing\DIOHardwareProxy\Debug\DIOHardwareProxy.exe
