@@ -10,5 +10,5 @@
 #include "Button_Lcfg.h"
 
 const STR_BUTTON_config_t gastr_Button_Config[BUTTONS_NUMBER] = {
-   {PORTB, PIN_2, PULL_UP},
+   {PORTC, PIN_0, PULL_UP},
 };

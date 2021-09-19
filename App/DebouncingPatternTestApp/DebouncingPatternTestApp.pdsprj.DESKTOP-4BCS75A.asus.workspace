@@ -94,7 +94,7 @@
      <ITEM name="TopLineAddress">00000020</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="600" x="8" flags="0000002a" y="177" h="400" pid="1" iid="1">
+   <POPUP w="600" x="8" flags="0000802b" y="177" h="400" pid="1" iid="1">
     <PROPERTIES>
      <ITEM name="Breakpoint 0">"main",07B6,0032,2DEA,D37A,1
 </ITEM>

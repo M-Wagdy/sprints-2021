@@ -12,8 +12,8 @@
 /*- LOCAL MACROS
 ------------------------------------------*/
 /* Led Macros */
-#define GREEN_LED_PORT     PORTB
-#define GREEN_LED_PIN      PIN_4
+#define GREEN_LED_PORT     PORTA
+#define GREEN_LED_PIN      PIN_0
 
 /* Button Macros */
 #define PRESSED            (uint8_t)(0)

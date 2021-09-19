@@ -25,7 +25,6 @@ ERROR_STATE_t BUTTONClient_Init(STR_BTNClient_t * const ClientData)
    ClientData->u8_OldButtonState = 0;
    ClientData->u8_TimerCh = INVALID_TIMER_CH;
    ClientData->u32_DebounceDelay = 0;
-   ClientData->ENU_ClientState = ButtonClient_Ready;
    ClientData->EventCallback = NULL_PTR;
    return ERROR_OK;
 }
@@ -114,7 +113,10 @@ ERROR_STATE_t BUTTONClient_SetEventCallback(STR_BTNClient_t * const ClientData, 
 * @return function error state.
 */
 ERROR_STATE_t BUTTONClient_EventReceive(STR_BTNClient_t * const ClientData)
-{  
+{
+   /* State Machine Variable */
+   static Enu_ButtonClientStateMachine ENU_ClientState = ButtonClient_Ready;
+   
    /* Used Function Return Error State */
    ERROR_STATE_t RetErrorState;
    
@@ -122,7 +124,7 @@ ERROR_STATE_t BUTTONClient_EventReceive(STR_BTNClient_t * const ClientData)
    ERROR_STATE_t ErrorState = ERROR_NOK;
    
    /* State Machine */
-   switch(ClientData->ENU_ClientState)
+   switch(ENU_ClientState)
    {
       /* Get First Button Reading State */
       case ButtonClient_Ready:
@@ -130,7 +132,7 @@ ERROR_STATE_t BUTTONClient_EventReceive(STR_BTNClient_t * const ClientData)
          if(ERROR_OK == RetErrorState)
          {  
             /* Go to debounce Delay State. */
-            ClientData->ENU_ClientState = ButtonClient_Delay;
+            ENU_ClientState = ButtonClient_Delay;
          }
          else
          {
@@ -151,7 +153,7 @@ ERROR_STATE_t BUTTONClient_EventReceive(STR_BTNClient_t * const ClientData)
          else if(ERROR_OK == RetErrorState)
          {
             /* Go To Get Second Button Reading State. */
-            ClientData->ENU_ClientState = ButtonClient_StateReady;
+            ENU_ClientState = ButtonClient_StateReady;
          }
          else
          {
@@ -160,7 +162,7 @@ ERROR_STATE_t BUTTONClient_EventReceive(STR_BTNClient_t * const ClientData)
          break;
       /* Get Second Button Reading State. */
       case ButtonClient_StateReady:
-         RetErrorState = BUTTON_getState(ClientData->u8_ButtonCh, &ClientData->u8_ButtonState);
+         ErrorState = BUTTON_getState(ClientData->u8_ButtonCh, &ClientData->u8_ButtonState);
          if(ERROR_OK == RetErrorState)
          {
             /* Compare the button old state with the new state. */
@@ -185,7 +187,7 @@ ERROR_STATE_t BUTTONClient_EventReceive(STR_BTNClient_t * const ClientData)
             /* Do Nothing */
          }
          /* Go To New Button Reading State. */
-         ClientData->ENU_ClientState = ButtonClient_Ready;
+         ENU_ClientState = ButtonClient_Ready;
          break;
       default:
          break;
