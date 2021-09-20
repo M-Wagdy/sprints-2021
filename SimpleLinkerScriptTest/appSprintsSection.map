@@ -1,0 +1,101 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x00000000         0x00040000         xr
+SRAM             0x20000000         0x00008000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00000000                PROVIDE (_intvecs_base_address = 0x0)
+
+.intvecs
+ *(.intvecs)
+
+.text           0x00000000       0x60
+ CREATE_OBJECT_SYMBOLS
+ *(.text)
+ .text          0x00000000       0x2c C:\Users\asus\AppData\Local\Temp\ccKFLImz.o
+                0x00000000                main
+ .text          0x0000002c       0x34 C:\Users\asus\AppData\Local\Temp\cc5faWM9.o
+                0x0000002c                vidFunc
+ *(.text.*)
+
+.glue_7         0x00000060        0x0
+ .glue_7        0x00000060        0x0 linker stubs
+
+.glue_7t        0x00000060        0x0
+ .glue_7t       0x00000060        0x0 linker stubs
+
+.vfp11_veneer   0x00000060        0x0
+ .vfp11_veneer  0x00000060        0x0 linker stubs
+
+.v4_bx          0x00000060        0x0
+ .v4_bx         0x00000060        0x0 linker stubs
+
+.iplt           0x00000060        0x0
+ .iplt          0x00000060        0x0 C:\Users\asus\AppData\Local\Temp\ccKFLImz.o
+
+.rodata         0x00000060        0x2
+ *(.rodata)
+ .rodata        0x00000060        0x2 C:\Users\asus\AppData\Local\Temp\ccKFLImz.o
+                0x00000060                u16ConstGlobalVar
+ *(.rodata*)
+
+.rel.dyn        0x00000064        0x0
+ .rel.iplt      0x00000064        0x0 C:\Users\asus\AppData\Local\Temp\ccKFLImz.o
+
+.data           0x20000000        0x4 load address 0x00000064
+                0x00000064                __data_load__ = LOADADDR (.data)
+                0x20000000                __data_start__ = .
+ *(.data)
+ .data          0x20000000        0x2 C:\Users\asus\AppData\Local\Temp\ccKFLImz.o
+                0x20000000                u8InitGLobalVar
+ .data          0x20000002        0x0 C:\Users\asus\AppData\Local\Temp\cc5faWM9.o
+ *(.data*)
+                0x20000004                . = ALIGN (0x4)
+ *fill*         0x20000002        0x2 
+                0x20000004                __data_end__ = .
+
+.igot.plt       0x20000004        0x0 load address 0x00000068
+ .igot.plt      0x20000004        0x0 C:\Users\asus\AppData\Local\Temp\ccKFLImz.o
+
+.bss            0x20000004        0x4 load address 0x00000068
+                0x20000004                __bss_start__ = .
+ *(.shbss)
+ *(.bss)
+ .bss           0x20000004        0x4 C:\Users\asus\AppData\Local\Temp\ccKFLImz.o
+ .bss           0x20000008        0x0 C:\Users\asus\AppData\Local\Temp\cc5faWM9.o
+ *(.bss.*)
+ *(COMMON)
+                0x20000008                . = ALIGN (0x4)
+                0x20000008                __bss_end__ = .
+
+.stack          0x20000008        0x0 load address 0x00000068
+                0x20000008                _stack = .
+                0x20000008                __stack = .
+ *(.stack)
+                0x00001000                PROVIDE (_sprints_base_address = 0x1000)
+
+.sprints        0x00001000        0xa
+ *(.sprints)
+ .sprints       0x00001000        0xa C:\Users\asus\AppData\Local\Temp\ccKFLImz.o
+                0x00001000                SprintsArr
+ *(.sprints*)
+LOAD C:\Users\asus\AppData\Local\Temp\ccKFLImz.o
+LOAD C:\Users\asus\AppData\Local\Temp\cc5faWM9.o
+OUTPUT(app_output.elf elf32-littlearm)
+LOAD linker stubs
+
+.comment        0x00000000       0x49
+ .comment       0x00000000       0x49 C:\Users\asus\AppData\Local\Temp\ccKFLImz.o
+                                 0x4a (size before relaxing)
+ .comment       0x00000049       0x4a C:\Users\asus\AppData\Local\Temp\cc5faWM9.o
+
+.ARM.attributes
+                0x00000000       0x2e
+ .ARM.attributes
+                0x00000000       0x2e C:\Users\asus\AppData\Local\Temp\ccKFLImz.o
+ .ARM.attributes
+                0x0000002e       0x2e C:\Users\asus\AppData\Local\Temp\cc5faWM9.o
