@@ -41,7 +41,7 @@ extern const STR_SYSTICK_config_t STR_SystickConfig;
 * Service ID[hex]: 0x00
 * Sync/Async: Synchronous
 * Reentrancy: Non reentrant
-* Parameters (in): None. 
+* Parameters (in): None
 * Parameters (inout): None
 * Parameters (out): None
 * Return value: Function Error State (E_OK or E_NOK)

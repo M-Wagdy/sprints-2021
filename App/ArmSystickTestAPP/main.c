@@ -1,8 +1,9 @@
 #include "SYSTICK.h"
+#include "CPU.h"
 #include "Mcu_Hw.h"
 
 /************************************************************************************
-* Service Name: SYSTICK_INTHANDLER
+* Service Name: SYSTICK_Handler
 * Service ID[hex]: 0x01
 * Sync/Async: Asynchronous
 * Reentrancy: Reentrant
@@ -12,7 +13,7 @@
 * Return value: None
 * Description: SYSTICK ISR.
 ************************************************************************************/
-void SysTick_Handler(void)
+void SYSTICK_Handler(void)
 {
    /* Toggles the leds */
    PORTF_DATA ^= 0x0E;
@@ -20,6 +21,13 @@ void SysTick_Handler(void)
 
 void main(void)
 {
+
+   /* Switch to unprivileged mode. */
+   CPU_UnPrivilegedMode();
+
+   /* Switch to privileged mode. */
+   CPU_PrivilegedMode();
+
    /* Start PortF Clock */
    SYSCTL_RCGCGPIO |= 0x20;
    /* Wait till clock is running */
