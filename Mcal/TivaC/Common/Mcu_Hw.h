@@ -19,9 +19,9 @@
 #define CORTEXM4_PERI_BASE_ADDRESS     (uint32_t)(0xE000E000)
 
 /*- Systick Timer Registers---------------------------------*/
-#define STCTRL                         (*((volatile uint32_t *)(CORTEXM4_PERI_BASE_ADDRESS+0x010)))
-#define STRELOAD                       (*((volatile uint32_t *)(CORTEXM4_PERI_BASE_ADDRESS+0x014)))
-#define STCURRENT                      (*((volatile uint32_t *)(CORTEXM4_PERI_BASE_ADDRESS+0x018)))
+#define STCTRL                         (*((volatile STCTRL_Tag *)(CORTEXM4_PERI_BASE_ADDRESS+0x010)))
+#define STRELOAD                       (*((volatile STRELOAD_Tag *)(CORTEXM4_PERI_BASE_ADDRESS+0x014)))
+#define STCURRENT                      (*((volatile STCURRENT_Tag *)(CORTEXM4_PERI_BASE_ADDRESS+0x018)))
    
 #define APINT                          (*((volatile uint32_t *)(CORTEXM4_PERI_BASE_ADDRESS+0xD0C)))
 #define INTCTRL                        (*((volatile uint32_t *)(CORTEXM4_PERI_BASE_ADDRESS+0xD04)))

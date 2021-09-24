@@ -66,16 +66,17 @@ Std_ReturnType SYSTICK_Init(void)
     else
     {
         /* Disables the systick clock */
-        STCTRL &= ~(SYSTICK_CLK_ENABLE);
+        STCTRL.B.ENABLE = STD_LOW;
 
         /* Set the period */
-        STRELOAD = STR_SystickConfig.u32_Period;
+        STRELOAD.B.RELOAD = STR_SystickConfig.u32_Period;
 
         /* Configure the systick */
-        STCTRL |= (STR_SystickConfig.u8_ClkMode | STR_SystickConfig.u8_IntMode);
+        STCTRL.B.CLK_SRC = STR_SystickConfig.u8_ClkMode;
+        STCTRL.B.INTEN = STR_SystickConfig.u8_IntMode;
 
         /* Enable systick clock */
-        STCTRL |= SYSTICK_CLK_ENABLE;
+        STCTRL.B.ENABLE = STD_HIGH;
 
         /* Set initialized flag. */
         u8_Init = STD_INIT;

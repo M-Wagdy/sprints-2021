@@ -1,6 +1,7 @@
 #include "SYSTICK.h"
 #include "CPU.h"
 #include "Mcu_Hw.h"
+#include "Bit_Math.h"
 
 /************************************************************************************
 * Service Name: SYSTICK_Handler
@@ -22,6 +23,7 @@ void SYSTICK_Handler(void)
 void main(void)
 {
 
+
    /* Switch to unprivileged mode. */
    CPU_UnPrivilegedMode();
 
@@ -36,9 +38,13 @@ void main(void)
    /* Enable Write Access */
    PORTF_LOCK = 0x4C4F434;
    /* Set Pin 1,2,3 to output */
-   PORTF_DIR |= 0x0E;
+   SET_BIT_PER_BB(PORTF_DIR, 1);
+   SET_BIT_PER_BB(PORTF_DIR, 2);
+   SET_BIT_PER_BB(PORTF_DIR, 3);
    /* Digital enable Pin 1,2,3 */
-   PORTF_DEN |= 0x0E;
+   SET_BIT_PER_BB(PORTF_DEN, 1);
+   SET_BIT_PER_BB(PORTF_DEN, 2);
+   SET_BIT_PER_BB(PORTF_DEN, 3);
    /* Commit Changes */
    PORTF_CR = 0x1F;
 

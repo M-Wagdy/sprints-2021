@@ -15,13 +15,13 @@
 
 /*- CONSTANTS ----------------------------------------------*/
 /* Interrupts Macros */
-#define SYSTICK_INT_ENABLE      (uint8_t)(0x02)
-#define SYSTICK_INT_DISABLE     (uint8_t)(0x00)
+#define SYSTICK_INT_ENABLE      STD_HIGH
+#define SYSTICK_INT_DISABLE     STD_LOW
 #define SYSTICK_DEFAULT_INT     SYSTICK_INT_DISABLE
 
 /* Clock Source Macros */
-#define SYSTICK_SYS_CLK         (uint8_t)(0x04)
-#define SYSTICK_PIOSC_DIV_4     (uint8_t)(0x00)
+#define SYSTICK_SYS_CLK         STD_HIGH
+#define SYSTICK_PIOSC_DIV_4     STD_LOW
 #define SYSTICK_DEFAULT_CLK     SYSTICK_SYS_CLK
 
 /*- PRIMITIVE TYPES ----------------------------------------*/
