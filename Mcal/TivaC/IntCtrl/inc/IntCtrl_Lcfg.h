@@ -14,13 +14,7 @@
 #include "Std_Types.h"
 
 /*- CONSTANTS ----------------------------------------------*/
-#define INT_EN_IN_REG_NUM               (uint8_t)(32)
-#define INT_EN_IN_LAST_REG_NUM          (uint8_t)(10)
-#define INT_EN_REG_NUMBERS              (uint8_t)(5)
-
-#define INT_PRI_IN_REG_NUM              (uint8_t)(4)
-#define INT_EN_IN_LAST_REG_NUM          (uint8_t)(2)
-#define INT_EN_REG_NUMBERS              (uint8_t)(35)
+#define INT_NUMBERS                     (uint8_t)(138)
 
 #define INT_GROUPS_8_SUBGROUPS_1        (uint8_t)(0)
 #define INT_GROUPS_4_SUBGROUPS_2        (uint8_t)(5)
@@ -36,14 +30,15 @@
 #define INT_BASEPRI_6                   (uint8_t)(0x06)
 #define INT_BASEPRI_7                   (uint8_t)(0x07)
 
+#define INT_INVALID_PRI                 (uint8_t)(0x08)
+
 /*- PRIMITIVE TYPES ----------------------------------------*/
 
 /*- ENUMS --------------------------------------------------*/
 
 /*- STRUCTS AND UNIONS -------------------------------------*/
 typedef struct STR_INT_config_t{
-   uint8_t  u8_GroupPRI;
-   uint8_t  u8_SubgroupPRI;
+   uint8_t  u8_GroupAndSubgroupPRI;
    uint8_t  u8_Enable;
 } STR_INT_config_t;
 

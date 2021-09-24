@@ -64,7 +64,7 @@
 
 /* Set Base Priority */
 #define Set_BasePRI() \
-   __asm(" LDR R0, [SP, #4]");\
+   __asm(" LDR R0, [SP, #16]");\
    __asm(" MSR BASEPRI, R0")
 
 /*- FUNCTION DECLARATIONS ----------------------------------*/

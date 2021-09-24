@@ -15,7 +15,7 @@
 
 /*- CONSTANTS ----------------------------------------------*/
 #define INT_BASEPRI_START_BIT       (uint8_t)(5)
-#define INT_APINT_KEY               (uint32_t)(0xFA050000)
+#define INT_APINT_KEY               (uint32_t)(0x05FA0000)
 #define INT_PRIGROUP_START_BIT      (uint8_t)(8)
 
 /*- PRIMITIVE TYPES ----------------------------------------*/
