@@ -173,7 +173,7 @@ Mcu_RawResetType Mcu_GetResetRawValue( void )
 ************************************************************************************/
 void Mcu_PerformReset(void)
 {
-    APINT |= (STD_HIGH << SYSRESREQ_BIT);
+    APINT = APINT_KEY | (STD_HIGH << SYSRESREQ_BIT);
 }
 
 /************************************************************************************

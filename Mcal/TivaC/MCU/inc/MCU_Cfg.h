@@ -30,8 +30,10 @@
 #define OSCSRC_START_BIT            (uint8_t)(4)
 #define MOSCDIS_START_BIT           (uint8_t)(0)
 
-#define XTAL_4_MHZ                 (uint8_t)(0x06)
+#define XTAL_4_MHZ                  (uint8_t)(0x06)
 #define XTAL_16_MHZ                 (uint8_t)(0x15)
+
+#define APINT_KEY                   (uint32_t)(0x05FA0000)
 
 /*- PRIMITIVE TYPES ----------------------------------------*/
 
