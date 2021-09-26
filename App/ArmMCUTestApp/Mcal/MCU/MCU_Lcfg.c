@@ -11,6 +11,8 @@
 ----------------------------------------------*/
 #include "MCU_Lcfg.h"
 
-const STR_MCU_config_t STR_MCUConfig = {
-    SYSDIV_1, USESYSDIV_DIS, XTAL_16_MHZ, OSCSRC_PIOSC, MOSC_DIS
+const STR_Mcu_ConfigType STR_MCUClockConfig[CLOCK_SETTINGS_NUM] = {
+    {STD_OFF, OSCSRC_PIOSC, 16000},
+    {STD_OFF, OSCSRC_PIOSC_DIV_4, 1000},
+    {STD_ON, OSCSRC_MOSC, 60000},
 };

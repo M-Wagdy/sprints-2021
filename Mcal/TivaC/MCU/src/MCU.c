@@ -10,18 +10,32 @@
 /*- INCLUDES
 ----------------------------------------------*/
 #include "MCU.h"
-#include "MCU_Cfg.h"
-#include "MCU_Lcfg.h"
 #include "Mcu_Hw.h"
 
 /*- LOCAL MACROS
 ------------------------------------------*/
+/* Reset Values. */
+#define SYSRESREQ_BIT               (uint8_t)(2)
+#define SYSTEM_RESET_CAUSE_BITS     (uint8_t)(0x3F)
+
+/* PLL Status Values. */
+#define PLL_STATE_BIT               (uint8_t)(6)
+#define PLL_UNLOCKED                (uint8_t)(0)
+#define PLL_LOCKED                  (uint8_t)(1)
+
+/* Freq Values. */
+#define PIOSC_MAX_FREQ              (uint32_t)(16000)
+#define PIOSC_4_MAX_FREQ            (uint32_t)(4000)
+#define PLL_MAX_FREQ                (uint32_t)(80000)
+#define PLL_IN_FREQ                 (uint32_t)(200000)
 
 /*- LOCAL Dataypes
 ----------------------------------------*/
 
 /*- LOCAL FUNCTIONS PROTOTYPES
 ----------------------------*/
+static Std_ReturnType Mcu_DistributePllClock( void );
+static Mcu_PllStatusType Mcu_GetPllStatus( void );
 
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
@@ -29,48 +43,191 @@ static uint8_t u8_Init = STD_NOT_INIT;
 
 /*- GLOBAL EXTERN VARIABLES
 -------------------------------*/
-extern const STR_MCU_config_t STR_MCUConfig;
+static STR_Mcu_ConfigType * STR_MCUConfig = NULL_PTR;
 
 /*- LOCAL FUNCTIONS IMPLEMENTATION
 ------------------------*/
+
+/************************************************************************************
+* Service Name: Mcu_DistributePllClock
+* Service ID[hex]: 0x04
+* Sync/Async: Synchronous
+* Reentrancy: Reentrant
+* Parameters (in): None
+* Parameters (inout): None
+* Parameters (out): None
+* Return value: Function error state.
+* Description: Set Using PLL.
+************************************************************************************/
+static Std_ReturnType Mcu_DistributePllClock( void )
+{
+    SYSCTL_RCC &= ~(BYPASS_MASK << BYPASS_START_BIT);
+    return E_OK;
+}
+
+/************************************************************************************
+* Service Name: Mcu_GetPllStatus
+* Service ID[hex]: 0x05
+* Sync/Async: Synchronous
+* Reentrancy: Reentrant
+* Parameters (in): None
+* Parameters (inout): None
+* Parameters (out): None
+* Return value: PLL State.
+* Description: Return if PLL is locked or not.
+************************************************************************************/
+static Mcu_PllStatusType Mcu_GetPllStatus( void )
+{
+    Mcu_PllStatusType PLLState;
+
+    if(SYSCTL_RIS & (STD_HIGH << PLL_STATE_BIT))
+    {
+        PLLState = PLL_LOCKED;
+    }
+    else
+    {
+        PLLState = PLL_UNLOCKED;
+    }
+
+    return PLLState;
+}
 
 /*- APIs IMPLEMENTATION
 -----------------------------------*/
 
 /************************************************************************************
-* Service Name: MCU_Init
+* Service Name: Mcu_Init
 * Service ID[hex]: 0x00
+* Sync/Async: Synchronous
+* Reentrancy: Non reentrant
+* Parameters (in): ConfigPtr - Clock settings configuration address.
+* Parameters (inout): None
+* Parameters (out): None
+* Return value: None
+* Description: Initializes the MCU Config variable.
+************************************************************************************/
+void Mcu_Init( const STR_Mcu_ConfigType* ConfigPtr)
+{
+    if(STD_NOT_INIT == u8_Init && ConfigPtr != NULL_PTR)
+    {
+        STR_MCUConfig = ConfigPtr;
+
+        u8_Init = STD_INIT;
+    }
+}
+
+/************************************************************************************
+* Service Name: Mcu_GetResetRawValue
+* Service ID[hex]: 0x01
+* Sync/Async: Synchronous
+* Reentrancy: Reentrant
+* Parameters (in): None
+* Parameters (inout): None
+* Parameters (out): None
+* Return value: Reset Cause.
+* Description: Returns the reset cause of the MCU.
+************************************************************************************/
+Mcu_RawResetType Mcu_GetResetRawValue( void )
+{
+    Mcu_RawResetType ResetCause;
+
+    uint32_t u32_ResetReg = SYSCTL_RESC & SYSTEM_RESET_CAUSE_BITS;
+    switch(u32_ResetReg)
+    {
+        case (STD_HIGH << RESET_EXT):
+            ResetCause = RESET_EXT;
+            break;
+        case (STD_HIGH << RESET_POR):
+            ResetCause = RESET_POR;
+            break;
+        case (STD_HIGH << RESET_BOR):
+            ResetCause = RESET_BOR;
+            break;
+        case (STD_HIGH << RESET_WDT0):
+            ResetCause = RESET_WDT0;
+            break;
+        case (STD_HIGH << RESET_SW):
+            ResetCause = RESET_SW;
+            break;
+        case (STD_HIGH << RESET_WDT1):
+            ResetCause = RESET_WDT1;
+            break;
+        default:
+            ResetCause = RESET_ERROR;
+            break;
+    }
+
+    return ResetCause;
+}
+
+/************************************************************************************
+* Service Name: Mcu_PerformReset
+* Service ID[hex]: 0x02
+* Sync/Async: Synchronous
+* Reentrancy: Reentrant
+* Parameters (in): None
+* Parameters (inout): None
+* Parameters (out): None
+* Return value: None
+* Description: Perform System Reset.
+************************************************************************************/
+void Mcu_PerformReset(void)
+{
+    APINT |= (STD_HIGH << SYSRESREQ_BIT);
+}
+
+/************************************************************************************
+* Service Name: Mcu_InitClock
+* Service ID[hex]: 0x03
 * Sync/Async: Synchronous
 * Reentrancy: Non reentrant
 * Parameters (in): None
 * Parameters (inout): None
 * Parameters (out): None
 * Return value: Function Error State
-* Description: Initializes the MCU module.
+* Description: Configure the MCU clock.
 ************************************************************************************/
-Std_ReturnType MCU_Init(void)
+Std_ReturnType Mcu_InitClock(Mcu_ClockType ClockSetting)
 {
     /* Variable to store function error state. */
-    Std_ReturnType E_MCU_Init;
+    Std_ReturnType E_MCU_Config;
 
     /* Validate valid Parameters are passed. */
-    if(STD_NOT_INIT != u8_Init)
+    if(NULL_PTR == STR_MCUConfig)
     {
         /* Set init before error. */
-        E_MCU_Init = (E_MCU_ID | E_MCU_INIT_BEFORE);
+        E_MCU_Config = (E_MCU_ID | E_MCU_NULL_PTR);
     }
     else if(
-            (SYSDIV_INVALID <= STR_MCUConfig.u8_SYSDIV) || (USESYSDIV_INVALID <= STR_MCUConfig.u8_USESYSDIV) ||
-            (OSCSRC_INVALID_VAL <= STR_MCUConfig.u8_OSCSRC) || (MOSC_INVALID <= STR_MCUConfig.u8_MOSCDIS) ||
-            (XTAL_MAX_VAL < STR_MCUConfig.u8_XTAL) || (XTAL_MIN_VAL > STR_MCUConfig.u8_XTAL)
+            ((OSCSRC_PIOSC == STR_MCUConfig[ClockSetting].u8_OSCSRC) && (PIOSC_MAX_FREQ < STR_MCUConfig[ClockSetting].u32_Freq) && (STD_OFF == STR_MCUConfig[ClockSetting].u8_PLLUse)) ||
+            ((OSCSRC_PIOSC_DIV_4 == STR_MCUConfig[ClockSetting].u8_OSCSRC) && (PIOSC_4_MAX_FREQ < STR_MCUConfig[ClockSetting].u32_Freq) && (STD_OFF == STR_MCUConfig[ClockSetting].u8_PLLUse)) ||
+            ((STD_ON == STR_MCUConfig[ClockSetting].u8_PLLUse) && (PLL_MAX_FREQ < STR_MCUConfig[ClockSetting].u32_Freq) && (OSCSRC_PIOSC_DIV_4 != STR_MCUConfig[ClockSetting].u8_OSCSRC || OSCSRC_LFIOSC != STR_MCUConfig[ClockSetting].u8_OSCSRC))
             )
     {
         /* Set invalid config error. */
-        E_MCU_Init = (E_MCU_ID | E_MCU_INVALID_CONFIG);
+        E_MCU_Config = (E_MCU_ID | E_MCU_INVALID_CONFIG);
     }
     else
     {
         uint32_t u32_RCCVal = SYSCTL_RCC;
+
+        uint32_t u32_FreqMax;
+        if(OSCSRC_PIOSC == STR_MCUConfig[ClockSetting].u8_OSCSRC)
+        {
+            u32_FreqMax = PIOSC_MAX_FREQ;
+        }
+        else if(OSCSRC_PIOSC_DIV_4 == STR_MCUConfig[ClockSetting].u8_OSCSRC)
+        {
+            u32_FreqMax = PIOSC_4_MAX_FREQ;
+        }
+        else if(STD_ON == STR_MCUConfig[ClockSetting].u8_PLLUse)
+        {
+            u32_FreqMax = PLL_IN_FREQ;
+        }
+        else
+        {
+            /* Do Nothing. */
+        }
 
         /* Clear Temp RCC Configurations */
         u32_RCCVal &= ~(MOSCDIS_MASK<<MOSCDIS_START_BIT);
@@ -79,23 +236,41 @@ Std_ReturnType MCU_Init(void)
         u32_RCCVal &= ~(USESYSDIV_MASK << USESYSDIV_START_BIT);
         u32_RCCVal &= ~(SYSDIV_MASK << SYSDIV_START_BIT);
 
+        uint8_t u8_SysDivVal = (uint8_t)(u32_FreqMax/STR_MCUConfig[ClockSetting].u32_Freq);
+        if(u8_SysDivVal >= 2)
+        {
+            u8_SysDivVal--;
+            u32_RCCVal |= (u8_SysDivVal << SYSDIV_START_BIT) | (USESYSDIV_MASK << USESYSDIV_START_BIT);
+        }
+
         /* Configure Temp RCC */
         u32_RCCVal |= (
-                (STR_MCUConfig.u8_SYSDIV << SYSDIV_START_BIT) | (STR_MCUConfig.u8_USESYSDIV << USESYSDIV_START_BIT) |
-                (STR_MCUConfig.u8_OSCSRC << OSCSRC_START_BIT) | (STR_MCUConfig.u8_MOSCDIS << MOSCDIS_START_BIT) |
-                (STR_MCUConfig.u8_XTAL << XTAL_START_BIT)
+                (STR_MCUConfig[ClockSetting].u8_OSCSRC << OSCSRC_START_BIT) |
+                (XTAL_16_MHZ << XTAL_START_BIT)
             );
+
+        if(OSCSRC_MOSC != STR_MCUConfig[ClockSetting].u8_OSCSRC)
+        {
+            u32_RCCVal |= (MOSCDIS_MASK << MOSCDIS_START_BIT);
+        }
 
         /* Set Required Value to RCC Register */
         SYSCTL_RCC = u32_RCCVal;
+
+        if(STD_ON == STR_MCUConfig[ClockSetting].u8_PLLUse)
+        {
+            SYSCTL_RCC &= ~(PWRDN_MASK << PWRDN_START_BIT);
+            while(PLL_UNLOCKED == Mcu_GetPllStatus());
+            Mcu_DistributePllClock();
+        }
 
         /* Set initialized flag. */
         u8_Init = STD_INIT;
 
         /* Set error ok value. */
-        E_MCU_Init = E_OK;
+        E_MCU_Config = E_OK;
     }
 
     /* Return function error state. */
-    return E_MCU_Init;
+    return E_MCU_Config;
 }
