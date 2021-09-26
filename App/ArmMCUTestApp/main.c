@@ -1,8 +1,39 @@
+/**********************************************************************************************************************
+ *  FILE DESCRIPTION
+ *  -------------------------------------------------------------------------------------------------------------------
+ *         File:  main.c
+ *       Module:  main
+ *
+ *  Description:  source file for main App.
+ *
+ *********************************************************************************************************************/
+
+/*- INCLUDES
+----------------------------------------------*/
 #include "MCU.h"
 #include "Mcu_Hw.h"
 
+/*- LOCAL MACROS
+------------------------------------------*/
+
+/*- LOCAL Dataypes
+----------------------------------------*/
+
+/*- LOCAL FUNCTIONS PROTOTYPES
+----------------------------*/
+
+/*- GLOBAL STATIC VARIABLES
+-------------------------------*/
+
+/*- GLOBAL EXTERN VARIABLES
+-------------------------------*/
 extern const STR_Mcu_ConfigType STR_MCUClockConfig[CLOCK_SETTINGS_NUM];
 
+/*- LOCAL FUNCTIONS IMPLEMENTATION
+------------------------*/
+
+/*- APIs IMPLEMENTATION
+-----------------------------------*/
 void SYSTICK_Handler(void)
 {
    /* Toggles the leds */

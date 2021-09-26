@@ -61,7 +61,9 @@ static STR_Mcu_ConfigType * STR_MCUConfig = NULL_PTR;
 ************************************************************************************/
 static Std_ReturnType Mcu_DistributePllClock( void )
 {
+    /* Enable PLL Bypass. */
     SYSCTL_RCC &= ~(BYPASS_MASK << BYPASS_START_BIT);
+    /* Return error ok. */
     return E_OK;
 }
 
@@ -78,8 +80,10 @@ static Std_ReturnType Mcu_DistributePllClock( void )
 ************************************************************************************/
 static Mcu_PllStatusType Mcu_GetPllStatus( void )
 {
+    /* Variable to store PLL state in it. */
     Mcu_PllStatusType PLLState;
 
+    /* Check PLL state. */
     if(SYSCTL_RIS & (STD_HIGH << PLL_STATE_BIT))
     {
         PLLState = PLL_LOCKED;
@@ -89,6 +93,7 @@ static Mcu_PllStatusType Mcu_GetPllStatus( void )
         PLLState = PLL_UNLOCKED;
     }
 
+    /* Return PLL state. */
     return PLLState;
 }
 
@@ -108,10 +113,13 @@ static Mcu_PllStatusType Mcu_GetPllStatus( void )
 ************************************************************************************/
 void Mcu_Init( const STR_Mcu_ConfigType* ConfigPtr)
 {
+    /* Check valid parameters. */
     if(STD_NOT_INIT == u8_Init && ConfigPtr != NULL_PTR)
     {
+        /* Store Clock settings address. */
         STR_MCUConfig = ConfigPtr;
 
+        /* Set module to init. */
         u8_Init = STD_INIT;
     }
 }
@@ -129,8 +137,10 @@ void Mcu_Init( const STR_Mcu_ConfigType* ConfigPtr)
 ************************************************************************************/
 Mcu_RawResetType Mcu_GetResetRawValue( void )
 {
+    /* Variable to store Reset cause in it. */
     Mcu_RawResetType ResetCause;
 
+    /* Get Reset Cause bits. */
     uint32_t u32_ResetReg = SYSCTL_RESC & SYSTEM_RESET_CAUSE_BITS;
     switch(u32_ResetReg)
     {
@@ -157,6 +167,7 @@ Mcu_RawResetType Mcu_GetResetRawValue( void )
             break;
     }
 
+    /* Return Reset cause. */
     return ResetCause;
 }
 
@@ -173,6 +184,7 @@ Mcu_RawResetType Mcu_GetResetRawValue( void )
 ************************************************************************************/
 void Mcu_PerformReset(void)
 {
+    /* Perform System Reset. */
     APINT = APINT_KEY | (STD_HIGH << SYSRESREQ_BIT);
 }
 
@@ -209,8 +221,10 @@ Std_ReturnType Mcu_InitClock(Mcu_ClockType ClockSetting)
     }
     else
     {
+        /* Store temp RCC val. */
         uint32_t u32_RCCVal = SYSCTL_RCC;
 
+        /* Get max frequency of clock source. */
         uint32_t u32_FreqMax;
         if(OSCSRC_PIOSC == STR_MCUConfig[ClockSetting].u8_OSCSRC)
         {
@@ -236,6 +250,7 @@ Std_ReturnType Mcu_InitClock(Mcu_ClockType ClockSetting)
         u32_RCCVal &= ~(USESYSDIV_MASK << USESYSDIV_START_BIT);
         u32_RCCVal &= ~(SYSDIV_MASK << SYSDIV_START_BIT);
 
+        /* Check whether system division is needed. */
         uint8_t u8_SysDivVal = (uint8_t)(u32_FreqMax/STR_MCUConfig[ClockSetting].u32_Freq);
         if(u8_SysDivVal >= 2)
         {
@@ -251,16 +266,21 @@ Std_ReturnType Mcu_InitClock(Mcu_ClockType ClockSetting)
 
         if(OSCSRC_MOSC != STR_MCUConfig[ClockSetting].u8_OSCSRC)
         {
+            /* Enable Main oscillator source. */
             u32_RCCVal |= (MOSCDIS_MASK << MOSCDIS_START_BIT);
         }
 
         /* Set Required Value to RCC Register */
         SYSCTL_RCC = u32_RCCVal;
 
+        /* Enable PLL if used. */
         if(STD_ON == STR_MCUConfig[ClockSetting].u8_PLLUse)
         {
+            /* Power on PLL */
             SYSCTL_RCC &= ~(PWRDN_MASK << PWRDN_START_BIT);
+            /* Wait for PLL to work correctly. */
             while(PLL_UNLOCKED == Mcu_GetPllStatus());
+            /* Distribute PLL clock. */
             Mcu_DistributePllClock();
         }
 
