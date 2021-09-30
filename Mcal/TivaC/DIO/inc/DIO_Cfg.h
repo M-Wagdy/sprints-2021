@@ -1,14 +1,14 @@
 /**********************************************************************************************************************
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
- *         File:  PORT_Cfg.h
- *       Module:  PORT
+ *         File:  DIO_Cfg.h
+ *       Module:  DIO
  *
- *  Description:  header file for PORT module preprocessor configurations.
+ *  Description:  header file for DIO module preprocessor configurations.
  *
  *********************************************************************************************************************/
-#ifndef __PORT_CFG_H__
-#define __PORT_CFG_H__
+#ifndef __DIO_CFG_H__
+#define __DIO_CFG_H__
 
 /*- INCLUDES -----------------------------------------------*/
 #include "Std_Types.h"
@@ -16,13 +16,10 @@
 /*- CONSTANTS ----------------------------------------------*/
 
 /*- PRIMITIVE TYPES ----------------------------------------*/
-typedef uint8_t Port_PinLevel;
-typedef uint8_t Port_PinDirectionType;
-typedef uint8_t Port_PinModeType;
-typedef uint8_t Port_PinInternalAttachType;
-typedef uint8_t Port_PinOutputCurrentType;
-typedef uint8_t Port_Num;
-typedef uint8_t Port_PinNum;
+typedef uint8_t Dio_ChannelType;
+typedef uint8_t Dio_PortType;
+typedef uint8_t Dio_LevelType;
+typedef uint8_t Dio_PortLevelType;
 
 /*- ENUMS --------------------------------------------------*/
 
@@ -32,4 +29,4 @@ typedef uint8_t Port_PinNum;
 
 /*- FUNCTION DECLARATIONS ----------------------------------*/
 
-#endif  /* __PORT_CFG_H__ */
+#endif  /* __DIO_CFG_H__ */
