@@ -15,6 +15,12 @@
 
 /*- LOCAL MACROS
 ------------------------------------------*/
+#define PORT_LOCK_VALUE         (uint32_t)(0x4C4F434B)
+#define BIT_MASKING_OFFSET      (uint8_t)(2)
+#define PCTL_PIN_MASK           (uint32_t)(0x0000000F)
+#define PCTL_PIN_BIT_NUM        (uint8_t)(4)
+#define MIN_PCTL_VAL            (uint8_t)(1)
+#define MAX_PCTL_VAL            (uint8_t)(15)
 
 /*- LOCAL Dataypes
 ----------------------------------------*/
@@ -48,15 +54,19 @@ static uint8_t u8_Init = STD_NOT_INIT;
 ************************************************************************************/
 void Port_Init(const Port_ConfigType* ConfigPtr)
 {
+    /* Variable to store Port base address */
     uint32_t * u32_PortBaseAddr;
+    /* Variable for loop counter. */
     uint8_t u8_PinCounter;
 
+    /* Check if init before. */
     if(STD_INIT == u8_Init)
     {
         /* Init before error. */
     }
     else
     {
+        /* Loop on all configured pins. */
         for(u8_PinCounter = 0; u8_PinCounter < PORT_PINS_NUM; u8_PinCounter++)
         {
             /* Get Port Base Address */
@@ -94,7 +104,7 @@ void Port_Init(const Port_ConfigType* ConfigPtr)
                     ( (PORT_F == ConfigPtr[u8_PinCounter].PortNum) && (PORT_PIN_0 == ConfigPtr[u8_PinCounter].PortPinNum) )
                    )
             {
-                *((volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_LOCK_OFFSET)) = 0x4C4F434B;
+                *((volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_LOCK_OFFSET)) = PORT_LOCK_VALUE;
                 SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_CR_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
             }
             else
@@ -105,15 +115,18 @@ void Port_Init(const Port_ConfigType* ConfigPtr)
             /* Configure Pin Direction */
             if(PORT_PIN_OUTPUT == ConfigPtr[u8_PinCounter].PortPinDirection)
             {
+                /* Set output direction */
                 SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DIR_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Configure Pin Level */
                 if(PORT_PIN_HIGH == ConfigPtr[u8_PinCounter].PortPinLevelValue)
                 {
-                    SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DATA_OFFSET + (1<<ConfigPtr[u8_PinCounter].PortPinNum+2))), ConfigPtr[u8_PinCounter].PortPinNum);
+                    /* Set Level High */
+                    SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DATA_OFFSET + (STD_HIGH<<ConfigPtr[u8_PinCounter].PortPinNum+BIT_MASKING_OFFSET))), ConfigPtr[u8_PinCounter].PortPinNum);
                 }
                 else if(PORT_PIN_LOW == ConfigPtr[u8_PinCounter].PortPinLevelValue)
                 {
-                    CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DATA_OFFSET + (1<<ConfigPtr[u8_PinCounter].PortPinNum+2)) , ConfigPtr[u8_PinCounter].PortPinNum);
+                    /* Set Level Low */
+                    CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DATA_OFFSET + (STD_HIGH<<ConfigPtr[u8_PinCounter].PortPinNum+BIT_MASKING_OFFSET)) , ConfigPtr[u8_PinCounter].PortPinNum);
                 }
                 else
                 {
@@ -142,6 +155,7 @@ void Port_Init(const Port_ConfigType* ConfigPtr)
             }
             else if(PORT_PIN_INPUT == ConfigPtr[u8_PinCounter].PortPinDirection)
             {
+                /* Set input direction */
                 CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DIR_OFFSET) , ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Configure Pin Resistance */
                 switch(ConfigPtr[u8_PinCounter].PortPinInternalAttach)
@@ -172,7 +186,7 @@ void Port_Init(const Port_ConfigType* ConfigPtr)
 
             /* Configure Pin Mode */
             /* Clear the PMCx bits for this pin */
-            *(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_PCTL_OFFSET) &= ~(0x0000000F << (ConfigPtr[u8_PinCounter].PortPinNum * 4));
+            *(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_PCTL_OFFSET) &= ~(PCTL_PIN_MASK << (ConfigPtr[u8_PinCounter].PortPinNum * PCTL_PIN_BIT_NUM));
             if(PORT_PIN_DEN == ConfigPtr[u8_PinCounter].PortPinMode)
             {
                 /* Clear the corresponding bit in the GPIOAFSEL register to disable the alternative functionality on this pin */
@@ -208,7 +222,7 @@ void Port_Init(const Port_ConfigType* ConfigPtr)
                 /* Enable Interrupt for pin */
                 SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_IM_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
             }
-            else if((ConfigPtr[u8_PinCounter].PortPinMode >= 1) && (ConfigPtr[u8_PinCounter].PortPinMode <= 15))
+            else if((ConfigPtr[u8_PinCounter].PortPinMode >= MIN_PCTL_VAL) && (ConfigPtr[u8_PinCounter].PortPinMode <= MAX_PCTL_VAL))
             {
                 /* Set the corresponding bit in the GPIOAFSEL register to disable the alternative functionality on this pin */
                 SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AFSEL_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
@@ -217,7 +231,7 @@ void Port_Init(const Port_ConfigType* ConfigPtr)
                 /* Clear the corresponding bit in the GPIOAMSEL register to disable analog functionality on this pin */
                 CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AMSEL_OFFSET) , ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Set the corresponding bit in the GPIOPCTL register to select the alternative functionality on this pin */
-                *(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_PCTL_OFFSET) |= (ConfigPtr[u8_PinCounter].PortPinMode << (ConfigPtr[u8_PinCounter].PortPinNum * 4));
+                *(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_PCTL_OFFSET) |= (ConfigPtr[u8_PinCounter].PortPinMode << (ConfigPtr[u8_PinCounter].PortPinNum * PCTL_PIN_BIT_NUM));
             }
             else
             {
@@ -226,6 +240,7 @@ void Port_Init(const Port_ConfigType* ConfigPtr)
             }
         }
 
+        /* Set init Flag. */
         u8_Init = STD_INIT;
     }
 }

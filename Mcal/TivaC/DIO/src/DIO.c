@@ -15,6 +15,12 @@
 
 /*- LOCAL MACROS
 ------------------------------------------*/
+#define INVALID_PORT_ID         (uint8_t)(6)
+#define INVALID_PIN_ID          (uint8_t)(8)
+#define BIT_MASKING_OFFSET      (uint8_t)(2)
+#define BIT_MASK_ALL_PINS       (uint8_t)(0xFF)
+#define PORT_ID_DIV             (uint8_t)(0xF)
+#define PIN_ID_AND              (uint8_t)(0xF)
 
 /*- LOCAL Dataypes
 ----------------------------------------*/
@@ -47,24 +53,27 @@
 ************************************************************************************/
 Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId)
 {
+    /* Variable to store port base address. */
     volatile uint32_t * ptru32_Port = NULL_PTR;
+    /* Function to store function return value. */
     Dio_LevelType RetVal = STD_LOW;
 
-    uint8_t u8_PortID = ChannelId/0xF;
-    uint8_t u8_PinID = ChannelId & 0xF;
+    /* Extract port and pin from channel ID. */
+    uint8_t u8_PortID = ChannelId/PORT_ID_DIV;
+    uint8_t u8_PinID = ChannelId & PIN_ID_AND;
 
     /* In-case there are no errors */
-    if(u8_PortID > 5)
+    if(u8_PortID >= INVALID_PORT_ID)
     {
         /* invalid port */
     }
-    else if(u8_PinID > 7)
+    else if(u8_PinID >= INVALID_PIN_ID)
     {
         /* invalid pin */
     }
     else
     {
-        /* Point to the correct PORT register according to the Port Id stored in the Port_Num member */
+        /* Point to the correct PORT register according to the Port Id */
         switch(u8_PortID)
         {
             case DIO_PORT_A:
@@ -88,7 +97,7 @@ Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId)
         }
 
         /* Read the required channel */
-        if(BIT_IS_SET(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + 2))),u8_PinID))
+        if(BIT_IS_SET(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + BIT_MASKING_OFFSET))),u8_PinID))
         {
             RetVal = STD_HIGH;
         }
@@ -114,23 +123,25 @@ Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId)
 ************************************************************************************/
 void Dio_WriteChannel(Dio_ChannelType ChannelId, Dio_LevelType Level)
 {
+    /* Variable to store port base address. */
     volatile uint32_t * ptru32_Port = NULL_PTR;
 
-    uint8_t u8_PortID = ChannelId/0xF;
-    uint8_t u8_PinID = ChannelId & 0xF;
+    /* Extract port and pin from channel ID. */
+    uint8_t u8_PortID = ChannelId/PORT_ID_DIV;
+    uint8_t u8_PinID = ChannelId & PIN_ID_AND;
 
     /* In-case there are no errors */
-    if(u8_PortID > 5)
+    if(u8_PortID >= INVALID_PORT_ID)
     {
         /* invalid port */
     }
-    else if(u8_PinID > 7)
+    else if(u8_PinID >= INVALID_PIN_ID)
     {
         /* invalid pin */
     }
     else
     {
-        /* Point to the correct PORT register according to the Port Id stored in the Port_Num member */
+        /* Point to the correct PORT register according to the Port Id */
         switch(u8_PortID)
         {
             case DIO_PORT_A:
@@ -157,12 +168,12 @@ void Dio_WriteChannel(Dio_ChannelType ChannelId, Dio_LevelType Level)
         if(Level == STD_HIGH)
         {
             /* Write Logic High */
-            SET_BIT(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + 2))),u8_PinID);
+            SET_BIT(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + BIT_MASKING_OFFSET))),u8_PinID);
         }
         else if(Level == STD_LOW)
         {
             /* Write Logic Low */
-            CLEAR_BIT(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + 2))),u8_PinID);
+            CLEAR_BIT(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + BIT_MASKING_OFFSET))),u8_PinID);
         }
         else
         {
@@ -184,17 +195,19 @@ void Dio_WriteChannel(Dio_ChannelType ChannelId, Dio_LevelType Level)
 ************************************************************************************/
 Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId)
 {
+    /* Variable to store port base address. */
     volatile uint32_t * ptru32_Port = NULL_PTR;
+    /* variable to store function return value. */
     Dio_LevelType RetVal = STD_LOW;
 
     /* In-case there are no errors */
-    if(PortId > 5)
+    if(PortId >= INVALID_PORT_ID)
     {
         /* invalid port */
     }
     else
     {
-        /* Point to the correct PORT register according to the Port Id stored in the Port_Num member */
+        /* Point to the correct PORT register according to the Port Id */
         switch(PortId)
         {
             case DIO_PORT_A:
@@ -217,7 +230,8 @@ Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId)
                 break;
         }
 
-        RetVal = *((volatile uint8_t *)ptru32_Port + (0xFF << 2));
+        /* Set return variable with port value. */
+        RetVal = *((volatile uint8_t *)ptru32_Port + PORT_DATA_OFFSET +(BIT_MASK_ALL_PINS << BIT_MASKING_OFFSET));
     }
     return RetVal;
 }
@@ -236,16 +250,17 @@ Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId)
 ************************************************************************************/
 void Dio_WritePort(Dio_PortType PortId, Dio_PortLevelType Level)
 {
+    /* Variable to store port base address. */
     volatile uint32_t * ptru32_Port = NULL_PTR;
 
     /* In-case there are no errors */
-    if(PortId > 5)
+    if(PortId >= INVALID_PORT_ID)
     {
         /* invalid port */
     }
     else
     {
-        /* Point to the correct PORT register according to the Port Id stored in the Port_Num member */
+        /* Point to the correct PORT register according to the Port Id */
         switch(PortId)
         {
             case DIO_PORT_A:
@@ -269,7 +284,7 @@ void Dio_WritePort(Dio_PortType PortId, Dio_PortLevelType Level)
         }
 
         /* Write the required value */
-        *((volatile uint8_t *)ptru32_Port + (0xFF << 2)) = Level;
+        *((volatile uint8_t *)ptru32_Port + (BIT_MASK_ALL_PINS << BIT_MASKING_OFFSET)) = Level;
     }
 }
 
@@ -286,24 +301,27 @@ void Dio_WritePort(Dio_PortType PortId, Dio_PortLevelType Level)
 ************************************************************************************/
 Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId)
 {
-    volatile uint32_t * ptru32_Port = NULL_PTR;
-    Dio_LevelType RetVal = STD_LOW;
 
-    uint8_t u8_PortID = ChannelId/0xF;
-    uint8_t u8_PinID = ChannelId & 0xF;
+    /* Variable to store port base address. */
+    volatile uint32_t * ptru32_Port = NULL_PTR;
+    /* variable to store function return value. */
+    Dio_LevelType RetVal = STD_LOW;
+    /* Extract port and pin from channel ID. */
+    uint8_t u8_PortID = ChannelId/PORT_ID_DIV;
+    uint8_t u8_PinID = ChannelId & PIN_ID_AND;
 
     /* In-case there are no errors */
-    if(u8_PortID > 5)
+    if(u8_PortID >= INVALID_PORT_ID)
     {
         /* invalid port */
     }
-    else if(u8_PinID > 7)
+    else if(u8_PinID >= INVALID_PIN_ID)
     {
         /* invalid pin */
     }
     else
     {
-        /* Point to the correct PORT register according to the Port Id stored in the Port_Num member */
+        /* Point to the correct PORT register according to the Port Id */
         switch(u8_PortID)
         {
             case DIO_PORT_A:
@@ -327,14 +345,18 @@ Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId)
         }
 
         /* Toggle the required Channel */
-        if(BIT_IS_SET(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + 2))),u8_PinID))
+        if(BIT_IS_SET(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + BIT_MASKING_OFFSET))),u8_PinID))
         {
-            CLEAR_BIT(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + 2))),u8_PinID);
+            /* Write Logic Low */
+            CLEAR_BIT(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + BIT_MASKING_OFFSET))),u8_PinID);
+            /* Set return value to Low */
             RetVal = STD_LOW;
         }
         else
         {
-            SET_BIT(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + 2))),u8_PinID);
+            /* Write Logic High */
+            SET_BIT(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + BIT_MASKING_OFFSET))),u8_PinID);
+            /* Set return value to High */
             RetVal = STD_HIGH;
         }
     }
