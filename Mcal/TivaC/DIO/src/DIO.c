@@ -168,12 +168,12 @@ void Dio_WriteChannel(Dio_ChannelType ChannelId, Dio_LevelType Level)
         if(Level == STD_HIGH)
         {
             /* Write Logic High */
-            SET_BIT(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + BIT_MASKING_OFFSET))),u8_PinID);
+            SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)ptru32_Port + PORT_DATA_ALL_PINS_OFFSET)), u8_PinID);
         }
         else if(Level == STD_LOW)
         {
             /* Write Logic Low */
-            CLEAR_BIT(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + BIT_MASKING_OFFSET))),u8_PinID);
+            CLEAR_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)ptru32_Port + PORT_DATA_ALL_PINS_OFFSET)), u8_PinID);
         }
         else
         {
@@ -348,14 +348,14 @@ Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId)
         if(BIT_IS_SET(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + BIT_MASKING_OFFSET))),u8_PinID))
         {
             /* Write Logic Low */
-            CLEAR_BIT(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + BIT_MASKING_OFFSET))),u8_PinID);
+            CLEAR_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)ptru32_Port + PORT_DATA_ALL_PINS_OFFSET)), u8_PinID);
             /* Set return value to Low */
             RetVal = STD_LOW;
         }
         else
         {
             /* Write Logic High */
-            SET_BIT(*((volatile uint8_t *)ptru32_Port + (STD_HIGH << (u8_PinID + BIT_MASKING_OFFSET))),u8_PinID);
+            SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)ptru32_Port + PORT_DATA_ALL_PINS_OFFSET)), u8_PinID);
             /* Set return value to High */
             RetVal = STD_HIGH;
         }

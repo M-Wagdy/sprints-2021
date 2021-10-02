@@ -48,6 +48,12 @@
 /* Set Bit using bit mapping of Peripheral */
 #define SET_BIT_PER_BB(REG,BIT) ((*((volatile uint32_t *)( 0x42000000 + (((uint32_t)(&REG) - 0x40000000) * 32) + ((BIT) * 4) ))) = STD_HIGH)
 
+/* Clear Bit using bit mapping of SRAM */
+#define CLEAR_BIT_RAM_BB(REG,BIT) ((*((volatile uint32_t *)( 0x22000000 + (((uint32_t)(&REG) - 0x20000000) * 32) + ((BIT) * 4) ))) = STD_LOW)
+
+/* Clear Bit using bit mapping of Peripheral */
+#define CLEAR_BIT_PER_BB(REG,BIT) ((*((volatile uint32_t *)( 0x42000000 + (((uint32_t)(&REG) - 0x40000000) * 32) + ((BIT) * 4) ))) = STD_LOW)
+
 /*- FUNCTION DECLARATIONS ----------------------------------*/
 
 #endif /* __BIT_MATH_H__ */

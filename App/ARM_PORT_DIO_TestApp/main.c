@@ -21,8 +21,8 @@ void main(void)
     while((SYSCTL_PRGPIO & 0x3F) != 0x3F);
 
     /* Enable Interrupts. */
-    /*PRI7 = (PRI7 & 0xFF1FFFFF) | (2<<21);
-    EN0  |= 0x40000000;*/
+    PRI7 = (PRI7 & 0xFF1FFFFF) | (2<<21);
+    EN0  |= 0x40000000;
 
     /* Init Pins. */
     Port_Init(STR_PortsConfig);

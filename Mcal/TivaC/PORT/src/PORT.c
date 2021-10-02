@@ -121,12 +121,12 @@ void Port_Init(const Port_ConfigType* ConfigPtr)
                 if(PORT_PIN_HIGH == ConfigPtr[u8_PinCounter].PortPinLevelValue)
                 {
                     /* Set Level High */
-                    SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DATA_OFFSET + (STD_HIGH<<ConfigPtr[u8_PinCounter].PortPinNum+BIT_MASKING_OFFSET))), ConfigPtr[u8_PinCounter].PortPinNum);
+                    SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DATA_ALL_PINS_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 }
                 else if(PORT_PIN_LOW == ConfigPtr[u8_PinCounter].PortPinLevelValue)
                 {
                     /* Set Level Low */
-                    CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DATA_OFFSET + (STD_HIGH<<ConfigPtr[u8_PinCounter].PortPinNum+BIT_MASKING_OFFSET)) , ConfigPtr[u8_PinCounter].PortPinNum);
+                    CLEAR_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DATA_ALL_PINS_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 }
                 else
                 {
@@ -168,8 +168,8 @@ void Port_Init(const Port_ConfigType* ConfigPtr)
                         break;
                     case PORT_PIN_ODR:
                         SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_ODR_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
-                        CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_PUR_OFFSET) , ConfigPtr[u8_PinCounter].PortPinNum);
-                        CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_PDR_OFFSET) , ConfigPtr[u8_PinCounter].PortPinNum);
+                        CLEAR_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_PUR_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
+                        CLEAR_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_PDR_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                         break;
                     default:
                         /* Invalid config error. */
@@ -190,31 +190,31 @@ void Port_Init(const Port_ConfigType* ConfigPtr)
             if(PORT_PIN_DEN == ConfigPtr[u8_PinCounter].PortPinMode)
             {
                 /* Clear the corresponding bit in the GPIOAFSEL register to disable the alternative functionality on this pin */
-                CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AFSEL_OFFSET) , ConfigPtr[u8_PinCounter].PortPinNum);
+                CLEAR_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AFSEL_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Set the corresponding bit in the GPIODEN register to enable digital functionality on this pin */
                 SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DEN_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Clear the corresponding bit in the GPIOAMSEL register to disable analog functionality on this pin */
-                CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AMSEL_OFFSET) , ConfigPtr[u8_PinCounter].PortPinNum);
+                CLEAR_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AMSEL_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
             }
             else if(PORT_PIN_AMSEL == ConfigPtr[u8_PinCounter].PortPinMode)
             {
                 /* Clear the corresponding bit in the GPIOAFSEL register to disable the alternative functionality on this pin */
-                CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AFSEL_OFFSET) , ConfigPtr[u8_PinCounter].PortPinNum);
+                CLEAR_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AFSEL_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Clear the corresponding bit in the GPIODEN register to enable digital functionality on this pin */
-                CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DEN_OFFSET) , ConfigPtr[u8_PinCounter].PortPinNum);
+                CLEAR_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DEN_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Set the corresponding bit in the GPIOAMSEL register to disable analog functionality on this pin */
                 SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AMSEL_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
             }
             else if(PORT_PIN_EXTI == ConfigPtr[u8_PinCounter].PortPinMode)
             {
                 /* Clear the corresponding bit in the GPIOAFSEL register to disable the alternative functionality on this pin */
-                CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AFSEL_OFFSET) , ConfigPtr[u8_PinCounter].PortPinNum);
+                CLEAR_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AFSEL_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Set the corresponding bit in the GPIODEN register to enable digital functionality on this pin */
                 SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DEN_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Clear the corresponding bit in the GPIOAMSEL register to disable analog functionality on this pin */
-                CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AMSEL_OFFSET) , ConfigPtr[u8_PinCounter].PortPinNum);
+                CLEAR_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AMSEL_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Detect edges */
-                CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_IS_OFFSET) , ConfigPtr[u8_PinCounter].PortPinNum);
+                CLEAR_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_IS_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Detect Both edges */
                 SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_IBE_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Clear Interupt Flag */
@@ -229,7 +229,7 @@ void Port_Init(const Port_ConfigType* ConfigPtr)
                 /* Set the corresponding bit in the GPIODEN register to enable digital functionality on this pin */
                 SET_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_DEN_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Clear the corresponding bit in the GPIOAMSEL register to disable analog functionality on this pin */
-                CLEAR_BIT(*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AMSEL_OFFSET) , ConfigPtr[u8_PinCounter].PortPinNum);
+                CLEAR_BIT_PER_BB((*(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_AMSEL_OFFSET)), ConfigPtr[u8_PinCounter].PortPinNum);
                 /* Set the corresponding bit in the GPIOPCTL register to select the alternative functionality on this pin */
                 *(volatile uint32_t *)((volatile uint8_t *)u32_PortBaseAddr + PORT_PCTL_OFFSET) |= (ConfigPtr[u8_PinCounter].PortPinMode << (ConfigPtr[u8_PinCounter].PortPinNum * PCTL_PIN_BIT_NUM));
             }

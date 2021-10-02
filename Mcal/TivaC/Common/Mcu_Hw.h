@@ -93,6 +93,7 @@
 
 /*- GPIO APB Data Control Registers offsets---------------------*/
 #define PORT_DATA_OFFSET                (uint32_t)(0x000)
+#define PORT_DATA_ALL_PINS_OFFSET       (uint32_t)(0x3FC)
 #define PORT_DIR_OFFSET                 (uint32_t)(0x400)
 /*- GPIO APB Commit Control Registers offsets-------------------*/
 #define PORT_LOCK_OFFSET                (uint32_t)(0x520)
