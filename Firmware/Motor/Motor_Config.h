@@ -10,8 +10,8 @@
 #define __MOTOR_CONFIG_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
-#include "Mcal/Atmega32/DIO/DIO_Config.h"
+#include "STD_types.h"
+#include "DIO_Config.h"
 
 /*- MACROS -------------------------------------------------*/
 #define MOTOR_CH_0            (uint8_t)(0)

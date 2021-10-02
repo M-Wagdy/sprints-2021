@@ -10,8 +10,8 @@
 #define __LCD_CONFIG_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
-#include "Mcal/Atmega32/DIO/DIO_Config.h"
+#include "STD_types.h"
+#include "DIO_Config.h"
 
 /*- MACROS -------------------------------------------------*/
 

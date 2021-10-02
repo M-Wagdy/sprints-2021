@@ -10,8 +10,8 @@
 #define __MOTOR_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
-#include "Mcal/Atmega32/DIO/DIO.h"
+#include "STD_types.h"
+#include "DIO.h"
 #include "Motor_retval.h"
 #include "Motor_Config.h"
 

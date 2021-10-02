@@ -10,9 +10,9 @@
 #define __LCD_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
-#include "Infrastructure/utils.h"
-#include "Mcal/Atmega32/DIO/DIO.h"
+#include "STD_types.h"
+#include "utils.h"
+#include "DIO.h"
 #include "LCD_retval.h"
 #include "LCD_Config.h"
 

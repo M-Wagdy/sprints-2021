@@ -10,7 +10,7 @@
 #define __ADC_CONFIG_H__
 
 /*- INCLUDES -----------------------------------------------*/
-#include "Infrastructure/STD_types.h"
+#include "STD_types.h"
 
 /*- MACROS -------------------------------------------------*/
 #define ADC_ENABLE                     (uint8_t)(0X80)
