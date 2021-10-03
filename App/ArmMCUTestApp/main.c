@@ -43,10 +43,8 @@ void SYSTICK_Handler(void)
 void main(void)
 
 {
-    /* Start PortF Clock */
-    SYSCTL_RCGCGPIO |= 0x20;
-    /* Wait till clock is running */
-    while((SYSCTL_PRGPIO & 0x20) == 0);
+    Mcu_Init(STR_MCUClockConfig);
+    Mcu_InitClock(0);
 
     /* Enable Write Access */
     PORTF_LOCK = 0x4C4F434;
@@ -64,8 +62,7 @@ void main(void)
     /* Configure the systick */
     STCTRL |= (0x07);
 
-    Mcu_Init(STR_MCUClockConfig);
-    Mcu_InitClock(0);
+
 
     /* Superloop */
     while(1);

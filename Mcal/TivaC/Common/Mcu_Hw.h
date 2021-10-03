@@ -75,6 +75,7 @@
 
 /*- System Control Registers--------------------------------*/
 #define SYSCTL_BASE_ADDRESS            (uint32_t)(0x400FE000)
+#define SYSCTL_RCGC_OFFSET             (uint32_t)(0x600)
 #define SYSCTL_RIS                     (*((volatile uint32_t *)(SYSCTL_BASE_ADDRESS+0x050)))
 #define SYSCTL_RESC                    (*((volatile uint32_t *)(SYSCTL_BASE_ADDRESS+0x05C)))
 #define SYSCTL_RCC                     (*((volatile uint32_t *)(SYSCTL_BASE_ADDRESS+0x060)))

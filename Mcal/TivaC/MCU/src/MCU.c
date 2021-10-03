@@ -40,10 +40,11 @@ static Mcu_PllStatusType Mcu_GetPllStatus( void );
 /*- GLOBAL STATIC VARIABLES
 -------------------------------*/
 static uint8_t u8_Init = STD_NOT_INIT;
+static STR_Mcu_ConfigType * STR_MCUConfig = NULL_PTR;
 
 /*- GLOBAL EXTERN VARIABLES
 -------------------------------*/
-static STR_Mcu_ConfigType * STR_MCUConfig = NULL_PTR;
+extern const uint16_t au16_ClockGates[CONFIGURED_CLOCK_GATES];
 
 /*- LOCAL FUNCTIONS IMPLEMENTATION
 ------------------------*/
@@ -61,10 +62,22 @@ static STR_Mcu_ConfigType * STR_MCUConfig = NULL_PTR;
 ************************************************************************************/
 static Std_ReturnType Mcu_DistributePllClock( void )
 {
-    /* Enable PLL Bypass. */
-    SYSCTL_RCC &= ~(BYPASS_MASK << BYPASS_START_BIT);
-    /* Return error ok. */
-    return E_OK;
+    /* Variable to store function error state. */
+    Std_ReturnType E_MCU_State;
+
+    if(STD_INIT != u8_Init)
+    {
+        E_MCU_State = E_NOK;
+    }
+    else
+    {
+        /* Enable PLL Bypass. */
+        SYSCTL_RCC &= ~(BYPASS_MASK << BYPASS_START_BIT);
+        E_MCU_State = E_OK;
+    }
+
+    /* Return error state. */
+    return E_MCU_State;
 }
 
 /************************************************************************************
@@ -289,6 +302,14 @@ Std_ReturnType Mcu_InitClock(Mcu_ClockType ClockSetting)
 
         /* Set error ok value. */
         E_MCU_Config = E_OK;
+    }
+
+    uint8_t u8_CGCounter;
+    for(u8_CGCounter =0; u8_CGCounter < CONFIGURED_CLOCK_GATES; u8_CGCounter++)
+    {
+        uint8_t u8_RegOffset = (au16_ClockGates[u8_CGCounter] >> 4);
+        uint8_t u8_BitNum = (au16_ClockGates[u8_CGCounter] & 0xF);
+        *((volatile uint32_t *)(SYSCTL_BASE_ADDRESS + SYSCTL_RCGC_OFFSET) + u8_RegOffset) |= (STD_HIGH << u8_BitNum);
     }
 
     /* Return function error state. */
