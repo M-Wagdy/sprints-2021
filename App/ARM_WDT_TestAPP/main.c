@@ -16,7 +16,8 @@ void main(void)
 
     volatile uint32_t * u32_DataReg = (volatile uint32_t *)(PORTF_APB_BASE_ADDRESS + PORT_DATA_ALL_PINS_OFFSET);
 
-    /* Start PortF Clock */
+    /* WDT clock doesn't work without initializing uart first */
+    /* Start UART0 Clock */
     SYSCTL_RCGCUART |= 0x01;
     /* Wait till clock is running */
     while((SYSCTL_RCGCUART & 0x01) == 0);
