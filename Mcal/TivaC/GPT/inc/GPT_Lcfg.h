@@ -30,7 +30,7 @@
 #define GPT_CH11                (Gpt_ChannelType)(11)
 #define GPT_INVALID_CH          (Gpt_ChannelType)(12)
 
-#define GPT_CONFIGURED_GPT_CHS  (uint8_t)(1)
+#define GPT_CONFIGURED_GPT_CHS  (uint8_t)(12)
 
 /* Gpt Channel Modes */
 #define GPT_CH_MODE_CONTINUOUS  (Gpt_ModeType)(0)

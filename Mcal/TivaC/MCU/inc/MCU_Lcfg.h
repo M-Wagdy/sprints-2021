@@ -24,7 +24,7 @@
 #define OSCSRC_INVALID_VAL      (uint8_t)(0x04)
 
 /* Clock Gates */
-#define CONFIGURED_CLOCK_GATES  (uint8_t)(8)
+#define CONFIGURED_CLOCK_GATES  (uint8_t)(18)
 
 #define CG_WDT0                 (uint16_t)(0x000)
 #define CG_WDT1                 (uint16_t)(0x001)
