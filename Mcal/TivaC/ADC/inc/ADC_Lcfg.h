@@ -58,6 +58,13 @@
 #define ADC_STREAM_BUFFER_CIRCULAR  (Adc_StreamBufferModeType)(0)
 #define ADC_STREAM_BUFFER_LINEAR    (Adc_StreamBufferModeType)(1)
 
+/* ADC Status */
+#define ADC_STATUS_NOT_INIT         (Adc_StatusType)(0)
+#define ADC_STATUS_BUSY             (Adc_StatusType)(1)
+#define ADC_STATUS_NOT_RUNNING      (Adc_StatusType)(2)
+#define ADC_STATUS_READY            (Adc_StatusType)(3)
+#define ADC_STATUS_INVALID_GROUP    (Adc_StatusType)(4)
+
 /*- PRIMITIVE TYPES ----------------------------------------*/
 
 /*- ENUMS --------------------------------------------------*/

@@ -14,6 +14,7 @@
 #include "Std_Types.h"
 
 /*- CONSTANTS ----------------------------------------------*/
+#define ADC_BUSY_BIT                    (uint8_t)(16)
 
 /*- PRIMITIVE TYPES ----------------------------------------*/
 typedef uint8_t Adc_GroupType;

@@ -36,6 +36,18 @@
 */
 #define           E_ADC_INIT_BEFORE             (Std_ReturnType)( 2 )
 
+/**
+* @brief: This return value indicate that the module received
+* a null pointer.
+*/
+#define           E_ADC_NULL_PTR                (Std_ReturnType)( 3 )
+
+/**
+* @brief: This return value indicate that the module was
+* not initialized.
+*/
+#define           E_ADC_NOT_INIT                (Std_ReturnType)( 4 )
+
 /*- PRIMITIVE TYPES ----------------------------------------*/
 
 /*- ENUMS --------------------------------------------------*/
